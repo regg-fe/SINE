@@ -30,7 +30,6 @@
 			<h2>Lideres</h2
 			<thead>
 				<tr>
-					<th>ID</th>
 					<th>Nombres</th>
 					<th>Apellidos</th>
 					<th>CI</th>
@@ -43,7 +42,6 @@
 			<tbody>
 				<tr>
 					<?php for($i = 0; $i < count($lideres); $i++): ?>
-					<td><?php echo $lideres[$i]['ID']?></td>
 					<td><?php echo $lideres[$i]['NOMBRES']?></td>
 					<td><?php echo $lideres[$i]['APELLIDOS']?></td>
 					<td><?php echo $lideres[$i]['DNI']?></td>
@@ -61,10 +59,9 @@
 		<?php if (isset($brigadistas)): ?>
 
 		<table cellspacing="3" cellpadding="3" border="1">
-			<h2>Brigadista</h2>
+			<h2>Brigadistas</h2>
 			<thead>
 				<tr>
-					<th>ID</th>	
 					<th>Nombres</th>
 					<th>Apellidos</th>
 					<th>CI</th>
