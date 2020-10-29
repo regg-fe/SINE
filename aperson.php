@@ -19,7 +19,6 @@
 	}
 	$escolarizado = escolarizacionPorPersona($persona['ID']);
 	$trabajador = trabajosPorPersona($persona['ID']);
-	
 	if (isset($trabajador)) {
 		for ($i=0; $i < count($trabajador); $i++) {
 			$lugar[$i] = lugar($trabajador[$i]['ID_LUGAR']);
@@ -33,14 +32,11 @@
 	$carnet = carnet($persona['ID']);	 
 	$bono = bonosPorCarnet($persona['ID']);
 	$ayuda = ayudasTecPorPersona($persona['ID']);
-	
 
 	if(isset($_POST['btn'])) {
        echo "<script>window.close();</script>";
 	}
-
 ?>
-
 <!DOCTYPE html>
 <html>
 	<head>
