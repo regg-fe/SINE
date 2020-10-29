@@ -46,12 +46,10 @@
 			<?php if ($familias != null && isset($personas)): ?>
 				<?php for ($i = 0; $i < count($familias); $i++):  ?>
 					<?php if (isset($personas[$i])): ?> 
-						<h2>Familia <?php echo $personas[$i][0]['FAMILIA'] ?></h2>
+						<a href="afamily.php?id=<?php echo $familias[$i]['ID']?>" target="_blank"><h2>Familia <?php echo $personas[$i][0]['FAMILIA'] ?></h2></a>
 						<table cellspacing="3" cellpadding="3" border="1">
 							<thead>
 								<tr>
-									<a href="afamily.php?id=<?php echo $familias[$i]['ID']?>"><button>Editar familia</button></a>
-									<th>ID</th>
 									<th>Nombres</th>
 									<th>Apellidos</th>
 									<th>Genero</th>
@@ -69,7 +67,6 @@
 							<?php for ($j = 0; $j < count($personas[$i]); $j++): ?>
 								<tbody>
 									<tr>
-										<td><?php echo $personas[$i][$j]['ID'] ?></td>
 										<td><a target="_blank" href="aperson.php?id=<?php echo $personas[$i][$j]['ID'] ?>"><?php echo $personas[$i][$j]['NOMBRES'] ?></a></td>
 										<td><?php echo $personas[$i][$j]['APELLIDOS'] ?></td>
 										<td><?php echo $personas[$i][$j]['GENERO'] ?></td>
