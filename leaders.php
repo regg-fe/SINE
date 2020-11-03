@@ -24,7 +24,7 @@
 		<a href="leaders.php">Lideres y Brigadistas</a>
 		<a href="exit.php">Cerrar Sesión</a>
 		
-		<h1>Lideres y Birgadistas de la Comunidad</h1>
+		<h1>Lideres y Brigadistas de la Comunidad</h1>
 		<?php if (isset($lideres)): ?>
 		<table cellspacing="3" cellpadding="3" border="1">
 			<h2>Lideres</h2
@@ -48,10 +48,10 @@
 					<td><?php echo $lideres[$i]['TELEFONO']?></td>
 					<td><?php echo $lideres[$i]['NRO_BLOQUE']?></td>
 					<td><a href="#"><button>...</button></a></td>
-					<td><a href="#"><button>...</button></a></td>
-					<?php endfor?>
+					<td><a href="#"><button>...</button></a></td>	
 				</tr>
 			</tbody>
+				<?php endfor?>
 		</table>
 		
 	<?php endif ?>
@@ -81,9 +81,9 @@
 					<td><?php echo $brigadistas[$i]['NRO_BLOQUE']?></td>
 					<td><a href="#"><button>...</button></a></td>
 					<td><a href="#"><button>...</button></a></td>
-					<?php endfor?>
 				</tr>
 			</tbody>
+			<?php endfor?>
 		</table>
 		
 	<?php endif ?>
