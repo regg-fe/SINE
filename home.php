@@ -23,7 +23,7 @@
 		<a href="home.php">Inicio</a>
 		<a href="statistics.php">Estadisticas</a>
 		<a href="#">Buscar</a>
-		<a href="add_users.php">Nuevo Usuario</a>
+		<a href="add_usuarios.php">Nuevo Usuario</a>
 		<a href="leaders.php">Lideres y Brigadistas</a>
 		<a href="exit.php">Cerrar Sesión</a>
 		<?php if ((isset($name)) && (isset($surname))):?> <h1>Bienvenido, <?php echo $name." ".$surname ?> al panel de control</h1> <?php endif;?>
