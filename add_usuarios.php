@@ -82,7 +82,7 @@ Por favor, rellena los campos descritos a continuacion
 </form>
 </center>
 
-
+<a href="home.php">Volver</a> 
 
 </body>
 </html>
