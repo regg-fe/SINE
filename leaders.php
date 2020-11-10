@@ -27,7 +27,7 @@
 		<h1>Lideres y Brigadistas de la Comunidad</h1>
 		<?php if (isset($lideres)): ?>
 		<table cellspacing="3" cellpadding="3" border="1">
-			<h2>Lideres</h2
+			<h2>Lideres</h2>
 			<thead>
 				<tr>
 					<th>Nombres</th>
@@ -91,6 +91,6 @@
 
 		<br><a href="home.php">Volver</a>
 		<p>Ingeniera de Sistemas &copy;2020</p>
-		<p>Version 0.1</p>
+		<p><?php echo $version; ?></p>
 	</body>
 </html>

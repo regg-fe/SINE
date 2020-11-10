@@ -23,7 +23,7 @@
 		<a href="home.php">Inicio</a>
 		<a href="statistics.php">Estadisticas</a>
 		<a href="#">Buscar</a>
-		<a href="#">Nuevo Usuario</a>
+		<a href="adduser.php">Nuevo Usuario</a>
 		<a href="leaders.php">Lideres y Brigadistas</a>
 		<a href="exit.php">Cerrar Sesión</a>
 		<?php if ((isset($name)) && (isset($surname))):?> <h1>Bienvenido, <?php echo $name." ".$surname ?> al panel de control</h1> <?php endif;?>
@@ -35,6 +35,6 @@
 				<a href="apartments.php?id=<?php echo $tablaBloques[$i]['ID']; ?>"><button>Bloque <?php echo $tablaBloques[$i]['NRO_BLOQUE']; ?></button></a>
 			<?php endfor; ?>	
 		<p>Ingeniera de Sistemas &copy;2020</p>
-		<p>Version 0.1</p>
+		<p><?php echo $version; ?></p>
 	</body>
 </html>

@@ -84,11 +84,11 @@
 						</table>
 					<?php endif ?>
 				<?php endfor ?>
-			<h3><?php else: echo "No hay familias asignadas a este apartamento" ?></h3>
+			<?php else: echo "No hay familias asignadas a este apartamento"; ?>
 			<?php endif?>
 		<a href="#"><button>Agregar Familia</button></a>
 		<a href="apartments.php?id=<?php echo $id_bl ?>">Volver</a>
 		<p>Ingeniera de Sistemas &copy;2020</p>
-		<p>Version 0.1</p>
+		<p><?php echo $version; ?></p>
 	</body>
 </html>

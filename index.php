@@ -1,4 +1,5 @@
 <?php  
+	include_once 'database.php';
 	session_start();
 	if (isset($_SESSION['usuario'])) {
 		header("Location:home.php");
@@ -17,30 +18,27 @@
 			<header>
 				<ul class="menu">
 					<div class="logo">    
-					<a href="#" alt="SINE"><img src="img/logoFinal.png"></a> 
+					<a href="index.php" alt="SINE"><img src="img/logoFinal.png"></a> 
 					</div>
 						<li class="derecha"><a href="#">Estadisticas</a></li>
 						<li><a href="login.php">Iniciar Sesión</a></li>
 					</ul>
-			</header>
-			
+			</header>	
 			<div class="contenedor">
 				<section class="bienvenido">
 					<h1> Bienvenidos a SINE </h1>
 					<p>Para editar o actualizar la informacion debe</p>
 					<div class="boton">
-						<a class="inicio" href="login.html">Iniciar sesión</a>
+						<a class="inicio" href="login.php">Iniciar sesión</a>
 					</div>
 
 				</section>
 					
 				<footer>
 					<p>Ingeniera de Sistemas &copy;2020</p>
-					<p>Version 0.1</p>
+					<p><?php echo $version; ?></p>
 				</footer>
 			</div>
 		</div>	
-		
-		
 	</body>
 </html>

@@ -35,13 +35,11 @@
 		<a href="#">Buscar</a>
 		<a href="exit.php">Cerrar Sesión</a>
 		<h1>Bloque <?php echo "$nrobloque"?></h1>
-		<?php if (isset($lider)): ?>
-			<p>  </p> 
+		<?php if (isset($lider)): ?> 
 				<p>Lider: <?php echo $lider['NOMBRES']." ".$lider['APELLIDOS']." ".$lider['DNI']." ".$lider['TELEFONO']  ?></p>
 			<p><?php else: echo "No hay lider asignado."?></p>
 		<?php endif ?>
 		<?php if (isset($brigadista)): ?>
-			<p>  </p> 
 				<p>Brigadista: <?php echo $brigadista['NOMBRES']." ".$brigadista['APELLIDOS']." ".$brigadista['DNI']." ".$brigadista['TELEFONO']  ?></p>
 			<p><?php else: echo "No hay brigadista asignado."?></p>
 		<?php endif ?>
@@ -58,5 +56,5 @@
 		<br><br><a href="#"><button>Agregar Anexo</button></a>
 		<br><a href="home.php">Volver</a>
 		<p>Ingeniera de Sistemas &copy;2020</p>
-		<p>Version 0.1</p>
+		<p><?php echo $version; ?></p>
 </html>

@@ -8,6 +8,6 @@
 	}
 
 	echo "NO ESTA IMPLEMENTADO";
-	echo "<a href='home.php'>Volver</a>"
+	echo "<a href='home.php'>Volver</a>";
 
 ?>
