@@ -40,7 +40,7 @@
 	<body>
 		<a href="home.php">Inicio</a>
 		<a href="statistics.php">Estadisticas</a>
-		<a href="#">Buscar</a>
+		<a href="search.php">Buscar</a>
 		<a href="adduser.php">Nuevo Usuario</a>
 		<a href="leaders.php">Lideres y Brigadistas</a>
 		<a href="exit.php">Cerrar Sesión</a>

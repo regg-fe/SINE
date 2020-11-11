@@ -46,7 +46,7 @@
 	<body>
 		<a href="home.php">Inicio</a>
 		<a href="statistics.php">Estadisticas</a>
-		<a href="#">Buscar</a>
+		<a href="search.php">Buscar</a>
 		<a href="exit.php">Cerrar Sesión</a>
 		
 		<h1>Datos personales:</h1>
@@ -119,6 +119,6 @@
 			<input type="submit" value="Cerrar" name="btn">
 		</form>
 		<p>Ingeniera de Sistemas &copy;2020</p>
-		<p>Version 0.1</p>
+		<p><?php echo $version; ?></p>
 	</body>
 </html>

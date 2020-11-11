@@ -15,15 +15,19 @@
 	<head>
 		<meta charset="utf-8">
 		<title>SINE: Panel Central</title>
-		<link rel="stylesheet" type="text/css" href="css/styleshome.css">
 	</head>
 	<body>
-	<?php include("includes/navbar.php");?>
+		<a href="home.php">Inicio</a>
+		<a href="statistics.php">Estadisticas</a>
+		<a href="search.php">Buscar</a>
+		<a href="#">Nuevo Usuario</a>
+		<a href="leaders.php">Lideres y Brigadistas</a>
+		<a href="exit.php">Cerrar Sesión</a>
 		
 		<h1>Lideres y Brigadistas de la Comunidad</h1>
 		<?php if (isset($lideres)): ?>
 		<table cellspacing="3" cellpadding="3" border="1">
-			<h2>Lideres</h2
+			<h2>Lideres</h2>
 			<thead>
 				<tr>
 					<th>Nombres</th>
@@ -86,6 +90,7 @@
 	<td><a href="#"><button>Agregar brigadista</button></a></td>
 
 		<br><a href="home.php">Volver</a>
-		<?php include("includes/footer.php")?>
+		<p>Ingeniera de Sistemas &copy;2020</p>
+		<p><?php echo $version; ?></p>
 	</body>
 </html>

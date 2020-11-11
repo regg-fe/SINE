@@ -11,29 +11,30 @@
 	$surname = $_SESSION['surname'];
 	$tablaBloques = bloques();
 	$btns = count($tablaBloques);
-
-	include("includes/navbar.php");
 ?>
-		
-		<div class="welcome">
-			<?php if ((isset($name)) && (isset($surname))):?> <h1>Bienvenido, <?php echo $name." ".$surname ?> al panel de control</h1> <?php endif;?>
-		</div>
-		<div class="container">
-			<div class="info">
-				<p><span class="negrita">CLAP:</span> <?php echo $clap ?></p>
-				<p><span class="negrita">Consejo Comunal:</span> <?php echo $cc ?></p>
-				<p><span class="negrita">UBCH:</span> <?php echo $ubch ?></p>
-				<p><span class="negrita">Comunidad:</span> <?php echo $comunidad ?></p>
-			</div>
-			
-			<div class="card-container">
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>SINE: Panel Central</title>
+	</head>
+	<body>
+		<a href="home.php">Inicio</a>
+		<a href="statistics.php">Estadisticas</a>
+		<a href="search.php">Buscar</a>
+		<a href="adduser.php">Nuevo Usuario</a>
+		<a href="leaders.php">Lideres y Brigadistas</a>
+		<a href="exit.php">Cerrar Sesión</a>
+		<?php if ((isset($name)) && (isset($surname))):?> <h1>Bienvenido, <?php echo $name." ".$surname ?> al panel de control</h1> <?php endif;?>
+		<p>CLAP: <?php echo $clap ?></p>
+		<p>Consejo Comunal: <?php echo $cc ?></p>
+		<p>UBCH: <?php echo $ubch ?></p>
+		<p>Comunidad: <?php echo $comunidad ?></p>
 			<?php for ($i = 0; $i < $btns; $i++): ?>
-				<div class="card">
-					<p>Bloque</p>
-					<p class="numero"><?php echo $tablaBloques[$i]['NRO_BLOQUE']; ?><p>
-					<a href="apartments.php?id=<?php echo $tablaBloques[$i]['ID']; ?>"><button>Ver Detalles</button></a>
-				</div>	
-			<?php endfor; ?>
-			</div>	
-		</div>
-		<?php include("includes/footer.php")?>
+				<a href="apartments.php?id=<?php echo $tablaBloques[$i]['ID']; ?>"><button>Bloque <?php echo $tablaBloques[$i]['NRO_BLOQUE']; ?></button></a>
+			<?php endfor; ?>	
+		<p>Ingeniera de Sistemas &copy;2020</p>
+		<p><?php echo $version; ?></p>
+	</body>
+</html>

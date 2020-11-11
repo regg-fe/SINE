@@ -1,4 +1,5 @@
-﻿<?php  
+<?php  
+	include_once 'database.php';
 	session_start();
 	if (isset($_SESSION['usuario'])) {
 		header("Location:home.php");
@@ -15,13 +16,14 @@
 	<body style= "background-image:url(img/imagen8.jpg) ">
 		<div class="transparencia">
 			<header>
-				<ul class="menu">  
-					<li class="logo"><a href="#" alt="SINE"><img src="img/logoFinal.png"></a> </li>
-					<li class="items"><a href="#">Estadisticas</a></li>
-					<li class="items"><a href="login.php">Iniciar Sesión</a></li>
-				</ul>
-			</header>
-			
+				<ul class="menu">
+					<div class="logo">    
+					<a href="index.php" alt="SINE"><img src="img/logoFinal.png"></a> 
+					</div>
+						<li class="derecha"><a href="#">Estadisticas</a></li>
+						<li><a href="login.php">Iniciar Sesión</a></li>
+					</ul>
+			</header>	
 			<div class="contenedor">
 				<section class="bienvenido">
 					<h1> Bienvenidos a SINE </h1>
@@ -34,11 +36,9 @@
 					
 				<footer>
 					<p>Ingeniera de Sistemas &copy;2020</p>
-					<p>Version 0.1</p>
+					<p><?php echo $version; ?></p>
 				</footer>
 			</div>
 		</div>	
-		
-		
 	</body>
 </html>
