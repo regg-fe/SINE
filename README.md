@@ -1,3 +1,2 @@
 # SINE
-# Version Obsoleta
-# Nueva version disponible 0.15-111120
+# ACUERDENSE DE AGREGAR LOS ARCHIVOS A LAS VERSIONES VIGENTES

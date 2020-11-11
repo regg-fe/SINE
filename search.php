@@ -12,7 +12,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>SINE: Panel Central</title>
-		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/js.js"></script>
 		<script type="text/javascript" src="js/script.js"></script>
 	</head>
 	

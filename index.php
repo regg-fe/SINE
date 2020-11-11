@@ -1,6 +1,6 @@
-<?php  
-	include_once 'database.php';
+﻿<?php  
 	session_start();
+	include_once 'database.php';
 	if (isset($_SESSION['usuario'])) {
 		header("Location:home.php");
 		die();
@@ -16,14 +16,13 @@
 	<body style= "background-image:url(img/imagen8.jpg) ">
 		<div class="transparencia">
 			<header>
-				<ul class="menu">
-					<div class="logo">    
-					<a href="index.php" alt="SINE"><img src="img/logoFinal.png"></a> 
-					</div>
-						<li class="derecha"><a href="#">Estadisticas</a></li>
-						<li><a href="login.php">Iniciar Sesión</a></li>
-					</ul>
-			</header>	
+				<ul class="menu">  
+					<li class="logo"><a href="#" alt="SINE"><img src="img/logoFinal.png"></a> </li>
+					<li class="items"><a href="#">Estadisticas</a></li>
+					<li class="items"><a href="login.php">Iniciar Sesión</a></li>
+				</ul>
+			</header>
+			
 			<div class="contenedor">
 				<section class="bienvenido">
 					<h1> Bienvenidos a SINE </h1>
