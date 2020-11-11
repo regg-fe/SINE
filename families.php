@@ -36,12 +36,10 @@
 	<head>
 		<meta charset="utf-8">
 		<title>SINE: Grupo Familiar</title>
+		<link rel="stylesheet" type="text/css" href="css/styleshome.css">
 	</head>
 	<body>
-		<a href="home.php">Inicio</a>
-		<a href="statistics.php">Estadisticas</a>
-		<a href="#">Buscar</a>
-		<a href="exit.php">Cerrar Sesión</a>
+		<?php include("includes/navbar.php");?>
 		<h1>Apartamento <?php echo $nro_ap ?></h1>
 			<?php if ($familias != null && isset($personas)): ?>
 				<?php for ($i = 0; $i < count($familias); $i++):  ?>
@@ -84,11 +82,10 @@
 						</table>
 					<?php endif ?>
 				<?php endfor ?>
-			<?php else: echo "No hay familias asignadas a este apartamento"; ?>
+			<h3><?php else: echo "No hay familias asignadas a este apartamento" ?></h3>
 			<?php endif?>
 		<a href="#"><button>Agregar Familia</button></a>
 		<a href="apartments.php?id=<?php echo $id_bl ?>">Volver</a>
-		<p>Ingeniera de Sistemas &copy;2020</p>
-		<p><?php echo $version; ?></p>
+		<?php include("includes/footer.php")?>
 	</body>
 </html>
