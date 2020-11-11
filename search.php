@@ -24,7 +24,7 @@
 		<a href="leaders.php">Lideres y Brigadistas</a>
 		<a href="exit.php">Cerrar Sesión</a>
 
-		<br><br><input type="text" id="search" placeholder="Buscar">
+		<br><br><input type="text" id="search" placeholder="Buscar"><input type="submit" id="btn" value="Buscar">
 		
 		<div id="result"><br>
 			<table cellspacing="3" cellpadding="3" border="1">
