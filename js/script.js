@@ -3,9 +3,8 @@ $(function() {
 	let edit = false;
 	$('#result').hide();
 	fecthResult();
-
 	function fecthResult() {
-	 	$('#search').keyup(function() {
+	 	$('#btn').click(function() {
 			if ($('#search').val()) {
 				let search = $('#search').val();
 				$.ajax({
@@ -14,8 +13,7 @@ $(function() {
 					data: {search},
 					success: function(response) {
 						let personas = JSON.parse(response);
-						let template = '';
-						
+						let template = '';				
 						personas.forEach( personas => {
 							template += `<tr>
 											<td>${personas.id}</td>
@@ -28,16 +26,16 @@ $(function() {
 											<td><a target="__blank" href="afamily.php?id=${personas.id}">${personas.familia}</a></td>
 										</tr>`
 						});
-					if (Object.entries(personas).length === 0) {
-						template = "No hay registros";
-						$('#body').html(template);
-					} else {
-						$('#result').show();
-						$('#body').html(template);
+						if (Object.entries(personas).length === 0) {
+							template = "No hay registros";
+							$('#body').html(template);
+							$('#result').show();
+						} else {
+							$('#result').show();
+							$('#body').html(template);
+						}
 					}
-				}
-			})
-
+				})
 			}
 		});
 	}
