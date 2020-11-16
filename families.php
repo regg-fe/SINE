@@ -22,7 +22,7 @@
 	if (isset($familias)) {
 		for ($i=0; $i < count($familias); $i++) {
 			$p = personasPorFamilia($familias[$i]['ID']);
-			if (isset($p[$i])) {
+			if (isset($p[0])) {
 				for ($j=0; $j < count($p); $j++) { 
 					$personas[$i][$j] = $p[$j];
 				}
