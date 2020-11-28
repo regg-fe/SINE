@@ -28,12 +28,10 @@
 	<head>
 		<meta charset="utf-8">
 		<title>SINE: Apartamentos</title>
+		<link rel="stylesheet" type="text/css" href="css/styleshome.css">
 	</head>
 	<body>
-		<a href="home.php">Inicio</a>
-		<a href="statistics.php">Estadisticas</a>
-		<a href="#">Buscar</a>
-		<a href="exit.php">Cerrar Sesión</a>
+		<?php include("includes/navbar.php");?>
 		<h1>Bloque <?php echo "$nrobloque"?></h1>
 		<?php if (isset($lider)): ?>
 			<p>  </p> 
@@ -57,6 +55,5 @@
 
 		<br><br><a href="#"><button>Agregar Anexo</button></a>
 		<br><a href="home.php">Volver</a>
-		<p>Ingeniera de Sistemas &copy;2020</p>
-		<p>Version 0.1</p>
+		<?php include("includes/footer.php")?>
 </html>

@@ -1257,8 +1257,7 @@
 		$familias = familias();
 		for ($i=0; $i < count($familias); $i++){
 			if (count(personasPorFamilia($familias[$i]['ID'])) == 0) {
-				echo "Llenando familia ID=".$familias[$i]['ID']."<br><br>";
-
+				
 				for ($j=0; $j < rand(1,5); $j++){
 					$nm; $ap; $gn; $tf; $em; $ps; $en;
 
@@ -1325,5 +1324,5 @@
 		carnetsRandom();
 	}
 	## Codigos de prueba ##
-	
+
 ?>
