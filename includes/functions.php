@@ -403,6 +403,7 @@
 			$i = 0;
 			while ($row = $result->fetch_assoc()) {
 				$tabla[$i]['ID'] = $row['ID'];
+				$tabla[$i]['CANTIDAD'] = $row['CANTIDAD'];
 				$tabla[$i]['FECHA_ENTREGA'] = $row['FECHA_ENTREGA'];
 				$tabla[$i]['NOMBRE_JEFE'] = $row['NOMBRES']." ".$row['APELLIDOS'];
 				$i++;
