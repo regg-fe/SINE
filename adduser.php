@@ -1,7 +1,7 @@
 <?php 
 	session_start();
-	include_once 'database.php';
-	include_once 'functions.php';
+	include_once 'includes/database.php';
+	include_once 'includes/functions.php';
 
 	if (isset($_POST['enviar'])) {
 		
@@ -35,15 +35,11 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>SINE: Panel Central</title>
+		<title>SINE: Agregar Usuario</title>
 	</head>
 	<body>
-		<a href="home.php">Inicio</a>
-		<a href="statistics.php">Estadisticas</a>
-		<a href="search.php">Buscar</a>
-		<a href="adduser.php">Nuevo Usuario</a>
-		<a href="leaders.php">Lideres y Brigadistas</a>
-		<a href="exit.php">Cerrar Sesión</a>
+		<?php include("includes/navbar.php");?>
+
 		<form action="adduser.php" method="POST">
 			<?php if (isset($message)): ?><p><?php echo $message; ?></p><?php endif ?>
 			Usuario <input type="text" name="usuario">
@@ -53,7 +49,6 @@
 			Validar Contraseña <input type="password" name="contravali">
 			<input type="submit" value="Enviar" name="enviar">
 		</form>
-		<p>Ingeniera de Sistemas &copy;2020</p>
-		<p><?php echo $version; ?></p>
+		<?php include("includes/footer.php")?>
 	</body>
 </html>

@@ -1,5 +1,6 @@
 <?php
-include_once 'database.php';
+	include_once 'includes/database.php';
+	include_once 'includes/functions.php';
 	session_start();
 	if (isset($_SESSION['usuario'])) {
 		header("Location:home.php");

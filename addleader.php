@@ -1,81 +1,69 @@
 <?php 
 
 session_start();
-	include_once 'database.php';
-	include_once 'functions.php';
+	include_once 'includes/database.php';
+	include_once 'includes/functions.php';
 	if (!isset($_SESSION['usuario'])) {
 		header("Location:index.php");
 		die();
 	}
 
-	if(isset($_GET['op'])){
-
- $op = $_GET['op'];
-	
-}	else{
-
-	$op = $_POST['op'];
-}
-
-$result;
-
-
+	$op = $_GET['op'];
+	if (!isset($op)) {
+		header("Location:leaders.php");
+	}
+	if (empty($op)) {
+		header("Location:leaders.php");
+	}
 
 	if ($op == 1) {
 		$result = "Lideres";
 	}else if ($op == 2){
 		$result = "Brigadistas";
+	} else{
+		header("Location:leaders.php");
 	}
-	else{
-			header("leaders.php");
+	$bloques = bloques();
+	$conexion = conexion();
 
-	}
-
-	?>
-
-<?php
-	if (isset($_POST['envia_datos'])) {
-
+	$message = "";
+	if (isset($_POST['btn'])) {
 		switch ($op) {
+			case 1:
 
-		case 1:
-			
-			$nombre = $_POST['nombre'];
-			$apellido = $_POST['apellido'];
-			$dni = $_POST['dni'];
-			$telefono = $_POST['telefono'];
-			$id_bloque = $_POST['id_bloque'];
+				$nombre = $_POST['nombre'];
+				$apellido = $_POST['apellido'];
+				$dni = $_POST['dni'];
+				$telefono = $_POST['telefono'];
+				$id_bloque = $_POST['id_bloque'];
 
-			$conexion = conexion();
-
-			$sql = "INSERT INTO lider (NOMBRES, APELLIDOS, DNI, TELEFONO, ID_BLOQUE) VALUES ('$nombre', '$apellido', '$dni', '$telefono', '$id_bloque')";
-
-			$resultado = $conexion->query($sql);
-
-
-			echo "Lider agregado con exito";
-
-
+				$r = repeatDNI($dni,$conexion,'lider');
+				if ($r != 1) {
+					$sql = "INSERT INTO lider (NOMBRES,APELLIDOS,DNI,TELEFONO,ID_BLOQUE) VALUES ('$nombre','$apellido','$dni','$telefono','$id_bloque')";
+					$resultado = $conexion->query($sql);
+					header('Location:leaders.php');
+				} else {
+					$message = "El portador de esta cedula, ya esta registrado como lider";
+				}
 			break;
-		
-		case 2:
-			$nombre = $_POST['nombre'];
-			$apellido = $_POST['apellido'];
-			$dni = $_POST['dni'];
-			$telefono = $_POST['telefono'];
-			$id_bloque = $_POST['id_bloque'];
-
-				$sql = "INSERT INTO brigadista (NOMBRES, APELLIDOS, DNI, TELEFONO, ID_BLOQUE) VALUES ('$nombre', '$apellido', '$dni', '$telefono', '$id_bloque')";
-
-			$resultado = $conexion->query($sql);
-
-
-			echo "Brigadista agregado con exito";
 			
+			case 2:
+				$nombre = $_POST['nombre'];
+				$apellido = $_POST['apellido'];
+				$dni = $_POST['dni'];
+				$telefono = $_POST['telefono'];
+				$id_bloque = $_POST['id_bloque'];
+				
+				$r = repeatDNI($dni,$conexion,'brigadista');
+				if ($r == 0) {
+					$sql = "INSERT INTO brigadista (NOMBRES,APELLIDOS,DNI,TELEFONO,ID_BLOQUE) VALUES ('$nombre','$apellido','$dni','$telefono','$id_bloque')";
+					$resultado = $conexion->query($sql);
+					header('Location:leaders.php');
+				} else {
+					$message = "El portador de esta cedula, ya esta registrado como brigadista";
+				}
 			break;
-	}
-
-	
+		}
 	}
 ?>
 
@@ -83,44 +71,33 @@ $result;
 <!DOCTYPE html>
 <html>
 <head>
-	<?php if (isset($result)):?>
 	<title>SINE: <?php echo $result ?></title>
-	<?php endif;?>
 </head>
 <body>
-
+<?php require ('includes/navbar.php') ?>
 
 	<center>
-	<form action="addleader.php" method="post">
-		<p><?php echo $result ?><p>
-
-			Nombre: &nbsp; <input type="text" name="nombre" required> <br>
-			Apellido: &nbsp;<input type="text" name="apellido" required> <br>
-			DNI: &nbsp;<input type="text" name="dni" required> <br>
-			Telefono: &nbsp;<input type="text" name="telefono"> <br>
-			
-			Bloque al que pertenece: &nbsp;<select name="id_bloque">
+		<form action="addleader.php?op=<?php echo $op ?>" method="POST">
+			<h1><?php echo $result ?></h1>
+			<?php if (isset($message)): ?>
+				<p><?php echo $message ?></p>
+			<?php endif ?>
 				
-				<option value="1">14</option>
-					<option value="2">15</option>
-						<option value="3">16</option>
-							<option value="4">17</option>
-								<option value="5">18</option>
-									<option value="6">19</option>
-										<option value="7">20</option>
-											<option value="8">23</option>
-				</option>
-			</select>
-
-		
-			<input type= "hidden" name="op" value="<?php echo $op ?>">
-
-			<input type="submit" name="envia_datos" value="Enviar">
-
-
-
-	</form>
-		</center>
-
+				Nombre: &nbsp; <input type="text" name="nombre"> <br>
+				Apellido: &nbsp;<input type="text" name="apellido"> <br>
+				DNI: &nbsp;<input type="text" name="dni" > <br>
+				Telefono: &nbsp;<input type="text" name="telefono"> <br>
+				
+				Bloque al que pertenece: &nbsp;<select name="id_bloque">
+					<?php for ($i=0; $i <count($bloques) ; $i++): ?>
+						<option value="<?php echo $bloques[$i]['ID']?>"><?php echo $bloques[$i]['NRO_BLOQUE']?></option>
+					?<?php endfor; ?>	
+				</select>
+				
+				<input type="submit" name="btn" value="Agregar">
+				<a href="leaders.php" title="Volver">Volver</a>
+		</form>
+	</center>
+	<?php require ('includes/footer.php') ?>
 </body>
 </html>

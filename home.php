@@ -1,7 +1,7 @@
 <?php  
 	session_start();
-	include_once 'database.php';
-	include_once 'functions.php';
+	include_once 'includes/database.php';
+	include_once 'includes/functions.php';
 	if (!isset($_SESSION['usuario'])) {
 		header("Location:index.php");
 		die();
@@ -28,12 +28,13 @@
 			
 			<div class="card-container">
 			<?php for ($i = 0; $i < $btns; $i++): ?>
-				<div class="card">
-					<p>Bloque</p>
-					<p class="numero"><?php echo $tablaBloques[$i]['NRO_BLOQUE']; ?><p>
-					<a href="apartments.php?id=<?php echo $tablaBloques[$i]['ID']; ?>"><button>Ver Detalles</button></a>
-				</div>	
+				<a href="apartments.php?id=<?php echo $tablaBloques[$i]['ID']; ?>">
+					<div class="card">
+						<p>Bloque</p>
+						<p class="numero"><?php echo $tablaBloques[$i]['NRO_BLOQUE']; ?><p>
+					</div>	
+				</a>	
 			<?php endfor; ?>
 			</div>	
 		</div>
-		<?php include("includes/footer.php")?>
+	<?php include("includes/footer.php")?>
