@@ -41,7 +41,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<title>SINE: <?php echo $persona['NOMBRES']." ".$persona['APELLIDOS']?></title>
+		<title>SINE | Persona: <?php echo $persona['NOMBRES']." ".$persona['APELLIDOS']?></title>
 	</head>
 	<body>
 		<?php include("includes/navbar.php")?>
@@ -111,7 +111,7 @@
 				<?php endif ?>
 			<?php endif ?>	
 		<?php endif ?>
-
+		<a href="#" title="">Editar</a>
 		<form method="POST">
 			<input type="submit" value="Cerrar" name="btn">
 		</form>

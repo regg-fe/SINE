@@ -38,7 +38,7 @@
 				<tbody id="body"></tbody>
 			</table>
 		</div>
-		
+		<a href="home.php">Volver</a>
 		<?php include("includes/footer.php")?>
 	</body>
 </html>

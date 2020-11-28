@@ -49,6 +49,7 @@
 			Validar Contraseña <input type="password" name="contravali">
 			<input type="submit" value="Enviar" name="enviar">
 		</form>
+		<a href="home.php">Volver</a>
 		<?php include("includes/footer.php")?>
 	</body>
 </html>

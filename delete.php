@@ -36,9 +36,23 @@
 				header('Location:leaders.php');
 			}
 		break;
+
+		case 3: //PERSONAS
+			$f = $_GET['f'];
+			if (empty($f)) {
+				header('Location:home.php');
+			}
+			$sql = "DELETE FROM persona WHERE ID = '$id'";
+			$result = $conexion->query($sql);	
+			if(!$result) {
+				die("Delete Error".mysqli_error($conexion));
+			} else {
+				header('Location:afamily.php?id='.$f);
+			}
+		break;
 		
 		default:
-			header('Location:leaders.php');
+			header('Location:home.php');
 		break;
 	}
 
