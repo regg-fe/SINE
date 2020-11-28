@@ -1,5 +1,6 @@
 <?php
-include_once 'database.php';
+	include_once 'includes/database.php';
+	include_once 'includes/functions.php';
 	session_start();
 	if (isset($_SESSION['usuario'])) {
 		header("Location:home.php");
@@ -40,7 +41,7 @@ include_once 'database.php';
 	</head>
 	<body>
 	<div class="login-box">
-		<img class="avatar" src="img/undraw_profile_pic_ic5t.png" alt="avatar-image">
+		<img class="avatar" src="img/undraw_profile_pic_ic5t.svg" alt="avatar-image">
 		<h1>Iniciar sesión</h1>
 		<?php if (isset($message)): ?> <p> <?php echo $message; ?> </p> <?php endif; ?>
 		<form action="login.php" name="formulario" method="post">

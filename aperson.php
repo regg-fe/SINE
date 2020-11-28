@@ -1,7 +1,7 @@
 <?php 
 	session_start();
-	include_once 'database.php';
-	include_once 'functions.php';
+	include_once 'includes/database.php';
+	include_once 'includes/functions.php';
 	if (!isset($_SESSION['usuario'])) {
 		header("Location:index.php");
 		die();
@@ -44,10 +44,7 @@
 		<title>SINE: <?php echo $persona['NOMBRES']." ".$persona['APELLIDOS']?></title>
 	</head>
 	<body>
-		<a href="home.php">Inicio</a>
-		<a href="statistics.php">Estadisticas</a>
-		<a href="#">Buscar</a>
-		<a href="exit.php">Cerrar Sesión</a>
+		<?php include("includes/navbar.php")?>
 		
 		<h1>Datos personales:</h1>
 		<p>Nombres: <?php echo $persona['NOMBRES'] ?></p>
@@ -118,7 +115,6 @@
 		<form method="POST">
 			<input type="submit" value="Cerrar" name="btn">
 		</form>
-		<p>Ingeniera de Sistemas &copy;2020</p>
-		<p>Version 0.1</p>
+		<?php include("includes/footer.php")?>
 	</body>
 </html>

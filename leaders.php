@@ -1,33 +1,34 @@
 <?php  
 	session_start();
-	include_once 'database.php';
-	include_once 'functions.php';
+	include_once 'includes/database.php';
+	include_once 'includes/functions.php';
 	if (!isset($_SESSION['usuario'])) {
 		header("Location:index.php");
 		die();
 	}
 	$lideres = lideres();
 	$brigadistas = brigadistas();
+	
+	if (isset($_POST['message'])) {
+		$message = $_POST['message'];
+	}
 ?>
+
 
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>SINE: Panel Central</title>
+		<title>SINE: Lideres y Brigadistas</title>
+		<link rel="stylesheet" type="text/css" href="css/styleshome.css">
 	</head>
 	<body>
-		<a href="home.php">Inicio</a>
-		<a href="statistics.php">Estadisticas</a>
-		<a href="#">Buscar</a>
-		<a href="#">Nuevo Usuario</a>
-		<a href="leaders.php">Lideres y Brigadistas</a>
-		<a href="exit.php">Cerrar Sesión</a>
+	<?php include("includes/navbar.php");?>
 		
-		<h1>Lideres y Birgadistas de la Comunidad</h1>
+		<h1>Lideres y Brigadistas de la Comunidad</h1>
 		<?php if (isset($lideres)): ?>
 		<table cellspacing="3" cellpadding="3" border="1">
-			<h2>Lideres</h2
+			<h2>Lideres</h2>
 			<thead>
 				<tr>
 					<th>Nombres</th>
@@ -48,16 +49,15 @@
 					<td><?php echo $lideres[$i]['TELEFONO']?></td>
 					<td><?php echo $lideres[$i]['NRO_BLOQUE']?></td>
 					<td><a href="#"><button>...</button></a></td>
-					<td><a href="#"><button>...</button></a></td>
-					<?php endfor?>
+					<td><a href="delete.php?op=1&id=<?php echo $lideres[$i]['ID'] ?>"><button>...</button></a></td>	
 				</tr>
 			</tbody>
+				<?php endfor?>
 		</table>
 		
 	<?php endif ?>
-	<td><a href="#"><button>Agregar Lider</button></a></td>
+	<td><a href="addleader.php?op=1"><button>Agregar Lider</button></a></td>
 		<?php if (isset($brigadistas)): ?>
-
 		<table cellspacing="3" cellpadding="3" border="1">
 			<h2>Brigadistas</h2>
 			<thead>
@@ -80,17 +80,16 @@
 					<td><?php echo $brigadistas[$i]['TELEFONO']?></td>
 					<td><?php echo $brigadistas[$i]['NRO_BLOQUE']?></td>
 					<td><a href="#"><button>...</button></a></td>
-					<td><a href="#"><button>...</button></a></td>
-					<?php endfor?>
+					<td><a href="delete.php?op=2&id=<?php echo $brigadistas[$i]['ID'] ?>"><button>...</button></a></td>
 				</tr>
 			</tbody>
+			<?php endfor?>
 		</table>
-		
+	
 	<?php endif ?>
-	<td><a href="#"><button>Agregar brigadista</button></a></td>
+	<td><a href="addleader.php?op=2"><button>Agregar brigadista</button></a></td>
 
 		<br><a href="home.php">Volver</a>
-		<p>Ingeniera de Sistemas &copy;2020</p>
-		<p>Version 0.1</p>
+		<?php include("includes/footer.php")?>
 	</body>
 </html>
