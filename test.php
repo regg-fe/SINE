@@ -1,5 +1,5 @@
 <?php 
-	include_once 'database.php';
+	include_once 'includes/database.php';
 	$search = $_POST['search']; 
 	if(!empty($search)) {
 		$sql = "SELECT * FROM persona WHERE DNI LIKE '%$search%' OR NOMBRES LIKE '%$search%' OR APELLIDOS LIKE '$search'";
