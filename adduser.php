@@ -36,20 +36,30 @@
 	<head>
 		<meta charset="utf-8">
 		<title>SINE: Agregar Usuario</title>
+		<link rel="stylesheet" href="css/insertForms.css">
 	</head>
 	<body>
 		<?php include("includes/navbar.php");?>
-
-		<form action="adduser.php" method="POST">
-			<?php if (isset($message)): ?><p><?php echo $message; ?></p><?php endif ?>
-			Usuario <input type="text" name="usuario">
-			Nombre <input type="text" name="nombre">
-			Apellido <input type="text" name="apellido"> 
-			Contraseña <input type="password" name="contra">
-			Validar Contraseña <input type="password" name="contravali">
-			<input type="submit" value="Enviar" name="enviar">
-		</form>
-		<a href="home.php">Volver</a>
+		<div class="container">
+			<div class="box-form">
+				<form action="adduser.php" method="POST">
+				<h1>Registrar nuevo usuario</h1>
+					<?php if (isset($message)): ?><p><?php echo $message; ?></p><?php endif ?>
+					
+					<label for="usuario">Usuario</label>
+					<input type="text" name="usuario">
+					<label for="nombre">Nombre </label>
+					<input type="text" name="nombre">
+					<label for="apelido">Apellido </label>
+					<input type="text" name="apellido"> 
+					<label for="contra">Contraseña</label>
+					<input type="password" name="contra">
+					<label for="contravali">Validar Contraseña </label>
+					<input type="password" name="contravali">
+					<input type="submit" value="Enviar" name="enviar">
+				</form>
+			</div>
+		</div>
 		<?php include("includes/footer.php")?>
 	</body>
 </html>
