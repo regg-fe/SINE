@@ -1,6 +1,5 @@
 <?php  
 	session_start();
-	include_once 'includes/database.php';
 	include_once 'includes/functions.php';
 	if (!isset($_SESSION['usuario'])) {
 		header("Location:index.php");
@@ -45,7 +44,7 @@
 		</div>
 		<div class="container">
 			<div class="center apartmentBtn">
-				<a href="#"><button>Agregar Anexo</button></a>	
+				<a href="#" id="addA"><button>Agregar Anexo</button></a><a href="#" id="delA"><button>Elminar Anexo</button></a>
 				<a href="home.php">Volver</a>
 			</div>
 			<div class="card-container">
@@ -59,10 +58,16 @@
 						</a>
 					<?php endif ?>
 					<?php if ($tablaApartamento[$i]['ANEXO'] == 'S' || $tablaApartamento[$i]['ANEXO'] == 's'): ?>
-						<a href="families.php?id=<?php echo $tablaApartamento[$i]['ID'] ?>"><button>Anexo <?php echo $tablaApartamento[$i]['NRO_APARTAMENTO'] ?></button></a>
+						<a href="families.php?id=<?php echo $tablaApartamento[$i]['ID'] ?>">
+							<div class="card card-aparment">
+								<p>Anexo</p>
+								<p class="numero"><?php echo $tablaApartamento[$i]['NRO_APARTAMENTO'] ?></p>
+							</div>
+						</a>
 					<?php endif ?>
 				<?php endfor ?>
 			</div>
 		</div>
-		<?php include("includes/footer.php")?>
+		<?php include("includes/modal.php") ?>
+		<?php include("includes/footer.php") ?>
 </html>

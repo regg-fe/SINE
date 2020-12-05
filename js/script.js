@@ -1,5 +1,4 @@
 $(function() {
-	console.log('Jquery funciona');
 	let edit = false;
 	$('#result').hide();
 	fecthResult();

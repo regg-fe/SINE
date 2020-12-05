@@ -1,6 +1,5 @@
 <?php  
 	session_start();
-	include_once 'includes/database.php';
 	include_once 'includes/functions.php';
 	if (!isset($_SESSION['usuario'])) {
 		header("Location:index.php");
@@ -13,6 +12,7 @@
 	$nro_ap = apartamento($id)['NRO_APARTAMENTO'];
 	$id_ap = $id;
 	$id_bl = apartamento($id)['ID_BLOQUE'];
+	$a = apartamento($id)['ANEXO'];
 	$apartamento = apartamento($id);
 	$familias = familiasPorApartamento($apartamento['ID']);
 	if ($apartamento == NULL) {
@@ -43,7 +43,11 @@
 	<body>
 		<?php include("includes/navbar.php");?>
 			<div class="welcome">
+				<?php if ($a == 'S'): ?>
+				<h1>Anexo <?php echo $nro_ap ?></h1>
+				<?php else: ?>
 				<h1>Apartamento <?php echo $nro_ap ?></h1>
+				<?php endif ?>
 				</div> 
 				<div class="container">
 					<div class="center">
@@ -56,7 +60,8 @@
 							<?php if (isset($personas[$i])): ?>
 			
 								<div class="center">
-									<a href="afamily.php?id=<?php echo $familias[$i]['ID']?>" target="_blank"><h2>Familia <?php echo $personas[$i][0]['FAMILIA'] ?></h2></a>
+									<a href="afamily.php?id=<?php echo $familias[$i]['ID']?>"><h2>Familia <?php echo $personas[$i][0]['FAMILIA'] ?></h2></a>
+									<a href="delete.php?op=4&id=<?php echo $familias[$i]['ID'] ?>&a=<?php echo $id_ap ?>"><button>Eliminar Familia</button></a>
 								</div>
 								
 								<div class="container-table100">
@@ -76,15 +81,13 @@
 																<th class="cell100 column7">Fecha de nacimiento</th>
 																<th class="cell100 column8">Serial del Carnet de la Patria</th>
 																<th class="cell100 column8">Codigo del Carnet de la Patria</th>
-																<th class="cell100 column9">Editar</th>
-																<th class="cell100 column9">Eliminar</th>
 															</tr>
 														</thead>
 
 														<?php for ($j = 0; $j < count($personas[$i]); $j++): ?>
 															<tbody>
 																<tr class="row100 body">
-																	<td class="cell100 column1"><a target="_blank" href="aperson.php?id=<?php echo $personas[$i][$j]['ID'] ?>"><?php echo $personas[$i][$j]['NOMBRES'] ?></a></td>
+																	<td class="cell100 column1"><?php echo $personas[$i][$j]['NOMBRES'] ?></td>
 																	<td class="cell100 column2"><?php echo $personas[$i][$j]['APELLIDOS'] ?></td>
 																	<td class="cell100 column3"><?php echo $personas[$i][$j]['GENERO'] ?></td>
 																	<td class="cell100 column4"><?php echo $personas[$i][$j]['DNI'] ?></td>
@@ -93,8 +96,6 @@
 																	<td class="cell100 column7"><?php echo $personas[$i][$j]['FECHA_NAC'] ?></td>
 																	<td class="cell100 column8"><?php echo $personas[$i][$j]['SERIAL_CARNET'] ?></td>
 																	<td class="cell100 column8"><?php echo $personas[$i][$j]['CODIGO_CARNET'] ?></td>
-																	<td class="cell100 column9"><a class="icon" href="#" title="Editar"><i class="fas fa-pen-alt"></i></a></td>
-																	<td class="cell100 column9"><a class="icon" href="#" title="Eliminar"><i class="fas fa-eraser"></i></a></td>
 																</tr>
 															</tbody>
 														<?php endfor ?>
