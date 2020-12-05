@@ -64,7 +64,7 @@ body{
     margin-left: 20px;
 }
 .login-box input[type="text"].error, .login-box input[type="password"].error{
-    border-color: #D32F2F;s
+    border-color: #D32F2F;
 }  
 .login-box input[type="text"], .login-box input[type="password"] {
     border: none;
@@ -107,6 +107,17 @@ body{
 }
 .login-box a:hover{
     color: #159090;
+}
+.login-box div.error{
+    width: 90%;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    background-color: #de5d84;
+    padding: 5px 10px;
+    text-align: center;
+    font-family: inherit;
+    font-weight: 400;
+    color: #3e0101;
 }
 @media only screen and (max-width: 600px) {
     .login-box{

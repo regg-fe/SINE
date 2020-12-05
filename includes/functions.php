@@ -978,6 +978,44 @@
 		return $bombonas;
 	}
 
+	function marcaBombona() {
+		$marcas = NULL;
+		$conn = conexion();
+
+		$sql = "SELECT * FROM MARCABOMBONA";
+		$result = $conn->query($sql);
+		
+		if ($result->num_rows > 0) {
+			$a = 0;
+			while ($row = $result->fetch_assoc()) {
+			 	$marcas[$a]['ID'] = $row['ID'];
+			 	$marcas[$a]['MARCA'] = $row['MARCA'];
+			 	$a++;
+			 } 
+		}
+		$conn->close();
+		return $marcas;
+	}
+
+	function tipoBombona() {
+		$tipos = NULL;
+		$conn = conexion();
+
+		$sql = "SELECT * FROM TIPOBOMBONA";
+		$result = $conn->query($sql);
+		
+		if ($result->num_rows > 0) {
+			$a = 0;
+			while ($row = $result->fetch_assoc()) {
+			 	$tipos[$a]['ID'] = $row['ID'];
+			 	$tipos[$a]['TIPO'] = $row['TIPO'];
+			 	$a++;
+			 } 
+		}
+		$conn->close();
+		return $tipos;
+	}
+
 	## Estadistica ##
 
 	function estadoDeNutricion($option){
@@ -1227,6 +1265,28 @@
 		}
 		$conn->close();
 		return $apartamentos;
+	}
+
+	function usuarios() {
+		$usuarios = NULL;
+		$conn = conexion();
+
+		$sql = "SELECT * FROM USUARIO";
+		$result = $conn->query($sql);
+		
+		if ($result->num_rows > 0) {
+			$a = 0;
+			while ($row = $result->fetch_assoc()) {
+			 	$usuarios[$a]['ID'] = $row['ID'];
+			 	$usuarios[$a]['USUARIO'] = $row['USUARIO'];
+			 	$usuarios[$a]['NOMBRE'] = $row['NOMBRE'];
+			 	$usuarios[$a]['APELLIDO'] = $row['APELLIDO'];
+			 	$usuarios[$a]['CLAVE'] = $row['CLAVE'];
+			 	$a++;
+			 } 
+		}
+		$conn->close();
+		return $usuarios;
 	}
 
 	## Funciones para desarrollo ##
