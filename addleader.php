@@ -72,32 +72,37 @@ session_start();
 <html>
 <head>
 	<title>SINE: <?php echo $result ?></title>
+	<link rel="stylesheet" href="css/insertForms.css">
 </head>
 <body>
 <?php require ('includes/navbar.php') ?>
-
-	<center>
-		<form action="addleader.php?op=<?php echo $op ?>" method="POST">
-			<h1><?php echo $result ?></h1>
-			<?php if (isset($message)): ?>
-				<p><?php echo $message ?></p>
-			<?php endif ?>
-				
-				Nombre: &nbsp; <input type="text" name="nombre"> <br>
-				Apellido: &nbsp;<input type="text" name="apellido"> <br>
-				DNI: &nbsp;<input type="text" name="dni" > <br>
-				Telefono: &nbsp;<input type="text" name="telefono"> <br>
-				
-				Bloque al que pertenece: &nbsp;<select name="id_bloque">
-					<?php for ($i=0; $i <count($bloques) ; $i++): ?>
-						<option value="<?php echo $bloques[$i]['ID']?>"><?php echo $bloques[$i]['NRO_BLOQUE']?></option>
-					?<?php endfor; ?>	
-				</select>
-				
-				<input type="submit" name="btn" value="Agregar">
-				<a href="leaders.php" title="Volver">Volver</a>
-		</form>
-	</center>
+	<div class="container">
+		<div class="box-form">
+			<form action="addleader.php?op=<?php echo $op ?>" method="POST">
+				<h1>Registro de <?php echo $result ?></h1>
+				<?php if (isset($message)): ?>
+					<div class="error"><?php echo $message ?></div>
+				<?php endif ?>
+					
+					<label for="nombre">Nombre:</label>
+					<input type="text" name="nombre"> 
+					<label for="apellido">Apellido:</label>
+					<input type="text" name="apellido">
+					<label for="dni">DNI:</label>
+					<input type="text" name="dni" >
+					<label for="telefono">Telefono:</label>
+					<input type="text" name="telefono"> <br>
+					<label for="id_bloque">Bloque al que pertenece:</label>
+					<select class="select-css" name="id_bloque">
+						<?php for ($i=0; $i <count($bloques) ; $i++): ?>
+							<option value="<?php echo $bloques[$i]['ID']?>"><?php echo $bloques[$i]['NRO_BLOQUE']?></option>
+						?<?php endfor; ?>	
+					</select>
+					<input type="submit" name="btn" value="Agregar">
+			</form>
+		</div>
+		<a class="center" href="leaders.php" title="Volver">Volver</a>
+	</div>
 	<?php require ('includes/footer.php') ?>
 </body>
 </html>

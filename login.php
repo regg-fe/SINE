@@ -43,7 +43,7 @@
 	<div class="login-box">
 		<img class="avatar" src="img/undraw_profile_pic_ic5t.svg" alt="avatar-image">
 		<h1>Iniciar sesión</h1>
-		<?php if (isset($message)): ?> <p> <?php echo $message; ?> </p> <?php endif; ?>
+		<?php if (isset($message)): ?> <div class="error"> <?php echo $message; ?> </div> <?php endif; ?>
 		<form action="login.php" name="formulario" method="post">
 			<!--Nombre de usuario-->
 			<label for="username">Nombre de usuario</label>

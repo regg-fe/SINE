@@ -33,18 +33,21 @@
 	<body>
 		<?php include("includes/navbar.php");?>
 		<div class="welcome">
-		<h1>Bloque <?php echo "$nrobloque"?></h1>
-		<?php if (isset($lider)): ?>
-			<p>  </p> 
-				<p>Lider: <?php echo $lider['NOMBRES']." ".$lider['APELLIDOS']." ".$lider['DNI']." ".$lider['TELEFONO']  ?></p>
-			<p><?php else: echo "No hay lider asignado."?></p>
-		<?php endif ?>
-		<?php if (isset($brigadista)): ?>
-			<p>Brigadista: <?php echo $brigadista['NOMBRES']." ".$brigadista['APELLIDOS']." ".$brigadista['DNI']." ".$brigadista['TELEFONO']  ?></p>
-			<p><?php else: echo "No hay brigadista asignado."?></p>
-		<?php endif ?>
+			<h1>Bloque <?php echo "$nrobloque"?></h1>
+			<?php if (isset($lider)): ?>
+				<p><span class="negrita">Lider:</span> <?php echo $lider['NOMBRES']." ".$lider['APELLIDOS']." ".$lider['DNI']." ".$lider['TELEFONO']  ?></p>
+				<p><?php else: echo "No hay lider asignado."?></p>
+			<?php endif ?>
+			<?php if (isset($brigadista)): ?>
+				<p><span class="negrita">Brigadista:</span> <?php echo $brigadista['NOMBRES']." ".$brigadista['APELLIDOS']." ".$brigadista['DNI']." ".$brigadista['TELEFONO']  ?></p>
+				<p><?php else: echo "No hay brigadista asignado."?></p>
+			<?php endif ?>
 		</div>
 		<div class="container">
+			<div class="center apartmentBtn">
+				<a href="#"><button>Agregar Anexo</button></a>	
+				<a href="home.php">Volver</a>
+			</div>
 			<div class="card-container">
 				<?php for ($i = 0; $i < $btns; $i++): ?>
 					<?php if ($tablaApartamento[$i]['ANEXO'] == 'N' || $tablaApartamento[$i]['ANEXO'] == 'n'): ?>
@@ -59,10 +62,6 @@
 						<a href="families.php?id=<?php echo $tablaApartamento[$i]['ID'] ?>"><button>Anexo <?php echo $tablaApartamento[$i]['NRO_APARTAMENTO'] ?></button></a>
 					<?php endif ?>
 				<?php endfor ?>
-				<div class="center apartmentBtn">
-					<a href="#"><button>Agregar Anexo</button></a>
-					<a href="home.php">Volver</a>
-				</div>
 			</div>
 		</div>
 		<?php include("includes/footer.php")?>

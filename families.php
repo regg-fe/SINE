@@ -46,6 +46,11 @@
 				<h1>Apartamento <?php echo $nro_ap ?></h1>
 				</div> 
 				<div class="container">
+					<div class="center">
+						<a href="#"><button>Agregar Familia</button></a>
+						<a href="apartments.php?id=<?php echo $id_bl ?>">Volver</a>
+					</div>	
+
 					<?php if ($familias != null && isset($personas)): ?>
 						<?php for ($i = 0; $i < count($familias); $i++):  ?>
 							<?php if (isset($personas[$i])): ?>
@@ -103,10 +108,6 @@
 				<?php endfor ?>
 					<?php else: echo "<h3 class='center'>No hay familias asignadas a este apartamento</h3>" ?>			
 				<?php endif ?>
-				<div class="center">
-				<a href="#"><button>Agregar Familia</button></a>
-				<a href="apartments.php?id=<?php echo $id_bl ?>">Volver</a>
-			</div>	
 		</div>
 
 <!--===============================================================================================-->	
