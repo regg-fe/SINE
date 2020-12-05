@@ -1,6 +1,5 @@
 <?php 
 	session_start();
-	include_once 'includes/database.php';
 	include_once 'includes/functions.php';
 	if (!isset($_SESSION['usuario'])) {
 		header("Location:index.php");
@@ -37,16 +36,16 @@
 		<title>SINE | Familia: <?php echo $persona['APELLIDOS']?></title>
 	</head>
 	<body>
-		<?php require("includes/navbar.php")?>
+		<?php include("includes/navbar.php")?>
 		<p>Familia: <?php echo $persona['APELLIDOS']?></p>
 		<p>Bloque: <?php echo $familia['NRO_BLOQUE']?></p>
 		<p>Apartamento: <?php echo $familia['NRO_APARTAMENTO']?> </p>
-		<a href="#">Editar direccion</a>
-		<h1>Integrantes: </h1><a href="#">Agregar Persona</a>
+		<a href="#" id="changedir"><button>Editar direccion</button></a>
+		<h1>Integrantes: </h1><a href="#"><button>Agregar Persona</button></a>
 		
 		<!-- PERSONAS -->
 		<table cellspacing="3" cellpadding="3" border="1">	
-			<thead>
+			<thead>	
 				<tr>
 					<th>Nombres</th>
 					<th>Apellidos</th>
@@ -82,26 +81,22 @@
 		<!-- PERSONAS -->
 		
 		<!-- BOMBONAS -->
-		<h1>Bombonas: </h1><a href="#">Agregar Bombona</a>
+		<h1>Bombonas: </h1><a href="#" id="changeB"><button>Agregar Bombona</button></a>
 		<?php if ($bombonas != NULL ): ?>
 			<table cellspacing="3" cellpadding="3" border="1">
 				<thead>
 					<tr>
-						<th>ID</th>
 						<th>Tipo</th>
 						<th>Marca</th>
-						<th>Editar</th>
 						<th>Eliminar</th>
 					</tr>
 				</thead>
 				<?php for ($i = 0; $i < count($bombonas); $i++): ?>
 				<tbody>
 					<tr>
-						<td><?php echo $bombonas[$i]['ID'] ?></td>
 						<td><?php echo $bombonas[$i]['MARCA'] ?></td>
 						<td><?php echo $bombonas[$i]['TIPO'] ?></td>
-						<td><a href="#" title="Editar">...</a></td>
-						<td><a href="#" title="Eliminar">...</a></td>
+						<td><a href="delete.php?op=6&id=<?php echo $bombonas[$i]['ID'] ?>&f=<?php echo $id ?>" title="Eliminar">...</a></td>
 					</tr>
 				</tbody>
 				<?php endfor ?>
@@ -112,22 +107,22 @@
 		<!-- BOMBONAS -->
 
 		<!-- ENTREGAS -->
-		<h1>Entrega de sugeridos: </h1><a href="#">Asignar Entrega</a>
+		<h1>Entrega de sugeridos: </h1><a href="#" id="changeE"><button>Asignar Entrega</button></a>
 		<?php if ($beneficios != NULL ): ?>
 			<table cellspacing="3" cellpadding="3" border="1">
 				<thead>
 					<tr>
-						<th>Cantidad</th>
+						<th>Cantidad de Sugeridos</th>
 						<th>Fecha de entrega</th>
-						<th>Editar</th>
+						<th>Eliminar</th>
 					</tr>
 				</thead>
 				<?php for ($i = 0; $i < count($beneficios); $i++): ?>
-				<tbody>
+					<tbody>
 					<tr>
 						<td><?php echo $beneficios[$i]['CANTIDAD'] ?></td>
 						<td><?php echo $beneficios[$i]['FECHA_ENTREGA'] ?></td>
-						<td><a href="#" title="Editar">...</a></td>
+						<td><a href="delete.php?op=5&id=<?php echo $beneficios[$i]['ID'] ?>&f=<?php echo $id ?>" title="Eliminar">...</a></td>
 					</tr>
 				</tbody>
 				<?php endfor ?>
@@ -137,6 +132,8 @@
 		<?php endif ?>	
 		<!-- ENTREGAS -->
 		<a href="families.php?id=<?php echo $familia['ID_APARTAMENTO']?>">Volver</a>
-		<?php require("includes/footer.php")?>
+		<!-- MODALES -->
+		<?php include("includes/modal.php") ?>
+		<?php include("includes/footer.php")?>
 	</body>
 </html>

@@ -1,3 +1,4 @@
+<?php include("info.php") ?>
 <script src="js/jquery.min.js"></script>
     
     <script>

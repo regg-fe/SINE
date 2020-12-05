@@ -129,7 +129,7 @@
 				<li class="items"><a href="home.php">Inicio</a></li>
 				<li class="items"><a href="statistics.php">Estadisticas</a></li>
 				<li class="items"><a href="leaders.php">Lideres y Brigadistas</a></li>
-				<li class="items"><a href="adduser.php">Nuevo Usuario</a></li>
+				<li class="items"><a href="user.php">Usuarios</a></li>
 			</ul>
 			<!--right side-->
 			<ul class="list">

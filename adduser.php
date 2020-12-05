@@ -1,34 +1,36 @@
 <?php 
 	session_start();
-	include_once 'includes/database.php';
 	include_once 'includes/functions.php';
-
+	if (!isset($_SESSION['usuario'])) {
+		header("Location:index.php");
+		die();
+	}
 	if (isset($_POST['enviar'])) {
 		
-		if (!isset($_SESSION['usuario'])) {
-			header("Location:index.php");
-			die();
-		}
-		$usuario = $_POST['usuario'];
-		$nombre = $_POST['nombre'];
-		$apellido = $_POST['apellido'];
-		$contra = $_POST['contra'];
-		$contravali = $_POST['contravali'];
-		$message = '';
-		if ($contra != $contravali) {
-			$message = 'Las contraseñas no coinciden';
+	$con = conexion();
+
+	$usuario = $con->real_escape_string($_POST['usuario']);
+	$nombre = $con->real_escape_string($_POST['nombre']);
+	$apellido = $con->real_escape_string($_POST['apellido']);
+	$contra = $con->real_escape_string($_POST['contra']);
+	$contravali = $con->real_escape_string($_POST['contravali']);
+
+	$message = '';
+	if ($contra != $contravali) {
+		$message = 'Las contraseñas no coinciden';
+	} else {
+		$resultado = $con->query("SELECT * FROM USUARIO WHERE USUARIO = '$usuario'"); 
+		$row_count = $resultado->num_rows;
+		if ($row_count != 0) {
+			$message = 'El usuario que intenta ingresar ya esta registrado';
+			$con->close();
 		} else {
-			$resultado = $conexion->query("SELECT USUARIO FROM USUARIO WHERE USUARIO = '$nombre'"); 
-			$row_count = $resultado->num_rows;
-				
-			if ($row_count >= 1) {
-				$message = 'El usuario que intenta ingresar ya esta registrado';
-			} else {
-				$seql = "INSERT INTO usuario (USUARIO, NOMBRE, APELLIDO, CLAVE) VALUES('$usuario','$nombre','$apellido','$contra')";
-				$res = $conexion->query($seql);	
-				$message = 'Usuario agregado satisfactoriamente';
-					}
-				}
+			$sql = "INSERT INTO usuario (USUARIO, NOMBRE, APELLIDO, CLAVE) VALUES('$usuario','$nombre','$apellido','$contra')";
+			$res = $con->query($sql);
+			$con->close();
+			header('Location:user.php');
+			}
+		}
 	}
 ?>
 <!DOCTYPE html>

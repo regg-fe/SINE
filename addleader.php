@@ -1,7 +1,6 @@
 <?php 
 
 session_start();
-	include_once 'includes/database.php';
 	include_once 'includes/functions.php';
 	if (!isset($_SESSION['usuario'])) {
 		header("Location:index.php");
@@ -24,23 +23,24 @@ session_start();
 		header("Location:leaders.php");
 	}
 	$bloques = bloques();
-	$conexion = conexion();
+	$con = conexion();
 
 	$message = "";
 	if (isset($_POST['btn'])) {
 		switch ($op) {
 			case 1:
 
-				$nombre = $_POST['nombre'];
-				$apellido = $_POST['apellido'];
-				$dni = $_POST['dni'];
-				$telefono = $_POST['telefono'];
-				$id_bloque = $_POST['id_bloque'];
+				$nombre = $con->real_escape_string($_POST['nombre']);
+				$apellido = $con->real_escape_string($_POST['apellido']);
+				$dni = $con->real_escape_string($_POST['dni']);
+				$telefono = $con->real_escape_string($_POST['telefono']);
+				$id_bloque = $con->real_escape_string($_POST['id_bloque']);
 
-				$r = repeatDNI($dni,$conexion,'lider');
+				$r = repeatDNI($dni,$con,'lider');
 				if ($r != 1) {
 					$sql = "INSERT INTO lider (NOMBRES,APELLIDOS,DNI,TELEFONO,ID_BLOQUE) VALUES ('$nombre','$apellido','$dni','$telefono','$id_bloque')";
-					$resultado = $conexion->query($sql);
+					$resultado = $con->query($sql);
+					$con->close();
 					header('Location:leaders.php');
 				} else {
 					$message = "El portador de esta cedula, ya esta registrado como lider";
@@ -48,16 +48,17 @@ session_start();
 			break;
 			
 			case 2:
-				$nombre = $_POST['nombre'];
-				$apellido = $_POST['apellido'];
-				$dni = $_POST['dni'];
-				$telefono = $_POST['telefono'];
-				$id_bloque = $_POST['id_bloque'];
-				
-				$r = repeatDNI($dni,$conexion,'brigadista');
+				$nombre = $con->real_escape_string($_POST['nombre']);
+				$apellido = $con->real_escape_string($_POST['apellido']);
+				$dni = $con->real_escape_string($_POST['dni']);
+				$telefono = $con->real_escape_string($_POST['telefono']);
+				$id_bloque = $con->real_escape_string($_POST['id_bloque']);
+
+				$r = repeatDNI($dni,$con,'brigadista');
 				if ($r == 0) {
 					$sql = "INSERT INTO brigadista (NOMBRES,APELLIDOS,DNI,TELEFONO,ID_BLOQUE) VALUES ('$nombre','$apellido','$dni','$telefono','$id_bloque')";
-					$resultado = $conexion->query($sql);
+					$resultado = $con->query($sql);
+					$con->close();
 					header('Location:leaders.php');
 				} else {
 					$message = "El portador de esta cedula, ya esta registrado como brigadista";

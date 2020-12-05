@@ -1,16 +1,16 @@
 <?php
-	include_once 'includes/database.php';
 	include_once 'includes/functions.php';
 	session_start();
 	if (isset($_SESSION['usuario'])) {
 		header("Location:home.php");
 		die();
 	}
+	$con = conexion();
 	if (isset($_POST['btn'])) {
-		$user = $_POST['user'];
-		$pass = $_POST['password'];
+		$user =  $con->real_escape_string($_POST['user']);
+		$pass =  $con->real_escape_string($_POST['password']);
 		$sql = "SELECT * FROM USUARIO WHERE USUARIO = '$user'";
-		$res = $conexion->query($sql);
+		$res = $con->query($sql);
 			if ($res->num_rows > 0) {
 				while ($row = $res->fetch_assoc()) {
 					$pass2 = $row['CLAVE'];
