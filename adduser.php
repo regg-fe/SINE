@@ -46,7 +46,7 @@
 			<div class="box-form">
 				<form action="adduser.php" method="POST">
 				<h1>Registrar nuevo usuario</h1>
-					<?php if (isset($message)): ?><p><?php echo $message; ?></p><?php endif ?>
+				<div class="error"><?php if (isset($message)): ?><?php echo $message; ?><?php endif ?></div>
 					
 					<label for="usuario">Usuario</label>
 					<input type="text" name="usuario">

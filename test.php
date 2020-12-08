@@ -3,7 +3,7 @@
 	
 	// BUSCADOR
 	if (isset($_POST['search'])) {
-		$con = $con->real_escape_string(conexion());
+		$con = conexion();
 		$search = $_POST['search'];
 	if(!empty($search)) {
 		$sql = "SELECT * FROM persona WHERE DNI LIKE '%$search%' OR NOMBRES LIKE '%$search%' OR APELLIDOS LIKE '$search'";

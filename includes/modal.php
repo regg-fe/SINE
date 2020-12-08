@@ -29,7 +29,7 @@
 	<style type="text/css">
 		#modal{
 			display: none; width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.5);
-			align-items: center; justify-content: center;
+			align-items: center; justify-content: center; top: 0; z-index: 99;
 		}
 		form#fmodal{
 			display: flex; flex-direction: column; padding: 50px; background-color: white;
@@ -67,7 +67,7 @@
 	<style type="text/css">
 		#modalB{
 			display: none; width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.5);
-			align-items: center; justify-content: center;
+			align-items: center; justify-content: center; top: 0; z-index: 99;
 		}
 		form#fmodalB{
 			display: flex; flex-direction: column; padding: 50px; background-color: white;
@@ -92,7 +92,7 @@
 	<style type="text/css">
 		#modalE{
 			display: none; width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.5);
-			align-items: center; justify-content: center;
+			align-items: center; justify-content: center; top: 0; z-index: 99;
 		}
 		form#fmodalE{
 			display: flex; flex-direction: column; padding: 50px; background-color: white;
@@ -115,7 +115,7 @@
 	<style type="text/css">
 		#modalA{
 			display: none; width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.5);
-			align-items: center; justify-content: center;
+			align-items: center; justify-content: center; top: 0; z-index: 99;
 		}
 		form#fmodalA{
 			display: flex; flex-direction: column; padding: 50px; background-color: white;
@@ -146,7 +146,7 @@
 	<style type="text/css">
 		#modalD{
 			display: none; width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.5);
-			align-items: center; justify-content: center;
+			align-items: center; justify-content: center; top: 0; z-index: 99;
 		}
 		form#fmodalD{
 			display: flex; flex-direction: column; padding: 50px; background-color: white;

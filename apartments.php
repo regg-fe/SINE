@@ -43,6 +43,7 @@
 			<?php endif ?>
 		</div>
 		<div class="container">
+			
 			<div class="center apartmentBtn">
 				<a href="#" id="addA"><button>Agregar Anexo</button></a><a href="#" id="delA"><button>Elminar Anexo</button></a>
 				<a href="home.php">Volver</a>

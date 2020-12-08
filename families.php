@@ -51,7 +51,7 @@
 				</div> 
 				<div class="container">
 					<div class="center">
-						<a href="#"><button>Agregar Familia</button></a>
+						<a href="addfamily.php?apartamento=<?php echo $id_ap ?>"><button>Agregar Familia</button></a>
 						<a href="apartments.php?id=<?php echo $id_bl ?>">Volver</a>
 					</div>	
 
@@ -60,8 +60,9 @@
 							<?php if (isset($personas[$i])): ?>
 			
 								<div class="center">
-									<a href="afamily.php?id=<?php echo $familias[$i]['ID']?>"><h2>Familia <?php echo $personas[$i][0]['FAMILIA'] ?></h2></a>
-									<a href="delete.php?op=4&id=<?php echo $familias[$i]['ID'] ?>&a=<?php echo $id_ap ?>"><button>Eliminar Familia</button></a>
+									<h2>Familia <?php echo $personas[$i][0]['FAMILIA'] ?></h2>
+									<a class="btn-families" href="afamily.php?id=<?php echo $familias[$i]['ID']?>" title="Ver detalles de la familia"><i class="fas fa-info-circle"></i></a>
+									<a class="btn-families" href="delete.php?op=4&id=<?php echo $familias[$i]['ID'] ?>&a=<?php echo $id_ap ?>" title="Eliminar Familia"><i class="fas fa-eraser"></i></a>
 								</div>
 								
 								<div class="container-table100">
@@ -131,4 +132,4 @@
 		});
 		
 	</script>
-		<?php include("includes/footer.php")?>
+	<?php include("includes/footer.php")?>
