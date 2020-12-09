@@ -879,6 +879,47 @@
 		return $apartamentos;
 	}
 
+	function anexosPorBloque($id_bloque){
+		$apartamentos = NULL;
+		$conn = conexion();
+
+		$sql = "SELECT ID FROM APARTAMENTO WHERE ID_BLOQUE = $id_bloque AND ANEXO = 'S'";
+		$result = $conn->query($sql);
+
+		if ($result->num_rows > 0) {
+			$a = 0;
+			while ($row = $result->fetch_assoc()) {
+				$apartamentos[$a] = apartamento($row['ID']);
+				$a++;
+			} 
+		} else {
+			return false;
+		}
+		$conn->close();
+		return $apartamentos;
+	}
+
+
+	function existeAnexo($nro_anexo){
+		$apartamentos = NULL;
+		$conn = conexion();
+
+		$sql = "SELECT ID FROM APARTAMENTO WHERE NUMERO_APARTAMENTO = $nro_anexo AND ANEXO = 'S'";
+		$result = $conn->query($sql);
+
+		if ($result->num_rows > 0) {
+			$a = 0;
+			while ($row = $result->fetch_assoc()) {
+				$apartamentos[$a] = apartamento($row['ID']);
+				$a++;
+			} 
+		} else {
+			return false;
+		}
+		$conn->close();
+		return $apartamentos;
+	}
+
 	## Tabla BLOQUE ##
 
 	function bloques(){
