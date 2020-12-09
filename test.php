@@ -90,13 +90,17 @@
 		$id = $con->real_escape_string($_POST['idBlo']);
 		$a = "S";
 		$n = $con->real_escape_string($_POST['numA']);
-		
-		$sql = "INSERT INTO APARTAMENTO (NUMERO_APARTAMENTO, ANEXO, ID_BLOQUE) VALUES ('$n','$a','$id')";
-		$r = $con->query($sql);
-		if (!$r) {
-			die("Insert Error".mysqli_error($con));
+		$existeAnexo = existeAnexo($n);
+		if ($existeAnexo == NULL) {
+			$sql = "INSERT INTO APARTAMENTO (NUMERO_APARTAMENTO, ANEXO, ID_BLOQUE) VALUES ('$n','$a','$id')";
+			$r = $con->query($sql);
+			if (!$r) {
+				die("Insert Error".mysqli_error($con));
+			}
+			$con->close();
+		} else {
+			echo "Este anexo ya fue creado";
 		}
-		$con->close();
 	}
 
 	// ELIMINAR ANEXO
