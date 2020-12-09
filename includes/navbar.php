@@ -130,6 +130,7 @@
 				<li class="items"><a href="statistics.php">Estadisticas</a></li>
 				<li class="items"><a href="leaders.php">Lideres y Brigadistas</a></li>
 				<li class="items"><a href="user.php">Usuarios</a></li>
+				<li class="items"><a href="options.php">Opciones</a></li>
 			</ul>
 			<!--right side-->
 			<ul class="list">
