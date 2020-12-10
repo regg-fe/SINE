@@ -116,49 +116,128 @@
 	}
 
 	// ESTADISTICAS NUTRICION
-	if (isset($_POST['val'])) {
-		$v = $_POST['val'];
-		$salida = "";
-		$nutricion = estadoDeNutricion($v);
-		if ($nutricion != NULL) {
-			for ($i=0; $i <count($nutricion) ; $i++) { 
-				$salida.="<tr>
-	    					<td><a href='aperson.php?id=".$nutricion[$i]['ID']."' target='_blank'>".$nutricion[$i]['NOMBRES']."</a></td>
-	    					<td>".$nutricion[$i]['APELLIDOS']."</td>
-	    					<td>".$nutricion[$i]['GENERO']."</td>
-	    					<td>".$nutricion[$i]['FECHA_NAC']."</td>
-	    					<td>".$nutricion[$i]['DNI']."</td>
-	    					<td>".$nutricion[$i]['TELEFONO']."</td>
-	    					<td>".$nutricion[$i]['PESO']."</td>
-	    					<td>".$nutricion[$i]['ESTATURA']."</td>
-	    					<td>".$nutricion[$i]['IMC']."</td>
-	    					<td>".$nutricion[$i]['FAMILIA']."</td>
-	    					<td>".$nutricion[$i]['NRO_APARTAMENTO']."</td>
-	    					<td>".$nutricion[$i]['NRO_BLOQUE']."</td>
-	    				</tr>";
-			}
-			echo $salida;
-		} else {
-			$salida = "No hay personas con problemas de nutricion";
+	if (isset($_POST['val']) && isset($_POST['o'])) {
+		switch ($_POST['o']) {
+			case 1:
+				$v = $_POST['val'];
+				$salida = "";
+				$muestra = estadoDeNutricion($v);
+				if ($muestra != NULL) {
+					for ($i=0; $i <count($muestra) ; $i++) { 
+						$salida.="<tr>
+			    					<td><a href='aperson.php?id=".$muestra[$i]['ID']."' target='_blank'>".$muestra[$i]['NOMBRES']."</a></td>
+			    					<td>".$muestra[$i]['APELLIDOS']."</td>
+			    					<td>".$muestra[$i]['GENERO']."</td>
+			    					<td>".$muestra[$i]['FECHA_NAC']."</td>
+			    					<td>".$muestra[$i]['DNI']."</td>
+			    					<td>".$muestra[$i]['TELEFONO']."</td>
+			    					<td>".$muestra[$i]['PESO']."</td>
+			    					<td>".$muestra[$i]['ESTATURA']."</td>
+			    					<td>".$muestra[$i]['IMC']."</td>
+			    					<td>".$muestra[$i]['FAMILIA']."</td>
+			    					<td>".$muestra[$i]['NRO_APARTAMENTO']."</td>
+			    					<td>".$muestra[$i]['NRO_BLOQUE']."</td>
+			    				</tr>";
+					}
+				} else {
+					$salida = "No hay personas con problemas de nutricion";
+				}
+				echo $salida;
+			break;
+
+			case 2:
+				$v = $_POST['val'];
+				$salida = "";
+				$muestra = enfermos();
+				if ($muestra != NULL) {
+					for ($i=0; $i <count($muestra) ; $i++) { 
+						$salida.="<tr>
+			    					<td><a href='aperson.php?id=".$muestra[$i]['ID_PERSONA']."' target='_blank'>".$muestra[$i]['NOMBRE_PERSONA']."</a></td>
+			    					<td>".$muestra[$i]['APELLIDO_PERSONA']."</td>
+			    					<td>".$muestra[$i]['NOMBRE_ENFERMEDAD']."</td>
+			    				</tr>";
+					}
+				} else {
+					$salida = "No hay personas con problemas de salud";
+				}
+				echo $salida;
+			break;
+
+			case 3:
+				$v = $_POST['val'];
+				$salida = "";
+				$muestra = discapacitados();
+				if ($muestra != NULL) {
+					for ($i=0; $i <count($muestra) ; $i++) { 
+						$salida.="<tr>
+			    					<td><a href='aperson.php?id=".$muestra[$i]['ID_PERSONA']."' target='_blank'>".$muestra[$i]['NOMBRE_PERSONA']."</a></td>
+			    					<td>".$muestra[$i]['APELLIDO_PERSONA']."</td>
+			    					<td>".$muestra[$i]['TIPO_ENFERMEDAD']."</td>
+			    				</tr>";
+					}
+				} else {
+					$salida = "No hay personas con discapacidades";
+				}
+				echo $salida;
+			break;
+			
+			default:
+				echo $salida = "Esta opcion no esta implementada";
+			break;
 		}
 	}
 
-	// TOTALES NUTRICION
+	// TOTALES ESTADISTICOS
 	if (isset($_POST['e']) && isset($_POST['o'])) {
 		$v = $_POST['e'];
 		$o = $_POST['o'];
 		switch ($o) {
 			case 1:
-				$nutricion = estadoDeNutricion($v);
+			//NUTRICION
+				$muestra = estadoDeNutricion($v);
 				$personas = personas();
-				$total = array(0 => count($personas), 1 => count($nutricion));
+				if ($muestra != NULL && $personas != NULL) {
+					$total = array(0 => count($personas), 1 => count($muestra));
+				} else if ($muestra == NULL){
+					$total = array(0 => count($personas), 1 => 0);
+				} else if ($personas == NULL) {
+					$total = array(0 => 0, 1 => count($muestra));
+				}
 				$jsonstring = json_encode($total);
 				echo $jsonstring;
 			break;
-			
+
+			case 2:
+				$muestra = enfermos();
+				$personas = personas();
+				if ($muestra != NULL && $personas != NULL) {
+					$total = array(0 => count($personas), 1 => count($muestra));
+				} else if ($muestra == NULL){
+					$total = array(0 => count($personas), 1 => 0);
+				} else if ($personas == NULL) {
+					$total = array(0 => 0, 1 => count($muestra));
+				}
+				$jsonstring = json_encode($total);
+				echo $jsonstring;
+			break;
+		
+			case 3:
+				$muestra = discapacitados();
+				$personas = personas();
+				if ($muestra != NULL && $personas != NULL) {
+					$total = array(0 => count($personas), 1 => count($muestra));
+				} else if ($muestra == NULL){
+					$total = array(0 => count($personas), 1 => 0);
+				} else if ($personas == NULL) {
+					$total = array(0 => 0, 1 => count($muestra));
+				}
+				$jsonstring = json_encode($total);
+				echo $jsonstring;
+			break;
+	
 			default:
 				$jsonstring = json_encode(null);
-				echo $jsonstring; 
+				echo $jsonstring;
 			break;
 		}
 	}

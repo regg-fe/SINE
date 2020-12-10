@@ -20,11 +20,22 @@ $(document).ready(function() {
 		value = $("input:radio[name=nutricion]:checked").val();
 		recibirDatos(value,ope);
 	});
+
+	$("#c").click(function (ev) {
+		ope = 2;
+		value = $("input:radio[name=enfermos]:checked").val();
+		recibirDatos(value,ope);
+	});
+	$("#d").click(function (ev) {
+		ope = 3;
+		value = $("input:radio[name=enfermos]:checked").val();
+		recibirDatos(value,ope);
+	});
 });
 
 function recibirDatos(value,ope) {
 	var v = value;
-	$.post('test.php',{val: v}, function(data) {
+	$.post('test.php',{val: v, o: ope}, function(data) {
 		$('#result').show();
 		$('#body').html(data);
 	});
@@ -39,7 +50,7 @@ function recibirTotales(value,n) {
 		$('#text').show();
 		$('#text').html('Total de personas registradas en el sistema: '+total[0]);
 		$('#text1').show();
-		$('#text1').html('Total de personas con problemas de nutricion: '+total[1]);
+		$('#text1').html('Total de personas afectadas: '+total[1]);
 		$('#text2').show();
 		$('#text2').html('Porcentaje: '+porcentaje+"%");
 	});

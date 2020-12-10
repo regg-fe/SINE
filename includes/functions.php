@@ -68,7 +68,8 @@
 				$tabla[$i]['ID'] = $row['ID'];
 				$tabla[$i]['NOMBRE_ENFERMEDAD'] = $row['NOMBRE_ENFERMEDAD'];
 				$tabla[$i]['ID_PERSONA'] = $row['ID_PERSONA'];
-				$tabla[$i]['NOMBRE_PERSONA'] = $row['NOMBRE_PERSONA']." ".$row['APELLIDO_PERSONA'];
+				$tabla[$i]['NOMBRE_PERSONA'] = $row['NOMBRE_PERSONA'];
+				$tabla[$i]['APELLIDO_PERSONA'] = $row['APELLIDO_PERSONA'];
 				$i++;
 			}
 		}
@@ -130,7 +131,8 @@
 				$tabla[$i]['ID'] = $row['ID'];
 				$tabla[$i]['TIPO_DISCAPACIDAD'] = $row['TIPO_DISCAPACIDAD'];
 				$tabla[$i]['ID_PERSONA'] = $row['ID_PERSONA'];
-				$tabla[$i]['NOMBRE_PERSONA'] = $row['NOMBRE_PERSONA']." ".$row['APELLIDO_PERSONA'];
+				$tabla[$i]['NOMBRE_PERSONA'] = $row['NOMBRE_PERSONA'];
+				$tabla[$i]['APELLIDO_PERSONA'] = $row['APELLIDO_PERSONA'];
 				$i++;
 			}
 		}

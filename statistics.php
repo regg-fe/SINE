@@ -16,10 +16,10 @@
 	<?php include("includes/navbar.php") ?>
 	<body>
 
-		<a href="#" onclick="openUrl('includes/nutricion.php','nutricion')">Nutricion</a>
-		<a href="#" onclick="openUrl('includes/nutricion.php','nutricion')">Nutricion</a>
+		<a href="#" onclick="openUrl('includes/nutricion.php','mostrar')">Nutricion</a>
+		<a href="#" onclick="openUrl('includes/enfermos.php','mostrar')">Enfermedades</a>
 
-		<div id="nutricion"></div>
+		<div id="mostrar"></div>
 
 	<?php include("includes/footer.php") ?>
 	</body>
