@@ -10,11 +10,12 @@
 	</head>
 	
 	<body>
-		<input type="radio" id="a" name="nutricion" value="1">Desnutridos<br>
-		<input type="radio" id="b" name="nutricion" value="4">Obesos
+		<input type="radio" id="a" name="nutricion" value="1">Desnutricion<br>
+		<input type="radio" id="b" name="nutricion" value="4">Obesidad
 
-		<p id="text">Total de personas: </p><p id="total"></p>
-		<p id="text1">Porcentaje: </p><p id="porcentaje"></p>
+		<p id="text"></p>
+		<p id="text1">Porcentaje: </p>
+		<p id="text2"> </p>
 		<div id="result"><br>
 			<table cellspacing="3" cellpadding="3" border="1">
 				<thead id="head">
@@ -27,10 +28,10 @@
 						<th>Telefono</th>
 						<th>Peso</th>
 						<th>Estatura</th>
+						<th>IMC</th>
 						<th>Familia</th>
 						<th>Apartamento</th>
 						<th>Bloque</th>
-						<th>IMC</th>
 					</tr>
 				</thead>
 				<tbody id="body"></tbody>

@@ -90,7 +90,7 @@
 		$id = $con->real_escape_string($_POST['idBlo']);
 		$a = "S";
 		$n = $con->real_escape_string($_POST['numA']);
-		$existeAnexo = existeAnexo($n);
+		$existeAnexo = existeAnexo($n,$id);
 		if ($existeAnexo == NULL) {
 			$sql = "INSERT INTO APARTAMENTO (NUMERO_APARTAMENTO, ANEXO, ID_BLOQUE) VALUES ('$n','$a','$id')";
 			$r = $con->query($sql);
@@ -113,5 +113,53 @@
 			die("Delete Error".mysqli_error($con));
 		}
 		$con->close();
+	}
+
+	// ESTADISTICAS NUTRICION
+	if (isset($_POST['val'])) {
+		$v = $_POST['val'];
+		$salida = "";
+		$nutricion = estadoDeNutricion($v);
+		if ($nutricion != NULL) {
+			for ($i=0; $i <count($nutricion) ; $i++) { 
+				$salida.="<tr>
+	    					<td><a href='aperson.php?id=".$nutricion[$i]['ID']."' target='_blank'>".$nutricion[$i]['NOMBRES']."</a></td>
+	    					<td>".$nutricion[$i]['APELLIDOS']."</td>
+	    					<td>".$nutricion[$i]['GENERO']."</td>
+	    					<td>".$nutricion[$i]['FECHA_NAC']."</td>
+	    					<td>".$nutricion[$i]['DNI']."</td>
+	    					<td>".$nutricion[$i]['TELEFONO']."</td>
+	    					<td>".$nutricion[$i]['PESO']."</td>
+	    					<td>".$nutricion[$i]['ESTATURA']."</td>
+	    					<td>".$nutricion[$i]['IMC']."</td>
+	    					<td>".$nutricion[$i]['FAMILIA']."</td>
+	    					<td>".$nutricion[$i]['NRO_APARTAMENTO']."</td>
+	    					<td>".$nutricion[$i]['NRO_BLOQUE']."</td>
+	    				</tr>";
+			}
+			echo $salida;
+		} else {
+			$salida = "No hay personas con problemas de nutricion";
+		}
+	}
+
+	// TOTALES NUTRICION
+	if (isset($_POST['e']) && isset($_POST['o'])) {
+		$v = $_POST['e'];
+		$o = $_POST['o'];
+		switch ($o) {
+			case 1:
+				$nutricion = estadoDeNutricion($v);
+				$personas = personas();
+				$total = array(0 => count($personas), 1 => count($nutricion));
+				$jsonstring = json_encode($total);
+				echo $jsonstring;
+			break;
+			
+			default:
+				$jsonstring = json_encode(null);
+				echo $jsonstring; 
+			break;
+		}
 	}
 ?>

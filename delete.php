@@ -37,18 +37,35 @@
 			}
 		break;
 
-		case 3: //PERSONAS
+		case 3: //PERSONAS O JEFE
 			$f = $con->real_escape_string($_GET['f']);
 			if (empty($f)) {
 				header('Location:home.php');
 			}
-			$sql = "DELETE FROM PERSONA WHERE ID = '$id'";
-			$result = $con->query($sql);	
-			if(!$result) {
-				die("Delete Error".mysqli_error($con));
+			$persona = persona($id);
+			$familia = familia($f);
+			$a = $familia['ID_APARTAMENTO'];
+			if ($familia != NULL && $persona != NULL) {
+				if ($persona['POSICION'] == 'JEFE') {
+					$sql = "DELETE FROM FAMILIA WHERE ID = '$f'";
+					$result = $con->query($sql);
+					if(!$result) {
+						die("Delete Error".mysqli_error($con));
+					} else {
+						header('Location:families.php?id='.$a);
+					}
+				} else {
+					$sql = "DELETE FROM PERSONA WHERE ID = '$id'";
+					$result = $con->query($sql);	
+					if(!$result) {
+						die("Delete Error".mysqli_error($con));
+					} else {
+						header('Location:afamily.php?id='.$f);
+					}
+				}
 			} else {
-				header('Location:afamily.php?id='.$f);
-			}
+				header('Location:home.php');
+			}	
 		break;
 
 		case 4: //FAMILIAS

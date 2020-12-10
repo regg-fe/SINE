@@ -900,11 +900,11 @@
 	}
 
 
-	function existeAnexo($nro_anexo){
+	function existeAnexo($nro_anexo,$id_bloque){
 		$apartamentos = NULL;
 		$conn = conexion();
 
-		$sql = "SELECT ID FROM APARTAMENTO WHERE NUMERO_APARTAMENTO = $nro_anexo AND ANEXO = 'S'";
+		$sql = "SELECT ID FROM APARTAMENTO WHERE ID_BLOQUE = $id_bloque AND NUMERO_APARTAMENTO = $nro_anexo AND ANEXO = 'S'";
 		$result = $conn->query($sql);
 
 		if ($result->num_rows > 0) {
@@ -1093,6 +1093,7 @@
 				$tabla[$a]['NOMBRES'] = $row['NOMBRES'];
 				$tabla[$a]['APELLIDOS'] = $row['APELLIDOS'];
 				$tabla[$a]['GENERO'] = $row['GENERO'];
+				$tabla[$a]['FECHA_NAC'] = $row['FECHA_NAC'];
 				$tabla[$a]['DNI'] = $row['DNI'];
 				$tabla[$a]['TELEFONO'] = $row['TELEFONO'];
 				$tabla[$a]['PESO'] = $row['PESO'];
@@ -1437,4 +1438,7 @@
 		carnetsRandom();
 	}
 	## Codigos de prueba ##
+	#datosAleatorios(10);
+
+
 ?>

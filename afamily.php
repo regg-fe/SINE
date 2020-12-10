@@ -27,6 +27,7 @@
 		$message = "Esta familia no ha recibido ningun sugerido";
 	}
 	$persona = persona($familia['ID_JEFE']);
+	$apartamento = apartamento($familia['ID_APARTAMENTO']);
 	
 ?>
 
@@ -42,7 +43,12 @@
 		<div class="welcome afamily-justify">
 			<h1>Familia: <?php echo $persona['APELLIDOS']?></h1>
 			<h3>Bloque: <?php echo $familia['NRO_BLOQUE']?>
-			Apartamento: <?php echo $familia['NRO_APARTAMENTO']?> </h3>
+			<?php if ($apartamento['ANEXO'] == 'S'): ?>
+				Anexo: <?php echo $familia['NRO_APARTAMENTO']?>
+			<?php else: ?>
+				Apartamento: <?php echo $familia['NRO_APARTAMENTO'] ?>
+			<?php endif ?>
+			</h3>
 			<a class="btn-welcome" href="#" id="changedir">Editar direccion</a>
 		</div>
 		<div class="container">

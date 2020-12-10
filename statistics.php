@@ -16,7 +16,8 @@
 	<?php include("includes/navbar.php") ?>
 	<body>
 
-		<a href="#" onclick="openUrl('includes/statistics1.php','nutricion')">Nutricion</a>
+		<a href="#" onclick="openUrl('includes/nutricion.php','nutricion')">Nutricion</a>
+		<a href="#" onclick="openUrl('includes/nutricion.php','nutricion')">Nutricion</a>
 
 		<div id="nutricion"></div>
 
