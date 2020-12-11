@@ -14,7 +14,7 @@
 		<script type="text/javascript" src="js/statistics.js"></script>
 	</head>
 	<?php include("includes/navbar.php") ?>
-	<body>
+
 
 		<a href="#" onclick="openUrl('includes/nutricion.php','mostrar')">Nutricion</a>
 		<a href="#" onclick="openUrl('includes/condiciones.php','mostrar')">Condiciones</a>
@@ -23,5 +23,3 @@
 		<div id="mostrar"></div>
 
 	<?php include("includes/footer.php") ?>
-	</body>
-</html>

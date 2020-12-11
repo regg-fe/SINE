@@ -62,6 +62,7 @@ $(document).ready(function() {
 			value = $("input:radio[name=carnets]:checked").val();
 			recibirDatos(value,ope);
 		});
+	});
 
 		$("#gb").click(function (ev) {
 			$("#serial").hide();
@@ -87,9 +88,8 @@ $(document).ready(function() {
 			recibirDatos(value,ope);
 		});
 	});
-
-
 });
+
 
 function recibirDatos(value,ope) {
 	var v = value;
