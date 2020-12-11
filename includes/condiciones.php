@@ -10,8 +10,10 @@
 	</head>
 	
 	<body>
-		<input type="radio" id="c" name="enfermos" value="2">Enfermos<br>
-		<input type="radio" id="d" name="enfermos" value="3">Discapacitados
+		<input type="radio" id="c" name="condiciones" value="2">Enfermos<br>
+		<input type="radio" id="d" name="condiciones" value="3">Discapacitados<br>
+		<input type="radio" id="e" name="condiciones" value="4">Embarazadas<br>
+		<input type="radio" id="f" name="condiciones" value="5">Encamados
 
 		<p id="text"></p>
 		<p id="text1">Porcentaje: </p>
@@ -22,7 +24,8 @@
 					<tr>
 						<th>Nombres</th>
 						<th>Apellidos</th>
-						<th>Enfermedad/Discapacidad</th>
+						<th>Cedula</th>
+						<th id="h">Enfermedad/Discapacidad</th>
 					</tr>
 				</thead>
 				<tbody id="body"></tbody>

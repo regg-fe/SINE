@@ -58,7 +58,7 @@
 		$tabla = NULL;
 		$conn = conexion();
 
-		$sql = "SELECT ENFERMEDAD.*, TIPOENFERMEDAD.NOMBRE AS NOMBRE_ENFERMEDAD, PERSONA.NOMBRES AS NOMBRE_PERSONA, PERSONA.APELLIDOS AS APELLIDO_PERSONA FROM ENFERMEDAD JOIN TIPOENFERMEDAD ON (ENFERMEDAD.ID_TIPOENFERMEDAD = TIPOENFERMEDAD.ID) JOIN PERSONA ON (ENFERMEDAD.ID_PERSONA = PERSONA.ID) ORDER BY PERSONA.ID";
+		$sql = "SELECT ENFERMEDAD.*, TIPOENFERMEDAD.NOMBRE AS NOMBRE_ENFERMEDAD, PERSONA.NOMBRES AS NOMBRE_PERSONA, PERSONA.APELLIDOS AS APELLIDO_PERSONA, PERSONA.DNI AS DNI_PERSONA FROM ENFERMEDAD JOIN TIPOENFERMEDAD ON (ENFERMEDAD.ID_TIPOENFERMEDAD = TIPOENFERMEDAD.ID) JOIN PERSONA ON (ENFERMEDAD.ID_PERSONA = PERSONA.ID) ORDER BY PERSONA.ID";
 
 		$result = $conn->query($sql);
 
@@ -70,6 +70,7 @@
 				$tabla[$i]['ID_PERSONA'] = $row['ID_PERSONA'];
 				$tabla[$i]['NOMBRE_PERSONA'] = $row['NOMBRE_PERSONA'];
 				$tabla[$i]['APELLIDO_PERSONA'] = $row['APELLIDO_PERSONA'];
+				$tabla[$i]['DNI_PERSONA'] = $row['DNI_PERSONA'];
 				$i++;
 			}
 		}
@@ -121,7 +122,7 @@
 		$tabla = NULL;
 		$conn = conexion();
 
-		$sql = "SELECT DISCAPACIDAD.*, TIPODISCAPACIDAD.TIPO AS TIPO_DISCAPACIDAD, PERSONA.NOMBRES AS NOMBRE_PERSONA, PERSONA.APELLIDOS AS APELLIDO_PERSONA FROM DISCAPACIDAD JOIN TIPODISCAPACIDAD ON (DISCAPACIDAD.ID_TIPO = TIPODISCAPACIDAD.ID) JOIN PERSONA ON (DISCAPACIDAD.ID_PERSONA = PERSONA.ID) ORDER BY PERSONA.ID";
+		$sql = "SELECT DISCAPACIDAD.*, TIPODISCAPACIDAD.TIPO AS TIPO_DISCAPACIDAD, PERSONA.NOMBRES AS NOMBRE_PERSONA, PERSONA.APELLIDOS AS APELLIDO_PERSONA, PERSONA.DNI AS DNI_PERSONA FROM DISCAPACIDAD JOIN TIPODISCAPACIDAD ON (DISCAPACIDAD.ID_TIPO = TIPODISCAPACIDAD.ID) JOIN PERSONA ON (DISCAPACIDAD.ID_PERSONA = PERSONA.ID) ORDER BY PERSONA.ID";
 
 		$result = $conn->query($sql);
 
@@ -133,6 +134,7 @@
 				$tabla[$i]['ID_PERSONA'] = $row['ID_PERSONA'];
 				$tabla[$i]['NOMBRE_PERSONA'] = $row['NOMBRE_PERSONA'];
 				$tabla[$i]['APELLIDO_PERSONA'] = $row['APELLIDO_PERSONA'];
+				$tabla[$i]['DNI_PERSONA'] = $row['DNI_PERSONA'];
 				$i++;
 			}
 		}
@@ -1191,7 +1193,7 @@
 				break;
 		}
 
-		$sql = "SELECT ID, NOMBRES, APELLIDOS, PENSION FROM PERSONA WHERE PENSION = $aux";
+		$sql = "SELECT ID, DNI, NOMBRES, APELLIDOS, PENSION FROM PERSONA WHERE PENSION = $aux";
 		
 		$result = $conn->query($sql);
 
@@ -1199,6 +1201,7 @@
 			$a = 0;
 			while($row = $result->fetch_assoc()) {
 				$personas[$a]['ID'] = $row["ID"];
+				$personas[$a]['DNI'] = $row["DNI"];
 				$personas[$a]['NOMBRES'] = $row["NOMBRES"];
 				$personas[$a]['APELLIDOS'] = $row["APELLIDOS"];
 				$personas[$a]['PENSION'] = $row["PENSION"];
@@ -1214,10 +1217,10 @@
 		$conn = conexion();
 
 		$aux;
-		if 		($boolean==true)	$aux = "'S'";	
+		if 		($boolean==true)	$aux = "'S'";
 		else if ($boolean==false)	$aux = "'N'";
 		else	return NULL;
-		$sql = "SELECT ID, NOMBRES, APELLIDOS FROM PERSONA WHERE (EMBARAZO = $aux AND GENERO = 'F')";
+		$sql = "SELECT ID, DNI, NOMBRES, APELLIDOS FROM PERSONA WHERE (EMBARAZO = $aux AND GENERO = 'F')";
 		
 		$result = $conn->query($sql);
 
@@ -1225,6 +1228,7 @@
 			$a = 0;
 			while($row = $result->fetch_assoc()) {
 				$personas[$a]['ID'] = $row["ID"];
+				$personas[$a]['DNI'] = $row["DNI"];
 				$personas[$a]['NOMBRES'] = $row["NOMBRES"];
 				$personas[$a]['APELLIDOS'] = $row["APELLIDOS"];
 				$a++;
@@ -1242,7 +1246,7 @@
 		if 		($boolean==true)	$aux = "'S'";	
 		else if ($boolean==false)	$aux = "'N'";
 		else	return NULL;
-		$sql = "SELECT ID, NOMBRES, APELLIDOS FROM PERSONA WHERE (ENCAMADO = $aux)";
+		$sql = "SELECT ID, DNI, NOMBRES, APELLIDOS FROM PERSONA WHERE (ENCAMADO = $aux)";
 		
 		$result = $conn->query($sql);
 
@@ -1250,6 +1254,7 @@
 			$a = 0;
 			while($row = $result->fetch_assoc()) {
 				$personas[$a]['ID'] = $row["ID"];
+				$personas[$a]['DNI'] = $row["DNI"];
 				$personas[$a]['NOMBRES'] = $row["NOMBRES"];
 				$personas[$a]['APELLIDOS'] = $row["APELLIDOS"];
 				$a++;
@@ -1264,10 +1269,10 @@
 		$conn = conexion();
 
 		$aux;
-		if 		($boolean == true)
-			$sql = "SELECT PERSONA.ID AS ID, NOMBRES, APELLIDOS, SERIAL_CARNET, CODIGO_CARNET FROM PERSONA JOIN CARNET ON (PERSONA.ID = CARNET.ID_PERSONA)";	
+		if ($boolean == true)
+			$sql = "SELECT PERSONA.ID AS ID, DNI, NOMBRES, APELLIDOS, SERIAL_CARNET, CODIGO_CARNET FROM PERSONA JOIN CARNET ON (PERSONA.ID = CARNET.ID_PERSONA)";	
 		else if ($boolean == false)	
-			$sql = "SELECT PERSONA.ID AS ID, NOMBRES, APELLIDOS, SERIAL_CARNET, CODIGO_CARNET FROM PERSONA LEFT JOIN CARNET ON (PERSONA.ID = CARNET.ID_PERSONA) WHERE (CARNET.ID IS NULL)";
+			$sql = "SELECT PERSONA.ID AS ID, DNI, NOMBRES, APELLIDOS, SERIAL_CARNET, CODIGO_CARNET FROM PERSONA LEFT JOIN CARNET ON (PERSONA.ID = CARNET.ID_PERSONA) WHERE (CARNET.ID IS NULL)";
 		
 		$result = $conn->query($sql);
 
@@ -1275,6 +1280,7 @@
 			$a = 0;
 			while($row = $result->fetch_assoc()) {
 				$personas[$a]['ID'] = $row["ID"];
+				$personas[$a]['DNI'] = $row["DNI"]; 
 				$personas[$a]['NOMBRES'] = $row["NOMBRES"];
 				$personas[$a]['APELLIDOS'] = $row["APELLIDOS"];
 				if ($boolean == true) {

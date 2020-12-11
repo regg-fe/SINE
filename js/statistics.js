@@ -8,6 +8,11 @@ $(document).ready(function() {
 	$('#result').hide();
 	$('#text').hide();
 	$('#text1').hide();
+	$('#ia').hide();
+	$('#ib').hide();
+	$('#ic').hide();
+	$('#ga').hide();
+	$('#gb').hide();
 	var value;
 	var ope;
 	$("#a").click(function (ev) {
@@ -22,15 +27,68 @@ $(document).ready(function() {
 	});
 
 	$("#c").click(function (ev) {
+		$("#h").show();
 		ope = 2;
-		value = $("input:radio[name=enfermos]:checked").val();
+		value = $("input:radio[name=condiciones]:checked").val();
 		recibirDatos(value,ope);
 	});
 	$("#d").click(function (ev) {
+		$("#h").show();
 		ope = 3;
-		value = $("input:radio[name=enfermos]:checked").val();
+		value = $("input:radio[name=condiciones]:checked").val();
 		recibirDatos(value,ope);
 	});
+	$("#e").click(function (ev) {
+		$("#h").hide();
+		ope = 4;
+		value = $("input:radio[name=condiciones]:checked").val();
+		recibirDatos(value,ope);
+	});
+	$("#f").click(function (ev) {
+		$("#h").hide();
+		$("#h").hide();
+		ope = 5;
+		value = $("input:radio[name=condiciones]:checked").val();
+		recibirDatos(value,ope);
+	});
+
+	$("#g").click(function (ev) {
+		$("#ga").show();
+		$("#gb").show();
+		ope = 6;
+		$("#ga").click(function (ev) {
+			$("#serial").show();
+			$("#codigo").show();		
+			value = $("input:radio[name=carnets]:checked").val();
+			recibirDatos(value,ope);
+		});
+
+		$("#gb").click(function (ev) {
+			$("#serial").hide();
+			$("#codigo").hide();
+			value = $("input:radio[name=carnets]:checked").val();
+			recibirDatos(value,ope);
+		});
+
+		$("#i").click(function (ev) {
+		$("#ia").show();
+		$("#ib").show();
+		$("#ic").show();
+		ope = 7;
+		$("#ia").click(function (ev) {		
+			value = $("input:radio[name=carnets]:checked").val();
+			recibirDatos(value,ope);
+		});
+
+		$("#gb").click(function (ev) {
+			$("#serial").hide();
+			$("#codigo").hide();
+			value = $("input:radio[name=carnets]:checked").val();
+			recibirDatos(value,ope);
+		});
+	});
+
+
 });
 
 function recibirDatos(value,ope) {
@@ -50,7 +108,7 @@ function recibirTotales(value,n) {
 		$('#text').show();
 		$('#text').html('Total de personas registradas en el sistema: '+total[0]);
 		$('#text1').show();
-		$('#text1').html('Total de personas afectadas: '+total[1]);
+		$('#text1').html('Total de personas: '+total[1]);
 		$('#text2').show();
 		$('#text2').html('Porcentaje: '+porcentaje+"%");
 	});

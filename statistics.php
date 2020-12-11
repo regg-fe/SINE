@@ -17,7 +17,8 @@
 	<body>
 
 		<a href="#" onclick="openUrl('includes/nutricion.php','mostrar')">Nutricion</a>
-		<a href="#" onclick="openUrl('includes/enfermos.php','mostrar')">Enfermedades</a>
+		<a href="#" onclick="openUrl('includes/condiciones.php','mostrar')">Condiciones</a>
+		<a href="#" onclick="openUrl('includes/proteccion.php','mostrar')">Proteccion Social</a>
 
 		<div id="mostrar"></div>
 
