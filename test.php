@@ -124,7 +124,7 @@
 				$salida = "";
 				$muestra = estadoDeNutricion($v);
 				if ($muestra != NULL) {
-					for ($i=0; $i <count($muestra) ; $i++) { 
+					for ($i=0; $i <count($muestra) ; $i++) {
 						$salida.="<tr>
 			    					<td><a href='aperson.php?id=".$muestra[$i]['ID']."' target='_blank'>".$muestra[$i]['NOMBRES']."</a></td>
 			    					<td>".$muestra[$i]['APELLIDOS']."</td>
@@ -235,6 +235,7 @@
 					$bolean = false;
 					$muestra = tienenCarnet($bolean);
 				}
+				
 				if ($muestra != NULL) {
 					for ($i=0; $i <count($muestra) ; $i++) { 
 						if ($bolean == true) {
@@ -255,6 +256,36 @@
 					}
 				} else {
 					$salida = "No hay personas carnetizadas";
+				}
+				echo $salida;
+			break;
+			
+			case 7:
+			// PENSIONADOS
+				$v = $_POST['val'];
+				$salida = "";
+				if ($v == 10) {
+					$bolean = 'AM';
+					$muestra = pensionados($bolean);
+				} else if ($v == 11) {
+					$bolean = 'SS';
+					$muestra = pensionados($bolean);
+				} else if ($v == 12) {
+					$bolean = 'NT';
+					$muestra = pensionados($bolean);
+				}
+				
+				if ($muestra != NULL) {
+					for ($i=0; $i <count($muestra) ; $i++) { 
+						$salida.="<tr>
+		    					<td><a href='aperson.php?id=".$muestra[$i]['ID']."' target='_blank'>".$muestra[$i]['NOMBRES']."</a></td>
+		    					<td>".$muestra[$i]['APELLIDOS']."</td>
+		    					<td>".$muestra[$i]['DNI']."</td>
+		    					<td>".$muestra[$i]['PENSION']."</td>
+		    				</tr>";
+					}
+				} else {
+					$salida = "No hay personas con este tipo de pension";
 				}
 				echo $salida;
 			break;
@@ -346,7 +377,7 @@
 			break;
 
 			case 6:
-			//ENCAMADOS
+			//CARNETS
 			if ($v == 8) {
 				$muestra = tienenCarnet(true);
 			} else if ($v == 9) {
