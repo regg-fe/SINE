@@ -115,10 +115,11 @@
 		$con->close();
 	}
 
-	// ESTADISTICAS NUTRICION
+	
 	if (isset($_POST['val']) && isset($_POST['o'])) {
 		switch ($_POST['o']) {
 			case 1:
+			// ESTADISTICAS NUTRICION
 				$v = $_POST['val'];
 				$salida = "";
 				$muestra = estadoDeNutricion($v);
@@ -146,6 +147,7 @@
 			break;
 
 			case 2:
+			// PERSONAS ENFERMAS
 				$v = $_POST['val'];
 				$salida = "";
 				$muestra = enfermos();
@@ -154,6 +156,7 @@
 						$salida.="<tr>
 			    					<td><a href='aperson.php?id=".$muestra[$i]['ID_PERSONA']."' target='_blank'>".$muestra[$i]['NOMBRE_PERSONA']."</a></td>
 			    					<td>".$muestra[$i]['APELLIDO_PERSONA']."</td>
+			    					<td>".$muestra[$i]['DNI_PERSONA']."</td>
 			    					<td>".$muestra[$i]['NOMBRE_ENFERMEDAD']."</td>
 			    				</tr>";
 					}
@@ -164,6 +167,7 @@
 			break;
 
 			case 3:
+			// PERSONAS DISCAPACITADAS
 				$v = $_POST['val'];
 				$salida = "";
 				$muestra = discapacitados();
@@ -172,7 +176,27 @@
 						$salida.="<tr>
 			    					<td><a href='aperson.php?id=".$muestra[$i]['ID_PERSONA']."' target='_blank'>".$muestra[$i]['NOMBRE_PERSONA']."</a></td>
 			    					<td>".$muestra[$i]['APELLIDO_PERSONA']."</td>
-			    					<td>".$muestra[$i]['TIPO_ENFERMEDAD']."</td>
+			    					<td>".$muestra[$i]['DNI_PERSONA']."</td>
+			    					<td>".$muestra[$i]['TIPO_DISCAPACIDAD']."</td>
+			    				</tr>";
+					}
+				} else {
+					$salida = "No hay personas con discapacidades";
+				}
+				echo $salida;
+			break;
+
+			case 4:
+			// PERSONAS EMBARAZADAS
+				$v = $_POST['val'];
+				$salida = "";
+				$muestra = embarazadas();
+				if ($muestra != NULL) {
+					for ($i=0; $i <count($muestra) ; $i++) { 
+						$salida.="<tr>
+			    					<td><a href='aperson.php?id=".$muestra[$i]['ID']."' target='_blank'>".$muestra[$i]['NOMBRES']."</a></td>
+			    					<td>".$muestra[$i]['APELLIDOS']."</td>
+			    					<td>".$muestra[$i]['DNI']."</td>
 			    				</tr>";
 					}
 				} else {
@@ -181,6 +205,60 @@
 				echo $salida;
 			break;
 			
+			case 5:
+			// PERSONAS EMBARAZADAS
+				$v = $_POST['val'];
+				$salida = "";
+				$muestra = encamados(true);
+				if ($muestra != NULL) {
+					for ($i=0; $i <count($muestra) ; $i++) { 
+						$salida.="<tr>
+			    					<td><a href='aperson.php?id=".$muestra[$i]['ID']."' target='_blank'>".$muestra[$i]['NOMBRES']."</a></td>
+			    					<td>".$muestra[$i]['APELLIDOS']."</td>
+			    					<td>".$muestra[$i]['DNI']."</td>
+			    				</tr>";
+					}
+				} else {
+					$salida = "No hay personas con discapacidades";
+				}
+				echo $salida;
+			break;
+
+			case 6:
+			// CARNETS
+				$v = $_POST['val'];
+				$salida = "";
+				if ($v == 8) {
+					$bolean = true;
+					$muestra = tienenCarnet($bolean);
+				} else if ($v == 9) {
+					$bolean = false;
+					$muestra = tienenCarnet($bolean);
+				}
+				if ($muestra != NULL) {
+					for ($i=0; $i <count($muestra) ; $i++) { 
+						if ($bolean == true) {
+							$salida.="<tr>
+			    					<td><a href='aperson.php?id=".$muestra[$i]['ID']."' target='_blank'>".$muestra[$i]['NOMBRES']."</a></td>
+			    					<td>".$muestra[$i]['APELLIDOS']."</td>
+			    					<td>".$muestra[$i]['DNI']."</td>
+			    					<td>".$muestra[$i]['SERIAL_CARNET']."</td>
+			    					<td>".$muestra[$i]['CODIGO_CARNET']."</td>
+			    				</tr>";
+						} else {
+							$salida.="<tr>
+			    					<td><a href='aperson.php?id=".$muestra[$i]['ID']."' target='_blank'>".$muestra[$i]['NOMBRES']."</a></td>
+			    					<td>".$muestra[$i]['APELLIDOS']."</td>
+			    					<td>".$muestra[$i]['DNI']."</td>
+			    				</tr>";
+						}
+					}
+				} else {
+					$salida = "No hay personas carnetizadas";
+				}
+				echo $salida;
+			break;
+
 			default:
 				echo $salida = "Esta opcion no esta implementada";
 			break;
@@ -208,6 +286,7 @@
 			break;
 
 			case 2:
+			//ENFERMOS
 				$muestra = enfermos();
 				$personas = personas();
 				if ($muestra != NULL && $personas != NULL) {
@@ -222,6 +301,7 @@
 			break;
 		
 			case 3:
+			//DISCAPACITADOS
 				$muestra = discapacitados();
 				$personas = personas();
 				if ($muestra != NULL && $personas != NULL) {
@@ -234,7 +314,56 @@
 				$jsonstring = json_encode($total);
 				echo $jsonstring;
 			break;
-	
+
+			case 4:
+			//EMBARAZADAS
+				$muestra = embarazadas();
+				$personas = personas();
+				if ($muestra != NULL && $personas != NULL) {
+					$total = array(0 => count($personas), 1 => count($muestra));
+				} else if ($muestra == NULL){
+					$total = array(0 => count($personas), 1 => 0);
+				} else if ($personas == NULL) {
+					$total = array(0 => 0, 1 => count($muestra));
+				}
+				$jsonstring = json_encode($total);
+				echo $jsonstring;
+			break;
+		
+			case 5:
+			//ENCAMADOS
+				$muestra = encamados(true);
+				$personas = personas();
+				if ($muestra != NULL && $personas != NULL) {
+					$total = array(0 => count($personas), 1 => count($muestra));
+				} else if ($muestra == NULL){
+					$total = array(0 => count($personas), 1 => 0);
+				} else if ($personas == NULL) {
+					$total = array(0 => 0, 1 => count($muestra));
+				}
+				$jsonstring = json_encode($total);
+				echo $jsonstring;
+			break;
+
+			case 6:
+			//ENCAMADOS
+			if ($v == 8) {
+				$muestra = tienenCarnet(true);
+			} else if ($v == 9) {
+				$muestra = tienenCarnet(false);
+			}
+				$personas = personas();
+				if ($muestra != NULL && $personas != NULL) {
+					$total = array(0 => count($personas), 1 => count($muestra));
+				} else if ($muestra == NULL){
+					$total = array(0 => count($personas), 1 => 0);
+				} else if ($personas == NULL) {
+					$total = array(0 => 0, 1 => count($muestra));
+				}
+				$jsonstring = json_encode($total);
+				echo $jsonstring;
+			break;
+
 			default:
 				$jsonstring = json_encode(null);
 				echo $jsonstring;
