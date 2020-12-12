@@ -200,18 +200,18 @@
 			    				</tr>";
 					}
 				} else {
-					$salida = "No hay personas con discapacidades";
+					$salida = "No hay personas embarazadas";
 				}
 				echo $salida;
 			break;
-			
+
 			case 5:
-			// PERSONAS EMBARAZADAS
+			// PERSONAS EMCAMADOS
 				$v = $_POST['val'];
 				$salida = "";
 				$muestra = encamados(true);
 				if ($muestra != NULL) {
-					for ($i=0; $i <count($muestra) ; $i++) { 
+					for ($i=0; $i <count($muestra) ; $i++) {
 						$salida.="<tr>
 			    					<td><a href='aperson.php?id=".$muestra[$i]['ID']."' target='_blank'>".$muestra[$i]['NOMBRES']."</a></td>
 			    					<td>".$muestra[$i]['APELLIDOS']."</td>
@@ -219,6 +219,7 @@
 			    				</tr>";
 					}
 				} else {
+			
 					$salida = "No hay personas con discapacidades";
 				}
 				echo $salida;
@@ -264,6 +265,7 @@
 			// PENSIONADOS
 				$v = $_POST['val'];
 				$salida = "";
+				$bolean = 'AM';
 				if ($v == 10) {
 					$bolean = 'AM';
 					$muestra = pensionados($bolean);
@@ -382,6 +384,30 @@
 				$muestra = tienenCarnet(true);
 			} else if ($v == 9) {
 				$muestra = tienenCarnet(false);
+			}
+				$personas = personas();
+				if ($muestra != NULL && $personas != NULL) {
+					$total = array(0 => count($personas), 1 => count($muestra));
+				} else if ($muestra == NULL){
+					$total = array(0 => count($personas), 1 => 0);
+				} else if ($personas == NULL) {
+					$total = array(0 => 0, 1 => count($muestra));
+				}
+				$jsonstring = json_encode($total);
+				echo $jsonstring;
+			break;
+
+			case 7:
+			//PENSIONADOS
+			if ($v == 10) {
+				$bolean = 'AM';
+				$muestra = pensionados($bolean);
+			} else if ($v == 11) {
+				$bolean = 'SS';
+				$muestra = pensionados($bolean);
+			} else if ($v == 12) {
+				$bolean = 'NT';
+				$muestra = pensionados($bolean);
 			}
 				$personas = personas();
 				if ($muestra != NULL && $personas != NULL) {

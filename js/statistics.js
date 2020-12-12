@@ -26,11 +26,13 @@ $(document).ready(function() {
 		value = $("input:radio[name=nutricion]:checked").val();
 		recibirDatos(value,ope);
 	});
+	
 	$("#b").click(function (ev) {
 		ope = 1;
 		value = $("input:radio[name=nutricion]:checked").val();
 		recibirDatos(value,ope);
 	});
+	
 	// CONDICIONES MEDICAS
 	$("#c").click(function (ev) {
 		$("#h").show();
@@ -38,18 +40,29 @@ $(document).ready(function() {
 		value = $("input:radio[name=condiciones]:checked").val();
 		recibirDatos(value,ope);
 	});
+
 	$("#d").click(function (ev) {
 		$("#h").show();
 		ope = 3;
 		value = $("input:radio[name=condiciones]:checked").val();
+
 		recibirDatos(value,ope);
 	});
+
 	$("#e").click(function (ev) {
 		$("#h").hide();
 		ope = 4;
 		value = $("input:radio[name=condiciones]:checked").val();
 		recibirDatos(value,ope);
 	});
+	
+	$("#e").click(function (ev) {
+		$("#h").hide();
+		ope = 4;
+		value = $("input:radio[name=condiciones]:checked").val();
+		recibirDatos(value,ope);
+	});
+
 	$("#f").click(function (ev) {
 		$("#h").hide();
 		$("#h").hide();
@@ -57,6 +70,7 @@ $(document).ready(function() {
 		value = $("input:radio[name=condiciones]:checked").val();
 		recibirDatos(value,ope);
 	});
+
 	// CARNETS
 	$("#g").click(function (ev) {
 		$("#ga").show();
@@ -88,44 +102,44 @@ $(document).ready(function() {
 		});	
 	});
 	// PENSIONADOS
-		$("#i").click(function (ev) {
-			$("#gc").hide();
-			$("#gd").hide();
-			$("#ga").hide();
-			$("#gb").hide();
-			$("#ia").show();
-			$("#ib").show();
-			$("#ic").show();
-			$("#id").show();
-			$("#ie").show();
-			$("#if").show();
-			ope = 7;
-			// AMOR MAYOR
-			$("#ia").click(function (ev) {
-				$("#pension").show();
-				$("#codigo").hide();
-				$("#serial").hide();
-				value = $("input:radio[name=select]:checked").val();
-				recibirDatos(value,ope);
-			});
-			// SEGURO SOCIAL
-			$("#ib").click(function (ev) {
-				$("#pension").show();
-				$("#codigo").hide();
-				$("#serial").hide();
-				value = $("input:radio[name=select]:checked").val();
-				recibirDatos(value,ope);
-			});	
-			// NO PENSIONADOS
-			$("#ic").click(function (ev) {
-				$("#pension").show();
-				$("#codigo").hide();
-				$("#serial").hide();
-				value = $("input:radio[name=select]:checked").val();
-				recibirDatos(value,ope);
-			});
+	$("#i").click(function (ev) {
+		$("#gc").hide();
+		$("#gd").hide();
+		$("#ga").hide();
+		$("#gb").hide();
+		$("#ia").show();
+		$("#ib").show();
+		$("#ic").show();
+		$("#id").show();
+		$("#ie").show();
+		$("#if").show();
+		ope = 7;
+		// AMOR MAYOR
+		$("#ia").click(function (ev) {
+			$("#pension").show();
+			$("#codigo").hide();
+			$("#serial").hide();
+			value = $("input:radio[name=select]:checked").val();
+			recibirDatos(value,ope);
+		});
+		// SEGURO SOCIAL
+		$("#ib").click(function (ev) {
+			$("#pension").show();
+			$("#codigo").hide();
+			$("#serial").hide();
+			value = $("input:radio[name=select]:checked").val();
+			recibirDatos(value,ope);
+		});	
+		// NO PENSIONADOS
+		$("#ic").click(function (ev) {
+			$("#pension").show();
+			$("#codigo").hide();
+			$("#serial").hide();
+			value = $("input:radio[name=select]:checked").val();
+			recibirDatos(value,ope);
 		});
 	});
+});
 
 function recibirDatos(value,ope) {
 	var v = value;
