@@ -24,7 +24,11 @@
 			
 		<div class="container">
 			<a class="center" href="home.php" title="Volver"><i class="fas fa-arrow-left"></i></a>
-			
+			<div id="wait">
+				<p>¡Esperando busqueda!</p>
+				<img src="img/undraw_people_search_wctu.svg" alt="busqueda">
+			</div>
+
 			<div id="result">
 				<div class="container-table100">
 					<div class="wrap-table100">	

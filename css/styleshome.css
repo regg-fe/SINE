@@ -149,7 +149,7 @@ p.center{
 .search{
 	margin: 0 auto;
 	text-align: center;
-	width: 600px;
+	max-width: 600px;
 	box-sizing: border-box;
 }
 .search input[type="text"]{
@@ -194,6 +194,16 @@ p.center{
 }
 .search button:active{
 	color:  #63cdd3;
+}
+#wait{
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+	margin-bottom: 40px;
+}
+#wait img{
+	width: 360px;
+	margin-top: 10px;
 }
 footer{
 	background: url(../img/congruent_pentagon.png);
