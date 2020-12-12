@@ -5,11 +5,27 @@
 	height: 200px;
 	text-align: center;
 }
+.afamily-justify{
+	padding-top: 65px !important;
+}
+.btn-welcome{
+	border: 1px solid#4C9EA3;
+	color: #4C9EA3;
+	font-weight: 500;
+	text-decoration: none;
+	padding: 6px;
+	position: relative;
+	top: -5px;
+	border-radius: 6px;
+}
+.btn-welcome:hover{
+	color: #fff;
+	background-color:  #4C9EA3;
+}
 .container{
 	margin-top: 20px;
 	cursor: default;
 	flex-grow: 1;
-	min-height: calc(100vh - 70px);
 }
 .container a{
 	text-decoration: none;
@@ -17,6 +33,7 @@
 }
 .center{
 	margin-left: 85px;
+	margin-right: 60px;
 }
 .center h2{
 	display: inline-block;
@@ -24,9 +41,22 @@
 h3{
 	margin-bottom: 20px;
 }
+.Btn-menu{
+	display: flex;
+}
+/*
+.Btn-menu a.left{
+	flex: 1;
+}*/
+.btn-families{
+	margin: 0 10px;
+}
 .center a:hover{
 	color:  #4C9EA3;
-	text-decoration: underline; 
+}
+
+.container div a.left{
+	margin-right: auto;
 }
 .center button{
 	padding: 14px 19px;
@@ -53,12 +83,16 @@ h3{
 	cursor: pointer;
 	border-style: none;
 }
-.info{
+p.center{
 	margin-top: 10px;
+ 	margin-bottom: 20px;
+}
+.info{
+	margin-top: 10px;	
 	background-color: #ccc;
 	display: flex;
 	align-items: center;
-	justify-content: space-around;
+	justify-content: space-evenly;
 }
 .negrita{
 	font-weight: bold;
@@ -112,6 +146,55 @@ h3{
 	background-color: #316568;
 	color: white;
 }
+.search{
+	margin: 0 auto;
+	text-align: center;
+	width: 600px;
+	box-sizing: border-box;
+}
+.search input[type="text"]{
+	padding-top: 0.85rem;
+	padding-bottom: 0.85rem;
+	padding-left: 1.5rem;
+	padding-right: 1.5rem;
+	background-color: rgba(243, 243, 243, 0.87);
+	border-width: .125rem;
+	border-radius: 6px;
+	border-style: none;
+	outline-offset: -2px;
+	width: 100%;
+	font-size: 16px;
+	box-shadow:  0 3px 5px rgba(0,0,0,0.2)
+}
+.search input[type="text"]:hover, .search input[type="text"]:focus {
+    transition: all .1s ease-in-out;
+}
+.search input[type="text"]:focus {
+    border-color: #99DADE;
+    outline: none;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.0125), 0 0 8px rgba(34,139,230,0.5);
+}
+.search button{
+	display: block;
+	margin: 0 auto;
+	margin-top: 10px;
+	position: relative;
+	top: -40px;
+	left: 265px;
+	border-style: none;
+	color: rgb(122, 122, 122);
+	font-size: 16px;
+}
+.search button:hover{
+	color:  #4C9EA3;
+	cursor: pointer;
+}
+.search button:focus{
+	outline: none;
+}
+.search button:active{
+	color:  #63cdd3;
+}
 footer{
 	background: url(../img/congruent_pentagon.png);
 	height: 70px;
@@ -122,6 +205,16 @@ footer{
 @media all and (max-width:600px){
 	.welcome{
 		font-size: 14px;
+	}
+	.center{
+		margin-left: 20px;
+		margin-right: 20px;
+	}
+	.search input[type="text"]{
+		width: 400px;
+	}
+	.search button{
+		left: 165px;
 	}
 }
 @media all and (max-width:900px){

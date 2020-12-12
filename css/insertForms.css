@@ -1,22 +1,62 @@
+.container-form-table{
+    display: flex;
+    flex-wrap: wrap;
+}
+.agrupar-pagina{
+    justify-content: space-between;
+    margin: 20px auto;
+}
+.agrupar-pagina .little-table, .agrupar-pagina .crear{
+    margin-left: 3%;
+}
+.little-table{
+    max-width: 600px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 0px;
+    margin-bottom: 20px;
+}
 .box-form{
-    width: 45%;
+    width: 600px;
     margin: 0 auto;
     border-radius: 2px;
-    box-shadow: 3px 3px 20px rgba(0,0,0,0.3);
-    min-width: 300px;
+    box-shadow: 3px 3px 10px rgba(0,0,0,0.2);
+    min-width: 400px;
     padding-bottom: 20px;
+    margin-bottom: 20px;
 }
 .box-form h1{
     padding: 10px 0 20px 0;
     text-align: center;
     font-size: 25px;
 }
-.box-form label{
-    font-weight: bold;
+.box-form label, .box-form p{
+    font-weight: 600;
     margin-left: 20px;
     display: block;
+    color: #0009;
 }
-.box-form input, .box-form select{
+.box-form p{
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+tr button{
+    border-style: none;
+    background-color: transparent;
+}
+tr button:hover{
+    color:  #4C9EA3;
+    cursor: pointer;
+}
+.box-form input[type="text"], .box-form input[type="date"], .box-form input[type="password"], .box-form select, .box-form input[type="number"]{
     width: 90%;
     margin-bottom: 20px;
     margin-left: 20px;
@@ -27,11 +67,27 @@
     padding: .4em 1.4em .3em .8em;
     box-sizing: border-box;
 }
+.agrupar {
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+.agrupar input[type="text"], .agrupar select, .agrupar input[type="number"], .agrupar  input[type="date"]{
+    width: 260px;
+}
+.agrupar  input[type="date"]{
+    height: 30px;
+}
+.chico{
+    width: 170px !important;
+}
+.radio-chico{
+    width: 210px !important
+}
 .select-css {
    margin: 20px auto;
     border: 1px solid #aaa;
-    box-shadow: 0 1px 0 1px rgba(0,0,0,.03);
-    border-radius: .3em;
     -moz-appearance: none;
     -webkit-appearance: none;
     appearance: none;
@@ -48,21 +104,45 @@
 .select-css option {
     font-weight:normal;
 }
-.box-form input[type="text"], .box-form input[type="password"], .box-form select {
+.box-form input[type="text"], .box-form input[type="date"], .box-form input[type="password"], .box-form select, .box-form input[type="number"], .crear select {
     border: none;
     border-bottom: 1px solid #ced4da;
     outline: none;
     height: 40px;
     font-size: 16px;
 }
-.box-form input[type="text"]:hover, .box-form input[type="password"]:hover,.select-css:hover {
+.box-form input[type="text"]:hover, .box-form input[type="password"]:hover, .box-form input[type="number"]:hover, .select-css:hover {
     border-color: #888;
   }
-.box-form input[type="text"]:focus, .box-form input[type="password"]:focus, .box-form select:focus{
+.box-form input[type="text"]:focus, .box-form input[type="password"]:focus, .box-form select:focus, .box-form input[type="number"]:focus{
     border-color:  #61b4b3;
     border-width: 2px;
 }
-.box-form input[type="submit"]{
+.radio{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    margin: -8px -6px -6px;
+    width: 311px;
+    padding-left: 20px; 
+    max-width: 300px;
+}
+.radio span{
+    display: inline-flex;
+    box-sizing: border-box;
+    margin: 0px 6px 6px;
+    padding: 0;
+    position: relative;
+    width: auto;
+}
+.radio span label{
+    font-weight: 400;
+}
+.box-form input[type="radio"]{
+     font-size: 16px;
+     margin-left: 20px;
+}
+.box-form input[type="submit"], .box-form button{
     border: none;
     outline: none;
     color: #fff;
@@ -70,28 +150,93 @@
     height: 40px;
     font-size: 18px;
     display: block;
+    margin-left: 20px;
+    padding: 5px;
+    border-radius: 3px;
+    margin-top: 15px;
+    width: 90%;
+    box-sizing: border-box;
 }
-.box-form input[type="submit"]:hover{
+.box-form input[type="submit"]:hover, .box-form button:hover{
     cursor: pointer;  
     box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2),
     0 4px 5px 0 rgba(0, 0, 0, 0.14),
     0 1px 10px 0 rgba(0, 0, 0, 0.12);
     background-color: #159090;
 }
-.box-form input[type="submit"]:active{
+.box-form input[type="submit"]:active, .box-form button:active{
     box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
     0 8px 10px 1px rgba(0, 0, 0, 0.14),
     0 3px 14px 2px rgba(0, 0, 0, 0.12);
   background-color: #61b4b3;
+}
+.crear{
+    margin-left: 0 !important;
+}
+.crear label{
+    font-weight: 600;
+    color: #0009;
+}
+.crear select{
+    color: #444;
+    font-weight: 400;
+    width: 110px;
+    padding-left: 10px;
+    height: 20px !important;
+}
+.datos{
+    height: 20px;
+    font-size: 16px;
 }
 .box-form div.error{
     width: 90%;
     margin-bottom: 20px;
     margin-left: 20px;
     background-color: #de5d84;
-    padding: 10px;
+    line-height: 40px;
     text-align: center;
     font-family: inherit;
     font-weight: 500;
     color: #3e0101;
+    border-radius: 2px;
+}
+@media all and (max-width:1280px){ 
+    .agrupar input[type="text"], .agrupar select, .agrupar input[type="number"]{
+    width: 90%;
+    }
+    .little-table{
+        width: 460px;
+    } 
+    .box-form{
+        width: 460px;
+    } 
+    .chico{
+        width: 110px !important;
+    }
+}
+@media all and (max-width:960px){ 
+    .agrupar-pagina{
+        margin: 10px auto;
+    }
+    .agrupar-pagina .little-table, .agrupar-pagina .crear{
+        margin: 0 auto;
+    }
+    .agrupar-pagina .crear{
+        margin-top: 20px;
+    }
+}
+@media all and (max-width:600px){
+    .agrupar-pagina{
+        margin: 0;
+        width: 100%;
+    }
+    .box-form{
+        width: 100%;
+    } 
+    .little-table{
+        width: 100%;
+    }
+    .crear{
+        margin: auto 20px !important;
+    }
 }

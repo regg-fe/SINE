@@ -22,7 +22,7 @@
 }
 
 .table100 .ps__rail-x {
-  z-index: 1010;
+  z-index: 90;
   height: 6px;
   background-color: transparent;
   opacity: 1 !important;
@@ -95,6 +95,9 @@ th, td {
 td{
   display: table-cell;
   vertical-align: inherit;
+}
+.column0 {
+  width: 90px;
 }
 .column1 {
   width: 110PX;

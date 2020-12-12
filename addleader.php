@@ -78,8 +78,9 @@ session_start();
 <body>
 <?php require ('includes/navbar.php') ?>
 	<div class="container">
+		<a class="center" href="leaders.php" title="Volver"><i class="fas fa-arrow-left"></i></a>
 		<div class="box-form">
-			<form action="addleader.php?op=<?php echo $op ?>" method="POST">
+			<form  action="addleader.php?op=<?php echo $op ?>" method="POST">
 				<h1>Registro de <?php echo $result ?></h1>
 				<?php if (isset($message)): ?>
 					<div class="error"><?php echo $message ?></div>
@@ -102,7 +103,6 @@ session_start();
 					<input type="submit" name="btn" value="Agregar">
 			</form>
 		</div>
-		<a class="center" href="leaders.php" title="Volver">Volver</a>
 	</div>
 	<?php require ('includes/footer.php') ?>
 </body>

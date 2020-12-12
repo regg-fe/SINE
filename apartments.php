@@ -31,6 +31,7 @@
 	</head>
 	<body>
 		<?php include("includes/navbar.php");?>
+		
 		<div class="welcome">
 			<h1>Bloque <?php echo "$nrobloque"?></h1>
 			<?php if (isset($lider)): ?>
@@ -42,11 +43,12 @@
 				<p><?php else: echo "No hay brigadista asignado."?></p>
 			<?php endif ?>
 		</div>
+
 		<div class="container">
-			
-			<div class="center apartmentBtn">
-				<a href="#" id="addA"><button>Agregar Anexo</button></a><a href="#" id="delA"><button>Elminar Anexo</button></a>
-				<a href="home.php">Volver</a>
+			<div class="center Btn-menu">
+				<a class="left" href="home.php" title="Volver"><i class="fas fa-arrow-left"></i></a>
+				<a href="#" id="addA"><button>Agregar Anexo</button></a>
+				<a href="#" id="delA"><button>Elminar Anexo</button></a>
 			</div>
 			<div class="card-container">
 				<?php for ($i = 0; $i < $btns; $i++): ?>

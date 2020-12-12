@@ -50,12 +50,16 @@
 					
 					<label for="usuario">Usuario</label>
 					<input type="text" name="usuario">
+					
 					<label for="nombre">Nombre </label>
 					<input type="text" name="nombre">
+					
 					<label for="apelido">Apellido </label>
 					<input type="text" name="apellido"> 
+					
 					<label for="contra">Contraseña</label>
 					<input type="password" name="contra">
+					
 					<label for="contravali">Validar Contraseña </label>
 					<input type="password" name="contravali">
 					<input type="submit" value="Enviar" name="enviar">

@@ -50,9 +50,9 @@
 				<?php endif ?>
 				</div> 
 				<div class="container">
-					<div class="center">
-						<a href="#"><button>Agregar Familia</button></a>
-						<a href="apartments.php?id=<?php echo $id_bl ?>">Volver</a>
+					<div class="center Btn-menu">
+					<a class="left" href="apartments.php?id=<?php echo $id_bl ?>" title="Volever"><i class="fas fa-arrow-left"></i></a>
+					<a href="addfamily.php?apartamento=<?php echo $id_ap ?>"><button>Agregar Familia</button></a>
 					</div>	
 
 					<?php if ($familias != null && isset($personas)): ?>

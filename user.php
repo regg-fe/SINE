@@ -22,7 +22,7 @@
 		<h1>Usuarios del Sistema</h1>
 	</div>
 	<div class="container">
-		<a class="center" href="home.php">Volver</a>
+		<a class="center" href="home.php" title="Volver"><i class="fas fa-arrow-left"></i></a>
 				<h2 class="center">Usuarios</h2>
 				<div class="container-table100">
 					<div class="wrap-table100">	
