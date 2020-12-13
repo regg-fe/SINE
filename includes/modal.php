@@ -1,6 +1,7 @@
 <!-- CAMBIO DE BLOQUE -->
-	<div id="modal">
-		<form id="fmodal" method="POST">
+	<div id="modal" class="modal">
+		<div class="contenedor">
+		<form id="fmodal" class="form" method="POST">
 			<input id="idfam" type="hidden" value="<?php echo $id ?>">
 			<p>Escoge un bloque:</p>
 			<select id="selectBl">
@@ -22,147 +23,100 @@
 
 				<?php endfor; ?>
 			</select>
-			<button id="sbm">Cambiar</button>
-			<button id="cnl">Cancelar</button>
+			<div class="botones">
+				<button id="sbm" class="boton">Cambiar</button>
+				<button id="cnl" class="boton">Cancelar</button>
+			</div>
 		</form>
+		</div>
 	</div>
-	<style type="text/css">
-		#modal{
-			display: none; width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.5);
-			align-items: center; justify-content: center; top: 0; z-index: 99;
-		}
-		form#fmodal{
-			display: flex; flex-direction: column; padding: 50px; background-color: white;
-		}
-		form#fmodal select{
-			min-width: 200px;
-		}
-	</style>
+	
 <!-- CAMBIO DE BLOQUE -->
 
 <!-- BOMBONAS -->
-	<?php $marcas = marcaBombona(); ?>
-	<?php  $tipos = tipoBombona(); ?>
-	<div id="modalB">
-		<form id="fmodalB" method="POST">
-			<?php if ($marcas != NULL && $tipos != NULL): ?>
-					<p>Escoge la marca de bombona:</p>
-					<select id="selectMB">
-						
-						<?php for($i = 0; $i < count($marcas) ; $i++): ?>
-						 <option value="<?php echo $marcas[$i]['ID'] ?>"> <?php echo $marcas[$i]['MARCA'] ?> </option>
-						<?php endfor; ?>
-					</select>
+	<div id="modalB" class="modal">
+		<div class="contenedor">
+		<form id="fmodalB" class="form" method="POST">
+			<p>Escoge la marca de bombona:</p>
+			<select id="selectMB" class="input">
+				<?php $marcas = marcaBombona();
+				for($i = 0; $i < count($marcas) ; $i++): ?>
+				 <option value="<?php echo $marcas[$i]['ID'] ?>"> <?php echo $marcas[$i]['MARCA'] ?> </option>
+				<?php endfor; ?>
+			</select>
 
-					<p>Escoge el tipo de bombona</p>
-					<select id="selectTB">
-						<?php for($i = 0; $i < count($tipos) ; $i++): ?>
-						 <option value="<?php echo $tipos[$i]['ID'] ?>"> <?php echo $tipos[$i]['TIPO'] ?> </option>
-						<?php endfor; ?>
-					</select>
-					<button id="sbmB">Agregar</button>
-			<?php else: ?>
-					<p>Para poder agregar bombonas, primero debe agregar marcas y tipos en el apartado <a href="#">Opciones</a></p>	
-			<?php endif; ?>
-				<button id="cnlB">Cancelar</button>
+			<p>Escoge el tipo de bombona</p>
+			<select id="selectTB" class="input">
+				<?php  $tipos = tipoBombona(); 
+				for($i = 0; $i < count($tipos) ; $i++): ?>
+				 <option value="<?php echo $tipos[$i]['ID'] ?>"> <?php echo $tipos[$i]['TIPO'] ?> </option>
+				<?php endfor; ?>
+			</select>
+			<div class="botones">
+				<button id="sbmB" class="boton">Agregar</button>
+				<button id="cnlB" class="boton">Cancelar</button>
+			</div>
 		</form>
+		</div>
 	</div>
 
-	<style type="text/css">
-		#modalB{
-			display: none; width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.5);
-			align-items: center; justify-content: center; top: 0; z-index: 99;
-		}
-		form#fmodalB{
-			display: flex; flex-direction: column; padding: 50px; background-color: white;
-		}
-		form#fmodalB select{
-			min-width: 200px;
-		}
-	</style>
+
 <!-- BOMBONAS -->
 
 <!-- SUGERIDOS -->
-	<div id="modalE">
-		<form id="fmodalE" method="POST">
+	<div id="modalE" class="modal">
+		<div class="contenedor">
+		<form id="fmodalE" class="form" method="POST">
 			
-			<p>Numero de sugeridos: </p><input type="number" id="number">
+			<p>Numero de sugeridos: </p><input type="number" class="input" id="number">
 			<p>Fecha: </p><input type="date" id="month" placeholder="Fecha">
-			
-			<button id="sbmE">Agregar Entrega</button>
-			<button id="cnlE">Cancelar</button>
+			<div class="botones">
+				<button id="sbmE" class="boton">Agregar Entrega</button>
+				<button id="cnlE" class="boton">Cancelar</button>
+			</div>
 		</form>
+		</div>
 	</div>
-	<style type="text/css">
-		#modalE{
-			display: none; width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.5);
-			align-items: center; justify-content: center; top: 0; z-index: 99;
-		}
-		form#fmodalE{
-			display: flex; flex-direction: column; padding: 50px; background-color: white;
-		}
-		form#fmodalE select{
-			min-width: 200px;
-		}
-	</style>
+	
 <!-- SUGERIDOS -->
 
 <!-- ANEXOS -->
-	<div id="modalA">
-		<form id="fmodalA" method="POST">
-			<div id="mess"></div>
+	<div id="modalA" class="modal">
+		<div class="contenedor">
+		<form id="fmodalA" class="form" method="POST">
 			<input id="idblo" type="hidden" value="<?php echo $id ?>">
-			<p>Ingrese el numero del anexo: </p><input type="number" id="numA">
-			<button id="sbmA">Agregar</button>
-			<button id="cnlA">Cancelar</button>
+			<p>Ingrese el numero del anexo: </p><input type="number" class="input">
+			<div class="botones">
+				<button class="boton">Agregar</button>
+				<button class="boton">Cancelar</button>
+			</div>
 		</form>
+		</div>
 	</div>
-	<style type="text/css">
-		#modalA{
-			display: none; width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.5);
-			align-items: center; justify-content: center; top: 0; z-index: 99;
-		}
-		form#fmodalA{
-			display: flex; flex-direction: column; padding: 50px; background-color: white;
-		}
-		form#fmodalA select{
-			min-width: 200px;
-		}
-	</style>
-<!-- ANEXOS -->
-
+	
 <!-- DELETE ANEXOS -->
-	<div id="modalD">
-		<form id="fmodalD" method="POST">
-			<?php $anexos = anexosPorBloque($id) ?>
-			<?php if ($anexos != NULL): ?>
-				<p>Escoge el anexo a elminar: </p>
-				<select id="selectDA">
-					<?php for($i = 0; $i < count($anexos) ; $i++): ?>
-							<option value="<?php echo $anexos[$i]['ID'] ?>"> <?php echo $anexos[$i]['NRO_APARTAMENTO'] ?> </option>
-					 <?php endfor ?>
-				</select>
-				<button id="sbmD">Eliminar</button>
-			<?php else: ?>
-				<p>Para poder eliminar un anexo, debe agregar alguno</p>
-			<?php endif; ?>
-			<button id="cnlD">Cancelar</button>
+	<div id="modalD" class="modal">
+		<div class="contenedor">
+		<form id="fmodalD" class="form" method="POST">
+			<p>Escoge el anexo a eliminar: </p>
+			<select class="input">
+				<?php $anexos = apartamentosPorBloque($id) ?>
+				<?php for($i = 0; $i < count($anexos) ; $i++): ?>
+					<?php if ($anexos[$i]['ANEXO'] == 'S'): ?>
+						<option value="<?php echo $anexos[$i]['ID'] ?>"> <?php echo $anexos[$i]['NRO_APARTAMENTO'] ?> </option>
+					<?php endif ?>
+				 <?php endfor ?>
+			</select>
+			<div class="botones">
+				<button class="boton">Eliminar</button>
+				<button class="boton">Cancelar</button>
+			</div>
 		</form>
+		</div>
 	</div>
 
-	<style type="text/css">
-		#modalD{
-			display: none; width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.5);
-			align-items: center; justify-content: center; top: 0; z-index: 99;
-		}
-		form#fmodalD{
-			display: flex; flex-direction: column; padding: 50px; background-color: white;
-		}
-		form#fmodalD select{
-			min-width: 200px;
-		}
-	</style>
-<!-- DELETE ANEXOS -->
+	
+
 
 <script type="text/javascript" src="js/js.js"></script>
 
@@ -259,24 +213,12 @@
 
 		$("#sbmA").click(function (ev) {
 			ev.preventDefault();
-			$('#mess').hide();
-			if ($("#numA").val() != '') {
-				$.post("test.php", {
-					idBlo: $("#idblo").val(),
-					numA: $("#numA").val(),
-				}, function (data) {
-					if (data === 'Este anexo ya fue creado') {
-						$('#mess').show();
-						$('#mess').html(data);		
-					} else {
-						$('#mess').hide();
-						location.reload();
-					}
-				});
-			} else {
-				$('#mess').show();
-				$('#mess').html('Debe asignar un numero al anexo');	
-			}
+			$.post("test.php", {
+				idBlo: $("#idblo").val(),
+				numA: $("#numA").val(),
+			}, function (data) {
+				location.reload();
+			});
 		});
 
 		$("#cnlA").click(function (ev) {
@@ -307,6 +249,4 @@
 		});
 		//------------------------------//
 	});
-
-	
 </script>
