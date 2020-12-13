@@ -16,9 +16,19 @@
     font-family: Roboto-Bold;
     src: url('../fonts/roboto/Roboto-Bold.ttf'); 
   }
+.container2{
+    display: inline-flex;
+    width: 100%;
+    align-content: center;
+	margin: 0 auto;
+	justify-content: center;
+	flex-wrap: wrap;
+}
 .tabla{
-    margin: 0 auto;
+    display: flex;
+	flex-direction: column;
     width: 600px;
+    margin: 20px;
     box-shadow: 3px 3px 10px rgba(0,0,0,0.2);
     border-radius: 6px;
     margin-bottom: 20px;
@@ -50,6 +60,9 @@ td{
 td:nth-child(2){
     color: #999999;
 }
+tr:last-child{
+    padding-bottom: 20px;
+}
 .column1 {
     width: 50%;
 }
@@ -78,4 +91,9 @@ input[type="submit"]:hover{
   background-color: #159090;
 cursor: pointer;
 border-style: none;
+}
+@media all and (max-width:1080px){
+    .tabla{
+        width: 400px;
+    }
 }
