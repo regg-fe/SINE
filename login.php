@@ -1,15 +1,16 @@
 <?php
-include_once 'database.php';
+	include_once 'includes/functions.php';
 	session_start();
 	if (isset($_SESSION['usuario'])) {
 		header("Location:home.php");
 		die();
 	}
+	$con = conexion();
 	if (isset($_POST['btn'])) {
-		$user = $_POST['user'];
-		$pass = $_POST['password'];
+		$user =  $con->real_escape_string($_POST['user']);
+		$pass =  $con->real_escape_string($_POST['password']);
 		$sql = "SELECT * FROM USUARIO WHERE USUARIO = '$user'";
-		$res = $conexion->query($sql);
+		$res = $con->query($sql);
 			if ($res->num_rows > 0) {
 				while ($row = $res->fetch_assoc()) {
 					$pass2 = $row['CLAVE'];
@@ -40,9 +41,9 @@ include_once 'database.php';
 	</head>
 	<body>
 	<div class="login-box">
-		<img class="avatar" src="img/undraw_profile_pic_ic5t.png" alt="avatar-image">
+		<img class="avatar" src="img/undraw_profile_pic_ic5t.svg" alt="avatar-image">
 		<h1>Iniciar sesión</h1>
-		<?php if (isset($message)): ?> <p> <?php echo $message; ?> </p> <?php endif; ?>
+		<?php if (isset($message)): ?> <div class="error"> <?php echo $message; ?> </div> <?php endif; ?>
 		<form action="login.php" name="formulario" method="post">
 			<!--Nombre de usuario-->
 			<label for="username">Nombre de usuario</label>
