@@ -1,4 +1,13 @@
-.boton{
+		#mess {
+			text-align: center;
+			color: white;
+			width: 97%;
+			background: rgba(221, 8, 8);
+			padding: 7px;
+			border-radius: 5px;
+			display: none;
+		}
+		.boton {
 			padding: 8px 12px;
     		border-radius: 2px;
     		background-color: #4c9ea3;
@@ -12,10 +21,12 @@
     		margin: center;
     		margin-top: 10px;
     		width: 45%;			
-    	}
-    	
-    	
-		.modal{
+		}
+		.boton:hover {
+			cursor: pointer;
+		}
+
+		.modal {
 			display: none; 
 			width: 100vw; 
 			height: 100vh; 
@@ -24,13 +35,12 @@
 			justify-content: center; 
 			top: 0; z-index: 99;
 
-
 		}
 		.form{
 			display: flex; flex-direction: column; padding: 50px; background-color: white;
 			border-radius: 6px;
 		}
-		.form select{  //form#fmodalA
+		.form select{  /*form#fmodalA*/
 			min-width: 200px;
 		}
 		.form p{
@@ -48,13 +58,4 @@
 		.botones{
 			display: flex;
 			justify-content: space-around;
-		}
-		#mess {
-			text-align: center;
-			color: white;
-			width: 97%;
-			background: rgba(221, 8, 8);
-			padding: 7px;
-			border-radius: 5px;
-			display: none;
 		}

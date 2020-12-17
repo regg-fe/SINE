@@ -5,172 +5,214 @@
 <html>
 <head>
 	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
 	<script type="text/javascript" src="js/jquery.js"></script>
+	<link rel="stylesheet" href="css/insertForms.css">
+	<link rel="stylesheet" href="css/styleTable.css">
 	<title>Agregar persona</title>
-</head>
-<style type="text/css">
-	form, form div{
-		display: flex;
-		flex-direction: column;
-		width: 200px;
-	}
-	th{
-		border: solid 2px black;
-	}
-	td{
-		border: solid 1px black;
-	}
-</style>
 <body>
+	<?php include("includes/navbar.php")?>
 
-	<form id="formulario">
-		<input type="text" name="Nombres" placeholder="Nombres">
-		<input type="text" name="Apellidos" placeholder="Apellidos">
+	<div class="container-form-table">
+		<div class="agrupar-pagina">
+			<div class="box-form">
+				<h1>Agregar miembro de familia</h1>
+				<form id="formulario">
+					<div class="agrupar">
+						<input type="text" name="Nombres" placeholder="Nombres">
+						<input type="text" name="Apellidos" placeholder="Apellidos">
 
-		<hr>
+					</div>
 
-		<div>
-			Genero
-			<label>Masculino<input type="radio" name="Genero" value="M"></label>
-			<label>Femenino<input type="radio" name="Genero" value="F"></label>
+							
+					<div class="agrupar">
+						<input type="text" name="DNI" placeholder="Cedula de identidad">
+						<input type="text" name="Telefono" placeholder="Nro. Telefono">
+					</div>
+
+
+					<select class="select-css" name="Posicion">
+						<option selected>--POSICION--</option>
+						<option value="1">Jefe</option>
+						<option value="2">Pareja</option>
+						<option value="3">Hermano</option>
+						<option value="4">Hijo</option>
+						<option value="5">Padre</option>
+						<option value="6">Tío</option>
+						<option value="7">Sobrino</option>
+						<option value="8">Nieto</option>
+						<option value="9">Abuelo</option>
+						<option value="10">Bisabuelo</option>
+						<option value="11">Bisnieto</option>
+						<option value="12">Otro</option>
+					</select>
+
+					<div class="agrupar">
+						<div class="radio radio-chico">
+							<p>Genero</p>
+							<span>
+								<input type="radio" name="Genero" value="M">
+								<label for="masculino">Masculino</label>
+							</span>
+							<span>
+								<input type="radio" name="Genero" value="F">
+								<label for="femenino">Femenino</label>
+							</span>
+						</div>
+						<div class="radio radio-chico">
+							<p>¿Embarazo?</p>
+							<span>
+								<input type="radio" name="Embarazo" value="S">
+								<label for="si">Si</label>
+							</span>
+							<span>
+								<input type="radio" name="Embarazo" value="N">
+								<label for="no">No</label>
+							</span>
+						</div>
+						<div class="radio radio-chico">
+							<p>¿Encamado?</p>
+							<span>
+								<input type="radio" name="Encamado" value="S">
+								<label for="si">Si</label>
+							</span>
+							<span>
+								<input type="radio" name="Encamado" value="N">
+								<label for="no">No</label>
+							</span>
+						</div>
+					</div>
+
+				
+					<div class="agrupar">
+						<p>Fecha de nacimiento</p>
+						<input class="chico" type="date" name="FechaNac">
+						<input class="chico" type="number" name="Peso" placeholder="Peso">
+						<input class="chico" type="number" name="Estatura" placeholder="Estatura">
+					</div>
+
+					<div class="agrupar">
+						<div class="radio">
+							<p>Pension</p>
+							<span>
+								<input type="radio" name="Pension" value="AM">
+								<label for="adultoMayor">Adulto mayor</label>
+							</span>
+							<span>
+								<input type="radio" name="Pension" value="SS">
+								<label for="seguroSocial">Seguro social</label>
+							</span>
+							<span>
+								<input type="radio" name="Pension" value="NT">
+								<label for="noTiene">No tiene</label>
+							</span>
+						</div>
+
+						<div class="radio">
+							<p>Voto</p>
+								<span>
+								<input type="radio" name="Voto" value="D">
+								<label for="duro">Duro</label>
+							</span>
+							<span>
+								<input type="radio" name="Voto" value="B">
+							<label for="blando">Blando</label>
+							</span>
+							<span>
+								<input type="radio" name="Voto" value="O">
+								<label for="oposicion">Oposicion</label>
+							</span>
+						</div>	
+					</div>
+
+					<button id="add">Agregar</button>
+				</form>
+			</div>
 		</div>
-
-		<hr>
-
-		<input type="number" name="DNI" placeholder="Cedula de identidad">
-		<input type="text" name="Telefono" placeholder="Nro. Telefono">
-
-		<hr>
-
-		<select name="Posicion">
-			<option selected>--POSICION--</option>
-			<option value="1">Jefe</option>
-			<option value="2">Pareja</option>
-			<option value="3">Hermano</option>
-			<option value="4">Hijo</option>
-			<option value="5">Padre</option>
-			<option value="6">Tío</option>
-			<option value="7">Sobrino</option>
-			<option value="8">Nieto</option>
-			<option value="9">Abuelo</option>
-			<option value="10">Bisabuelo</option>
-			<option value="11">Bisnieto</option>
-			<option value="12">Otro</option>
-		</select>
-
-		<hr>
-
-		<div>
-			¿Embarazo?
-			<label>Si<input type="radio" name="Embarazo" value="S"></label>
-			<label>No<input type="radio" name="Embarazo" value="N"></label>
-		</div>
-
-		<hr>
-
-		<div>
-			¿Encamado?
-			<label>Si<input type="radio" name="Encamado" value="S"></label>
-			<label>No<input type="radio" name="Encamado" value="N"></label>
-		</div>
-
-		<hr>
-
-		<div>
-			Pension
-			<label>Adulto mayor<input type="radio" name="Pension" value="AM"></label>
-			<label>Seguro social<input type="radio" name="Pension" value="SS"></label>
-			<label>No tiene<input type="radio" name="Pension" value="NT"></label>
-		</div>
-
-		<hr>
-
-		<div>
-			Voto
-			<label>Duro<input type="radio" name="Voto" value="D"></label>
-			<label>Blando<input type="radio" name="Voto" value="B"></label>
-			<label>Oposicion<input type="radio" name="Voto" value="O"></label>
-		</div>
-
-		<hr>
-
-		<input type="date" name="FechaNac">
-		<input type="number" name="Peso" placeholder="Peso">
-		<input type="number" name="Estatura" placeholder="Estatura">
-
-		<hr>
-
-		<button id="add">Agregar</button>
-	</form>
-
-	<table id="tabla">
-		<thead>
-			<th>Nombres</th>
-			<th>Apellidos</th>
-			<th>Genero</th>
-			<th>DNI</th>
-			<th>Nro Telefono</th>
-			<th>Posicion</th>
-			<th>Embarazo</th>
-			<th>Encamado</th>
-			<th>Pension</th>
-			<th>Voto</th>
-			<th>Fecha de Nacimiento</th>
-			<th>Peso</th>
-			<th>Estatura</th>
-		</thead>
-		<tbody>
+		
+		
+		<div class="agrupar-pagina">
+			<div class="little-table">
+				<div class="wrap-table100">	
+					<div class="table100 ver1">
+						<div class="wrap-table100 js-pscroll">
+							<div class="table100-nextcols">
+								<table id="tabla">
+									<thead>
+										<tr class="row100 head">
+											<th class="cell100 column1">Nombres</th>
+											<th class="cell100 column2">Apellidos</th>
+											<th class="cell100 column0">Genero</th>
+											<th class="cell100 column4">DNI</th>
+											<th class="cell100 column5">Nro Telefono</th>
+											<th class="cell100 column6">Posicion</th>
+											<th class="cell100 column9">Embarazo</th>
+											<th class="cell100 column9">Encamado</th>
+											<th class="cell100 column0">Pension</th>
+											<th class="cell100 column0">Voto</th>
+											<th class="cell100 column8">Fecha de Nacimiento</th>
+											<th class="cell100 column0">Peso</th>
+											<th class="cell100 column0">Estatura</th>
+											<th class="cell100 column9">Eliminar</th>
+										</tr>
+									</thead>
+									<tbody>
+										
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>	
+			<div class="crear center">
+				<?php
+					if (isset($_GET['apartamento'])):
+						$ap_id = $_GET['apartamento'];
+						$apdata = apartamento($ap_id);
+						echo "<div class='datos'><label>Apartamento:</label> ".$apdata['NRO_APARTAMENTO']."</div><br><label>Bloque:</label> ".$apdata['NRO_BLOQUE']."<br>";
+					?>
+					<input id="Apartamento" type="hidden" name="Apartamento" value="<?php echo $ap_id ?>">
+				<?php
+					else:
+				?>
 			
-		</tbody>
-	</table>
-	<?php
-		if (isset($_GET['apartamento'])):
-			$ap_id = $_GET['apartamento'];
-			$apdata = apartamento($ap_id);
-			echo "Apartamento: ".$apdata['NRO_APARTAMENTO']."<br>Bloque: ".$apdata['NRO_BLOQUE']."<br>";
-		?>
-		<input id="Apartamento" type="hidden" name="Apartamento" value="<?php echo $ap_id ?>">
-	<?php
-		else:
-	?>
-	<label>
-		Bloque:
-		<select name="Bloque">
-			<?php 
-				$bloques = bloques();
-				for($i = 0; $i < count($bloques) ; $i++):
-			?>
-				 <option value="<?php echo $bloques[$i]['ID'] ?>"> <?php echo $bloques[$i]['NRO_BLOQUE'] ?> </option>
-
-			<?php endfor; ?>
-		</select>
-	</label>
-	<label>
-		Apartamento:
-		<select id="Apartamento" name="Apartamento">
-			<?php
-				$aparts = apartamentosPorBloque(1);
-				for($i = 0; $i < count($aparts) ; $i++):
-			?>
-				 <option value="<?php echo $aparts[$i]['ID'] ?>"> <?php echo $aparts[$i]['NRO_APARTAMENTO'] ?> </option>
-
-			<?php endfor; ?>
-		</select>
-	</label>
-	<?php endif ?>
-	<label>
-		Estado de la vivienda:
-		<select name="Vivienda">
-			<option value="1">Propia</option>
-			<option value="2">Alquilada</option>
-			<option value="3">Asediada</option>
-		</select>
-	</label>
-
-	<br>
-
-	<button id="create">Crear familia</button>
-
+				<label>Bloque:</label>
+					<select name="Bloque">
+						<?php 
+							$bloques = bloques();
+							for($i = 0; $i < count($bloques) ; $i++):
+						?>
+							<option value="<?php echo $bloques[$i]['ID'] ?>"> <?php echo $bloques[$i]['NRO_BLOQUE'] ?> </option>
+						<?php endfor; ?>
+					</select>
+				
+				<label>Apartamento:</label>
+					<select id="Apartamento" name="Apartamento">
+						<?php
+							$aparts = apartamentosPorBloque(1);
+							for($i = 0; $i < count($aparts) ; $i++):
+						?>
+							<option value="<?php echo $aparts[$i]['ID'] ?>"> <?php echo $aparts[$i]['NRO_APARTAMENTO'] ?> </option>
+						<?php endfor; ?>
+					</select>
+				
+				<?php endif ?>
+				<label>Estado de la vivienda:</label>
+					<select  class="select-css" name="Vivienda">
+						<option value="1">Propia</option>
+						<option value="2">Alquilada</option>
+						<option value="3">Asediada</option>
+					</select>
+				
+				<br>
+				<button id="create">Crear familia</button>
+			</div>
+		</div>
+	</div>
+		
+	
+	<?php include("includes/footer.php")?>
 	<!-- Inicio de scripts -->
 
 	<script type="text/javascript">
@@ -219,21 +261,21 @@
 				var estatura = $("#formulario input[name='Estatura']").val();
 
 				var str;
-				str += "<tr>";
-				str += "<td>"+nombres+"</td>";
-				str += "<td>"+apellidos+"</td>";
-				str += "<td>"+genero+"</td>";
-				str += "<td>"+dni+"</td>";
-				str += "<td>"+telefono+"</td>";
-				str += "<td>"+posicion+"</td>";
-				str += "<td>"+embarazo+"</td>";
-				str += "<td>"+encamado+"</td>";
-				str += "<td>"+pension+"</td>";
-				str += "<td>"+voto+"</td>";
-				str += "<td>"+nacimiento+"</td>";
-				str += "<td>"+peso+"</td>";
-				str += "<td>"+estatura+"</td>";
-				str += "<td><button onclick='$(this).parent().parent().remove()'>Eliminar</button></td>"
+				str += "<tr class='row100 body'>";
+				str += "<td  class='cell100 column1'>"+nombres+"</td>";
+				str += "<td  class='cell100 column2'>"+apellidos+"</td>";
+				str += "<td  class='cell100 column0'>"+genero+"</td>";
+				str += "<td  class='cell100 column4'>"+dni+"</td>";
+				str += "<td  class='cell100 column5'>"+telefono+"</td>";
+				str += "<td  class='cell100 column6'>"+posicion+"</td>";
+				str += "<td  class='cell100 column9'>"+embarazo+"</td>";
+				str += "<td  class='cell100 column9'>"+encamado+"</td>";
+				str += "<td  class='cell100 column0'>"+pension+"</td>";
+				str += "<td  class='cell100 column0'>"+voto+"</td>";
+				str += "<td  class='cell100 column8'>"+nacimiento+"</td>";
+				str += "<td  class='cell100 column0'>"+peso+"</td>";
+				str += "<td  class='cell100 column0'>"+estatura+"</td>";
+				str += "<td  class='cell100 column9'><button class='icon' onclick='$(this).parent().parent().remove()'><i class='fas fa-eraser'></i></button></td>"
 				str += "</tr>";
 
 				$("#tabla tbody").append(str);
@@ -296,6 +338,26 @@
 			$("#formulario input[name='Peso']").attr("value",null);
 			$("#formulario input[name='Estatura']").attr("value",null);
 		}
+	</script>
+<!--===============================================================================================-->	
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script>
+		$('.js-pscroll').each(function(){
+			var ps = new PerfectScrollbar(this);
+
+			$(window).on('resize', function(){
+				ps.update();
+			})
+
+		});
+		
 	</script>
 </body>
 </html>

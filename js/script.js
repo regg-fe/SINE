@@ -16,7 +16,6 @@ $(function() {
 						let template = '';				
 						personas.forEach( personas => {
 							template += `<tr class="row100 body">
-											<td class="cell100 column1">${personas.id}</td>
 											<td class="cell100 column2"><a target="__blank" href="aperson.php?id=${personas.id}">${personas.nombre}</a></td>
 											<td class="cell100 column3">${personas.apellido}</td>
 											<td class="cell100 column4">${personas.genero}</td>

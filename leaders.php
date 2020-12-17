@@ -29,7 +29,7 @@
 		<h1>Lideres y Brigadistas de la Comunidad</h1>
 	</div>
 	<div class="container">
-	<a class="center" href="home.php">Volver</a>
+	<a class="center" href="home.php" title="Volver"><i class="fas fa-arrow-left"></i></a>
 		<?php if (isset($lideres)): ?>
 			<h2 class="center">Lideres</h2>
 			<div class="container-table100">

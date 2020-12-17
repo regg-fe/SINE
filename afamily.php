@@ -27,7 +27,6 @@
 		$message = "Esta familia no ha recibido ningun sugerido";
 	}
 	$persona = persona($familia['ID_JEFE']);
-	$apartamento = apartamento($familia['ID_APARTAMENTO']);
 	
 ?>
 
@@ -43,16 +42,11 @@
 		<div class="welcome afamily-justify">
 			<h1>Familia: <?php echo $persona['APELLIDOS']?></h1>
 			<h3>Bloque: <?php echo $familia['NRO_BLOQUE']?>
-			<?php if ($apartamento['ANEXO'] == 'S'): ?>
-				Anexo: <?php echo $familia['NRO_APARTAMENTO']?>
-			<?php else: ?>
-				Apartamento: <?php echo $familia['NRO_APARTAMENTO'] ?>
-			<?php endif ?>
-			</h3>
+			Apartamento: <?php echo $familia['NRO_APARTAMENTO']?> </h3>
 			<a class="btn-welcome" href="#" id="changedir">Editar direccion</a>
 		</div>
 		<div class="container">
-			<a class="center" href="families.php?id=<?php echo $familia['ID_APARTAMENTO']?>">Volver</a>
+			<a class="center" href="families.php?id=<?php echo $familia['ID_APARTAMENTO']?>" title="Volver"><i class="fas fa-arrow-left"></i></a>
 			<h1 class="center">Integrantes: </h1>
 			
 			<!-- PERSONAS -->
@@ -100,7 +94,7 @@
 						</div>
 					</div>
 				</div>
-				<a class="center"href="#"><button>Agregar Persona</button></a>
+				<a class="center"href=""><button>Agregar Persona</button></a>
 
 			<!-- PERSONAS -->
 			
@@ -125,7 +119,7 @@
 											<tr class="row100 body"> 
 												<td class="cell100 column1"><?php echo $bombonas[$i]['MARCA'] ?></td>
 												<td class="cell100 column2"><?php echo $bombonas[$i]['TIPO'] ?></td>
-												<td class="cell100 column9"><a href="delete.php?op=6&id=<?php echo $bombonas[$i]['ID'] ?>&f=<?php echo $id ?>" title="Eliminar">...</a></td>
+												<td class="cell100 column9"><a class="icon" href="delete.php?op=6&id=<?php echo $bombonas[$i]['ID'] ?>&f=<?php echo $id ?>" title="Eliminar"><i class="fas fa-eraser"></i></a></td>
 											</tr>
 										</tbody>
 										<?php endfor ?>
@@ -162,7 +156,7 @@
 											<tr>
 												<td class="cell100 column1"><?php echo $beneficios[$i]['CANTIDAD'] ?></td>
 												<td class="cell100 column2"><?php echo $beneficios[$i]['FECHA_ENTREGA'] ?></td>
-												<td class="cell100 column9"><a href="delete.php?op=5&id=<?php echo $beneficios[$i]['ID'] ?>&f=<?php echo $id ?>" title="Eliminar">...</a></td>
+												<td class="cell100 column9"><a class="icon" href="delete.php?op=5&id=<?php echo $beneficios[$i]['ID'] ?>&f=<?php echo $id ?>" title="Eliminar"><i class="fas fa-eraser"></i></a></td>
 											</tr>
 										</tbody>
 										<?php endfor ?>

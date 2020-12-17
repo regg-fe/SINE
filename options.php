@@ -1,3 +1,12 @@
+<?php  
+	session_start();
+	include_once 'includes/functions.php';
+	if (!isset($_SESSION['usuario'])) {
+		header("Location:index.php");
+		die();
+	}
+	$con = conexion();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,10 +15,6 @@
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<link rel="stylesheet" href="css/styleTable.css">
 	<link rel="stylesheet" type="text/css" href="css/insertForms.css">
-<?php
-	include_once 'includes/functions.php';
-	$con = conexion();
-?>
 	<title>Opciones</title>
 </head>
 <body>
@@ -43,7 +48,10 @@
 										<tr class="row100 body">
 											<td class="cell100 column1"><?php echo $i+1 ?></td>
 											<td class="cell100 column3"><?php echo $at[$i]['NOMBRE'] ?></td>
-											<td class="cell100 column9"><button class="icon"><i class="fas fa-pen-alt"></i></button><button class="icon" onclick="erase('AT',<?php echo $at[$i]['ID'] ?>);"><i class="fas fa-eraser"></i></button></td>
+											<td class="cell100 column9">
+												<button class="icon"><i class="fas fa-pen-alt"></i></button>
+												<button class="icon" onclick="erase('AT',<?php echo $at[$i]['ID'] ?>);"><i class="fas fa-eraser"></i></button>
+											</td>
 										</tr>
 								<?php endfor; ?>
 								</tbody>
@@ -90,7 +98,10 @@
 									<tr class="row100 body">
 										<td class="cell100 column1"><?php echo $i+1 ?></td>
 										<td class="cell100 column3"><?php echo $bn[$i]['NOMBRE'] ?></td>
-										<td class="cell100 column9"><button>Editar</button><button onclick="erase('BN',<?php echo $bn[$i]['ID'] ?>);">Eliminar</button></td>
+										<td class="cell100 column9">
+											<button class="icon"><i class="fas fa-pen-alt"></i></button>
+											<button class="icon" onclick="erase('BN',<?php echo $bn[$i]['ID'] ?>);"><i class="fas fa-eraser"></i></button>
+										</td>
 									</tr>
 								<?php endfor; ?>
 								</tbody>
@@ -137,8 +148,11 @@
 									<tr class="row100 body">
 										<td class="cell100 column1"><?php echo $i+1 ?></td>
 										<td class="cell100 column3"><?php echo $ps[$i]['NOMBRE'] ?></td>
-										<td class="cell100 column9"><button>Editar</button><button onclick="erase('PS',<?php echo $ps[$i]['ID'] ?>);">Eliminar</button></td>
-										</tr>
+										<td class="cell100 column9">
+											<button class="icon"><i class="fas fa-pen-alt"></i></button>
+											<button class="icon" onclick="erase('PS',<?php echo $ps[$i]['ID'] ?>);"><i class="fas fa-eraser"></i></button>
+										</td>
+									</tr>
 								<?php endfor; ?>
 								</tbody>
 							</table>
@@ -183,7 +197,10 @@
 										<tr class="row100 body">
 											<td class="cell100 column1"><?php echo $i+1 ?></td>
 											<td class="cell100 column3"><?php echo $dc[$i]['TIPO'] ?></td>
-											<td class="cell100 column9"><button>Editar</button><button onclick="erase('DC',<?php echo $dc[$i]['ID'] ?>);">Eliminar</button></td>
+											<td class="cell100 column9">
+												<button class="icon"><i class="fas fa-pen-alt"></i></button>
+												<button class="icon" onclick="erase('DC',<?php echo $dc[$i]['ID'] ?>);"><i class="fas fa-eraser"></i></button>
+											</td>
 										</tr>
 								<?php endfor; ?>
 								</tbody>
@@ -230,7 +247,10 @@
 										<tr  class="row100 body">
 											<td class="cell100 column1"><?php echo $i+1 ?></td>
 											<td class="cell100 column3"><?php echo $ef[$i]['NOMBRE'] ?></td>
-											<td class="cell100 column9"><button>Editar</button><button onclick="erase('EF',<?php echo $ef[$i]['ID'] ?>);">Eliminar</button></td>
+											<td class="cell100 column9">
+												<button class="icon"><i class="fas fa-pen-alt"></i></button>
+												<button class="icon" onclick="erase('EF',<?php echo $ef[$i]['ID'] ?>);"><i class="fas fa-eraser"></i></button>
+											</td>
 										</tr>
 								<?php endfor; ?>
 								</tbody>
@@ -277,7 +297,10 @@
 											<td class="cell100 column1"><?php echo $i+1 ?></td>
 											<td class="cell100 column3"><?php echo $md[$i]['NOMBRE'] ?></td>
 											<td class="cell100 column4"><?php echo $md[$i]['TIPO'] ?></td>
-											<td class="cell100 column9"><button>Editar</button><button onclick="erase('MD',<?php echo $md[$i]['ID'] ?>);">Eliminar</button></td>
+											<td class="cell100 column9">
+												<button class="icon"><i class="fas fa-pen-alt"></i></button>
+												<button class="icon" onclick="erase('MD',<?php echo $md[$i]['ID'] ?>);"><i class="fas fa-eraser"></i></button>
+											</td>
 										</tr>
 									<?php endfor; ?>
 								</tbody>
@@ -292,7 +315,7 @@
 			<div class="agregar">
 				<form class="centrar">
 					<input type="text" name="Medicamento" placeholder="Agrega una nueva opcion" autocomplete="off">
-					<select name="TipoMedicamento">
+					<select class="select-css" name="TipoMedicamento">
 						<option>-- TIPO --</option>
 						<option value="1">Oral</option>
 						<option value="2">Rectal/Vaginal</option>
@@ -333,7 +356,10 @@
 												<tr class="row100 body">
 													<td class="cell100 column1"><?php echo $i+1 ?></td>
 													<td class="cell100 column3"><?php echo $mb[$i]['MARCA'] ?></td>
-													<td class="cell100 column9"><button>Editar</button><button onclick="erase('MB',<?php echo $mb[$i]['ID'] ?>);">Eliminar</button></td>
+													<td class="cell100 column9">
+														<button class="icon"><i class="fas fa-pen-alt"></i></button>
+														<button class="icon" onclick="erase('MB',<?php echo $mb[$i]['ID'] ?>);"><i class="fas fa-eraser"></i></button>
+													</td>
 												</tr>
 										<?php endfor; ?>
 										</tbody>
@@ -379,7 +405,10 @@
 											<tr class="row100 body">
 												<td class="cell100 column1"><?php echo $i+1 ?></td>
 												<td class="cell100 column3"><?php echo $tb[$i]['TIPO'] ?></td>
-												<td class="cell100 column9"><button>Editar</button><button onclick="erase('TB',<?php echo $tb[$i]['ID'] ?>);">Eliminar</button></td>
+												<td class="cell100 column9">
+													<button class="icon"><i class="fas fa-pen-alt"></i></button>
+													<button class="icon" onclick="erase('TB',<?php echo $tb[$i]['ID'] ?>);"><i class="fas fa-eraser"></i></button>
+												</td>
 											</tr>
 									<?php endfor; ?>
 									</tbody>
@@ -416,7 +445,7 @@
 										<th class="cell100 column1">#</th>
 										<th class="cell100 column3">Nombre</th>
 										<th class="cell100 column3">Privacidad</th>
-										<th class="cell100 column3">Tipo de institucion</th>
+										<th class="cell100 column5">Tipo de institucion</th>
 										<th class="cell100 column3">RIF</th>
 										<th class="cell100 column9">Opciones</th>
 									</tr>
@@ -428,9 +457,12 @@
 												<td class="cell100 column1"><?php echo $i+1 ?></td>
 												<td class="cell100 column3"><?php echo $lg[$i]['NOMBRE'] ?></td>
 												<td class="cell100 column3"><?php echo $lg[$i]['TIPO'] ?></td>
-												<td class="cell100 column3"><?php echo $lg[$i]['TIPO_INSTITUCION'] ?></td>
+												<td class="cell100 column5"><?php echo $lg[$i]['TIPO_INSTITUCION'] ?></td>
 												<td class="cell100 column3"><?php echo $lg[$i]['RIF'] ?></td>
-												<td class="cell100 column9"><button>Editar</button><button onclick="erase('LG',<?php echo $lg[$i]['ID'] ?>);">Eliminar</button></td>
+												<td class="cell100 column9">
+													<button class="icon"><i class="fas fa-pen-alt"></i></button>
+													<button class="icon" onclick="erase('LG',<?php echo $lg[$i]['ID'] ?>);"><i class="fas fa-eraser"></i></button>
+												</td>
 											</tr>
 									<?php endfor; ?>
 									</tbody>
@@ -446,12 +478,12 @@
 				<div class="agregar">
 					<form class="centrar">
 						<input type="text" name="Lugar" placeholder="Agrega una nueva opcion" autocomplete="off">
-						<select name="PrivacidadLugar">
+						<select class="select-css" name="PrivacidadLugar">
 							<option>-- PRIVACIDAD --</option>
 							<option value="1">Publico</option>
 							<option value="2">Privado</option>
 						</select>
-						<select name="TipoInstitucion">
+						<select class="select-css" name="TipoInstitucion">
 							<option>-- TIPO DE INSTITUCION --</option>
 							<option value="1">Política</option>
 							<option value="2">Economica</option>

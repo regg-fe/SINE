@@ -211,6 +211,9 @@ p.center{
 	margin: 20px;
 	color: #444;
 }
+.card-container .card-table:last-child{
+	width: 600px;
+}
 .card-table h2{
 	margin-bottom: 15px;
 }
@@ -234,17 +237,32 @@ p.center{
 	margin-right: 20px;
 	margin-bottom: 20px;
 }
-.agregar input{
+.agregar button:hover{
+	cursor: pointer;  
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0 4px 5px 0 rgba(0, 0, 0, 0.14),
+    0 1px 10px 0 rgba(0, 0, 0, 0.12);
+    background-color: #159090;
+}
+.agregar input, .agregar select{
 	border: none;
     border-bottom: 1px solid #ced4da;
     outline: none;
     height: 40px;
-    font-size: 16px;
+	font-size: 16px;
+	margin-left: 5px;
+	padding: .4em 1.4em .3em .8em;
 }
-.agregar input:hover{
+.agregar input{
+	width: 55%;
+}
+.agregar input[name="RIF"]{
+	width: 25%;
+}
+.agregar input:hover, .agregar select:hover{
 	 border-color: #888;
 }
-.agregar input:focus{
+.agregar input:focus, .agregar select:focus{
 	border-color:  #61b4b3;
     border-width: 2px;
 }
@@ -271,6 +289,9 @@ footer{
 	}
 	.search button{
 		left: 165px;
+	}
+	.card-container .card-table:last-child{
+		width: 400px;
 	}
 }
 @media all and (max-width:900px){

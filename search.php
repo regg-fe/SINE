@@ -38,7 +38,6 @@
 									<table>
 										<thead id="head">
 											<tr class="row100 head">
-												<th  class="cell100 column1">ID</th>
 												<th  class="cell100 column2">Nombres</th>
 												<th  class="cell100 column3">Apellidos</th>
 												<th  class="cell100 column4">Genero</th>
