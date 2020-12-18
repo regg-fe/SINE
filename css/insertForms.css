@@ -192,13 +192,16 @@ tr button:hover{
     width: 90%;
     margin-bottom: 20px;
     margin-left: 20px;
-    background-color: #de5d84;
     line-height: 40px;
+    background-color: #de5d84;
     text-align: center;
     font-family: inherit;
     font-weight: 500;
     color: #3e0101;
     border-radius: 2px;
+}
+.box-form div.error p{
+    margin: 5px !important;
 }
 @media all and (max-width:1280px){ 
     .agrupar input[type="text"], .agrupar select, .agrupar input[type="number"]{
