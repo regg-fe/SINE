@@ -74,6 +74,7 @@ session_start();
 <head>
 	<title>SINE: <?php echo $result ?></title>
 	<link rel="stylesheet" href="css/insertForms.css">
+	<script src="js/jquery.min.js"></script>
 </head>
 <body>
 <?php require ('includes/navbar.php') ?>
@@ -85,25 +86,72 @@ session_start();
 				<?php if (isset($message)): ?>
 					<div class="error"><?php echo $message ?></div>
 				<?php endif ?>
-					
+				<div class="error" id="mensajeError"></div>	
 					<label for="nombre">Nombre:</label>
-					<input type="text" name="nombre"> 
+					<input type="text" id="nombre" name="nombre"> 
+
 					<label for="apellido">Apellido:</label>
-					<input type="text" name="apellido">
+					<input type="text" id="apellido" name="apellido">
+
 					<label for="dni">DNI:</label>
-					<input type="text" name="dni" >
+					<input type="text" id="dni" name="dni" >
+
 					<label for="telefono">Telefono:</label>
-					<input type="text" name="telefono"> <br>
+					<input type="text" id="telefono" name="telefono"> <br>
+
 					<label for="id_bloque">Bloque al que pertenece:</label>
 					<select class="select-css" name="id_bloque">
 						<?php for ($i=0; $i <count($bloques) ; $i++): ?>
 							<option value="<?php echo $bloques[$i]['ID']?>"><?php echo $bloques[$i]['NRO_BLOQUE']?></option>
 						?<?php endfor; ?>	
 					</select>
-					<input type="submit" name="btn" value="Agregar">
+					<input type="submit" name="btn" id="btnEnviarLider" value="Agregar">
 			</form>
 		</div>
 	</div>
+	<script>
+			$("#btnEnviarLider").click(function(e) {
+				var campoVacio = "";
+				var mensajeError ="";
+				//Verificacion de campos vacios
+				if ($("#nombre").val() == "") {
+					$("#nombre").css("border-color","#D32F2F");
+					$("#nombre").attr("placeholder","Este campo es obligatorio");
+					e.preventDefault();
+					campoVacio = "campo vacios";
+				}
+				if ($("#apellido").val() == "") {
+					$("#apellido").css("border-color","#D32F2F");
+					$("#apellido").attr("placeholder","Este campo es obligatorio");
+					e.preventDefault();
+					campoVacio = "campo vacios";
+				}
+				if ($("#dni").val() == "") {
+					$("#dni").css("border-color","#D32F2F");
+					$("#dni").attr("placeholder","Este campo es obligatorio");
+					e.preventDefault();
+					campoVacio = "campo vacios";
+				}
+				if ($("#telefono").val() == "") {
+					$("#telefono").css("border-color","#D32F2F");
+					$("#telefono").attr("placeholder","Este campo es obligatorio");
+					e.preventDefault();
+					campoVacio = "campo vacios";
+				}
+				if (campoVacio != "") {
+					mensajeError = "<p>Hay campos vacios</p>" +  mensajeError;
+					e.preventDefault();
+				}
+				if ($.isnumeric($("#telefono").val()) == false) {
+					mensajeError = "Numero de telefono invalido";
+					e.preventDefault();
+				} 
+				if (mensajeError != "") {
+					$("#mensajeError").html(mensajeError);
+					e.preventDefault();
+				} 
+			});	
+		</script>
 	<?php require ('includes/footer.php') ?>
 </body>
 </html>
