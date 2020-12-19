@@ -3,14 +3,14 @@
     flex-wrap: wrap;
 }
 .agrupar-pagina{
-    justify-content: space-between;
+    justify-content: space-around;
     margin: 20px auto;
+    max-width: 630px;
 }
 .agrupar-pagina .little-table, .agrupar-pagina .crear{
     margin-left: 3%;
 }
 .little-table{
-    max-width: 600px;
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;
@@ -19,7 +19,8 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    padding: 0px;
+    padding: 0px !important;
+    margin: 0px !important;
     margin-bottom: 20px;
 }
 .box-form{
@@ -115,7 +116,7 @@ tr button:hover{
     border-color: #888;
   }
 .box-form input[type="text"]:focus, .box-form input[type="password"]:focus, .box-form select:focus, .box-form input[type="number"]:focus{
-    border-color:  #61b4b3;
+    border-color:  #61b4b3 !important;
     border-width: 2px;
 }
 .radio{
@@ -171,7 +172,8 @@ tr button:hover{
   background-color: #61b4b3;
 }
 .crear{
-    margin-left: 0 !important;
+    margin-left: 0px !important;
+    margin-top: 20px;
 }
 .crear label{
     font-weight: 600;
@@ -183,6 +185,9 @@ tr button:hover{
     width: 110px;
     padding-left: 10px;
     height: 20px !important;
+}
+.inputs-crear{
+    display: flex;
 }
 .datos{
     height: 20px;
@@ -201,29 +206,25 @@ tr button:hover{
     border-radius: 2px;
 }
 .box-form div.error p{
-    margin: 5px !important;
+    margin-bottom: 0px !important;
+    margin-top: 0px !important;
+}
+.checkbox{
+    font-weight: 400;
+    font-size: 12px;
+    margin-left: 20px;
+    display: block;
+    color: #D32F2F;
 }
 @media all and (max-width:1280px){ 
     .agrupar input[type="text"], .agrupar select, .agrupar input[type="number"]{
-    width: 90%;
+        width: 90%;
     }
-    .little-table{
-        width: 460px;
+    .agrupar-pagina{
+        width: 585px;
     } 
-    .box-form{
-        width: 460px;
-    } 
-    .chico{
-        width: 110px !important;
-    }
 }
 @media all and (max-width:960px){ 
-    .agrupar-pagina{
-        margin: 10px auto;
-    }
-    .agrupar-pagina .little-table, .agrupar-pagina .crear{
-        margin: 0 auto;
-    }
     .agrupar-pagina .crear{
         margin-top: 20px;
     }
@@ -236,10 +237,13 @@ tr button:hover{
     .box-form{
         width: 100%;
     } 
+    .chico{
+        width: 90% !important;
+    }
     .little-table{
         width: 100%;
     }
     .crear{
-        margin: auto 20px !important;
+        margin: 20px !important;
     }
 }

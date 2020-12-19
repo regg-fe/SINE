@@ -66,7 +66,7 @@
 			<?php endif; ?>
 			<div class="agregar">
 				<form class="centrar">
-					<input type="text" name="AyudaTec" placeholder="Agrega una nueva opcion" autocomplete="off">
+					<input type="text" name="AyudaTec" id="at" placeholder="Agrega una nueva opcion" autocomplete="off">
 					<button id="AddAyudaTec">Agregar</button>
 				</form>
 			</div>
@@ -116,7 +116,7 @@
 			<?php endif; ?>
 			<div class="agregar">
 				<form class="centrar">
-					<input type="text" name="Bono" placeholder="Agrega una nueva opcion" autocomplete="off">
+					<input type="text" name="Bono" id="bn" placeholder="Agrega una nueva opcion" autocomplete="off">
 					<button id="AddBono">Agregar</button>
 				</form>
 			</div>
@@ -166,7 +166,7 @@
 			<?php endif; ?>
 			<div class="agregar">
 				<form class="centrar">
-					<input type="text" name="ProgramaSocial" placeholder="Agrega una nueva opcion" autocomplete="off">
+					<input type="text" name="ProgramaSocial" id="ps" placeholder="Agrega una nueva opcion" autocomplete="off">
 					<button id="AddProgramaSocial">Agregar</button>
 				</form>
 			</div>
@@ -215,7 +215,7 @@
 			<?php endif; ?>
 			<div class="agregar">
 				<form class="centrar">
-					<input type="text" name="Discapacidad" placeholder="Agrega una nueva opcion" autocomplete="off">
+					<input type="text" name="Discapacidad" id="dc" placeholder="Agrega una nueva opcion" autocomplete="off">
 					<button id="AddDiscapacidad">Agregar</button>
 				</form>
 			</div>
@@ -264,7 +264,7 @@
 			<?php endif; ?>
 			<div class="agregar">
 				<form class="centrar">
-					<input type="text" name="Enfermedad" placeholder="Agrega una nueva opcion" autocomplete="off">
+					<input type="text" name="Enfermedad" id="ef" placeholder="Agrega una nueva opcion" autocomplete="off">
 					<button id="AddEnfermedad">Agregar</button>
 				</form>
 			</div>
@@ -314,8 +314,8 @@
 				<?php endif; ?>
 			<div class="agregar">
 				<form class="centrar">
-					<input type="text" name="Medicamento" placeholder="Agrega una nueva opcion" autocomplete="off">
-					<select class="select-css" name="TipoMedicamento">
+					<input type="text" name="Medicamento" id="md" placeholder="Agrega una nueva opcion" autocomplete="off">
+					<select class="select-css" name="TipoMedicamento" required>
 						<option>-- TIPO --</option>
 						<option value="1">Oral</option>
 						<option value="2">Rectal/Vaginal</option>
@@ -374,7 +374,7 @@
 				<?php endif; ?>
 				<div class="agregar">
 					<form class="centrar">
-						<input type="text" name="MarcaBombona" placeholder="Agrega una nueva opcion" autocomplete="off">
+						<input type="text" name="MarcaBombona" id="mb" placeholder="Agrega una nueva opcion" autocomplete="off">
 						<button id="AddMarcaBombona">Agregar</button>
 					</form>
 				</div>
@@ -422,7 +422,7 @@
 				<?php endif; ?>
 				<div class="agregar">
 					<form class="centrar">
-						<input type="text" name="TipoBombona" placeholder="Agrega una nueva opcion" autocomplete="off">
+						<input type="text" name="TipoBombona" id="tb" placeholder="Agrega una nueva opcion" autocomplete="off">
 						<button id="AddTipoBombona">Agregar</button>
 					</form>
 				</div>
@@ -478,12 +478,12 @@
 				<div class="agregar">
 					<form class="centrar">
 						<input type="text" name="Lugar" placeholder="Agrega una nueva opcion" autocomplete="off">
-						<select class="select-css" name="PrivacidadLugar">
+						<select class="select-css" name="PrivacidadLugar" required>
 							<option>-- PRIVACIDAD --</option>
 							<option value="1">Publico</option>
 							<option value="2">Privado</option>
 						</select>
-						<select class="select-css" name="TipoInstitucion">
+						<select class="select-css" name="TipoInstitucion" required>
 							<option>-- TIPO DE INSTITUCION --</option>
 							<option value="1">Política</option>
 							<option value="2">Economica</option>
@@ -521,42 +521,107 @@
 				location.reload();
 			});
 		}
+
 		$(document).ready(function () {
 			$("#AddAyudaTec").click(function (ev) {
+				if ($("#at").val() == ""){
+					$("#at").css("border-color","#D32F2F");
+					$("#at").attr("placeholder","Agregue una opción");
+				}
+				else{
+					add('AT',{ NOMBRE: $("input[name='AyudaTec']").val()});
+				}
 				ev.preventDefault();
-				add('AT',{ NOMBRE: $("input[name='AyudaTec']").val()});
 			});
 			$("#AddBono").click(function (ev) {
+				if ($("#bn").val() == ""){
+					$("#bn").css("border-color","#D32F2F");
+					$("#bn").attr("placeholder","Agregue una opción");
+				}
+				else{
+					add('BN',{ NOMBRE: $("input[name='Bono']").val()});
+				}
 				ev.preventDefault();
-				add('BN',{ NOMBRE: $("input[name='Bono']").val()});
 			});
 			$("#AddProgramaSocial").click(function (ev) {
-				ev.preventDefault();
+				if ($("#ps").val() == ""){
+					$("#ps").css("border-color","#D32F2F");
+					$("#ps").attr("placeholder","Agregue una opción");
+				}
+				else{
 				add('PS',{ NOMBRE: $("input[name='ProgramaSocial']").val()});
+				}
+				ev.preventDefault();
 			});
 			$("#AddDiscapacidad").click(function (ev) {
+				if ($("#dc").val() == ""){
+					$("#dc").css("border-color","#D32F2F");
+					$("#dc").attr("placeholder","Agregue una opción");
+				}
+				else{
+					add('DC',{ NOMBRE: $("input[name='Discapacidad']").val()});
+				}
 				ev.preventDefault();
-				add('DC',{ NOMBRE: $("input[name='Discapacidad']").val()});
 			});
 			$("#AddMedicamento").click(function (ev) {
+				if ($("#md").val() == ""){
+					$("#md").css("border-color","#D32F2F");
+					$("#md").attr("placeholder","Agregue una opción");
+				}
+				else{
+					add('MD',{ NOMBRE: $("input[name='Medicamento']").val(), TIPO: $("select[name='TipoMedicamento']").val()});
+				}
 				ev.preventDefault();
-				add('MD',{ NOMBRE: $("input[name='Medicamento']").val(), TIPO: $("select[name='TipoMedicamento']").val()});
 			});
 			$("#AddEnfermedad").click(function (ev) {
+				if ($("#ef").val() == ""){
+					$("#ef").css("border-color","#D32F2F");
+					$("#ef").attr("placeholder","Agregue una opción");
+				}
+				else{
+					add('EF',{ NOMBRE: $("input[name='Enfermedad']").val()});
+				}
 				ev.preventDefault();
-				add('EF',{ NOMBRE: $("input[name='Enfermedad']").val()});
 			});
 			$("#AddMarcaBombona").click(function (ev) {
+				if ($("#mb").val() == ""){
+					$("#mb").css("border-color","#D32F2F");
+					$("#mb").attr("placeholder","Agregue una opción");
+				}
+				else{
+					add('MB',{ NOMBRE: $("input[name='MarcaBombona']").val()});
+				}
 				ev.preventDefault();
-				add('MB',{ NOMBRE: $("input[name='MarcaBombona']").val()});
 			});
 			$("#AddTipoBombona").click(function (ev) {
+				if ($("#tb").val() == ""){
+					$("#tb").css("border-color","#D32F2F");
+					$("#tb").attr("placeholder","Agregue una opción");
+				}
+				else{
+					add('TB',{ NOMBRE: $("input[name='TipoBombona']").val()});
+				}
 				ev.preventDefault();
-				add('TB',{ NOMBRE: $("input[name='TipoBombona']").val()});
 			});
 			$("#AddLugar").click(function (ev) {
+				if ($("input[name='Lugar']").val() == ""){
+					$("#input[name='Lugar']").css("border-color","#D32F2F");
+					$("#input[name='Lugar']").attr("placeholder","Agregue una opción");
+				}
+				if ($("select[name='PrivacidadLugar']").val() == "-- PRIVACIDAD --") {
+					$("#select[name='PrivacidadLugar']").css("border-color","#D32F2F");
+				}
+				if ($("select[name='TipoInstitucion']").val() == "-- TIPO DE INSTITUCION --") {
+					$("#select[name='TipoInstitucion']").css("border-color","#D32F2F");
+				}
+				if ($("input[name='RIF']").val() == "") {
+					$("#input[name='RIF']").css("border-color","#D32F2F");
+					$("#input[name='RIF']").attr("placeholder","Agregue una opción");
+				}
+				else{
+					add('LG',{ NOMBRE: $("input[name='Lugar']").val(), PRIVACIDAD: $("select[name='PrivacidadLugar']").val(), TIPO_INSTITUCION: $("select[name='TipoInstitucion']").val(), RIF: $("input[name='RIF']").val()});
+				}
 				ev.preventDefault();
-				add('LG',{ NOMBRE: $("input[name='Lugar']").val(), PRIVACIDAD: $("select[name='PrivacidadLugar']").val(), TIPO_INSTITUCION: $("select[name='TipoInstitucion']").val(), RIF: $("input[name='RIF']").val()});
 			});
 		});
 	</script>
