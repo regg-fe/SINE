@@ -4,8 +4,13 @@ $(function() {
 	fecthResult();
 	function fecthResult() {
 	 	$('#btn').click(function() {
-			$("#wait").toggle("slow");
+			if ($("#search").val() == "") {
+				$("#search").css("border-color","#D32F2F");
+				$("#search").attr("placeholder","Debe indicar un nombre");
+			}
+			
 			if ($('#search').val()) {
+				$("#wait").hide("slow");//escoder imagen
 				let search = $('#search').val();
 				$.ajax({
 					url: 'test.php',
@@ -26,16 +31,34 @@ $(function() {
 										</tr>`
 						});
 						if (Object.entries(personas).length === 0) {
-							template = "No hay registros";
+							$('#mensaje').html("<p>No hay registros</p> <img src='img/undraw_No_data_re_kwbl.svg' alt='no-data'>");
+							$('#head').html("");
 							$('#body').html(template);
 							$('#result').show();
 						} else {
+							$("#mensaje").hide("slow");
 							$('#result').show();
+							$('#head').html(`<tr class="row100 head">
+												<th  class="cell100 column2">Nombres</th>
+												<th  class="cell100 column3">Apellidos</th>
+												<th  class="cell100 column4">Genero</th>
+												<th  class="cell100 column5">Cedula</th>
+												<th  class="cell100 column6">Telefono</th>
+												<th  class="cell100 column7">Fecha de Nacimiento</th>
+												<th  class="cell100 column8">Familia</th>
+											</tr>`)
 							$('#body').html(template);
 						}
 					}
 				})
 			}
 		});
+
+		$('#search').keypress(function(e){
+           if(e.which == 13){//Enter key pressed
+               $('#btn').click();//Trigger search button click event
+           }
+       });
+		
 	}
 });

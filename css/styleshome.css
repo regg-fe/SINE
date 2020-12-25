@@ -93,6 +93,7 @@ p.center{
 	display: flex;
 	align-items: center;
 	justify-content: space-evenly;
+	line-height: 26px;
 }
 .negrita{
 	font-weight: bold;
@@ -275,6 +276,13 @@ p.center{
 }
 .centrar{
 	text-align: center;
+}
+.radio-statistic{
+	display: inline-flex;
+}
+.radio-statistic input{
+	flex-direction: row;
+	margin-left: 20px;
 }
 footer{
 	background: url(../img/congruent_pentagon.png);
