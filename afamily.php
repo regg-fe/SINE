@@ -94,7 +94,7 @@
 						</div>
 					</div>
 				</div>
-				<a class="center"href=""><button>Agregar Persona</button></a>
+				<a class="center" href="addpeople.php?id=<?php echo $familia['ID']?>"><button>Agregar Persona</button></a>
 
 			<!-- PERSONAS -->
 			

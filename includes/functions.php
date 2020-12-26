@@ -390,9 +390,27 @@
 				$i++;
 			}
 		}
-
 		$conn->close();
 		return $tabla;
+	}
+
+	function registroBeneficiosPorBloque($id_bloque){
+		$registros = null;
+		$conn = conexion();
+
+		$sql = "SELECT BENEFICIO.ID AS BENEFICIO_ID, FAMILIA.ID, APARTAMENTO.ID, BLOQUE.ID FROM BENEFICIO JOIN FAMILIA ON (BENEFICIO.ID_FAMILIA = FAMILIA.ID) JOIN APARTAMENTO ON (FAMILIA.ID_APARTAMENTO = APARTAMENTO.ID) JOIN BLOQUE ON (APARTAMENTO.ID_BLOQUE = BLOQUE.ID) WHERE BLOQUE.ID = $id_bloque";
+
+		$result = $conn->query($sql);
+		if ($result->num_rows > 0) {
+			$i = 0;
+			while ($row = $result->fetch_assoc()){
+				$registros[$i] = $row['BENEFICIO_ID'];
+				$i++;
+			}
+		}
+
+		$conn->close();
+		return $registros;
 	}
 
 	function registroBeneficiosPorFamilia($id_familia){
@@ -508,6 +526,25 @@
 		return $tabla;
 	}
 
+	function trabajadoresPorBloque($id_bloque){
+		$trabajadores = NULL;
+		$conn = conexion();
+
+		$sql = "SELECT TRABAJO.ID AS TRABAJO_ID, PERSONA.ID, FAMILIA.ID, APARTAMENTO.ID, BLOQUE.ID FROM TRABAJO JOIN PERSONA ON (TRABAJO.ID_PERSONA = PERSONA.ID) JOIN FAMILIA ON (PERSONA.ID_FAMILIA = FAMILIA.ID) JOIN APARTAMENTO ON (FAMILIA.ID_APARTAMENTO = APARTAMENTO.ID) JOIN BLOQUE ON (APARTAMENTO.ID_BLOQUE = BLOQUE.ID) WHERE BLOQUE.ID = $id_bloque";
+
+		$result = $conn->query($sql);
+
+		if ($result->num_rows > 0) {
+			$a = 0;
+			while ($row = $result->fetch_assoc()) {
+				$trabajadores[$a] = $row['TRABAJO_ID'];
+				$a++;
+			}
+		}
+		$conn->close();
+		return $trabajadores;
+	}
+
 	function escolarizaciones(){
 		$tabla = NULL;
 		$conn = conexion();
@@ -552,6 +589,25 @@
 		}
 		$conn->close();
 		return $arreglo;
+	}
+
+	function escolarizacionesPorBloque($id_bloque){
+		$escolarizaciones = NULL;
+		$conn = conexion();
+
+		$sql = "SELECT ESCOLARIZACION.ID AS ESCOLARIZACION_ID, PERSONA.ID, FAMILIA.ID, APARTAMENTO.ID, BLOQUE.ID FROM ESCOLARIZACION JOIN PERSONA ON (ESCOLARIZACION.ID_PERSONA = PERSONA.ID) JOIN FAMILIA ON (PERSONA.ID_FAMILIA = FAMILIA.ID) JOIN APARTAMENTO ON (FAMILIA.ID_APARTAMENTO = APARTAMENTO.ID) JOIN BLOQUE ON (APARTAMENTO.ID_BLOQUE = BLOQUE.ID) WHERE BLOQUE.ID = $id_bloque";
+
+		$result = $conn->query($sql);
+
+		if ($result->num_rows > 0) {
+			$a = 0;
+			while ($row = $result->fetch_assoc()) {
+				$escolarizaciones[$a] = $row['ESCOLARIZACION_ID'];
+				$a++;
+			}
+		}
+		$conn->close();
+		return $escolarizaciones;
 	}
 
 	## Tabla PERSONA - LIDER - BRIGADISTA ##
@@ -599,21 +655,7 @@
 	function persona($id){
 		$persona = NULL;
 		$conn = conexion();
-		$sql = "SELECT P1.*, 
-		P2.APELLIDOS AS FAMILIA, 
-		CARNET.CODIGO_CARNET AS CODIGO_CARNET,
-		CARNET.SERIAL_CARNET AS SERIAL_CARNET,
-		APARTAMENTO.ID AS ID_APARTAMENTO, 
-		APARTAMENTO.NUMERO_APARTAMENTO AS NRO_APARTAMENTO,
-		BLOQUE.ID AS ID_BLOQUE, 
-		BLOQUE.NUMERO_BLOQUE AS NRO_BLOQUE 
-		FROM PERSONA AS P1 
-		LEFT JOIN PERSONA AS P2 ON (P1.ID_FAMILIA = P2.ID_FAMILIA AND P2.POSICION = 'JEFE') 
-		LEFT JOIN CARNET ON (P1.ID = CARNET.ID_PERSONA) 
-		LEFT JOIN FAMILIA ON (P1.ID_FAMILIA = FAMILIA.ID) 
-		LEFT JOIN APARTAMENTO ON (FAMILIA.ID_APARTAMENTO = APARTAMENTO.ID) 
-		LEFT JOIN BLOQUE ON (APARTAMENTO.ID_BLOQUE = BLOQUE.ID) 
-		WHERE P1.ID = $id";
+		$sql = "SELECT P1.*, P2.APELLIDOS AS FAMILIA, CARNET.CODIGO_CARNET AS CODIGO_CARNET,CARNET.SERIAL_CARNET AS SERIAL_CARNET,APARTAMENTO.ID AS ID_APARTAMENTO, APARTAMENTO.NUMERO_APARTAMENTO AS NRO_APARTAMENTO,BLOQUE.ID AS ID_BLOQUE, BLOQUE.NUMERO_BLOQUE AS NRO_BLOQUE FROM PERSONA AS P1 LEFT JOIN PERSONA AS P2 ON (P1.ID_FAMILIA = P2.ID_FAMILIA AND P2.POSICION = 'JEFE') LEFT JOIN CARNET ON (P1.ID = CARNET.ID_PERSONA) LEFT JOIN FAMILIA ON (P1.ID_FAMILIA = FAMILIA.ID) LEFT JOIN APARTAMENTO ON (FAMILIA.ID_APARTAMENTO = APARTAMENTO.ID) LEFT JOIN BLOQUE ON (APARTAMENTO.ID_BLOQUE = BLOQUE.ID) WHERE P1.ID = $id";
 
 		$result = $conn->query($sql);
 
@@ -657,6 +699,25 @@
 			$a = 0;
 			while ($row = $result->fetch_assoc()) {
 				$personas[$a] = persona($row['ID']);
+				$a++;
+			}
+		}
+		$conn->close();
+		return $personas;
+	}
+
+	function personasPorBloque($id_bloque){
+		$personas = NULL;
+		$conn = conexion();
+
+		$sql = "SELECT PERSONA.ID AS PERSONA_ID, FAMILIA.ID, APARTAMENTO.ID, BLOQUE.ID FROM PERSONA JOIN FAMILIA ON (PERSONA.ID_FAMILIA = FAMILIA.ID) JOIN APARTAMENTO ON (FAMILIA.ID_APARTAMENTO = APARTAMENTO.ID) JOIN BLOQUE ON (APARTAMENTO.ID_BLOQUE = BLOQUE.ID) WHERE BLOQUE.ID = $id_bloque";
+
+		$result = $conn->query($sql);
+
+		if ($result->num_rows > 0) {
+			$a = 0;
+			while ($row = $result->fetch_assoc()) {
+				$personas[$a] = $row['PERSONA_ID'];
 				$a++;
 			}
 		}
@@ -820,6 +881,25 @@
 		return $familias;
 	}
 
+	function familiasPorBloque($id_bloque){
+		$familias = NULL;
+		$conn = conexion();
+
+		$sql = "SELECT FAMILIA.ID AS FAMILIA_ID, APARTAMENTO.ID, BLOQUE.ID FROM FAMILIA JOIN APARTAMENTO ON (FAMILIA.ID_APARTAMENTO = APARTAMENTO.ID) JOIN BLOQUE ON (APARTAMENTO.ID_BLOQUE = BLOQUE.ID) WHERE BLOQUE.ID = $id_bloque";
+
+		$result = $conn->query($sql);
+
+		if ($result->num_rows > 0) {
+			$a = 0;
+			while ($row = $result->fetch_assoc()) {
+				$familias[$a] = $row['FAMILIA_ID'];
+				$a++;
+			}
+		}
+		$conn->close();
+		return $familias;
+	}
+
 	## Tabla APARTAMENTO ##
 
 	function apartamentos(){
@@ -863,7 +943,7 @@
 		return $apartamento;
 	}
 	
-	function apartamentosPorBloque($id_bloque){
+	function apartamentosPorBloque($id_bloque) {
 		$apartamentos = NULL;
 		$conn = conexion();
 
@@ -883,7 +963,7 @@
 		return $apartamentos;
 	}
 
-	function anexosPorBloque($id_bloque){
+	function anexosPorBloque($id_bloque) {
 		$apartamentos = NULL;
 		$conn = conexion();
 
@@ -896,9 +976,8 @@
 				$apartamentos[$a] = apartamento($row['ID']);
 				$a++;
 			} 
-		} else {
-			return false;
 		}
+
 		$conn->close();
 		return $apartamentos;
 	}
@@ -985,6 +1064,7 @@
 		$conn->close();
 		return $bombonas;
 	}
+	
 	function bombona($id){
 		$bombona = NULL;
 		$conn = conexion();
@@ -1004,6 +1084,7 @@
 		$conn->close();
 		return $bombona;
 	}
+
 	function bombonasPorFamilia($id_familia){
 		$bombonas = NULL;
 		$conn = conexion();
@@ -1016,6 +1097,25 @@
 			$a = 0;
 			while ($row = $result->fetch_assoc()) {
 				$bombonas[$a] = bombona($row['ID']);
+				$a++;
+			}
+		}
+		$conn->close();
+		return $bombonas;
+	}
+
+	function bombonasPorBloque($id_bloque){
+		$bombonas = NULL;
+		$conn = conexion();
+
+		$sql = "SELECT BOMBONA.ID AS BOMBONA_ID, FAMILIA.ID, APARTAMENTO.ID, BLOQUE.ID FROM BOMBONA JOIN FAMILIA ON (BOMBONA.ID_FAMILIA = FAMILIA.ID) JOIN APARTAMENTO ON (FAMILIA.ID_APARTAMENTO = APARTAMENTO.ID) JOIN BLOQUE ON (APARTAMENTO.ID_BLOQUE = BLOQUE.ID) WHERE BLOQUE.ID = $id_bloque";
+
+		$result = $conn->query($sql);
+
+		if ($result->num_rows > 0) {
+			$a = 0;
+			while ($row = $result->fetch_assoc()) {
+				$bombonas[$a] = $row['BOMBONA_ID'];
 				$a++;
 			}
 		}
@@ -1160,6 +1260,7 @@
 				$tabla[$a]['ID'] = $personas[$i]['ID'];
 				$tabla[$a]['NOMBRES'] = $personas[$i]['NOMBRES'];
 				$tabla[$a]['APELLIDOS'] = $personas[$i]['APELLIDOS'];
+				$tabla[$a]['DNI'] = $personas[$i]['DNI'];
 				$tabla[$a]['GENERO'] = $personas[$i]['GENERO'];
 				$tabla[$a]['FECHA_NAC'] = $personas[$i]['FECHA_NAC'];
 				$tabla[$a]['ID_FAMILIA'] = $personas[$i]['ID_FAMILIA'];
@@ -1212,6 +1313,25 @@
 		return $personas;
 	}
 
+	function pensionadosPorBloque($id_bloque){
+		$pensionados = NULL;
+		$conn = conexion();
+
+		$sql = "SELECT PERSONA.ID AS PENSIONADO_ID, PERSONA.PENSION, FAMILIA.ID, APARTAMENTO.ID, BLOQUE.ID FROM PERSONA JOIN FAMILIA ON (PERSONA.ID_FAMILIA = FAMILIA.ID) JOIN APARTAMENTO ON (FAMILIA.ID_APARTAMENTO = APARTAMENTO.ID) JOIN BLOQUE ON (APARTAMENTO.ID_BLOQUE = BLOQUE.ID) WHERE PERSONA.EMBARAZO != 'NT' AND BLOQUE.ID = $id_bloque";
+
+		$result = $conn->query($sql);
+
+		if ($result->num_rows > 0) {
+			$a = 0;
+			while ($row = $result->fetch_assoc()) {
+				$pensionados[$a] = $row['PENSIONADO_ID'];
+				$a++;
+			}
+		}
+		$conn->close();
+		return $pensionados;
+	}
+	
 	function embarazadas($boolean = TRUE) {
 		$personas = NULL;
 		$conn = conexion();
@@ -1236,6 +1356,24 @@
 		}
 		$conn->close();
 		return $personas;
+	}
+	function embarazadasPorBloque($id_bloque){
+		$embarazadas = NULL;
+		$conn = conexion();
+
+		$sql = "SELECT PERSONA.ID AS EMBARAZO_ID, PERSONA.EMBARAZO, FAMILIA.ID, APARTAMENTO.ID, BLOQUE.ID FROM PERSONA JOIN FAMILIA ON (PERSONA.ID_FAMILIA = FAMILIA.ID) JOIN APARTAMENTO ON (FAMILIA.ID_APARTAMENTO = APARTAMENTO.ID) JOIN BLOQUE ON (APARTAMENTO.ID_BLOQUE = BLOQUE.ID) WHERE PERSONA.EMBARAZO = 'S' AND BLOQUE.ID = $id_bloque";
+
+		$result = $conn->query($sql);
+
+		if ($result->num_rows > 0) {
+			$a = 0;
+			while ($row = $result->fetch_assoc()) {
+				$embarazadas[$a] = $row['EMBARAZO_ID'];
+				$a++;
+			}
+		}
+		$conn->close();
+		return $embarazadas;
 	}
 
 	function encamados($boolean = TRUE) {
@@ -1262,6 +1400,25 @@
 		}
 		$conn->close();
 		return $personas;
+	}
+
+	function encamadosPorBloque($id_bloque){
+		$encamados = NULL;
+		$conn = conexion();
+
+		$sql = "SELECT PERSONA.ID AS EMCAMADO_ID, PERSONA.ENCAMADO, FAMILIA.ID, APARTAMENTO.ID, BLOQUE.ID FROM PERSONA JOIN FAMILIA ON (PERSONA.ID_FAMILIA = FAMILIA.ID) JOIN APARTAMENTO ON (FAMILIA.ID_APARTAMENTO = APARTAMENTO.ID) JOIN BLOQUE ON (APARTAMENTO.ID_BLOQUE = BLOQUE.ID) WHERE PERSONA.ENCAMADO = 'S' AND BLOQUE.ID = $id_bloque";
+
+		$result = $conn->query($sql);
+
+		if ($result->num_rows > 0) {
+			$a = 0;
+			while ($row = $result->fetch_assoc()) {
+				$encamados[$a] = $row['EMCAMADO_ID'];
+				$a++;
+			}
+		}
+		$conn->close();
+		return $encamados;
 	}
 
 	function tienenCarnet($boolean = TRUE){
@@ -1298,7 +1455,7 @@
 		$apartamentos = NULL;
 		$conn = conexion();
 
-		$sql = "SELECT FAMILIA.*, PERSONA.ID AS ID_PERSONA, PERSONA.NOMBRES AS NOMBRES, PERSONA.APELLIDOS AS APELLIDOS FROM FAMILIA JOIN PERSONA ON (FAMILIA.ID = PERSONA.ID_FAMILIA)";
+		$sql = "SELECT FAMILIA.*, PERSONA.ID AS ID_PERSONA, PERSONA.NOMBRES AS NOMBRES, PERSONA.APELLIDOS AS APELLIDOS, PERSONA.DNI AS DNI FROM FAMILIA JOIN PERSONA ON (FAMILIA.ID = PERSONA.ID_FAMILIA)";
 		$result = $conn->query($sql);
 		if ($result->num_rows > 0) {
 			$a = 0;
@@ -1307,7 +1464,9 @@
 					if (count(familiasPorApartamento($row['ID_APARTAMENTO'])) == 1) {
 						$apartamentos[$a]['ID_APARTAMENTO'] = $row['ID_APARTAMENTO'];
 						$apartamentos[$a]['ID_PERSONA'] = $row['ID_PERSONA'];
-						$apartamentos[$a]['NOMBRE_COMPLETO'] = $row['NOMBRES']." ".$row['APELLIDOS'];
+						$apartamentos[$a]['NOMRBES'] = $row['NOMBRES'];
+						$apartamentos[$a]['APELLIDOS'] = $row['APELLIDOS'];
+						$apartamentos[$a]['DNI'] = $row['DNI'];
 						$a++;
 					}
 				}
@@ -1338,6 +1497,18 @@
 		$conn->close();
 		return $usuarios;
 	}
+
+	function repeatDNI($dni,$con,$table) {
+		$sql = "SELECT * FROM $table WHERE DNI ='$dni'"; 
+		$result = $con->query($sql);
+		if (mysqli_num_rows($result) > 0) {
+			return 1;
+		} else {
+			return 0;
+ 		}
+ 	}
+
+ 	
 
 	## Funciones para desarrollo ##
 
@@ -1429,16 +1600,6 @@
 		}
 		$conn->close();
 	}
-
-	 function repeatDNI($dni,$con,$table) {
-		$sql = "SELECT * FROM $table WHERE DNI ='$dni'"; 
-		$result = $con->query($sql);
-		if (mysqli_num_rows($result) > 0) {
-			return 1;
-		} else {
-			return 0;
- 		}
- 	}
 	
 	function datosAleatorios($num_familias = 10) {
 		familiasRandom($num_familias);
@@ -1446,7 +1607,12 @@
 		carnetsRandom();
 	}
 	## Codigos de prueba ##
-	#datosAleatorios(10);
-
-
+	/*
+		FUNCIONES NECESARIAS PARA MODULO DE ESTADISTICA
+			1) BOMBONAS POR BLOQUE
+			2) PERSONAS POR BLOQUE
+			3) SUGERIDOS ENTREGADOS POR BLOQUE
+			4) FAMILIAS POR BLOQUE
+			5) 
+	*/
 ?>

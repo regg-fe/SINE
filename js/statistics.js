@@ -11,8 +11,13 @@ $(document).ready(function() {
 	$('#ia').hide();
 	$('#ib').hide();
 	$('#ic').hide();
+	$('#id').hide();
+	$('#ie').hide();
+	$('#if').hide();
 	$('#ga').hide();
 	$('#gb').hide();
+	$('#gc').hide();
+	$('#gd').hide();
 	var value;
 	var ope;
 	$("#a").click(function (ev) {
@@ -46,7 +51,6 @@ $(document).ready(function() {
 	});
 	$("#f").click(function (ev) {
 		$("#h").hide();
-		$("#h").hide();
 		ope = 5;
 		value = $("input:radio[name=condiciones]:checked").val();
 		recibirDatos(value,ope);
@@ -55,13 +59,19 @@ $(document).ready(function() {
 	$("#g").click(function (ev) {
 		$("#ga").show();
 		$("#gb").show();
+		$("#gc").show();
+		$("#gd").show();
 		$("#ia").hide();
 		$("#ib").hide();
 		$("#ic").hide();
+		$("#id").hide();
+		$("#ie").hide();
+		$("#if").hide();
 		ope = 6;
 		$("#ga").click(function (ev) {
 			$("#serial").show();
 			$("#codigo").show();
+			$("#pension").hide();
 			value = $("input:radio[name=select]:checked").val();
 			recibirDatos(value,ope);
 		});
@@ -69,30 +79,77 @@ $(document).ready(function() {
 		$("#gb").click(function (ev) {
 			$("#serial").hide();
 			$("#codigo").hide();
+			$("#pension").hide();
 			value = $("input:radio[name=select]:checked").val();
 			recibirDatos(value,ope);
 		});
 	});
 
-
 	$("#i").click(function (ev) {
 		$("#ga").hide();
 		$("#gb").hide();
+		$("#gc").hide();
+		$("#gd").hide();
 		$("#ia").show();
 		$("#ib").show();
 		$("#ic").show();
+		$("#id").show();
+		$("#ie").show();
+		$("#if").show();
 		ope = 7;
-		$("#ia").click(function (ev) {		
-			value = $("input:radio[name=select]:checked").val();
-			recibirDatos(value,ope);
-		});
-
-		$("#ib").click(function (ev) {
+		$("#ia").click(function (ev) {
+			$('#pension').show();
 			$("#serial").hide();
 			$("#codigo").hide();
 			value = $("input:radio[name=select]:checked").val();
 			recibirDatos(value,ope);
 		});
+
+		$("#ib").click(function (ev) {
+			$('#pension').show();
+			$("#serial").hide();
+			$("#codigo").hide();
+			value = $("input:radio[name=select]:checked").val();
+			recibirDatos(value,ope);
+		});
+
+		$("#ic").click(function (ev) {
+			$('#pension').show();
+			$("#serial").hide();
+			$("#codigo").hide();
+			value = $("input:radio[name=select]:checked").val();
+			recibirDatos(value,ope);
+		});
+	});
+	
+	$("#j").click(function (ev) {
+		$('#dni').hide();
+		$('#genero').show();
+		$('#fc').show();
+		$('#apa').hide();
+		ope = 8;
+		value = $("input:radio[name=vulvenables]:checked").val();
+		recibirDatos(value,ope);
+	});
+
+	$("#k").click(function (ev) {
+		$('#dni').show();
+		$('#genero').show();
+		$('#fc').show();
+		$('#apa').hide();
+		ope = 9;
+		value = $("input:radio[name=vulvenables]:checked").val();
+		recibirDatos(value,ope);
+	});
+
+	$("#s").click(function (ev) {
+		$('#dni').show();
+		$('#apa').show();
+		$('#genero').hide();
+		$('#fc').hide();
+		ope = 10;
+		value = $("input:radio[name=vulvenables]:checked").val();
+		recibirDatos(value,ope);
 	});
 });
 
