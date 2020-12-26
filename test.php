@@ -259,6 +259,96 @@
 				echo $salida;
 			break;
 
+			case 7:
+			// PENSIONADOS
+				$v = $_POST['val'];
+				$salida = "";
+				if ($v == 10) {
+					$bolean = 'AM';
+					$muestra = pensionados($bolean);
+				} else if ($v == 11) {
+					$bolean = 'SS';
+					$muestra = pensionados($bolean);
+				} else if ($v == 12) {
+					$bolean = 'NT';
+					$muestra = pensionados($bolean);
+				}
+				if ($muestra != NULL) {
+					for ($i=0; $i <count($muestra) ; $i++) { 
+						$salida.="<tr>
+		    					<td><a href='aperson.php?id=".$muestra[$i]['ID']."' target='_blank'>".$muestra[$i]['NOMBRES']."</a></td>
+		    					<td>".$muestra[$i]['APELLIDOS']."</td>
+		    					<td>".$muestra[$i]['DNI']."</td>
+		    					<td>".$muestra[$i]['PENSION']."</td>
+		    				</tr>";
+					}
+				} else {
+					$salida = "No hay personas carnetizadas";
+				}
+				echo $salida;
+			break;
+
+			case 8:
+			// LACTANTES
+				$v = $_POST['val'];
+				$salida = "";
+				$muestra = lactantes();
+				if ($muestra != NULL) {
+					for ($i=0; $i <count($muestra) ; $i++) { 
+						$salida.="<tr>
+			    					<td><a href='aperson.php?id=".$muestra[$i]['ID']."' target='_blank'>".$muestra[$i]['NOMBRES']."</a></td>
+			    					<td>".$muestra[$i]['APELLIDOS']."</td>
+			    					<td>".$muestra[$i]['GENERO']."</td>
+			    					<td>".$muestra[$i]['FECHA_NAC']."</td>
+			    				</tr>";
+					}
+				} else {
+					$salida = "No hay lactantes registrados";
+				}
+				echo $salida;
+			break;
+
+			case 9:
+			//ADULTOS MAYORES
+				$v = $_POST['val'];
+				$salida = "";
+				$muestra = adultosMayores();
+				if ($muestra != NULL) {
+					for ($i=0; $i <count($muestra) ; $i++) { 
+						$salida.="<tr>
+			    					<td><a href='aperson.php?id=".$muestra[$i]['ID']."' target='_blank'>".$muestra[$i]['NOMBRES']."</a></td>
+			    					<td>".$muestra[$i]['APELLIDOS']."</td>
+			    					<td>".$muestra[$i]['DNI']."</td>
+			    					<td>".$muestra[$i]['GENERO']."</td>
+			    					<td>".$muestra[$i]['FECHA_NAC']."</td>
+			    				</tr>";
+					}
+				} else {
+					$salida = "No hay lactantes registrados";
+				}
+				echo $salida;
+			break;
+
+			case 10:
+			//APARTAMENTOS CON UNA SOLA PERSONA
+				$v = $_POST['val'];
+				$salida = "";
+				$muestra = apartamentosConUnaPersona();
+				if ($muestra != NULL) {
+					for ($i=0; $i <count($muestra); $i++) { 
+						$salida.="<tr>
+			    					<td><a href='aperson.php?id=".$muestra[$i]['ID_PERSONA']."' target='_blank'>".$muestra[$i]['NOMRBES']."</a></td>
+			    					<td>".$muestra[$i]['APELLIDOS']."</td>
+			    					<td>".$muestra[$i]['DNI']."</td>
+			    					<td>".apartamento($muestra[$i]['ID_APARTAMENTO'])['NRO_APARTAMENTO']."<td>
+			    				</tr>";
+					}
+				} else {
+					$salida = "No hay lactantes registrados";
+				}
+				echo $salida;
+			break;
+
 			default:
 				echo $salida = "Esta opcion no esta implementada";
 			break;
@@ -346,7 +436,7 @@
 			break;
 
 			case 6:
-			//ENCAMADOS
+			//CARTENIZADOS
 			if ($v == 8) {
 				$muestra = tienenCarnet(true);
 			} else if ($v == 9) {
@@ -363,9 +453,78 @@
 				$jsonstring = json_encode($total);
 				echo $jsonstring;
 			break;
+			
+			case 7:
+			//PENSIONADOS
+			if ($v == 10) {
+				$bolean = 'AM';
+				$muestra = pensionados($bolean);
+			} else if ($v == 11) {
+				$bolean = 'SS';
+				$muestra = pensionados($bolean);
+			} else if ($v == 12) {
+				$bolean = 'NT';
+				$muestra = pensionados($bolean);
+			}
+			$personas = personas();
+				if ($muestra != NULL && $personas != NULL) {
+					$total = array(0 => count($personas), 1 => count($muestra));
+				} else if ($muestra == NULL){
+					$total = array(0 => count($personas), 1 => 0);
+				} else if ($personas == NULL) {
+					$total = array(0 => 0, 1 => count($muestra));
+				}
+				$jsonstring = json_encode($total);
+				echo $jsonstring;
+			break;
+
+			case 8:
+			//LACTANTES
+				$muestra = lactantes();
+				$personas = personas();
+				if ($muestra != NULL && $personas != NULL) {
+					$total = array(0 => count($personas), 1 => count($muestra));
+				} else if ($muestra == NULL){
+					$total = array(0 => count($personas), 1 => 0);
+				} else if ($personas == NULL) {
+					$total = array(0 => 0, 1 => count($muestra));
+				}
+				$jsonstring = json_encode($total);
+				echo $jsonstring;
+			break;
+
+			case 9:
+			//ADULTOS MAYORES
+				$muestra = adultosMayores();
+				$personas = personas();
+				if ($muestra != NULL && $personas != NULL) {
+					$total = array(0 => count($personas), 1 => count($muestra));
+				} else if ($muestra == NULL){
+					$total = array(0 => count($personas), 1 => 0);
+				} else if ($personas == NULL) {
+					$total = array(0 => 0, 1 => count($muestra));
+				}
+				$jsonstring = json_encode($total);
+				echo $jsonstring;
+			break;
+
+			case 10:
+			//APARTAMENTOS CON UNA SOLA PERSONA
+				$muestra = apartamentosConUnaPersona();
+				$personas = personas();
+				if ($muestra != NULL && $personas != NULL) {
+					$total = array(0 => count($personas), 1 => count($muestra));
+				} else if ($muestra == NULL){
+					$total = array(0 => count($personas), 1 => 0);
+				} else if ($personas == NULL) {
+					$total = array(0 => 0, 1 => count($muestra));
+				}
+				$jsonstring = json_encode($total);
+				echo $jsonstring;
+			break;
 
 			default:
-				$jsonstring = json_encode(null);
+				$jsonstring = json_encode('NANN');
 				echo $jsonstring;
 			break;
 		}

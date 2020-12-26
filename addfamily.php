@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <?php
 	include_once 'includes/functions.php';
+	include_once 'includes/info.php';
+	session_start();
+	if (!isset($_SESSION['usuario'])) {
+		header("Location:index.php");
+		die();
+	}
 ?>
 <html>
 <head>
@@ -24,12 +30,10 @@
 
 					</div>
 
-							
 					<div class="agrupar">
 						<input type="text" name="DNI" placeholder="Cedula de identidad">
 						<input type="text" name="Telefono" placeholder="Nro. Telefono">
 					</div>
-
 
 					<select class="select-css" name="Posicion">
 						<option selected>--POSICION--</option>
@@ -83,7 +87,6 @@
 						</div>
 					</div>
 
-				
 					<div class="agrupar">
 						<p>Fecha de nacimiento</p>
 						<input class="chico" type="date" name="FechaNac">
@@ -129,7 +132,6 @@
 				</form>
 			</div>
 		</div>
-		
 		
 		<div class="agrupar-pagina">
 			<div class="little-table">
@@ -207,11 +209,11 @@
 				
 				<br>
 				<button id="create">Crear familia</button>
+				<a href="families.php?id=<?php echo $ap_id ?>" >Volver</a>
 			</div>
 		</div>
 	</div>
 		
-	
 	<?php include("includes/footer.php")?>
 	<!-- Inicio de scripts -->
 
