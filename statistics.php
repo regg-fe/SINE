@@ -1,11 +1,6 @@
 <?php 
 	session_start();
 	include_once 'includes/functions.php';
-	if (!isset($_SESSION['usuario'])) {
-			header("Location:index.php");
-			die();
-	}
-
 	$tablaBloques = bloques();
 	$btns = count($tablaBloques);
 	$personas = count(personas());
@@ -27,8 +22,23 @@
 		<title>SINE: Estadisticas</title>
 		<script type="text/javascript" src="js/js.js"></script>
 		<script type="text/javascript" src="js/statistics.js"></script>
+	<?php if (!isset($_SESSION['usuario'])): ?>
+		<link rel="stylesheet" href="css/styleIndex.css">
 	</head>
-	<?php include("includes/navbar.php") ?>
+	<body style= "background-image:url(img/imagen8.jpg) ">
+		<div class="transparencia">
+			<header>
+				<ul class="menu">  
+					<li class="logo"><a href="#" alt="SINE"><img src="img/logoFinal.png"></a> </li>
+					<li class="items"><a href="#">Estadisticas</a></li>
+					<li class="items"><a href="login.php">Iniciar Sesión</a></li>
+				</ul>
+			</header>
+		</div>
+	<?php else: ?>
+		<?php include("includes/navbar.php") ?>
+	<?php endif ?>
+
  		<h1>Bloques: </h1>
  		<p>Personas registradas: <?php echo $personas ?></p>
  		<p>Familias registradas: <?php echo $familias ?></p>
@@ -48,10 +58,15 @@
 		<?php endfor ?>
 		<div id="visualizar"></div>
 		<br><br>
-		<a onclick="openUrl('includes/nutricion.php','mostrar')"><button>Nutricion</button></a>
-		<a onclick="openUrl('includes/condiciones.php','mostrar')"><button>Condiciones</button></a>
-		<a onclick="openUrl('includes/proteccion.php','mostrar')"><button>Proteccion Social</button></a>
-		<a onclick="openUrl('includes/vulnerables.php','mostrar')"><button>Personas Vulnerables</button></a>
+		
+		<?php if (isset($_SESSION['usuario'])): ?>
+			<a onclick="openUrl('includes/nutricion.php','mostrar')"><button>Nutricion</button></a>
+			<a onclick="openUrl('includes/condiciones.php','mostrar')"><button>Condiciones</button></a>
+			<a onclick="openUrl('includes/proteccion.php','mostrar')"><button>Proteccion Social</button></a>
+			<a onclick="openUrl('includes/vulnerables.php','mostrar')"><button>Personas Vulnerables</button></a>
 
-		<div id="mostrar"></div>
+			<div id="mostrar"></div>
 	<?php include("includes/footer.php") ?>
+	<?php endif ?>
+	</body>
+</html>

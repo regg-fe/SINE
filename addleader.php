@@ -1,6 +1,5 @@
 <?php 
-
-session_start();
+	session_start();
 	include_once 'includes/functions.php';
 	if (!isset($_SESSION['usuario'])) {
 		header("Location:index.php");
@@ -90,7 +89,7 @@ session_start();
 					<input type="text" name="nombre"> 
 					<label for="apellido">Apellido:</label>
 					<input type="text" name="apellido">
-					<label for="dni">DNI:</label>
+					<label for="dni">Cedula:</label>
 					<input type="text" name="dni" >
 					<label for="telefono">Telefono:</label>
 					<input type="text" name="telefono"> <br>
@@ -98,7 +97,7 @@ session_start();
 					<select class="select-css" name="id_bloque">
 						<?php for ($i=0; $i <count($bloques) ; $i++): ?>
 							<option value="<?php echo $bloques[$i]['ID']?>"><?php echo $bloques[$i]['NRO_BLOQUE']?></option>
-						?<?php endfor; ?>	
+						<?php endfor; ?>
 					</select>
 					<input type="submit" name="btn" value="Agregar">
 			</form>

@@ -19,7 +19,7 @@
 			<header>
 				<ul class="menu">  
 					<li class="logo"><a href="#" alt="SINE"><img src="img/logoFinal.png"></a> </li>
-					<li class="items"><a href="#">Estadisticas</a></li>
+					<li class="items"><a href="statistics.php">Estadisticas</a></li>
 					<li class="items"><a href="login.php">Iniciar Sesión</a></li>
 				</ul>
 			</header>

@@ -22,7 +22,7 @@
 		<h1>Usuarios del Sistema</h1>
 	</div>
 	<div class="container">
-		<a class="center" href="home.php">Volver</a>
+		<a class="center" href="home.php" title="Volver"><i class="fas fa-arrow-left"></i></a>
 				<h2 class="center">Usuarios</h2>
 				<div class="container-table100">
 					<div class="wrap-table100">	
@@ -35,7 +35,6 @@
 												<th class="cell100 column2">Usuario</th>
 												<th class="cell100 column4">Nombre</th>
 												<th class="cell100 column3">Apelldio</th>
-												<th class="cell100 column3">Editar</th>
 												<th class="cell100 column3">Eliminar</th>
 											</tr>
 										</thead>
@@ -45,8 +44,11 @@
 												<td class="cell100 column2"><?php echo $usuarios[$i]['USUARIO']?></td>
 												<td class="cell100 column4"><?php echo $usuarios[$i]['NOMBRE']?></td>
 												<td class="cell100 column3"><?php echo $usuarios[$i]['APELLIDO']?></td>
-												<td class="cell100 column3"><a class="icon" href="#" title="Editar"><i class="fas fa-pen-alt"></i></a></td>
-												<td class="cell100 column3"><a class="icon" href="delete.php?op=7&id=<?php echo $usuarios[$i]['ID'] ?>" title="Eliminar"><i class="fas fa-eraser"></i></a></td>	
+												<?php if (count($usuarios) == 1): ?>
+													<td class="cell100 column3"><a class="icon" href="#" title="Eliminar"><i class="fas fa-eraser"></i></a></td>
+												<?php else: ?>
+													<td class="cell100 column3"><a class="icon" href="delete.php?op=7&id=<?php echo $usuarios[$i]['ID'] ?>" title="Eliminar"><i class="fas fa-eraser"></i></a></td>
+												<?php endif ?>
 											</tr>
 										</tbody>
 											<?php endfor?>

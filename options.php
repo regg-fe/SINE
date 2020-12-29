@@ -25,6 +25,7 @@
 	</div>
 	<div class="card-container">
 		<div class="card-table">
+			<a class="center" href="home.php" title="Volver"><i class="fas fa-arrow-left"></i></a>
 			<h2 class="centrar">Ayudas tecnicas registradas</h2>
 			<?php
 				$at = ayudasTec();

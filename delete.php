@@ -113,6 +113,7 @@
 		case 7: //USUARIOS
 			$sql = "DELETE FROM USUARIO WHERE ID = '$id'";
 			$result = $con->query($sql);
+			session_destroy();
 			if(!$result) {
 				die("Delete Error".mysqli_error($con));
 			} else {

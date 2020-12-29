@@ -335,16 +335,16 @@
 				$salida = "";
 				$muestra = apartamentosConUnaPersona();
 				if ($muestra != NULL) {
-					for ($i=0; $i <count($muestra); $i++) { 
+					for ($i=0; $i < count($muestra); $i++) { 
 						$salida.="<tr>
 			    					<td><a href='aperson.php?id=".$muestra[$i]['ID_PERSONA']."' target='_blank'>".$muestra[$i]['NOMRBES']."</a></td>
 			    					<td>".$muestra[$i]['APELLIDOS']."</td>
 			    					<td>".$muestra[$i]['DNI']."</td>
-			    					<td>".apartamento($muestra[$i]['ID_APARTAMENTO'])['NRO_APARTAMENTO']."<td>
+			    					<td>".$muestra[$i]['NRO_APARTAMENTO']."</td>
 			    				</tr>";
 					}
 				} else {
-					$salida = "No hay lactantes registrados";
+					$salida = "No existen apartamentos con una sola persona registrados";
 				}
 				echo $salida;
 			break;

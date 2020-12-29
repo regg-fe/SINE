@@ -1462,7 +1462,7 @@
 			while ($row = $result->fetch_assoc()) {
 				if (count(personasPorFamilia($row['ID'])) == 1) {
 					if (count(familiasPorApartamento($row['ID_APARTAMENTO'])) == 1) {
-						$apartamentos[$a]['ID_APARTAMENTO'] = $row['ID_APARTAMENTO'];
+						$apartamentos[$a]['NRO_APARTAMENTO'] = apartamento($row['ID_APARTAMENTO'])['NRO_APARTAMENTO'];
 						$apartamentos[$a]['ID_PERSONA'] = $row['ID_PERSONA'];
 						$apartamentos[$a]['NOMRBES'] = $row['NOMBRES'];
 						$apartamentos[$a]['APELLIDOS'] = $row['APELLIDOS'];
@@ -1508,7 +1508,23 @@
  		}
  	}
 
- 	
+	function repeat($dni,$id,$table) {
+		$con = conexion();
+		$tabla = NULL;
+		$sql = "SELECT * FROM $table WHERE DNI = '$dni'";
+		$result = $con->query($sql);
+		if ($result->num_rows > 0) {
+			$i = 0;
+			while ($row = $result->fetch_assoc()) {
+				$tabla[$i]['ID'] = $row['ID'];
+				$tabla[$i]['DNI'] = $row['DNI'];
+				$i++;
+			}
+			
+		} else {
+			return 0;
+		}
+	}
 
 	## Funciones para desarrollo ##
 
@@ -1606,13 +1622,16 @@
 		llenarFamiliasVacias();
 		carnetsRandom();
 	}
+
 	## Codigos de prueba ##
 	/*
-		FUNCIONES NECESARIAS PARA MODULO DE ESTADISTICA
-			1) BOMBONAS POR BLOQUE
-			2) PERSONAS POR BLOQUE
-			3) SUGERIDOS ENTREGADOS POR BLOQUE
-			4) FAMILIAS POR BLOQUE
-			5) 
+		DETALLES:
+		1): VALIDAR CEDULA EN REGISTRO DE JEFE DE FAMILIA
+		2): AGREGAR CARNET Y DATOS ESPECIFICOS DE PERSONA
+		3): EDITAR INFORMACION DE PERSONA
+		4): ACOMODAR LINKS CON HTACCES
+		5): DISEÑO DEL MODULO ESTADISTICAS Y AGREGAR PERSONA
+		6): ACOMODAR BOTONES DE VOLVER
+		7): 
 	*/
 ?>
