@@ -23,37 +23,56 @@ $(document).ready(function() {
 	$("#a").click(function (ev) {
 		ope = 1;
 		value = $("input:radio[name=nutricion]:checked").val();
-		recibirDatos(value,ope);
+		$('#result').fadeOut(500, function () {
+			recibirDatos(value,ope);
+			$('#result').fadeIn(500);
+		});
+		
 	});
 	$("#b").click(function (ev) {
 		ope = 1;
 		value = $("input:radio[name=nutricion]:checked").val();
-		recibirDatos(value,ope);
+		$('#result').fadeOut(500, function () {
+			recibirDatos(value,ope);
+			$('#result').fadeIn(500);
+		});
 	});
 
 	$("#c").click(function (ev) {
 		$("#h").show();
 		ope = 2;
 		value = $("input:radio[name=condiciones]:checked").val();
-		recibirDatos(value,ope);
+		$('#result').fadeOut(500, function () {
+			recibirDatos(value,ope);
+			$('#result').fadeIn(500);
+		});
 	});
 	$("#d").click(function (ev) {
 		$("#h").show();
 		ope = 3;
 		value = $("input:radio[name=condiciones]:checked").val();
-		recibirDatos(value,ope);
+		$('#result').fadeOut(500, function () {
+			recibirDatos(value,ope);
+			$('#result').fadeIn(500);
+		});
 	});
 	$("#e").click(function (ev) {
 		$("#h").hide();
 		ope = 4;
 		value = $("input:radio[name=condiciones]:checked").val();
-		recibirDatos(value,ope);
+		$('#result').fadeOut(500, function () {
+			recibirDatos(value,ope);
+			$('#result').fadeIn(500);
+		});
 	});
 	$("#f").click(function (ev) {
 		$("#h").hide();
 		ope = 5;
 		value = $("input:radio[name=condiciones]:checked").val();
-		recibirDatos(value,ope);
+		$('#result').fadeOut(500, function () {
+			recibirDatos(value,ope);
+			$('#result').fadeIn(500);
+		});
 	});
 
 	$("#g").click(function (ev) {
@@ -69,19 +88,27 @@ $(document).ready(function() {
 		$("#if").hide();
 		ope = 6;
 		$("#ga").click(function (ev) {
-			$("#serial").show();
-			$("#codigo").show();
-			$("#pension").hide();
 			value = $("input:radio[name=select]:checked").val();
-			recibirDatos(value,ope);
+			$('#result').fadeOut(500, function () {
+				recibirDatos(value,ope);
+				$("#serial").show();
+				$("#codigo").show();
+				$("#pension").hide();
+				$('#result').fadeIn(500);
+			});
+			
 		});
 
 		$("#gb").click(function (ev) {
-			$("#serial").hide();
-			$("#codigo").hide();
-			$("#pension").hide();
 			value = $("input:radio[name=select]:checked").val();
-			recibirDatos(value,ope);
+			$('#result').fadeOut(500, function () {
+				recibirDatos(value,ope);
+				$("#serial").hide();
+				$("#codigo").hide();
+				$("#pension").hide();
+				$('#result').fadeIn(500);
+			});
+			
 		});
 	});
 
@@ -98,58 +125,82 @@ $(document).ready(function() {
 		$("#if").show();
 		ope = 7;
 		$("#ia").click(function (ev) {
-			$('#pension').show();
-			$("#serial").hide();
-			$("#codigo").hide();
 			value = $("input:radio[name=select]:checked").val();
-			recibirDatos(value,ope);
+			$('#result').fadeOut(500, function () {
+				recibirDatos(value,ope);
+				$('#pension').show();
+				$("#serial").hide();
+				$("#codigo").hide();
+				$('#result').fadeIn(500);
+			});
+			
 		});
 
 		$("#ib").click(function (ev) {
-			$('#pension').show();
-			$("#serial").hide();
-			$("#codigo").hide();
 			value = $("input:radio[name=select]:checked").val();
-			recibirDatos(value,ope);
+			$('#result').fadeOut(500, function () {
+				recibirDatos(value,ope);
+				$('#pension').show();
+				$("#serial").hide();
+				$("#codigo").hide();
+				$('#result').fadeIn(500);
+			});
+			
 		});
 
 		$("#ic").click(function (ev) {
-			$('#pension').show();
-			$("#serial").hide();
-			$("#codigo").hide();
 			value = $("input:radio[name=select]:checked").val();
-			recibirDatos(value,ope);
+			$('#result').fadeOut(500, function () {
+				recibirDatos(value,ope);
+				$('#pension').show();
+				$("#serial").hide();
+				$("#codigo").hide();
+				$('#result').fadeIn(500);
+			});
+			
 		});
 	});
 	
 	$("#j").click(function (ev) {
-		$('#dni').hide();
-		$('#genero').show();
-		$('#fc').show();
-		$('#apa').hide();
 		ope = 8;
 		value = $("input:radio[name=vulvenables]:checked").val();
-		recibirDatos(value,ope);
+		$('#result').fadeOut(500, function () {
+			recibirDatos(value,ope);
+			$('#dni').hide();
+			$('#genero').show();
+			$('#fc').show();
+			$('#apa').hide();
+			$('#result').fadeIn(500);
+		});
+		
 	});
 
 	$("#k").click(function (ev) {
-		$('#dni').show();
-		$('#genero').show();
-		$('#fc').show();
-		$('#apa').hide();
 		ope = 9;
 		value = $("input:radio[name=vulvenables]:checked").val();
-		recibirDatos(value,ope);
+		$('#result').fadeOut(500, function () {
+			recibirDatos(value,ope);
+			$('#dni').show();
+			$('#genero').show();
+			$('#fc').show();
+			$('#apa').hide();
+			$('#result').fadeIn(500);
+		});
+
 	});
 
 	$("#s").click(function (ev) {
-		$('#dni').show();
-		$('#apa').show();
-		$('#genero').hide();
-		$('#fc').hide();
 		ope = 10;
 		value = $("input:radio[name=vulvenables]:checked").val();
-		recibirDatos(value,ope);
+		$('#result').fadeOut(500, function () {
+			recibirDatos(value,ope);
+			$('#dni').show();
+			$('#apa').show();
+			$('#genero').hide();
+			$('#fc').hide();
+			$('#result').fadeIn(500);
+		});
+		
 	});
 });
 
@@ -157,8 +208,13 @@ $(document).ready(function() {
 function recibirDatos(value,ope) {
 	var v = value;
 	$.post('test.php',{val: v, o: ope}, function(data) {
-		$('#result').show();
-		$('#body').html(data);
+		
+			$('#body').html(data);
+			
+			$('#result').show();
+
+		
+		
 	});
 	recibirTotales(v,ope);
 }
