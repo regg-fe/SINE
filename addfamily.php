@@ -274,20 +274,35 @@
 					}
 					else{
 						name.css("border-color","#61b4b3");
+						if (name == dni) {
+							if ($.isNumeric(dni.val()) == false) {
+								mensajeError += "DNI invalido</br>";
+								dni.css("border-color","#D32F2F");
+							} 
+						}
+						else if (name == telefono) {
+							if ($.isNumeric(telefono.val()) == false) {
+								mensajeError += "Numero de telefono invalido</br>";
+								telefono.css("border-color","#D32F2F");
+							} 
+						}
 					}
 				}
 				
 				validateInputs(name = nombres);
 				validateInputs(name = apellidos);
+				
 				validateInputs(name = dni);
+				
 				validateInputs(name = telefono);
+				
 				validateInputs(name = posicion);
 				
 				validateInputs(name = nacimiento);
 				validateInputs(name = peso);
 				validateInputs(name = estatura);
 				if (campoVacio != "") {
-					mensajeError = "<p>Hay campos vacios</p>"
+					mensajeError = "Hay campos vacios</br>" + mensajeError;
 				}
 				if (mensajeError != "") {
 					$("#mensajeError").html(mensajeError);

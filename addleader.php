@@ -120,11 +120,17 @@ session_start();
 					e.preventDefault();
 					campoVacio = "campo vacios";
 				}
+				else{
+					$("#nombre").css("border-color","#61b4b3");
+				}
 				if ($("#apellido").val() == "") {
 					$("#apellido").css("border-color","#D32F2F");
 					$("#apellido").attr("placeholder","Este campo es obligatorio");
 					e.preventDefault();
 					campoVacio = "campo vacios";
+				}
+				else{
+					$("#apellido").css("border-color","#61b4b3");
 				}
 				if ($("#dni").val() == "") {
 					$("#dni").css("border-color","#D32F2F");
@@ -132,25 +138,53 @@ session_start();
 					e.preventDefault();
 					campoVacio = "campo vacios";
 				}
+				else{
+					if ($.isNumeric($("#dni").val()) == false) {
+						mensajeError += "DNI invalido</br>";
+						e.preventDefault();
+					} 
+					else{
+						$("#dni").css("border-color","#61b4b3");
+					}
+				}
 				if ($("#telefono").val() == "") {
 					$("#telefono").css("border-color","#D32F2F");
 					$("#telefono").attr("placeholder","Este campo es obligatorio");
 					e.preventDefault();
 					campoVacio = "campo vacios";
+				}else{
+					if ($.isNumeric($("#telefono").val()) == false) {
+						mensajeError += "Numero de telefono invalido</br>";
+						e.preventDefault();
+					} 
+					else{
+						$("#telefono").css("border-color","#61b4b3");
+					}
 				}
 				if (campoVacio != "") {
-					mensajeError = "<p>Hay campos vacios</p>" +  mensajeError;
+					mensajeError = "Hay campos vacios </br>" +  mensajeError;
 					e.preventDefault();
 				}
-				if ($.isnumeric($("#telefono").val()) == false) {
-					mensajeError = "Numero de telefono invalido";
-					e.preventDefault();
-				} 
+				
 				if (mensajeError != "") {
 					$("#mensajeError").html(mensajeError);
 					e.preventDefault();
 				} 
 			});	
+
+			var change = function (name){
+				name.change(function(){
+					if (name.val() != "") {
+						name.css("border-color","#61b4b3");
+					}
+				});
+			}
+
+			change(name = $("#nombre"));
+			change(name = $("#apellido"));
+			change(name = $("#dni"));
+			change(name = $("#telefono"));
+
 		</script>
 	<?php require ('includes/footer.php') ?>
 </body>
