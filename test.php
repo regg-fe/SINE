@@ -125,20 +125,20 @@
 				$muestra = estadoDeNutricion($v);
 				if ($muestra != NULL) {
 					for ($i=0; $i <count($muestra) ; $i++) { 
-						$salida.="<tr>
-			    					<td><a href='aperson.php?id=".$muestra[$i]['ID']."' target='_blank'>".$muestra[$i]['NOMBRES']."</a></td>
-			    					<td>".$muestra[$i]['APELLIDOS']."</td>
-			    					<td>".$muestra[$i]['GENERO']."</td>
-			    					<td>".$muestra[$i]['FECHA_NAC']."</td>
-			    					<td>".$muestra[$i]['DNI']."</td>
-			    					<td>".$muestra[$i]['TELEFONO']."</td>
-			    					<td>".$muestra[$i]['PESO']."</td>
-			    					<td>".$muestra[$i]['ESTATURA']."</td>
-			    					<td>".$muestra[$i]['IMC']."</td>
-			    					<td>".$muestra[$i]['FAMILIA']."</td>
-			    					<td>".$muestra[$i]['NRO_APARTAMENTO']."</td>
-			    					<td>".$muestra[$i]['NRO_BLOQUE']."</td>
-			    				</tr>";
+						$salida.=" <tr class='row100 body descentrar'>
+								    	<td class='cell100 column1'><a href='aperson.php?id=".$muestra[$i]['ID']."' target='_blank'>".$muestra[$i]['NOMBRES']."</a></td>
+								    	<td class='cell100 column2'>".$muestra[$i]['APELLIDOS']."</td>
+								    	<td class='cell100 column3'>".$muestra[$i]['GENERO']."</td>
+								    	<td class='cell100 column4'>".$muestra[$i]['FECHA_NAC']."</td>
+								    	<td class='cell100 column5'>".$muestra[$i]['DNI']."</td>
+								    	<td class='cell100 column6>".$muestra[$i]['TELEFONO']."</td>
+								    	<td class='cell100 column6'>".$muestra[$i]['PESO']."</td>
+								    	<td class='cell100 column6'>".$muestra[$i]['ESTATURA']."</td>
+								    	<td class='cell100 column6'>".$muestra[$i]['IMC']."</td>
+								    	<td class='cell100 column7'>".$muestra[$i]['FAMILIA']."</td>
+								    	<td class='cell100 column8'>".$muestra[$i]['NRO_APARTAMENTO']."</td>
+								    	<td class='cell100 column9'>".$muestra[$i]['NRO_BLOQUE']."</td>
+								    </tr>";
 					}
 				} else {
 					$salida = "No hay personas con problemas de nutricion";
@@ -153,12 +153,12 @@
 				$muestra = enfermos();
 				if ($muestra != NULL) {
 					for ($i=0; $i <count($muestra) ; $i++) { 
-						$salida.="<tr>
-			    					<td><a href='aperson.php?id=".$muestra[$i]['ID_PERSONA']."' target='_blank'>".$muestra[$i]['NOMBRE_PERSONA']."</a></td>
-			    					<td>".$muestra[$i]['APELLIDO_PERSONA']."</td>
-			    					<td>".$muestra[$i]['DNI_PERSONA']."</td>
-			    					<td>".$muestra[$i]['NOMBRE_ENFERMEDAD']."</td>
-			    				</tr>";
+						$salida.="<tr class='row100 body descentrar'>
+			    					<td class='cell100 column1'><a href='aperson.php?id=".$muestra[$i]['ID_PERSONA']."' target='_blank'>".$muestra[$i]['NOMBRE_PERSONA']."</a></td>
+			    					<td class='cell100 column2'>".$muestra[$i]['APELLIDO_PERSONA']."</td>
+			    					<td class='cell100 column3'>".$muestra[$i]['DNI_PERSONA']."</td>
+			    					<td class='cell100 column9'>".$muestra[$i]['NOMBRE_ENFERMEDAD']."</td>
+			    					    </tr>";
 					}
 				} else {
 					$salida = "No hay personas con problemas de salud";
@@ -173,12 +173,12 @@
 				$muestra = discapacitados();
 				if ($muestra != NULL) {
 					for ($i=0; $i <count($muestra) ; $i++) { 
-						$salida.="<tr>
-			    					<td><a href='aperson.php?id=".$muestra[$i]['ID_PERSONA']."' target='_blank'>".$muestra[$i]['NOMBRE_PERSONA']."</a></td>
-			    					<td>".$muestra[$i]['APELLIDO_PERSONA']."</td>
-			    					<td>".$muestra[$i]['DNI_PERSONA']."</td>
-			    					<td>".$muestra[$i]['TIPO_DISCAPACIDAD']."</td>
-			    				</tr>";
+						$salida.="<tr class='row100 body descentrar'>
+			    					<td class='cell100 column21'><a href='aperson.php?id=".$muestra[$i]['ID_PERSONA']."' target='_blank'>".$muestra[$i]['NOMBRE_PERSONA']."</a></td>
+			    					<td class='cell100 column2'>".$muestra[$i]['APELLIDO_PERSONA']."</td>
+			    					<td class='cell100 column3'>".$muestra[$i]['DNI_PERSONA']."</td>
+			    					<td class='cell100 column9'>".$muestra[$i]['TIPO_DISCAPACIDAD']."</td>
+			    					    </tr>";
 					}
 				} else {
 					$salida = "No hay personas con discapacidades";
@@ -193,11 +193,11 @@
 				$muestra = embarazadas();
 				if ($muestra != NULL) {
 					for ($i=0; $i <count($muestra) ; $i++) { 
-						$salida.="<tr>
-			    					<td><a href='aperson.php?id=".$muestra[$i]['ID']."' target='_blank'>".$muestra[$i]['NOMBRES']."</a></td>
-			    					<td>".$muestra[$i]['APELLIDOS']."</td>
-			    					<td>".$muestra[$i]['DNI']."</td>
-			    				</tr>";
+						$salida.="<tr class='row100 body descentrar'>
+			    					<td class='cell100 column1'><a href='aperson.php?id=".$muestra[$i]['ID']."' target='_blank'>".$muestra[$i]['NOMBRES']."</a></td>
+			    					<td class='cell100 column2'>".$muestra[$i]['APELLIDOS']."</td>
+			    					<td class='cell100 column9'>".$muestra[$i]['DNI']."</td>
+			    					    </tr>";
 					}
 				} else {
 					$salida = "No hay personas con discapacidades";
@@ -212,11 +212,11 @@
 				$muestra = encamados(true);
 				if ($muestra != NULL) {
 					for ($i=0; $i <count($muestra) ; $i++) { 
-						$salida.="<tr>
-			    					<td><a href='aperson.php?id=".$muestra[$i]['ID']."' target='_blank'>".$muestra[$i]['NOMBRES']."</a></td>
-			    					<td>".$muestra[$i]['APELLIDOS']."</td>
-			    					<td>".$muestra[$i]['DNI']."</td>
-			    				</tr>";
+						$salida.="<tr class='row100 body descentrar'>
+			    					<td class='cell100 column1'><a href='aperson.php?id=".$muestra[$i]['ID']."' target='_blank'>".$muestra[$i]['NOMBRES']."</a></td>
+			    					<td class='cell100 column2'>".$muestra[$i]['APELLIDOS']."</td>
+			    					<td class='cell100 column9'>".$muestra[$i]['DNI']."</td>
+			    					    </tr>";
 					}
 				} else {
 					$salida = "No hay personas con discapacidades";
@@ -238,19 +238,20 @@
 				if ($muestra != NULL) {
 					for ($i=0; $i <count($muestra) ; $i++) { 
 						if ($bolean == true) {
-							$salida.="<tr>
-			    					<td><a href='aperson.php?id=".$muestra[$i]['ID']."' target='_blank'>".$muestra[$i]['NOMBRES']."</a></td>
-			    					<td>".$muestra[$i]['APELLIDOS']."</td>
-			    					<td>".$muestra[$i]['DNI']."</td>
-			    					<td>".$muestra[$i]['SERIAL_CARNET']."</td>
-			    					<td>".$muestra[$i]['CODIGO_CARNET']."</td>
-			    				</tr>";
+										$salida.="<tr class='row100 body descentrar'>
+						    					<td class='cell100 column1'><a href='aperson.php?id=".$muestra[$i]['ID']."' target='_blank'>".$muestra[$i]['NOMBRES']."</a></td>
+						    					<td class='cell100 column2'>".$muestra[$i]['APELLIDOS']."</td>
+						    					<td class='cell100 column3'>".$muestra[$i]['DNI']."</td>
+						    					<td class='cell100 column4'>".$muestra[$i]['SERIAL_CARNET']."</td>
+						    					<td class='cell100 column9'>".$muestra[$i]['CODIGO_CARNET']."</td>
+						    				</tr>";
 						} else {
-							$salida.="<tr>
-			    					<td><a href='aperson.php?id=".$muestra[$i]['ID']."' target='_blank'>".$muestra[$i]['NOMBRES']."</a></td>
-			    					<td>".$muestra[$i]['APELLIDOS']."</td>
-			    					<td>".$muestra[$i]['DNI']."</td>
-			    				</tr>";
+							$salida.="<tr class='row100 body descentrar'>
+			    					<td class='cell100 column1'><a href='aperson.php?id=".$muestra[$i]['ID']."' target='_blank'>".$muestra[$i]['NOMBRES']."</a></td>
+			    					<td class='cell100 column2'>".$muestra[$i]['APELLIDOS']."</td>
+			    					<td class='cell100 column9'>".$muestra[$i]['DNI']."</td>
+			    				</tr>
+			    				";
 						}
 					}
 				} else {
@@ -275,11 +276,11 @@
 				}
 				if ($muestra != NULL) {
 					for ($i=0; $i <count($muestra) ; $i++) { 
-						$salida.="<tr>
-		    					<td><a href='aperson.php?id=".$muestra[$i]['ID']."' target='_blank'>".$muestra[$i]['NOMBRES']."</a></td>
-		    					<td>".$muestra[$i]['APELLIDOS']."</td>
-		    					<td>".$muestra[$i]['DNI']."</td>
-		    					<td>".$muestra[$i]['PENSION']."</td>
+						$salida.="<tr class='row100 body descentrar'>
+		    					<td class='cell100 column1'><a href='aperson.php?id=".$muestra[$i]['ID']."' target='_blank'>".$muestra[$i]['NOMBRES']."</a></td>
+		    					<td class='cell100 column2'>".$muestra[$i]['APELLIDOS']."</td>
+		    					<td class='cell100 column3'>".$muestra[$i]['DNI']."</td>
+		    					<td class='cell100 column9'>".$muestra[$i]['PENSION']."</td>
 		    				</tr>";
 					}
 				} else {
@@ -295,11 +296,11 @@
 				$muestra = lactantes();
 				if ($muestra != NULL) {
 					for ($i=0; $i <count($muestra) ; $i++) { 
-						$salida.="<tr>
-			    					<td><a href='aperson.php?id=".$muestra[$i]['ID']."' target='_blank'>".$muestra[$i]['NOMBRES']."</a></td>
-			    					<td>".$muestra[$i]['APELLIDOS']."</td>
-			    					<td>".$muestra[$i]['GENERO']."</td>
-			    					<td>".$muestra[$i]['FECHA_NAC']."</td>
+						$salida.="<tr class='row100 body descentrar'>
+			    					<td class='cell100 column1'><a href='aperson.php?id=".$muestra[$i]['ID']."' target='_blank'>".$muestra[$i]['NOMBRES']."</a></td>
+			    					<td class='cell100 column2'>".$muestra[$i]['APELLIDOS']."</td>
+			    					<td class='cell100 column3'>".$muestra[$i]['GENERO']."</td>
+			    					<td class='cell100 column9'>".$muestra[$i]['FECHA_NAC']."</td>
 			    				</tr>";
 					}
 				} else {
@@ -315,12 +316,12 @@
 				$muestra = adultosMayores();
 				if ($muestra != NULL) {
 					for ($i=0; $i <count($muestra) ; $i++) { 
-						$salida.="<tr>
-			    					<td><a href='aperson.php?id=".$muestra[$i]['ID']."' target='_blank'>".$muestra[$i]['NOMBRES']."</a></td>
-			    					<td>".$muestra[$i]['APELLIDOS']."</td>
-			    					<td>".$muestra[$i]['DNI']."</td>
-			    					<td>".$muestra[$i]['GENERO']."</td>
-			    					<td>".$muestra[$i]['FECHA_NAC']."</td>
+						$salida.="<tr class='row100 body descentrar'>
+			    					<td class='cell100 column1'><a href='aperson.php?id=".$muestra[$i]['ID']."' target='_blank'>".$muestra[$i]['NOMBRES']."</a></td>
+			    					<td class='cell100 column2'>".$muestra[$i]['APELLIDOS']."</td>
+			    					<td class='cell100 column3'>".$muestra[$i]['DNI']."</td>
+			    					<td class='cell100 column4'>".$muestra[$i]['GENERO']."</td>
+			    					<td class='cell100 column9'>".$muestra[$i]['FECHA_NAC']."</td>
 			    				</tr>";
 					}
 				} else {
@@ -336,11 +337,11 @@
 				$muestra = apartamentosConUnaPersona();
 				if ($muestra != NULL) {
 					for ($i=0; $i < count($muestra); $i++) { 
-						$salida.="<tr>
-			    					<td><a href='aperson.php?id=".$muestra[$i]['ID_PERSONA']."' target='_blank'>".$muestra[$i]['NOMRBES']."</a></td>
-			    					<td>".$muestra[$i]['APELLIDOS']."</td>
-			    					<td>".$muestra[$i]['DNI']."</td>
-			    					<td>".$muestra[$i]['NRO_APARTAMENTO']."</td>
+						$salida.="<tr class='row100 body descentrar'>
+			    					<td class='cell100 column1'><a href='aperson.php?id=".$muestra[$i]['ID_PERSONA']."' target='_blank'>".$muestra[$i]['NOMRBES']."</a></td>
+			    					<td class='cell100 column2'>".$muestra[$i]['APELLIDOS']."</td>
+			    					<td class='cell100 column3'>".$muestra[$i]['DNI']."</td>
+			    					<td class='cell100 column9'>".$muestra[$i]['NRO_APARTAMENTO']."</td>
 			    				</tr>";
 					}
 				} else {

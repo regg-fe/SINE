@@ -1,12 +1,6 @@
 <!DOCTYPE html>
 <?php
 	include_once 'includes/functions.php';
-	include_once 'includes/info.php';
-	session_start();
-	if (!isset($_SESSION['usuario'])) {
-		header("Location:index.php");
-		die();
-	}
 ?>
 <html>
 <head>
@@ -23,19 +17,23 @@
 		<div class="agrupar-pagina">
 			<div class="box-form">
 				<h1>Agregar miembro de familia</h1>
+				<div id="mensajeError" class="error"></div>
+				<div id="mensajeExito" class="exito"></div>
 				<form id="formulario">
 					<div class="agrupar">
-						<input type="text" name="Nombres" placeholder="Nombres">
-						<input type="text" name="Apellidos" placeholder="Apellidos">
+						<input class="separador" type="text" name="Nombres" placeholder="Nombres">
+						<input class="separador" type="text" name="Apellidos" placeholder="Apellidos">
 
 					</div>
 
+							
 					<div class="agrupar">
 						<input type="text" name="DNI" placeholder="Cedula de identidad">
 						<input type="text" name="Telefono" placeholder="Nro. Telefono">
 					</div>
 
-					<select class="select-css" name="Posicion">
+
+					<select class="select-css" name="Posicion" required>
 						<option selected>--POSICION--</option>
 						<option value="1">Jefe</option>
 						<option value="2">Pareja</option>
@@ -55,74 +53,78 @@
 						<div class="radio radio-chico">
 							<p>Genero</p>
 							<span>
-								<input type="radio" name="Genero" value="M">
+								<input type="radio" name="Genero" value="M" id="masculino">
 								<label for="masculino">Masculino</label>
 							</span>
 							<span>
-								<input type="radio" name="Genero" value="F">
+								<input type="radio" name="Genero" value="F" id="femenino">
 								<label for="femenino">Femenino</label>
 							</span>
+							<div class="checkbox" id="genero"></div>
 						</div>
 						<div class="radio radio-chico">
 							<p>¿Embarazo?</p>
 							<span>
-								<input type="radio" name="Embarazo" value="S">
-								<label for="si">Si</label>
+								<input type="radio" name="Embarazo" value="S" id="siEmbarazo">
+								<label for="siEmbarazo">Si</label>
 							</span>
 							<span>
-								<input type="radio" name="Embarazo" value="N">
-								<label for="no">No</label>
+								<input type="radio" name="Embarazo" value="N" id="noEmbarazo">
+								<label for="noEmbarazo">No</label>
 							</span>
+							<span class="checkbox" id="embarazo"></span>
 						</div>
 						<div class="radio radio-chico">
 							<p>¿Encamado?</p>
 							<span>
-								<input type="radio" name="Encamado" value="S">
-								<label for="si">Si</label>
+								<input type="radio" name="Encamado" value="S" id="siEncamado">
+								<label for="siEncamado">Si</label>
 							</span>
 							<span>
-								<input type="radio" name="Encamado" value="N">
-								<label for="no">No</label>
+								<input type="radio" name="Encamado" value="N" id="noEncamado">
+								<label for="noEncamado">No</label>
 							</span>
+							 <span class="checkbox" id="encamado"></span>
 						</div>
 					</div>
 
+				
 					<div class="agrupar">
 						<p>Fecha de nacimiento</p>
 						<input class="chico" type="date" name="FechaNac">
-						<input class="chico" type="number" name="Peso" placeholder="Peso">
-						<input class="chico" type="number" name="Estatura" placeholder="Estatura">
+						<input class="chico" type="number" name="Peso" placeholder="Peso" min="0">
+						<input class="chico" type="number" name="Estatura" placeholder="Estatura" min="0">
 					</div>
 
 					<div class="agrupar">
 						<div class="radio">
-							<p>Pension</p>
+							<p>Pension <span class="checkbox" id="pension"></span></p>
 							<span>
-								<input type="radio" name="Pension" value="AM">
+								<input type="radio" name="Pension" value="AM" id="adultoMayor">
 								<label for="adultoMayor">Adulto mayor</label>
 							</span>
 							<span>
-								<input type="radio" name="Pension" value="SS">
+								<input type="radio" name="Pension" value="SS" id="seguroSocial">
 								<label for="seguroSocial">Seguro social</label>
 							</span>
 							<span>
-								<input type="radio" name="Pension" value="NT">
+								<input type="radio" name="Pension" value="NT" id="noTiene">
 								<label for="noTiene">No tiene</label>
 							</span>
 						</div>
 
 						<div class="radio">
-							<p>Voto</p>
+							<p>Voto <span class="checkbox" id="voto"></span></p>
 								<span>
-								<input type="radio" name="Voto" value="D">
+								<input type="radio" name="Voto" value="D" id="duro">
 								<label for="duro">Duro</label>
 							</span>
 							<span>
-								<input type="radio" name="Voto" value="B">
-							<label for="blando">Blando</label>
+								<input type="radio" name="Voto" value="B" id="blando">
+								<label for="blando">Blando</label>
 							</span>
 							<span>
-								<input type="radio" name="Voto" value="O">
+								<input type="radio" name="Voto" value="O" id="oposicion">
 								<label for="oposicion">Oposicion</label>
 							</span>
 						</div>	
@@ -132,6 +134,7 @@
 				</form>
 			</div>
 		</div>
+		
 		
 		<div class="agrupar-pagina">
 			<div class="little-table">
@@ -168,19 +171,21 @@
 				</div>
 			</div>	
 			<div class="crear center">
+				<div class="inputs-crear">
 				<?php
 					if (isset($_GET['apartamento'])):
 						$ap_id = $_GET['apartamento'];
 						$apdata = apartamento($ap_id);
-						echo "<div class='datos'><label>Apartamento:</label> ".$apdata['NRO_APARTAMENTO']."</div><br><label>Bloque:</label> ".$apdata['NRO_BLOQUE']."<br>";
+						echo "<div class='datos'><label>Apartamento:</label> ".$apdata['NRO_APARTAMENTO']."</div>
+						<div class='datos'><label>Bloque:</label> ".$apdata['NRO_BLOQUE']."</div>";
 					?>
 					<input id="Apartamento" type="hidden" name="Apartamento" value="<?php echo $ap_id ?>">
 				<?php
 					else:
 				?>
-			
-				<label>Bloque:</label>
-					<select name="Bloque">
+				<div class="agrupar-crear">
+					<label>Bloque:</label>
+					<select class="select-css" name="Bloque">
 						<?php 
 							$bloques = bloques();
 							for($i = 0; $i < count($bloques) ; $i++):
@@ -188,9 +193,10 @@
 							<option value="<?php echo $bloques[$i]['ID'] ?>"> <?php echo $bloques[$i]['NRO_BLOQUE'] ?> </option>
 						<?php endfor; ?>
 					</select>
-				
-				<label>Apartamento:</label>
-					<select id="Apartamento" name="Apartamento">
+				</div>
+				<div class="agrupar-crear">
+					<label>Apartamento:</label>
+					<select class="select-css" id="Apartamento" name="Apartamento">
 						<?php
 							$aparts = apartamentosPorBloque(1);
 							for($i = 0; $i < count($aparts) ; $i++):
@@ -198,28 +204,25 @@
 							<option value="<?php echo $aparts[$i]['ID'] ?>"> <?php echo $aparts[$i]['NRO_APARTAMENTO'] ?> </option>
 						<?php endfor; ?>
 					</select>
-				
+				</div>
 				<?php endif ?>
-				<label>Estado de la vivienda:</label>
+				<div class="agrupar-crear">
+					<label>Estado de la vivienda:</label>
 					<select  class="select-css" name="Vivienda">
 						<option value="1">Propia</option>
 						<option value="2">Alquilada</option>
 						<option value="3">Asediada</option>
 					</select>
-				
-				<br>
+				</div>
+			</div>
 				<button id="create">Crear familia</button>
-				<a href="families.php?id=<?php echo $ap_id ?>" >Volver</a>
 			</div>
 		</div>
 	</div>
 		
-	<?php include("includes/footer.php")?>
 	<!-- Inicio de scripts -->
-
 	<script type="text/javascript">
 		$(document).ready(function () {
-
 			$("input[name='Genero']").click(function () {
 				switch ($("input[name='Genero']:checked").val()) {
 					case 'M':
@@ -248,44 +251,148 @@
 
 			$("#add").click(function (ev) {
 				ev.preventDefault();
-				var nombres = $("#formulario input[name='Nombres']").val();
-				var apellidos = $("#formulario input[name='Apellidos']").val();
-				var genero = $("#formulario input[name='Genero']:checked").val();
-				var dni = $("#formulario input[name='DNI']").val();
-				var telefono = $("#formulario input[name='Telefono']").val();
-				var posicion = $("#formulario select[name='Posicion']").val();
-				var embarazo = $("#formulario input[name='Embarazo']:checked").val();
-				var encamado = $("#formulario input[name='Encamado']:checked").val();
-				var pension = $("#formulario input[name='Pension']:checked").val();
-				var voto = $("#formulario input[name='Voto']:checked").val();
-				var nacimiento = $("#formulario input[name='FechaNac']").val();
-				var peso = $("#formulario input[name='Peso']").val();
-				var estatura = $("#formulario input[name='Estatura']").val();
+				var nombres = $("#formulario input[name='Nombres']");
+				var apellidos = $("#formulario input[name='Apellidos']");
+				var genero = $("#formulario input[name='Genero']:checked");
+				var dni = $("#formulario input[name='DNI']");
+				var telefono = $("#formulario input[name='Telefono']");
+				var posicion = $("#formulario select[name='Posicion']");
+				var embarazo = $("#formulario input[name='Embarazo']:checked");
+				var encamado = $("#formulario input[name='Encamado']:checked");
+				var pension = $("#formulario input[name='Pension']:checked");
+				var voto = $("#formulario input[name='Voto']:checked");
+				var nacimiento = $("#formulario input[name='FechaNac']");
+				var peso = $("#formulario input[name='Peso']");
+				var estatura = $("#formulario input[name='Estatura']");
+				
+				$("#mensajeError").html("");
+				//validacion
+				var campoVacio = "";
+				var radioVacio = "";
+				var mensajeError ="";
+				var validateInputs = function (name){
+					if (name.val() == "" || name.val() == "--POSICION--") {
+						name.css("border-color","#D32F2F");
+						campoVacio = "campo vacios";
+					}
+					else{
+						name.css("border-color","#61b4b3");
+						if (name == dni) {
+							if ($.isNumeric(dni.val()) == false) {
+								mensajeError += "DNI invalido</br>";
+								dni.css("border-color","#D32F2F");
+							} 
+						}
+						else if (name == telefono) {
+							if ($.isNumeric(telefono.val()) == false) {
+								mensajeError += "Numero de telefono invalido</br>";
+								telefono.css("border-color","#D32F2F");
+							} 
+						}
+					}
+				}
 
-				var str;
-				str += "<tr class='row100 body'>";
-				str += "<td  class='cell100 column1'>"+nombres+"</td>";
-				str += "<td  class='cell100 column2'>"+apellidos+"</td>";
-				str += "<td  class='cell100 column0'>"+genero+"</td>";
-				str += "<td  class='cell100 column4'>"+dni+"</td>";
-				str += "<td  class='cell100 column5'>"+telefono+"</td>";
-				str += "<td  class='cell100 column6'>"+posicion+"</td>";
-				str += "<td  class='cell100 column9'>"+embarazo+"</td>";
-				str += "<td  class='cell100 column9'>"+encamado+"</td>";
-				str += "<td  class='cell100 column0'>"+pension+"</td>";
-				str += "<td  class='cell100 column0'>"+voto+"</td>";
-				str += "<td  class='cell100 column8'>"+nacimiento+"</td>";
-				str += "<td  class='cell100 column0'>"+peso+"</td>";
-				str += "<td  class='cell100 column0'>"+estatura+"</td>";
-				str += "<td  class='cell100 column9'><button class='icon' onclick='$(this).parent().parent().remove()'><i class='fas fa-eraser'></i></button></td>"
-				str += "</tr>";
+				var validateRadio = function (name,id) {
+					if (!name.is(':checked')) {
+						campoRadio = "Hay opciones no marcadas";
+						id.html("<p class='mensaje'>Elige una opción</p>");
+					}
+					else{
+						campoRadio = "";
+						id.html("");
+					}
+				}
+				
+				validateInputs(nombres);
+				validateInputs(apellidos);
+				validateRadio($("#formulario input[name='Genero']:radio"), $("#genero"));
+				validateInputs(dni);
+				validateInputs(telefono);
+				validateInputs(posicion);
+				validateRadio($("#formulario input[name='Embarazo']:radio"), $("#embarazo"));
+				validateRadio($("#formulario input[name='Encamado']:radio"), $("#encamado"));
+				validateRadio($("#formulario input[name='Pension']:radio"), $("#pension"));
+				validateRadio($("#formulario input[name='Voto']:radio"), $("#voto"));
+				validateInputs(nacimiento);
+				validateInputs(peso);
+				validateInputs(estatura);
+				if (campoVacio != "") {
+					mensajeError = "Hay campos vacios</br>" + mensajeError;
+				}
+				if (campoRadio != "") {
+					mensajeError += campoRadio;
+				}
+				if (mensajeError != "") {
+					$("#mensajeError").html(mensajeError);
+					ev.preventDefault();
+				} //fin validacion
+				else{
+					$("#mensajeExito").html("¡Persona agrgada con éxito!");
+					var str;
+					str += "<tr class='row100 body'>";
+					str += "<td  class='cell100 column1'>"+nombres.val()+"</td>";
+					str += "<td  class='cell100 column2'>"+apellidos.val()+"</td>";
+					str += "<td  class='cell100 column0'>"+genero.val()+"</td>";
+					str += "<td  class='cell100 column4'>"+dni.val()+"</td>";
+					str += "<td  class='cell100 column5'>"+telefono.val()+"</td>";
+					str += "<td  class='cell100 column6'>"+posicion.val()+"</td>";
+					str += "<td  class='cell100 column9'>"+embarazo.val()+"</td>";
+					str += "<td  class='cell100 column9'>"+encamado.val()+"</td>";
+					str += "<td  class='cell100 column0'>"+pension.val()+"</td>";
+					str += "<td  class='cell100 column0'>"+voto.val()+"</td>";
+					str += "<td  class='cell100 column8'>"+nacimiento.val()+"</td>";
+					str += "<td  class='cell100 column0'>"+peso.val()+"</td>";
+					str += "<td  class='cell100 column0'>"+estatura.val()+"</td>";
+					str += "<td  class='cell100 column9'><button class='icon' onclick='$(this).parent().parent().remove()'><i class='fas fa-eraser'></i></button></td>"
+					str += "</tr>";
 
-				$("#tabla tbody").append(str);
+					$("#tabla tbody").append(str);
 
-				//emptyform();
-				//alert(nombres+" "+apellidos+" "+genero+"\n"+dni+"\n"+telefono+"\n"+posicion+"\n"+embarazo+" "+encamado+" "+pension+" "+voto+"\n"+nacimiento+"\n"+peso+" "+estatura);
+					//emptyform();
+					//alert(nombres+" "+apellidos+" "+genero+"\n"+dni+"\n"+telefono+"\n"+posicion+"\n"+embarazo+" "+encamado+" "+pension+" "+voto+"\n"+nacimiento+"\n"+peso+" "+estatura);
+				}
 			});
+			//Variables
+			var nombres = $("#formulario input[name='Nombres']");
+			var apellidos = $("#formulario input[name='Apellidos']");
+			var genero = $("#formulario input[name='Genero']:checked");
+			var dni = $("#formulario input[name='DNI']");
+			var telefono = $("#formulario input[name='Telefono']");
+			var posicion = $("#formulario select[name='Posicion']");
+			var embarazo = $("#formulario input[name='Embarazo']:checked");
+			var encamado = $("#formulario input[name='Encamado']:checked");
+			var pension = $("#formulario input[name='Pension']:checked");
+			var voto = $("#formulario input[name='Voto']:checked");
+			var nacimiento = $("#formulario input[name='FechaNac']");
+			var peso = $("#formulario input[name='Peso']");
+			var estatura = $("#formulario input[name='Estatura']");
+			//detencio de cambios en el input
+			var change = function (name){
+				name.change(function(){
+					if (name.val() != "") {
+						name.css("border-color","#61b4b3");
+					}
+					if (name == dni) {
+						if ($.isNumeric(dni.val()) == false) {
+							name.css("border-color","#D32F2F");
+						} 
+					}
+					else if (name == telefono) {
+						if ($.isNumeric(telefono.val()) == false) {
+							name.css("border-color","#D32F2F");
+						} 
+					}
+				});
+			}
 
+			change(nombres);
+			change(apellidos);
+			change(dni);
+			change(telefono);
+			change(posicion);
+			change(nacimiento);
+			change(peso);
+			change(estatura);
 			$("#create").click(function (ev) {
 				ev.preventDefault();
 				if ($("#tabla tbody tr").length) {
@@ -301,8 +408,8 @@
 				}
 				
 			});
-		});
-		function family2JSON() {
+			});
+			function family2JSON() {
 			var personas = $("#tabla tbody tr");
 			var tabla = new Array();
 			for (var i = 0 ; i < personas.length ; i++){
@@ -324,7 +431,7 @@
 				});
 			}
 			return tabla;
-		}
+			}
 		function emptyform() {
 			$("#formulario input[name='Nombres']").attr("value",null);
 			$("#formulario input[name='Apellidos']").attr("value",null);
@@ -361,5 +468,4 @@
 		});
 		
 	</script>
-</body>
-</html>
+	<?php include("includes/footer.php")?>

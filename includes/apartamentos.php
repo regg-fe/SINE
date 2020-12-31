@@ -25,18 +25,61 @@
 	<head>
 	</head>
 	<body>
-		<h2>Bloque: <?php echo $bloque['NRO_BLOQUE'] ?></h2>
-		<p>Personas: <?php echo $totalper ?></p>
-		<p>Familias: <?php echo $totalfam ?></p>
-		<p>Apartamentos: <?php echo $total ?></p>
-		<p>Bombonas: <?php echo $totalbom ?></p>
-		<p>Beneficios: <?php echo $totalben ?></p>
-		<p>Anexos: <?php echo $anexos ?></p>
-		<p>Estudiantes: <?php echo $escolarizacion ?></p>
-		<p>Trabajadores: <?php echo $trabajadores ?></p>
-		<p>Embarazadas: <?php echo $embarazadas ?></p>
-		<p>Emcamados: <?php echo $emcamados ?></p>
-		<p>Pensionados: <?php echo $pensionados ?></p>
+		<div class="container">
+			<div class="container2">
+				<div class="tabla">
+					<h2>Bloque: <?php echo $bloque['NRO_BLOQUE'] ?></h2>
+					<div class="info2">
+						<table>
+						<tr>
+						<td>Personas: </td>
+						<td><?php echo $totalper ?></td>
+						</tr>
+						<tr>
+						<td>Familias: </td>
+						<td><?php echo $totalfam ?></td>
+						</tr>
+						<tr>
+						<td>Apartamentos: </td>
+						<td><?php echo $total ?></td>
+						</tr>
+						<tr>
+						<td>Bombonas:</td>
+						<td> <?php echo $totalbom ?></td>
+						</tr>
+						<tr>
+						<td>Beneficios:</td>
+						<td> <?php echo $totalben ?></td>
+						</tr>
+						<tr>
+						<td>Anexos: </td>
+						<td><?php echo $anexos ?></td>
+						</tr>
+						<tr>
+						<td>Estudiantes: </td>
+						<td><?php echo $escolarizacion ?></td>
+						</tr>
+						<tr>
+						<td>Trabajadores: </td>
+						<td><?php echo $trabajadores ?></td>
+						</tr>
+						<tr>
+						<td>Embarazadas: </td>
+						<td><?php echo $embarazadas ?></td>
+						</tr>
+						<tr>
+						<td>Emcamados:</td>
+						<td> <?php echo $emcamados ?></td>
+						</tr>
+						<tr>
+						<td>Pensionados: </td>
+						<td><?php echo $pensionados ?></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+						
 		
 		<div id="visualizartwo"></div>
 	</body>

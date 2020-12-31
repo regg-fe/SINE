@@ -93,6 +93,7 @@ p.center{
 	display: flex;
 	align-items: center;
 	justify-content: space-evenly;
+	line-height: 26px;
 }
 .negrita{
 	font-weight: bold;
@@ -195,7 +196,7 @@ p.center{
 .search button:active{
 	color:  #63cdd3;
 }
-#wait{
+#wait, #mensaje{
 	width: 100%;
 	margin: 0 auto;
 	text-align: center;
@@ -205,6 +206,10 @@ p.center{
 	width: 360px;
 	margin-top: 10px;
 }
+#mensaje img{
+	width: 300px;
+	margin-top: 10px;
+}
 .card-table{
 	flex-direction: row;
 	width: 400px;
@@ -212,7 +217,10 @@ p.center{
 	color: #444;
 }
 .card-container .card-table:last-child{
-	width: 600px;
+	width: 760px;
+}
+.card-container .card-table:nth-child(6){
+	width: 480px;
 }
 .card-table h2{
 	margin-bottom: 15px;
@@ -269,6 +277,28 @@ p.center{
 .centrar{
 	text-align: center;
 }
+.radio-statistic{
+	display: inline-flex;
+}
+.radio-statistic input{
+	flex-direction: row;
+	margin-left: 20px;
+}
+.descentrar{
+	text-align: left;
+}
+.division{
+	background-color: #4c9ea3;
+    height: 8px;
+    margin: 20px 0px;
+}
+.parrafo{
+	margin-left: 65px;
+	position: relative;
+	top: 17px;
+
+}
+
 footer{
 	background: url(../img/congruent_pentagon.png);
 	height: 70px;

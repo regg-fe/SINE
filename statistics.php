@@ -20,10 +20,14 @@
 <html>
 	<head>
 		<title>SINE: Estadisticas</title>
+		<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
 		<script type="text/javascript" src="js/js.js"></script>
 		<script type="text/javascript" src="js/statistics.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/inputsTypeRadio.css">
+		<link rel="stylesheet" href="css/person.css">
+		<link rel="stylesheet" href="css/styleTable.css">
 	<?php if (!isset($_SESSION['usuario'])): ?>
-		<link rel="stylesheet" href="css/styleIndex.css">
+		<link rel="stylesheet" href="css/styleTable.css">
 	</head>
 	<body style= "background-image:url(img/imagen8.jpg) ">
 		<div class="transparencia">
@@ -38,35 +42,107 @@
 	<?php else: ?>
 		<?php include("includes/navbar.php") ?>
 	<?php endif ?>
+		<div class="welcome">
+			<h1>Estadisticas</h1>
+		</div>
+	<div class="container">
+		<dsiv class="container2">
+			<div class="tabla">
+		 		<h2>Bloques: </h2>
+		 		<div class="info2">
+					<table>
+					<tr>
+				 		<td>Personas registradas: </td>
+				 		<td><?php echo $personas ?></td>
+				 	</tr>
+				 	<tr>
+				 		<td>Familias registradas:</td>
+				 		<td> <?php echo $familias ?></td>
+				 	</tr>
+				 	<tr>
+				 		<td>Total de Bombonas: 
+				 		<td> <?php echo $bombonas ?></td>
+				 	</tr>
+				 	<tr>
+				 		<td>Personas discapacitadas: </td>
+				 		<td><?php echo $discapacitados ?></td>
+				 	</tr>
+				 	<tr>
+				 		<td>Personas enfermas: </td>
+				 		<td><?php echo $enfermos ?></td>
+				 	</tr>
+				 	<tr>
+						<td>Estudiantes:</td>
+						<td> <?php echo $estudiantes ?></td>
+					</tr>
+					<tr>
+				 		<td>Pensionados: </td>
+				 		<td><?php echo $pensionados ?></td>
+				 	</tr>
+				 	<tr>
+				 		<td>Lactantes: </td>
+				 		<td><?php echo $lactantes ?></td>
+				 	</tr>
+				 	<tr>
+				 		<td>Adultos Mayores: </td>
+				 		<td><?php echo $adultos ?></td>
+				 	</tr>
+				 	<tr>
+				 		<td>Embarazadas: </td>
+				 		<td><?php echo $embarazadas ?></td>
+				 	</tr>
+				 	<tr>
+				 		<td>Encamados: </td>
+				 		<td><?php echo $encamados ?></td>
+				 	</tr>
+				 	<tr>
+				 		<td>Apartamentos con una sola persona:</td>
+				 		<td> <?php echo $solos ?></td>
+				 	</tr>
+				 </table>
+		 	</div>
+		 </div>	
+		</div>
 
- 		<h1>Bloques: </h1>
- 		<p>Personas registradas: <?php echo $personas ?></p>
- 		<p>Familias registradas: <?php echo $familias ?></p>
- 		<p>Total de Bombonas: <?php echo $bombonas ?></p>
- 		<p>Personas discapacitadas: <?php echo $discapacitados ?></p>
- 		<p>Personas enfermas: <?php echo $enfermos ?></p>
-		<p>Estudiantes: <?php echo $estudiantes ?></p>
- 		<p>Pensionados: <?php echo $pensionados ?></p>
- 		<p>Lactantes: <?php echo $lactantes ?></p>
- 		<p>Adultos Mayores: <?php echo $adultos ?></p>
- 		<p>Embarazadas: <?php echo $embarazadas ?></p>
- 		<p>Encamados: <?php echo $encamados ?></p>
- 		<p>Apartamentos con una sola persona: <?php echo $solos ?></p>
-
+	<div class="card-container">
 		<?php for ($i=0; $i < $btns; $i++): ?>
-			<a id="prevent" onclick="openUrl('includes/apartamentos.php?id=<?php echo $tablaBloques[$i]['ID'] ?>','visualizar')"><button>Bloque <?php echo $tablaBloques[$i]['NRO_BLOQUE'] ?></button></a>
+		<a id="prevent" onclick="openUrl('includes/apartamentos.php?id=<?php echo $tablaBloques[$i]['ID'] ?>','visualizar')">
+			<div class="card">
+				<p class="negrita">Bloque <?php echo $tablaBloques[$i]['NRO_BLOQUE'] ?></p>
+			</div>
+		</a>
 		<?php endfor ?>
+		</div>
 		<div id="visualizar"></div>
-		<br><br>
-		
-		<?php if (isset($_SESSION['usuario'])): ?>
-			<a onclick="openUrl('includes/nutricion.php','mostrar')"><button>Nutricion</button></a>
-			<a onclick="openUrl('includes/condiciones.php','mostrar')"><button>Condiciones</button></a>
-			<a onclick="openUrl('includes/proteccion.php','mostrar')"><button>Proteccion Social</button></a>
-			<a onclick="openUrl('includes/vulnerables.php','mostrar')"><button>Personas Vulnerables</button></a>
-
+		<h2 class="parrafo">Otras opciones</h2>
+		<div class="division"></div>
+		<div class="card-container">
+			<?php if (isset($_SESSION['usuario'])): ?>
+			<a onclick="openUrl('includes/nutricion.php','mostrar')">
+				<div class="card">
+					<p class="negrita"> Nutricion</p>
+				</div>
+			</a>
+			<a onclick="openUrl('includes/condiciones.php','mostrar')">
+				<div class="card">
+					<p class="negrita">Condiciones</p>
+				</div>
+			</a>
+			<a onclick="openUrl('includes/proteccion.php','mostrar')">
+				<div class="card">
+					<p class="negrita">Proteccion Social</p>
+				</div>
+			</a>
+			<a onclick="openUrl('includes/vulnerables.php','mostrar')">
+				<div class="card">
+					<p class="negrita">Personas Vulnerables</p>
+				</div>
+			</a>
+		</div>
 			<div id="mostrar"></div>
-	<?php include("includes/footer.php") ?>
+	</div>
+
+
 	<?php endif ?>
-	</body>
-</html>
+	<?php include("includes/footer.php") ?>
+	
