@@ -7,6 +7,7 @@
 		$dbname = "nedb";
 		$conection = new mysqli($servername, $username, $password, $dbname);
 		if ($conection->connect_error)	die("Connection failed: " . $conection->connect_error);
+		$conection->set_charset("utf8");
 		return $conection;
 	}
 
@@ -655,7 +656,7 @@
 	function persona($id){
 		$persona = NULL;
 		$conn = conexion();
-		$sql = "SELECT P1.*, P2.APELLIDOS AS FAMILIA, CARNET.CODIGO_CARNET AS CODIGO_CARNET,CARNET.SERIAL_CARNET AS SERIAL_CARNET,APARTAMENTO.ID AS ID_APARTAMENTO, APARTAMENTO.NUMERO_APARTAMENTO AS NRO_APARTAMENTO,BLOQUE.ID AS ID_BLOQUE, BLOQUE.NUMERO_BLOQUE AS NRO_BLOQUE FROM PERSONA AS P1 LEFT JOIN PERSONA AS P2 ON (P1.ID_FAMILIA = P2.ID_FAMILIA AND P2.POSICION = 'JEFE') LEFT JOIN CARNET ON (P1.ID = CARNET.ID_PERSONA) LEFT JOIN FAMILIA ON (P1.ID_FAMILIA = FAMILIA.ID) LEFT JOIN APARTAMENTO ON (FAMILIA.ID_APARTAMENTO = APARTAMENTO.ID) LEFT JOIN BLOQUE ON (APARTAMENTO.ID_BLOQUE = BLOQUE.ID) WHERE P1.ID = $id";
+		$sql = "SELECT P1.*, P2.APELLIDOS AS FAMILIA, CARNET.ID AS ID_CARNET, CARNET.CODIGO_CARNET AS CODIGO_CARNET, CARNET.SERIAL_CARNET AS SERIAL_CARNET, APARTAMENTO.ID AS ID_APARTAMENTO, APARTAMENTO.NUMERO_APARTAMENTO AS NRO_APARTAMENTO, BLOQUE.ID AS ID_BLOQUE, BLOQUE.NUMERO_BLOQUE AS NRO_BLOQUE FROM PERSONA AS P1 LEFT JOIN PERSONA AS P2 ON (P1.ID_FAMILIA = P2.ID_FAMILIA AND P2.POSICION = 'JEFE') LEFT JOIN CARNET ON (P1.ID = CARNET.ID_PERSONA) LEFT JOIN FAMILIA ON (P1.ID_FAMILIA = FAMILIA.ID) LEFT JOIN APARTAMENTO ON (FAMILIA.ID_APARTAMENTO = APARTAMENTO.ID) LEFT JOIN BLOQUE ON (APARTAMENTO.ID_BLOQUE = BLOQUE.ID) WHERE P1.ID = $id";
 
 		$result = $conn->query($sql);
 
@@ -675,6 +676,7 @@
 			$persona['FECHA_NAC'] = $row['FECHA_NAC'];
 			$persona['PESO'] = $row['PESO'];
 			$persona['ESTATURA'] = $row['ESTATURA'];
+			$persona['ID_CARNET'] = $row['ID_CARNET'];
 			$persona['CODIGO_CARNET'] = $row['CODIGO_CARNET'];
 			$persona['SERIAL_CARNET'] = $row['SERIAL_CARNET'];
 			$persona['ID_FAMILIA'] = $row['ID_FAMILIA'];
@@ -1507,24 +1509,6 @@
 			return 0;
  		}
  	}
-
-	function repeat($dni,$id,$table) {
-		$con = conexion();
-		$tabla = NULL;
-		$sql = "SELECT * FROM $table WHERE DNI = '$dni'";
-		$result = $con->query($sql);
-		if ($result->num_rows > 0) {
-			$i = 0;
-			while ($row = $result->fetch_assoc()) {
-				$tabla[$i]['ID'] = $row['ID'];
-				$tabla[$i]['DNI'] = $row['DNI'];
-				$i++;
-			}
-			
-		} else {
-			return 0;
-		}
-	}
 
 	## Funciones para desarrollo ##
 
