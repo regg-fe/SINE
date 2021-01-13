@@ -16,7 +16,7 @@
 ?>
 		
 		<div class="welcome">
-			<?php if ((isset($name)) && (isset($surname))):?> <h1>Bienvenido, <?php echo $name." ".$surname ?> al panel de control</h1> <?php endif;?>
+			<?php if ((isset($name)) && (isset($surname))):?> <h1>Bienvenid@, <?php echo $name." ".$surname ?> al panel de control</h1> <?php endif;?>
 		</div>
 		<div class="container">
 			<div class="info">

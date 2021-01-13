@@ -58,7 +58,7 @@
 											<td class="cell100 column3"><?php echo $lideres[$i]['TELEFONO']?></td>
 											<td class="cell100 column3"><?php echo $lideres[$i]['NRO_BLOQUE']?></td>
 											<td class="cell100 column3"><a class="icon" href="editleader.php?op=1&id=<?php echo $lideres[$i]['ID'] ?>" title="Editar"><i class="fas fa-pen-alt"></i></a></td>
-											<td class="cell100 column3"><a class="icon" href="delete.php?op=1&id=<?php echo $lideres[$i]['ID'] ?>" title="Eliminar"><i class="fas fa-eraser"></i></a></td>	
+											<td class="cell100 column3"><a class="icon" href="#" title="Eliminar" onclick="Confirmar(1, <?php echo $lideres[$i]['ID'] ?>,0)"><i class="fas fa-eraser"></i></a></td>	
 										</tr>
 									</tbody>
 										<?php endfor?>
@@ -99,7 +99,7 @@
 											<td class="cell100 column3"><?php echo $brigadistas[$i]['TELEFONO']?></td>
 											<td class="cell100 column3"><?php echo $brigadistas[$i]['NRO_BLOQUE']?></td>
 											<td class="cell100 column3"><a class="icon" href="editleader.php?op=2&id=<?php echo $brigadistas[$i]['ID'] ?>" title="Editar"><i class="fas fa-pen-alt"></i></a></td>
-											<td class="cell100 column3"><a class="icon" href="delete.php?op=2&id=<?php echo $brigadistas[$i]['ID'] ?>" title="Eliminar"><i class="fas fa-eraser"></i></a></td>
+											<td class="cell100 column3"><a class="icon" href="#" title="Eliminar" onclick="Confirmar(2, <?php echo $brigadistas[$i]['ID'] ?>,0)"><i class="fas fa-eraser"></i></a></td>
 										</tr>
 									</tbody>
 									<?php endfor?>
@@ -135,5 +135,6 @@
 		
 	</script>
 		<?php include("includes/footer.php")?>
+		<?php include("includes/modal.php")?>
 	</body>
 </html>

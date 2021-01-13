@@ -47,7 +47,7 @@
 												<?php if (count($usuarios) == 1): ?>
 													<td class="cell100 column3"><a class="icon" href="#" title="Eliminar"><i class="fas fa-eraser"></i></a></td>
 												<?php else: ?>
-													<td class="cell100 column3"><a class="icon" href="delete.php?op=7&id=<?php echo $usuarios[$i]['ID'] ?>" title="Eliminar"><i class="fas fa-eraser"></i></a></td>
+													<td class="cell100 column3"><a class="icon" href="#" title="Eliminar" onclick="Confirmar(7, <?php echo $usuarios[$i]['ID'] ?>,0)"><i class="fas fa-eraser"></i></a></td>
 												<?php endif ?>
 											</tr>
 										</tbody>
@@ -82,5 +82,6 @@
 		
 	</script>
 		<?php include("includes/footer.php")?>
+		<?php include("includes/modal.php")?>
 	</body>
 </html>

@@ -205,3 +205,13 @@ td{
   margin-left: 1.5em;
   width: 20px;
 }
+
+#send {
+    text-align: center;
+    color: white;
+    width: 97%;
+    background: #4C9EA3;
+    padding: 7px;
+    border-radius: 5px;
+    display: none;
+}

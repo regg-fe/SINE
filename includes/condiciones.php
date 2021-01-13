@@ -27,39 +27,24 @@
 				<p id="text1">Porcentaje: </p>
 				<p id="text2"> </p>
 			</div>
-		<div id="result"><br>
-			<div id="result"><br>
 				<div class='container-table100'>
-					<div class='wrap-table100'>	
+					<div class='wrap-table100'>
 						<div class='table100 ver1'>
 							<div class='wrap-table100 js-pscroll'>
 								<div class='table100-nextcols'>
-									<table>
-										<thead id="head">
-											<tr class='row100 head'>
-												<th class="cell100 column1">Nombres</th>
-												<th class="cell100 column2">Apellidos</th>
-												<th class="cell100 column3">Cedula</th>
-												<th class="cell100 column9" id="h">Enfermedad/Discapacidad</th>
-											</tr>
-										</thead>
-										<tbody id="body"></tbody>
-									</table>
-								 </div>
+									<center><div id="send" style="display: none;">Cargando...</div></center>
+									<div id="result"><br>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-		</div>
-	</div>
+			</div>
 		</div>
 
 
 		<!--===============================================================================================-->	
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/bootstrap/js/popper.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
 	<script src="vendor/select2/select2.min.js"></script>
 <!--===============================================================================================-->

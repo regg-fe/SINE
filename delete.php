@@ -6,11 +6,11 @@
 		die();
 	}
 	$con = conexion();
-	$op = $con->real_escape_string($_GET['op']);
+	$op = $con->real_escape_string($_POST['op']);
 	if (empty($op)) {
 		header('Location:home.php');
 	}
-	$id = $con->real_escape_string($_GET['id']);
+	$id = $con->real_escape_string($_POST['id']);
 	if (empty($id)) {
 		header('Location:home.php');
 	}
@@ -38,7 +38,7 @@
 		break;
 
 		case 3: //PERSONAS O JEFE
-			$f = $con->real_escape_string($_GET['f']);
+			$f = $con->real_escape_string($_POST['a']);
 			if (empty($f)) {
 				header('Location:home.php');
 			}
@@ -69,7 +69,7 @@
 		break;
 
 		case 4: //FAMILIAS
-			$a = $con->real_escape_string($_GET['a']);
+			$a = $con->real_escape_string($_POST['a']);
 			if (empty($a)) {
 				header('Location:home.php');
 			}

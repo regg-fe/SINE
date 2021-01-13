@@ -50,7 +50,7 @@
 		$apartamentos = apartamentosPorBloque($_POST['idbl']);
 		
 		for ($i=0; $i < count($apartamentos); $i++) {
-			echo "<option value='".$apartamentos[$i]['ID']."'> ".$apartamentos[$i]['NRO_APARTAMENTO']." </option>";
+			echo "<option value='".$apartamentos[$i]['ID']."'>".$apartamentos[$i]['NRO_APARTAMENTO']."</option>";
 		}
 	}
 	
@@ -124,22 +124,41 @@
 				$salida = "";
 				$muestra = estadoDeNutricion($v);
 				if ($muestra != NULL) {
+						$salida .="<table>
+											<thead>
+												<tr class='row100 head'>
+													<th class='cell100 column1'>Nombres</th>
+													<th class='cell100 column2'>Apellidos</th>
+													<th class='cell100 column3'>Genero</th>
+													<th class='cell100 column4'>Fecha de nacimiento</th>
+													<th class='cell100 column5'>Cedula</th>
+													<th class='cell100 column6'>Telefono</th>
+													<th class='cell100 column6'>Peso</th>
+													<th class='cell100 column6'>Estatura</th>
+													<th class='cell100 column6'>IMC</th>
+													<th class='cell100 column7'>Familia</th>
+													<th class='cell100 column8'>Apartamento</th>
+													<th class='cell100 column9'>Bloque</th>
+												</tr>
+											</thead><tbody>";
 					for ($i=0; $i <count($muestra) ; $i++) { 
-						$salida.=" <tr class='row100 body descentrar'>
-								    	<td class='cell100 column1'><a href='aperson.php?id=".$muestra[$i]['ID']."' target='_blank'>".$muestra[$i]['NOMBRES']."</a></td>
-								    	<td class='cell100 column2'>".$muestra[$i]['APELLIDOS']."</td>
-								    	<td class='cell100 column3'>".$muestra[$i]['GENERO']."</td>
-								    	<td class='cell100 column4'>".$muestra[$i]['FECHA_NAC']."</td>
-								    	<td class='cell100 column5'>".$muestra[$i]['DNI']."</td>
-								    	<td class='cell100 column6>".$muestra[$i]['TELEFONO']."</td>
-								    	<td class='cell100 column6'>".$muestra[$i]['PESO']."</td>
-								    	<td class='cell100 column6'>".$muestra[$i]['ESTATURA']."</td>
-								    	<td class='cell100 column6'>".$muestra[$i]['IMC']."</td>
-								    	<td class='cell100 column7'>".$muestra[$i]['FAMILIA']."</td>
-								    	<td class='cell100 column8'>".$muestra[$i]['NRO_APARTAMENTO']."</td>
-								    	<td class='cell100 column9'>".$muestra[$i]['NRO_BLOQUE']."</td>
-								    </tr>";
+						$salida.="<tr class='row100 body descentrar'>
+									    	<td class='cell100 column1'><a href='aperson.php?id=".$muestra[$i]['ID']."' target='_blank'>".$muestra[$i]['NOMBRES']."</a></td>
+									    	<td class='cell100 column2'>".$muestra[$i]['APELLIDOS']."</td>
+									    	<td class='cell100 column3'>".$muestra[$i]['GENERO']."</td>
+									    	<td class='cell100 column4'>".$muestra[$i]['FECHA_NAC']."</td>
+									    	<td class='cell100 column5'>".$muestra[$i]['DNI']."</td>
+									    	<td class='cell100 column6>".$muestra[$i]['TELEFONO']."</td>
+									    	<td class='cell100 column6'>".$muestra[$i]['PESO']."</td>
+									    	<td class='cell100 column6'>".$muestra[$i]['ESTATURA']."</td>
+									    	<td class='cell100 column6'>".$muestra[$i]['IMC']."</td>
+									    	<td class='cell100 column7'>".$muestra[$i]['FAMILIA']."</td>
+									    	<td class='cell100 column8'>".$muestra[$i]['NRO_APARTAMENTO']."</td>
+									    	<td class='cell100 column9'>".$muestra[$i]['NRO_BLOQUE']."</td>
+									    </tr>";
 					}
+						$salida.="</tbody>
+								</table>";
 				} else {
 					$salida = "No hay personas con problemas de nutricion";
 				}
@@ -152,14 +171,25 @@
 				$salida = "";
 				$muestra = enfermos();
 				if ($muestra != NULL) {
-					for ($i=0; $i <count($muestra) ; $i++) { 
+						$salida .="<table>
+										<thead>
+											<tr class='row100 head'>
+												<th class='cell100 column1'>Nombres</th>
+												<th class='cell100 column2'>Apellidos</th>
+												<th class='cell100 column3'>Cedula</th>
+												<th class='cell100 column9'>Enfermedad</th>
+											</tr>
+										</thead><tbody>";
+					for ($i=0; $i <count($muestra) ; $i++) {
 						$salida.="<tr class='row100 body descentrar'>
 			    					<td class='cell100 column1'><a href='aperson.php?id=".$muestra[$i]['ID_PERSONA']."' target='_blank'>".$muestra[$i]['NOMBRE_PERSONA']."</a></td>
 			    					<td class='cell100 column2'>".$muestra[$i]['APELLIDO_PERSONA']."</td>
 			    					<td class='cell100 column3'>".$muestra[$i]['DNI_PERSONA']."</td>
 			    					<td class='cell100 column9'>".$muestra[$i]['NOMBRE_ENFERMEDAD']."</td>
-			    					    </tr>";
+			    			    </tr>";
 					}
+						$salida.="</tbody>
+								</table>";
 				} else {
 					$salida = "No hay personas con problemas de salud";
 				}
@@ -172,14 +202,25 @@
 				$salida = "";
 				$muestra = discapacitados();
 				if ($muestra != NULL) {
-					for ($i=0; $i <count($muestra) ; $i++) { 
+					$salida .="<table>
+									<thead>
+										<tr class='row100 head'>
+											<th class='cell100 column1'>Nombres</th>
+											<th class='cell100 column2'>Apellidos</th>
+											<th class='cell100 column3'>Cedula</th>
+											<th class='cell100 column9'>Discapacidad</th>
+										</tr>
+									</thead><tbody>";
+					for ($i=0; $i <count($muestra) ; $i++) {
 						$salida.="<tr class='row100 body descentrar'>
 			    					<td class='cell100 column21'><a href='aperson.php?id=".$muestra[$i]['ID_PERSONA']."' target='_blank'>".$muestra[$i]['NOMBRE_PERSONA']."</a></td>
 			    					<td class='cell100 column2'>".$muestra[$i]['APELLIDO_PERSONA']."</td>
 			    					<td class='cell100 column3'>".$muestra[$i]['DNI_PERSONA']."</td>
 			    					<td class='cell100 column9'>".$muestra[$i]['TIPO_DISCAPACIDAD']."</td>
-			    					    </tr>";
+			    			    </tr>";
 					}
+					$salida.="</tbody>
+							</table>";
 				} else {
 					$salida = "No hay personas con discapacidades";
 				}
@@ -192,25 +233,43 @@
 				$salida = "";
 				$muestra = embarazadas();
 				if ($muestra != NULL) {
-					for ($i=0; $i <count($muestra) ; $i++) { 
+						$salida .="<table>
+										<thead>
+											<tr class='row100 head'>
+												<th class='cell100 column1'>Nombres</th>
+												<th class='cell100 column2'>Apellidos</th>
+												<th class='cell100 column9'>Cedula</th>
+											</tr>
+										</thead><tbody>";
+					for ($i=0; $i <count($muestra) ; $i++) {
 						$salida.="<tr class='row100 body descentrar'>
 			    					<td class='cell100 column1'><a href='aperson.php?id=".$muestra[$i]['ID']."' target='_blank'>".$muestra[$i]['NOMBRES']."</a></td>
 			    					<td class='cell100 column2'>".$muestra[$i]['APELLIDOS']."</td>
 			    					<td class='cell100 column9'>".$muestra[$i]['DNI']."</td>
 			    					    </tr>";
 					}
+						$salida.="</tbody>
+							</table>";
 				} else {
-					$salida = "No hay personas con discapacidades";
+					$salida = "No hay personas embarazadas";
 				}
 				echo $salida;
 			break;
 			
 			case 5:
-			// PERSONAS EMBARAZADAS
+			// PERSONAS EMCAMADAS
 				$v = $_POST['val'];
 				$salida = "";
 				$muestra = encamados(true);
 				if ($muestra != NULL) {
+						$salida .="<table>
+										<thead>
+											<tr class='row100 head'>
+												<th class='cell100 column1'>Nombres</th>
+												<th class='cell100 column2'>Apellidos</th>
+												<th class='cell100 column9'>Cedula</th>
+											</tr>
+										</thead><tbody>";
 					for ($i=0; $i <count($muestra) ; $i++) { 
 						$salida.="<tr class='row100 body descentrar'>
 			    					<td class='cell100 column1'><a href='aperson.php?id=".$muestra[$i]['ID']."' target='_blank'>".$muestra[$i]['NOMBRES']."</a></td>
@@ -218,8 +277,10 @@
 			    					<td class='cell100 column9'>".$muestra[$i]['DNI']."</td>
 			    					    </tr>";
 					}
+						$salida.="</tbody>
+								</table>";
 				} else {
-					$salida = "No hay personas con discapacidades";
+					$salida = "No hay personas ecamadas";
 				}
 				echo $salida;
 			break;
@@ -228,15 +289,39 @@
 			// CARNETS
 				$v = $_POST['val'];
 				$salida = "";
+				$muestra = NULL;
 				if ($v == 8) {
 					$bolean = true;
 					$muestra = tienenCarnet($bolean);
 				} else if ($v == 9) {
 					$bolean = false;
 					$muestra = tienenCarnet($bolean);
+				} else {
+					$muestra = NULL;
 				}
 				if ($muestra != NULL) {
-					for ($i=0; $i <count($muestra) ; $i++) { 
+					if ($bolean == true) {
+						$salida .="<table>
+										<thead>
+											<tr class='row100 head'>
+												<th class='cell100 column1'>Nombres</th>
+												<th class='cell100 column2'>Apellidos</th>
+												<th class='cell100 column3'>Cedula</th>
+												<th class='cell100 column4'>Serial del Carnet</th>
+												<th class='cell100 column9'>Codgio del Carnet</th>
+											</tr>
+										</thead><tbody>";
+					} else {
+						$salida .="<table>
+										<thead>
+											<tr class='row100 head'>
+												<th class='cell100 column1'>Nombres</th>
+												<th class='cell100 column2'>Apellidos</th>
+												<th class='cell100 column9'>Cedula</th>
+											</tr>
+										</thead><tbody>";
+					}
+					for ($i=0; $i < count($muestra) ; $i++) {
 						if ($bolean == true) {
 										$salida.="<tr class='row100 body descentrar'>
 						    					<td class='cell100 column1'><a href='aperson.php?id=".$muestra[$i]['ID']."' target='_blank'>".$muestra[$i]['NOMBRES']."</a></td>
@@ -250,10 +335,11 @@
 			    					<td class='cell100 column1'><a href='aperson.php?id=".$muestra[$i]['ID']."' target='_blank'>".$muestra[$i]['NOMBRES']."</a></td>
 			    					<td class='cell100 column2'>".$muestra[$i]['APELLIDOS']."</td>
 			    					<td class='cell100 column9'>".$muestra[$i]['DNI']."</td>
-			    				</tr>
-			    				";
+			    				</tr>";
 						}
 					}
+					$salida.="</tbody>
+								</table>";
 				} else {
 					$salida = "No hay personas carnetizadas";
 				}
@@ -264,17 +350,26 @@
 			// PENSIONADOS
 				$v = $_POST['val'];
 				$salida = "";
+				$muestra = NULL;
 				if ($v == 10) {
-					$bolean = 'AM';
-					$muestra = pensionados($bolean);
+					$muestra = pensionados('AM');
 				} else if ($v == 11) {
-					$bolean = 'SS';
-					$muestra = pensionados($bolean);
+					$muestra = pensionados('SS');
 				} else if ($v == 12) {
-					$bolean = 'NT';
-					$muestra = pensionados($bolean);
+					$muestra = pensionados('NT');
+				} else {
+					$muestra = NULL;
 				}
 				if ($muestra != NULL) {
+					$salida .="<table>
+									<thead>
+										<tr class='row100 head'>
+											<th class='cell100 column1'>Nombres</th>
+											<th class='cell100 column2'>Apellidos</th>
+											<th class='cell100 column3'>Cedula</th>
+											<th class='cell100 column9'>Pension</th>
+										</tr>
+									</thead><tbody>";
 					for ($i=0; $i <count($muestra) ; $i++) { 
 						$salida.="<tr class='row100 body descentrar'>
 		    					<td class='cell100 column1'><a href='aperson.php?id=".$muestra[$i]['ID']."' target='_blank'>".$muestra[$i]['NOMBRES']."</a></td>
@@ -283,8 +378,10 @@
 		    					<td class='cell100 column9'>".$muestra[$i]['PENSION']."</td>
 		    				</tr>";
 					}
+					$salida.="</tbody>
+								</table>";
 				} else {
-					$salida = "No hay personas carnetizadas";
+					$salida = "No hay personas pensionadas";
 				}
 				echo $salida;
 			break;
@@ -295,14 +392,28 @@
 				$salida = "";
 				$muestra = lactantes();
 				if ($muestra != NULL) {
+					$salida .="<table>
+									<thead>
+										<tr class='row100 head'>
+											<th class='cell100 column1'>Nombres</th>
+											<th class='cell100 column2'>Apellidos</th>
+											<th class='cell100 column3'>Genero</th>
+											<th class='cell100 column9'>Fecha de Nacimiento</th>
+										</tr>
+									</thead>";
 					for ($i=0; $i <count($muestra) ; $i++) { 
-						$salida.="<tr class='row100 body descentrar'>
-			    					<td class='cell100 column1'><a href='aperson.php?id=".$muestra[$i]['ID']."' target='_blank'>".$muestra[$i]['NOMBRES']."</a></td>
-			    					<td class='cell100 column2'>".$muestra[$i]['APELLIDOS']."</td>
-			    					<td class='cell100 column3'>".$muestra[$i]['GENERO']."</td>
-			    					<td class='cell100 column9'>".$muestra[$i]['FECHA_NAC']."</td>
-			    				</tr>";
+						$salida.="
+								<tbody>
+									<tr class='row100 body descentrar'>
+				    					<td class='cell100 column1'><a href='aperson.php?id=".$muestra[$i]['ID']."' target='_blank'>".$muestra[$i]['NOMBRES']."</a></td>
+				    					<td class='cell100 column2'>".$muestra[$i]['APELLIDOS']."</td>
+				    					<td class='cell100 column3'>".$muestra[$i]['GENERO']."</td>
+				    					<td class='cell100 column9'>".$muestra[$i]['FECHA_NAC']."</td>
+			    					</tr>
+	    						";
 					}
+						$salida.="	</tbody>
+								</table>";
 				} else {
 					$salida = "No hay lactantes registrados";
 				}
@@ -315,17 +426,31 @@
 				$salida = "";
 				$muestra = adultosMayores();
 				if ($muestra != NULL) {
+						$salida .="<table>
+										<thead>
+											<tr class='row100 head'>
+												<th class='cell100 column1'>Nombres</th>
+												<th class='cell100 column2'>Apellidos</th>
+												<th class='cell100 column3'>Cedula</th>
+												<th class='cell100 column4'>Genero</th>
+												<th class='cell100 column9'>Fecha de Nacimiento</th>
+											</tr>
+										</thead>";
 					for ($i=0; $i <count($muestra) ; $i++) { 
-						$salida.="<tr class='row100 body descentrar'>
-			    					<td class='cell100 column1'><a href='aperson.php?id=".$muestra[$i]['ID']."' target='_blank'>".$muestra[$i]['NOMBRES']."</a></td>
-			    					<td class='cell100 column2'>".$muestra[$i]['APELLIDOS']."</td>
-			    					<td class='cell100 column3'>".$muestra[$i]['DNI']."</td>
-			    					<td class='cell100 column4'>".$muestra[$i]['GENERO']."</td>
-			    					<td class='cell100 column9'>".$muestra[$i]['FECHA_NAC']."</td>
-			    				</tr>";
+						$salida.="
+									<tbody>
+										<tr class='row100 body descentrar'>
+				    					<td class='cell100 column1'><a href='aperson.php?id=".$muestra[$i]['ID']."' target='_blank'>".$muestra[$i]['NOMBRES']."</a></td>
+				    					<td class='cell100 column2'>".$muestra[$i]['APELLIDOS']."</td>
+				    					<td class='cell100 column3'>".$muestra[$i]['DNI']."</td>
+				    					<td class='cell100 column4'>".$muestra[$i]['GENERO']."</td>
+				    					<td class='cell100 column9'>".$muestra[$i]['FECHA_NAC']."</td>
+				    				</tr>";
 					}
+					$salida.="		</tbody>
+								</table>";
 				} else {
-					$salida = "No hay lactantes registrados";
+					$salida = "No hay Adultos Mayores registrados";
 				}
 				echo $salida;
 			break;
@@ -336,14 +461,27 @@
 				$salida = "";
 				$muestra = apartamentosConUnaPersona();
 				if ($muestra != NULL) {
-					for ($i=0; $i < count($muestra); $i++) { 
-						$salida.="<tr class='row100 body descentrar'>
-			    					<td class='cell100 column1'><a href='aperson.php?id=".$muestra[$i]['ID_PERSONA']."' target='_blank'>".$muestra[$i]['NOMRBES']."</a></td>
-			    					<td class='cell100 column2'>".$muestra[$i]['APELLIDOS']."</td>
-			    					<td class='cell100 column3'>".$muestra[$i]['DNI']."</td>
-			    					<td class='cell100 column9'>".$muestra[$i]['NRO_APARTAMENTO']."</td>
-			    				</tr>";
+						$salida .="<table>
+										<thead>
+											<tr class='row100 head'>
+												<th class='cell100 column1'>Nombres</th>
+												<th class='cell100 column2'>Apellidos</th>
+												<th class='cell100 column3'>Cedula</th>
+												<th class='cell100 column9'>Numnero de Apartamento</th>
+											</tr>
+										</thead>";
+					for ($i=0; $i < count($muestra); $i++) {
+						$salida.="
+								<tbody>
+									<tr class='row100 body descentrar'>
+				    					<td class='cell100 column1'><a href='aperson.php?id=".$muestra[$i]['ID_PERSONA']."' target='_blank'>".$muestra[$i]['NOMRBES']."</a></td>
+				    					<td class='cell100 column2'>".$muestra[$i]['APELLIDOS']."</td>
+				    					<td class='cell100 column3'>".$muestra[$i]['DNI']."</td>
+				    					<td class='cell100 column9'>".$muestra[$i]['NRO_APARTAMENTO']."</td>
+				    				</tr>";
 					}
+						$salida.="	</tbody>
+								</table>";
 				} else {
 					$salida = "No existen apartamentos con una sola persona registrados";
 				}
@@ -530,4 +668,209 @@
 			break;
 		}
 	}
+
+	// OBTENER DATOS 
+	if (isset($_POST['o']) && isset($_POST['i'])) {
+		$id = $_POST['i'];
+		switch ($_POST['o']) {
+			case 0:
+				$r = obtenerInfo('TIPOAYUDATECNICA',$id);
+				if ($r != NULL) {
+					$json = json_encode($r);
+					echo $json;
+				} else {
+					echo 'error';
+				}
+			break;
+
+			case 1:
+				$r = obtenerInfo('BONO',$id);
+				if ($r != NULL) {
+					$json = json_encode($r);
+					echo $json;
+				} else {
+					echo 'error';
+				}
+			break;
+
+			case 2:
+				$r = obtenerInfo('PROGRAMASOCIAL',$id);
+				if ($r != NULL) {
+					$json = json_encode($r);
+					echo $json;
+				} else {
+					echo 'error';
+				}
+			break;
+
+			case 3:
+				$r = obtenerInfo('TIPODISCAPACIDAD',$id);
+				if ($r != NULL) {
+					$json = json_encode($r);
+					echo $json;
+				} else {
+					echo 'error';
+				}
+			break;
+
+			case 4:
+				$r = obtenerInfo('TIPOENFERMEDAD',$id);
+				if ($r != NULL) {
+					$json = json_encode($r);
+					echo $json;
+				} else {
+					echo 'error';
+				}
+			break;
+
+			case 5:
+				$r = obtenerInfo('MARCABOMBONA',$id);
+				if ($r != NULL) {
+					$json = json_encode($r);
+					echo $json;
+				} else {
+					echo 'error';
+				}
+			break;
+
+			case 6:
+				$r = obtenerInfo('TIPOBOMBONA',$id);
+				if ($r != NULL) {
+					$json = json_encode($r);
+					echo $json;
+				} else {
+					echo 'error';
+				}
+			break;
+
+			case 7:
+				$r = obtenerInfo('MEDICAMENTO',$id);
+				if ($r != NULL) {
+					$json = json_encode($r);
+					echo $json;
+				} else {
+					echo 'error';
+				}
+			break;
+
+			case 8:
+				$r = obtenerInfo('LUGAR',$id);
+				if ($r != NULL) {
+					$json = json_encode($r);
+					echo $json;
+				} else {
+					echo 'error';
+				}
+			break;
+		}
+	}
+	// EDITAR DATOS
+	if (isset($_POST['op']) && isset($_POST['e'])) {
+		$info = $_POST['e'];
+		switch ($_POST['op']) {
+			case 0:
+				$con = conexion();
+				$sql = "UPDATE TIPOAYUDATECNICA SET NOMBRE = '$info[0]' WHERE ID = '$info[1]'";
+				$result = $con->query($sql);
+				if (!$result) {
+					die("Query Error".mysqli_error($con));	
+				}
+				$con->close();
+				echo "Actualizado";
+			break;
+
+			case 1:
+				$con = conexion();
+				$sql = "UPDATE BONO SET NOMBRE = '$info[0]' WHERE ID = '$info[1]'";
+				$result = $con->query($sql);
+				if (!$result) {
+					die("Query Error".mysqli_error($con));	
+				}
+				$con->close();
+				echo "Actualizado";
+			break;
+
+			case 2:
+				$con = conexion();
+				$sql = "UPDATE PROGRAMASOCIAL SET NOMBRE = '$info[0]' WHERE ID = '$info[1]'";
+				$result = $con->query($sql);
+				if (!$result) {
+					die("Query Error".mysqli_error($con));	
+				}
+				$con->close();
+				echo "Actualizado";
+			break;
+
+			case 3:
+				$con = conexion();
+				$sql = "UPDATE TIPODISCAPACIDAD SET TIPO = '$info[0]' WHERE ID = '$info[1]'";
+				$result = $con->query($sql);
+				if (!$result) {
+					die("Query Error".mysqli_error($con));	
+				}
+				$con->close();
+				echo "Actualizado";
+			break;
+
+			case 4:
+				$con = conexion();
+				$sql = "UPDATE TIPOENFERMEDAD SET NOMBRE = '$info[0]' WHERE ID = '$info[1]'";
+				$result = $con->query($sql);
+				if (!$result) {
+					die("Query Error".mysqli_error($con));	
+				}
+				$con->close();
+				echo "Actualizado";
+			break;
+			
+			case 5:
+				$con = conexion();
+				$sql = "UPDATE MARCABOMBONA SET MARCA = '$info[0]' WHERE ID = '$info[1]'";
+				$result = $con->query($sql);
+				if (!$result) {
+					die("Query Error".mysqli_error($con));	
+				}
+				$con->close();
+				echo "Actualizado";
+			break;
+
+			case 6:
+				$con = conexion();
+				$sql = "UPDATE TIPOBOMBONA SET TIPO = '$info[0]' WHERE ID = '$info[1]'";
+				$result = $con->query($sql);
+				if (!$result) {
+					die("Query Error".mysqli_error($con));	
+				}
+				$con->close();
+				echo "Actualizado";
+			break;
+
+			case 7:
+				$con = conexion();
+				$sql = "UPDATE MEDICAMENTO SET NOMBRE = '$info[0]', TIPO = '$info[1]' WHERE ID = '$info[2]'";
+				$result = $con->query($sql);
+				if (!$result) {
+					die("Query Error".mysqli_error($con));	
+				}
+				$con->close();
+				echo "Actualizado";
+			break;
+
+			case 8:
+				$con = conexion();
+				$sql = "UPDATE LUGAR SET NOMBRE = '$info[0]', RIF = '$info[1]', TIPO = '$info[2]', TIPO_INSTITUCION = '$info[3]' WHERE ID = '$info[4]'";
+				$result = $con->query($sql);
+				if (!$result) {
+					die("Query Error".mysqli_error($con));	
+				}
+				$con->close();
+				echo "Actualizado";
+			break;
+		}
+	}
+
+
 ?>
+
+
+

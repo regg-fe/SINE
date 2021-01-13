@@ -5,7 +5,6 @@ function openUrl(url,contenedor) {
 }
 
 $(document).ready(function() {
-	$('#result').hide();
 	$('#text').hide();
 	$('#text1').hide();
 	$('#ia').hide();
@@ -23,56 +22,37 @@ $(document).ready(function() {
 	$("#a").click(function (ev) {
 		ope = 1;
 		value = $("input:radio[name=nutricion]:checked").val();
-		$('#result').fadeOut(500, function () {
-			recibirDatos(value,ope);
-			$('#result').fadeIn(500);
-		});
-		
+		recibirDatos(value,ope);	
 	});
+
 	$("#b").click(function (ev) {
 		ope = 1;
 		value = $("input:radio[name=nutricion]:checked").val();
-		$('#result').fadeOut(500, function () {
-			recibirDatos(value,ope);
-			$('#result').fadeIn(500);
-		});
+		recibirDatos(value,ope);
 	});
 
 	$("#c").click(function (ev) {
-		$("#h").show();
 		ope = 2;
 		value = $("input:radio[name=condiciones]:checked").val();
-		$('#result').fadeOut(500, function () {
-			recibirDatos(value,ope);
-			$('#result').fadeIn(500);
-		});
+		recibirDatos(value,ope);
 	});
+
 	$("#d").click(function (ev) {
-		$("#h").show();
 		ope = 3;
 		value = $("input:radio[name=condiciones]:checked").val();
-		$('#result').fadeOut(500, function () {
-			recibirDatos(value,ope);
-			$('#result').fadeIn(500);
-		});
+		recibirDatos(value,ope);
 	});
+
 	$("#e").click(function (ev) {
-		$("#h").hide();
 		ope = 4;
 		value = $("input:radio[name=condiciones]:checked").val();
-		$('#result').fadeOut(500, function () {
-			recibirDatos(value,ope);
-			$('#result').fadeIn(500);
-		});
+		recibirDatos(value,ope);
 	});
+
 	$("#f").click(function (ev) {
-		$("#h").hide();
 		ope = 5;
 		value = $("input:radio[name=condiciones]:checked").val();
-		$('#result').fadeOut(500, function () {
-			recibirDatos(value,ope);
-			$('#result').fadeIn(500);
-		});
+		recibirDatos(value,ope);
 	});
 
 	$("#g").click(function (ev) {
@@ -87,28 +67,14 @@ $(document).ready(function() {
 		$("#ie").hide();
 		$("#if").hide();
 		ope = 6;
-		$("#ga").click(function (ev) {
+		$("#Ga").click(function (ev) {
 			value = $("input:radio[name=select]:checked").val();
-			$('#result').fadeOut(500, function () {
-				recibirDatos(value,ope);
-				$("#serial").show();
-				$("#codigo").show();
-				$("#pension").hide();
-				$('#result').fadeIn(500);
-			});
-			
+			recibirDatos(value,ope);		
 		});
 
-		$("#gb").click(function (ev) {
+		$("#Gb").click(function (ev) {
 			value = $("input:radio[name=select]:checked").val();
-			$('#result').fadeOut(500, function () {
-				recibirDatos(value,ope);
-				$("#serial").hide();
-				$("#codigo").hide();
-				$("#pension").hide();
-				$('#result').fadeIn(500);
-			});
-			
+			recibirDatos(value,ope);
 		});
 	});
 
@@ -124,101 +90,63 @@ $(document).ready(function() {
 		$("#ie").show();
 		$("#if").show();
 		ope = 7;
-		$("#ia").click(function (ev) {
+		$("#Ia").click(function (ev) {
 			value = $("input:radio[name=select]:checked").val();
-			$('#result').fadeOut(500, function () {
-				recibirDatos(value,ope);
-				$('#pension').show();
-				$("#serial").hide();
-				$("#codigo").hide();
-				$('#result').fadeIn(500);
-			});
-			
+			recibirDatos(value,ope);
 		});
 
-		$("#ib").click(function (ev) {
+		$("#Ib").click(function (ev) {
 			value = $("input:radio[name=select]:checked").val();
-			$('#result').fadeOut(500, function () {
-				recibirDatos(value,ope);
-				$('#pension').show();
-				$("#serial").hide();
-				$("#codigo").hide();
-				$('#result').fadeIn(500);
-			});
-			
+			recibirDatos(value,ope);
 		});
 
-		$("#ic").click(function (ev) {
+		$("#Ic").click(function (ev) {
 			value = $("input:radio[name=select]:checked").val();
-			$('#result').fadeOut(500, function () {
-				recibirDatos(value,ope);
-				$('#pension').show();
-				$("#serial").hide();
-				$("#codigo").hide();
-				$('#result').fadeIn(500);
-			});
-			
+			recibirDatos(value,ope);
 		});
 	});
 	
 	$("#j").click(function (ev) {
+		// LACTANTES
 		ope = 8;
 		value = $("input:radio[name=vulvenables]:checked").val();
-		$('#result').fadeOut(500, function () {
 			recibirDatos(value,ope);
-			$('#dni').hide();
-			$('#genero').show();
-			$('#fc').show();
-			$('#apa').hide();
-			$('#result').fadeIn(500);
-		});
-		
 	});
 
 	$("#k").click(function (ev) {
+		// ADULTOS MAYORES
 		ope = 9;
 		value = $("input:radio[name=vulvenables]:checked").val();
-		$('#result').fadeOut(500, function () {
-			recibirDatos(value,ope);
-			$('#dni').show();
-			$('#genero').show();
-			$('#fc').show();
-			$('#apa').hide();
-			$('#result').fadeIn(500);
-		});
-
+		recibirDatos(value,ope);
 	});
 
 	$("#s").click(function (ev) {
+		//APARTAMENTOS CON UNA SOLA PERSONA
 		ope = 10;
 		value = $("input:radio[name=vulvenables]:checked").val();
-		$('#result').fadeOut(500, function () {
-			recibirDatos(value,ope);
-			$('#dni').show();
-			$('#apa').show();
-			$('#genero').hide();
-			$('#fc').hide();
-			$('#result').fadeIn(500);
-		});
-		
+		recibirDatos(value,ope);
 	});
 });
 
 
 function recibirDatos(value,ope) {
 	var v = value;
-	$.post('test.php',{val: v, o: ope}, function(data) {
-		
-			$('#body').html(data);
-			
+	$.ajax({
+		data: {val:v, o:ope},
+		url: "test.php",
+		type: "POST",
+		beforeSend: function(){
+			$('#send').css('display','block').slideDown(500);
+		},
+		success: function(data){
+			$('#send').css('display','none').slideUp(100);
 			$('#result').show();
-
-		
-		
+			$('#result').html(data);
+		},
 	});
 	recibirTotales(v,ope);
 }
-
+ 
 function recibirTotales(value,n) {
 	var v = value;
 	$.post('test.php', {e: v,o: n}, function(data) {

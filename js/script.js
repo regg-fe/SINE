@@ -13,7 +13,7 @@ $(function() {
 					data: {search},
 					success: function(response) {
 						let personas = JSON.parse(response);
-						let template = '';				
+						let template = '';			
 						personas.forEach( personas => {
 							template += `<tr class="row100 body">
 											<td class="cell100 column2"><a target="__blank" href="aperson.php?id=${personas.id}">${personas.nombre}</a></td>
@@ -26,7 +26,7 @@ $(function() {
 										</tr>`
 						});
 						if (Object.entries(personas).length === 0) {
-							template = "No hay registros";
+							template = "No hay registros<br><br>";
 							$('#body').html(template);
 							$('#result').show();
 						} else {

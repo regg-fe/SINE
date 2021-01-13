@@ -62,7 +62,7 @@
 								<div class="center">
 									<h2>Familia <?php echo $personas[$i][0]['FAMILIA'] ?></h2>
 									<a class="btn-families" href="afamily.php?id=<?php echo $familias[$i]['ID']?>" title="Ver detalles de la familia"><i class="fas fa-info-circle"></i></a>
-									<a class="btn-families" href="delete.php?op=4&id=<?php echo $familias[$i]['ID'] ?>&a=<?php echo $id_ap ?>" title="Eliminar Familia"><i class="fas fa-eraser"></i></a>
+									<a class="btn-families" href="#" title="Eliminar Familia" onclick="Confirmar(4, <?php echo $familias[$i]['ID'] ?>, <?php echo $id_ap ?>)"><i class="fas fa-eraser"></i></a>
 								</div>
 								
 								<div class="container-table100">
@@ -132,4 +132,5 @@
 		});
 		
 	</script>
+	<?php include("includes/modal.php")?>
 	<?php include("includes/footer.php")?>

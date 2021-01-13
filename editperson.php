@@ -189,7 +189,7 @@ Codigo del carnet:		<input type="text" name="codigo_carnet" <?php if($persona['C
 Serial del carnet:		<input type="text" name="serial_carnet" <?php if($persona['SERIAL_CARNET'] != null):?> value="<?php echo $persona['SERIAL_CARNET'] ?>" <?php endif;?>><br>
 <button id="carnet-update">Actualizar informacion</button>
 <br><br>
-
+<br><br>
 <?php if ($persona['ID_CARNET'] != null): ?>
 <strong>Bonos recibidos</strong>
 <table>
@@ -207,7 +207,8 @@ Serial del carnet:		<input type="text" name="serial_carnet" <?php if($persona['S
 		<?php endfor; ?>
 		<tr>
 			<td>
-				<select name="new_bono_id">
+				<button onclick="reload('new_bono',0)">Recargar</button>&nbsp;&nbsp;<a href="options.php" title="Agregar mas opciones" target="__blank"><button>Agregar</button></a>
+				<select name="new_bono_id" id="new_bono">
 					<?php
 						$bn_opt = bonos();
 						for ($i = 0 ; $i < count($bn_opt) ; $i++):
@@ -239,7 +240,8 @@ Serial del carnet:		<input type="text" name="serial_carnet" <?php if($persona['S
 		<?php endfor; ?>
 		<tr>
 			<td>
-				<select name="new_program_id">
+				<button onclick="reload('new_program',1)">Recargar</button>&nbsp;&nbsp;<a href="options.php" title="Agregar mas opciones" target="__blank"><button>Agregar</button></a>
+				<select name="new_program_id" id="new_program">
 					<?php
 						$ps_opt = programasSociales();
 						for ($i = 0 ; $i < count($ps_opt) ; $i++):
@@ -271,7 +273,8 @@ Serial del carnet:		<input type="text" name="serial_carnet" <?php if($persona['S
 		<?php endfor; ?>
 		<tr>
 			<td>
-				<select name="new_sick_id">
+				<button onclick="reload('new_sick',2)">Recargar</button>&nbsp;&nbsp;<a href="options.php" title="Agregar mas opciones" target="__blank"><button>Agregar</button></a>
+				<select name="new_sick_id" id="new_sick">
 					<?php
 						$enf_opt = enfermedades();
 						for ($i = 0 ; $i < count($enf_opt) ; $i++):
@@ -307,7 +310,8 @@ Serial del carnet:		<input type="text" name="serial_carnet" <?php if($persona['S
 		<?php endfor; ?>
 		<tr>
 			<td colspan="2">
-				<select name="new_medicine_id">
+				<button onclick="reload('new_medicine',3)" >Recargar</button>&nbsp;&nbsp;<a href="options.php" title="Agregar mas opciones" target="__blank"><button>Agregar</button></a>
+				<select name="new_medicine_id" id="new_medicine">
 					<?php
 						$med_opt = medicamentos();
 						for ($i = 0 ; $i < count($med_opt) ; $i++):
@@ -340,7 +344,8 @@ Serial del carnet:		<input type="text" name="serial_carnet" <?php if($persona['S
 		<?php endfor; ?>
 		<tr>
 			<td>
-				<select name="new_disc_id">
+				<button onclick="reload('new_disc',4)">Recargar</button>&nbsp;&nbsp;<a href="options.php" title="Agregar mas opciones" target="__blank"><button>Agregar</button></a>
+				<select name="new_disc_id" id="new_disc">
 					<?php
 						$disc_opt = discapacidades();
 						for ($i = 0 ; $i < count($disc_opt) ; $i++):
@@ -372,7 +377,8 @@ Serial del carnet:		<input type="text" name="serial_carnet" <?php if($persona['S
 		<?php endfor; ?>
 		<tr>
 			<td>
-				<select name="new_help_id">
+				<button onclick="reload('new_help',5)">Recargar</button>&nbsp;&nbsp;<a href="options.php" title="Agregar mas opciones" target="__blank"><button>Agregar</button></a>
+				<select name="new_help_id" id="new_help">
 					<?php
 						$hlp_opt = ayudasTec();
 						for ($i = 0 ; $i < count($hlp_opt) ; $i++):
@@ -409,7 +415,8 @@ Serial del carnet:		<input type="text" name="serial_carnet" <?php if($persona['S
 		<?php endfor; ?>
 		<tr>
 			<td>
-				<select name="new_job_place">
+				<button onclick="reload('new_job',6)">Recargar</button>&nbsp;&nbsp;<a href="options.php" title="Agregar mas opciones" target="__blank"><button>Agregar</button></a>
+				<select name="new_job_place" id="new_job">
 					<?php
 						$lg_opt = lugares();
 						for ($i = 0 ; $i < count($lg_opt) ; $i++):
@@ -446,7 +453,8 @@ Serial del carnet:		<input type="text" name="serial_carnet" <?php if($persona['S
 		<?php endfor; ?>
 		<tr>
 			<td>
-				<select name="new_sch_place">
+				<button onclick="reload('new_sch',7)">Recargar</button>&nbsp;&nbsp;<a href="options.php" title="Agregar mas opciones" target="__blank"><button>Agregar</button></a>
+				<select name="new_sch_place" id="new_sch">
 					<?php
 						$lg_opt = lugares();
 						for ($i = 0 ; $i < count($lg_opt) ; $i++):
@@ -610,8 +618,13 @@ Serial del carnet:		<input type="text" name="serial_carnet" <?php if($persona['S
 			data: data,
 			operation: operation,
 		}, function (data) {
-			alert(data);
 			location.reload();
+		});
+	}
+
+	function reload(id,ope) {
+		$.post('updateperson.php', {o: ope}, function(data) {
+			$('#'+id).html(data);
 		});
 	}
 </script>

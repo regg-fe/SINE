@@ -15,7 +15,7 @@
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<link rel="stylesheet" href="css/styleTable.css">
 	<link rel="stylesheet" type="text/css" href="css/insertForms.css">
-	<title>Opciones</title>
+	<title>SINE: Opciones</title>
 </head>
 <body>
 	<?php include("includes/navbar.php");?>
@@ -50,7 +50,7 @@
 											<td class="cell100 column1"><?php echo $i+1 ?></td>
 											<td class="cell100 column3"><?php echo $at[$i]['NOMBRE'] ?></td>
 											<td class="cell100 column9">
-												<button class="icon"><i class="fas fa-pen-alt"></i></button>
+												<button class="icon" onclick="update(<?php echo $at[$i]['ID']?>,0,'Ayuda Tecnica',0)"><i class="fas fa-pen-alt"></i></button>
 												<button class="icon" onclick="erase('AT',<?php echo $at[$i]['ID'] ?>);"><i class="fas fa-eraser"></i></button>
 											</td>
 										</tr>
@@ -100,7 +100,7 @@
 										<td class="cell100 column1"><?php echo $i+1 ?></td>
 										<td class="cell100 column3"><?php echo $bn[$i]['NOMBRE'] ?></td>
 										<td class="cell100 column9">
-											<button class="icon"><i class="fas fa-pen-alt"></i></button>
+											<button class="icon" onclick="update(<?php echo $bn[$i]['ID']?>,1,'Bono',0)"><i class="fas fa-pen-alt"></i></button>
 											<button class="icon" onclick="erase('BN',<?php echo $bn[$i]['ID'] ?>);"><i class="fas fa-eraser"></i></button>
 										</td>
 									</tr>
@@ -150,7 +150,7 @@
 										<td class="cell100 column1"><?php echo $i+1 ?></td>
 										<td class="cell100 column3"><?php echo $ps[$i]['NOMBRE'] ?></td>
 										<td class="cell100 column9">
-											<button class="icon"><i class="fas fa-pen-alt"></i></button>
+											<button class="icon" onclick="update(<?php echo $ps[$i]['ID']?>,2,'Programa Social',0)"><i class="fas fa-pen-alt"></i></button>
 											<button class="icon" onclick="erase('PS',<?php echo $ps[$i]['ID'] ?>);"><i class="fas fa-eraser"></i></button>
 										</td>
 									</tr>
@@ -199,7 +199,7 @@
 											<td class="cell100 column1"><?php echo $i+1 ?></td>
 											<td class="cell100 column3"><?php echo $dc[$i]['TIPO'] ?></td>
 											<td class="cell100 column9">
-												<button class="icon"><i class="fas fa-pen-alt"></i></button>
+												<button class="icon" onclick="update(<?php echo $dc[$i]['ID']?>,3,'Discapacidad',0)"><i class="fas fa-pen-alt"></i></button>
 												<button class="icon" onclick="erase('DC',<?php echo $dc[$i]['ID'] ?>);"><i class="fas fa-eraser"></i></button>
 											</td>
 										</tr>
@@ -249,7 +249,7 @@
 											<td class="cell100 column1"><?php echo $i+1 ?></td>
 											<td class="cell100 column3"><?php echo $ef[$i]['NOMBRE'] ?></td>
 											<td class="cell100 column9">
-												<button class="icon"><i class="fas fa-pen-alt"></i></button>
+												<button class="icon" onclick="update(<?php echo $dc[$i]['ID']?>,4,'Enfermedad',0)"><i class="fas fa-pen-alt"></i></button>
 												<button class="icon" onclick="erase('EF',<?php echo $ef[$i]['ID'] ?>);"><i class="fas fa-eraser"></i></button>
 											</td>
 										</tr>
@@ -299,7 +299,7 @@
 											<td class="cell100 column3"><?php echo $md[$i]['NOMBRE'] ?></td>
 											<td class="cell100 column4"><?php echo $md[$i]['TIPO'] ?></td>
 											<td class="cell100 column9">
-												<button class="icon"><i class="fas fa-pen-alt"></i></button>
+												<button class="icon" onclick="update(<?php echo $md[$i]['ID']?>,7,'Medicamento',1)"><i class="fas fa-pen-alt"></i></button>
 												<button class="icon" onclick="erase('MD',<?php echo $md[$i]['ID'] ?>);"><i class="fas fa-eraser"></i></button>
 											</td>
 										</tr>
@@ -358,7 +358,7 @@
 													<td class="cell100 column1"><?php echo $i+1 ?></td>
 													<td class="cell100 column3"><?php echo $mb[$i]['MARCA'] ?></td>
 													<td class="cell100 column9">
-														<button class="icon"><i class="fas fa-pen-alt"></i></button>
+														<button class="icon" onclick="update(<?php echo $mb[$i]['ID']?>,5,'Marca',0)"><i class="fas fa-pen-alt"></i></button>
 														<button class="icon" onclick="erase('MB',<?php echo $mb[$i]['ID'] ?>);"><i class="fas fa-eraser"></i></button>
 													</td>
 												</tr>
@@ -407,7 +407,7 @@
 												<td class="cell100 column1"><?php echo $i+1 ?></td>
 												<td class="cell100 column3"><?php echo $tb[$i]['TIPO'] ?></td>
 												<td class="cell100 column9">
-													<button class="icon"><i class="fas fa-pen-alt"></i></button>
+													<button class="icon" onclick="update(<?php echo $mb[$i]['ID']?>,6,'Tipo',0)"><i class="fas fa-pen-alt"></i></button>
 													<button class="icon" onclick="erase('TB',<?php echo $tb[$i]['ID'] ?>);"><i class="fas fa-eraser"></i></button>
 												</td>
 											</tr>
@@ -461,7 +461,7 @@
 												<td class="cell100 column5"><?php echo $lg[$i]['TIPO_INSTITUCION'] ?></td>
 												<td class="cell100 column3"><?php echo $lg[$i]['RIF'] ?></td>
 												<td class="cell100 column9">
-													<button class="icon"><i class="fas fa-pen-alt"></i></button>
+													<button class="icon" onclick="update(<?php echo $lg[$i]['ID']?>,8,'Institucion',2)"><i class="fas fa-pen-alt"></i></button>
 													<button class="icon" onclick="erase('LG',<?php echo $lg[$i]['ID'] ?>);"><i class="fas fa-eraser"></i></button>
 												</td>
 											</tr>
@@ -502,17 +502,32 @@
 				</div>
 			</div>
 		</div>
+		
 	<!-- Scripting -->
 	<script type="text/javascript">
 		function erase(name, id) {
-			$.post("opt.php", {
-				met: "erase",
-				name: name,
-				id: id,
-			}, function (ev) {
+			$("#delete").css("display","flex");
+			$("#delete").css("position","fixed");
+			$("#message").show();
+		
+			$("#deleteS").click(function (ev) {
+				ev.preventDefault();
+				$.post("opt.php", {
+					met: "erase",
+					name: name,
+					id: id,
+				}, function (data) {
+					location.reload();
+				});
+			});
+			
+			$("#deleteN").click(function (ev) {
+				ev.preventDefault();
+				$("#delete").css("display","none");
 				location.reload();
 			});
 		}
+
 		function add(name, data) {
 			$.post("opt.php", {
 				met: "add",
@@ -564,9 +579,6 @@
 	<!--Tabla===============================================================================================-->	
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor/bootstrap/js/popper.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-<!--===============================================================================================-->
 	<script src="vendor/select2/select2.min.js"></script>
 <!--===============================================================================================-->
 	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
@@ -581,4 +593,5 @@
 		});
 		
 	</script>
+	<?php include("includes/modal.php") ?>
 	<?php include("includes/footer.php")?>

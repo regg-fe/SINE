@@ -611,6 +611,35 @@
 		return $escolarizaciones;
 	}
 
+	function obtenerInfo($table,$id) {
+		$con = conexion();
+		$tab = NULL;
+		$sql = "SELECT * FROM $table WHERE ID = '$id'";
+		$result = $con->query($sql);
+		
+		if ($result->num_rows > 0) {
+			$i = 0;
+			while ($row = $result->fetch_assoc()) {
+				$tab[$i]['ID'] = $row['ID'];
+				if ($table == 'TIPODISCAPACIDAD' || $table == 'TIPOBOMBONA') {
+					$tab[$i]['NOMBRE'] = $row['TIPO'];
+				} else if ($table == 'MARCABOMBONA') {
+					$tab[$i]['NOMBRE'] = $row['MARCA'];
+				} else if ($table == 'MEDICAMENTO') {
+					$tab[$i]['NOMBRE'] = $row['NOMBRE'];
+					$tab[$i]['TIPO'] = $row['TIPO'];
+				} else if ($table == 'LUGAR') {
+					$tab[$i]['NOMBRE'] = $row['NOMBRE'];
+					$tab[$i]['RIF'] = $row['RIF'];
+				} else {
+					$tab[$i]['NOMBRE'] = $row['NOMBRE'];
+				}
+				$i++;
+			}
+		}
+		return $tab;
+	}
+
 	## Tabla PERSONA - LIDER - BRIGADISTA ##
 
 	function personas(){
@@ -1501,7 +1530,7 @@
 	}
 
 	function repeatDNI($dni,$con,$table) {
-		$sql = "SELECT * FROM $table WHERE DNI ='$dni'"; 
+		$sql = "SELECT * FROM $table WHERE DNI ='$dni'";
 		$result = $con->query($sql);
 		if (mysqli_num_rows($result) > 0) {
 			return 1;
@@ -1611,11 +1640,9 @@
 	/*
 		DETALLES:
 		1): VALIDAR CEDULA EN REGISTRO DE JEFE DE FAMILIA
-		2): AGREGAR CARNET Y DATOS ESPECIFICOS DE PERSONA
-		3): EDITAR INFORMACION DE PERSONA
-		4): ACOMODAR LINKS CON HTACCES
-		5): DISEÑO DEL MODULO ESTADISTICAS Y AGREGAR PERSONA
-		6): ACOMODAR BOTONES DE VOLVER
-		7): 
+		3): ACOMODAR LINKS CON HTACCES
+		4): DISEÑO DE EDITAR PERSONA
+		6): EDITAR OPCIONES
+		7): AFINAR DETALLES DE DISEÑO: APERSON, ACOMODAR BOTONES DE VOLVER
 	*/
 ?>

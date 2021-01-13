@@ -34,7 +34,7 @@
 			<header>
 				<ul class="menu">  
 					<li class="logo"><a href="#" alt="SINE"><img src="img/logoFinal.png"></a> </li>
-					<li class="items"><a href="#">Estadisticas</a></li>
+					<li class="items"><a href="statistics.php">Estadisticas</a></li>
 					<li class="items"><a href="login.php">Iniciar Sesión</a></li>
 				</ul>
 			</header>
@@ -104,14 +104,14 @@
 		 </div>	
 		</div>
 
-	<div class="card-container">
-		<?php for ($i=0; $i < $btns; $i++): ?>
-		<a id="prevent" onclick="openUrl('includes/apartamentos.php?id=<?php echo $tablaBloques[$i]['ID'] ?>','visualizar')">
-			<div class="card">
-				<p class="negrita">Bloque <?php echo $tablaBloques[$i]['NRO_BLOQUE'] ?></p>
-			</div>
-		</a>
-		<?php endfor ?>
+		<div class="card-container">
+			<?php for ($i=0; $i < $btns; $i++): ?>
+				<a onclick="openUrl('includes/apartamentos.php?id=<?php echo $tablaBloques[$i]['ID'] ?>','visualizar')">
+					<div class="card">
+						<p class="negrita">Bloque <?php echo $tablaBloques[$i]['NRO_BLOQUE'] ?></p>
+					</div>
+				</a>
+			<?php endfor ?>
 		</div>
 		<div id="visualizar"></div>
 		<h2 class="parrafo">Otras opciones</h2>
@@ -120,7 +120,7 @@
 			<?php if (isset($_SESSION['usuario'])): ?>
 			<a onclick="openUrl('includes/nutricion.php','mostrar')">
 				<div class="card">
-					<p class="negrita"> Nutricion</p>
+					<p class="negrita">Nutricion</p>
 				</div>
 			</a>
 			<a onclick="openUrl('includes/condiciones.php','mostrar')">
@@ -135,14 +135,12 @@
 			</a>
 			<a onclick="openUrl('includes/vulnerables.php','mostrar')">
 				<div class="card">
-					<p class="negrita">Personas Vulnerables</p>
+					<p class="negrita">Personas<br>Vulnerables</p>
 				</div>
 			</a>
 		</div>
 			<div id="mostrar"></div>
-	</div>
-
-
+	
 	<?php endif ?>
 	<?php include("includes/footer.php") ?>
 	
