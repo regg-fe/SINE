@@ -1,7 +1,6 @@
 <?php  
 	include_once 'functions.php';
 ?>
-
 <!DOCTYPE html>
 <html>
 	<head>
@@ -12,71 +11,46 @@
 	<body>
 		<div class="centrar">
 			<div class="radio-statistic">
-				
-				<div class="radio-container">
-					<input type="radio" id="g" name="proteccion">
-					<label for="g"> Carnets</label>
-					<p id="ga">
-						<input type="radio" id="Ga" name="select" value="8">
-						<label for="Ga"> Carnetizados</label>
-					</p>
-					<p id="gb">
-						<input type="radio" id="Gb" name="select" value="9">
-						<label for="Gb"> No carnetizados</label>
-					</p>
-				</div>
-
-				<div class="radio-container">
-					<input type="radio" id="i" name="proteccion">
-					<label for="i">Pensionados</label> 
-					<p id="ia">
-						<input type="radio" id="Ia" name="select" value="10">
-						<label for="Ia"> Amor Mayor</label>
-					</p>
-					<p id="ib">
-						<input type="radio" id="Ib" name="select" value="11">
-						<label for="Ib"> Seguro Social</label>
-					</p>
-					<p id="ic"><input type="radio" id="Ic" name="select" value="12">
-					<label for="Ic"> No pensionados</label></p>
-				</div>
+				<input type="radio" id="j" name="vulvenables" value="13">
+				<label for="j">Lactantes</label> 
+				<input type="radio" id="k" name="vulvenables" value="14">
+				<label for="k"> Adultos mayores</label>
+				<input type="radio" id="s" name="vulvenables" value="15">
+				<label for="s">Apartamentos con una sola persona</label> 
 			</div>
 
 			<div class="info">
 				<p id="text"></p>
 				<p id="text1">Porcentaje: </p>
-				<p id="text2"></p>
+				<p id="text2"> </p>
 			</div>
 			<div id="result"><br>
-
 				<div class='container-table100'>
 					<div class='wrap-table100'>	
 						<div class='table100 ver1'>
 							<div class='wrap-table100 js-pscroll'>
 								<div class='table100-nextcols'>
-									
 									<table>
 										<thead id="head">
-											<tr class='row100 head'>
+											<tr class='row100 head'>	
 												<th class="cell100 column1">Nombres</th>
 												<th class="cell100 column2">Apellidos</th>
-												<th class="cell100 column3">Cedula</th>
-												<th id="serial" class="cell100 column4">Serial del Carnet</th>
-												<th id="codigo" class="cell100 column9">Codigo del Carnet</th>
-												<th id="pension" class="cell100 column9">Tipo de pension</th>
-
+												<th class="cell100 column3" id="dni">Cedula</th>
+												<th class="cell100 column9" id="genero">Genero</th>
+												<th class="cell100 column9" id="fc">Fecha de Nacimiento</th>
+												<th class="cell100 column9" id="apa">Apartamento</th>
 											</tr>
 										</thead>
 										<tbody id="body"></tbody>
 									</table>
 								</div>
-								 </div>
 							</div>
 						</div>
 					</div>
 				</div>
+
+			</div>
 		</div>
-	</div>
 
 		<!--===============================================================================================-->	
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>

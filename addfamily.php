@@ -21,8 +21,8 @@
 				<div id="mensajeExito" class="exito"></div>
 				<form id="formulario">
 					<div class="agrupar">
-						<input type="text" name="Nombres" placeholder="Nombres">
-						<input type="text" name="Apellidos" placeholder="Apellidos">
+						<input class="separador" type="text" name="Nombres" placeholder="Nombres">
+						<input class="separador" type="text" name="Apellidos" placeholder="Apellidos">
 
 					</div>
 
