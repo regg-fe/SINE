@@ -32,7 +32,7 @@
     padding-bottom: 20px;
     margin-bottom: 20px;
 }
-.box-form h1{
+.box-form h1, .box-form h2{
     padding: 10px 0 20px 0;
     text-align: center;
     font-size: 25px;
@@ -275,6 +275,19 @@ input[type="radio"] {
     margin-left: 20px;
     display: block;
     color: #D32F2F;
+}
+.separador{
+    display: flex;
+    width: 460px;
+}
+.agrupar-input{
+    flex-direction: row;
+}
+.mediano{
+    width: 265px !important;
+}
+.info-edit{
+    margin-left: 20px;
 }
 @media all and (max-width:1280px){ 
     .agrupar input[type="text"], .agrupar select, .agrupar input[type="number"]{

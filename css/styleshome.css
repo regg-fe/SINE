@@ -284,6 +284,21 @@ p.center{
 	flex-direction: row;
 	margin-left: 20px;
 }
+.descentrar{
+	text-align: left;
+}
+.division{
+	background-color: #4c9ea3;
+    height: 8px;
+    margin: 20px 0px;
+}
+.parrafo{
+	margin-left: 65px;
+	position: relative;
+	top: 17px;
+
+}
+
 footer{
 	background: url(../img/congruent_pentagon.png);
 	height: 70px;
