@@ -247,10 +247,14 @@
 					<?php endif ?>
 				</div>
 			</div>
-			<form class="centrar" method="POST">
-				<input type="submit" value="Cerrar" name="btn">
-				<a class="agregar" href="editperson.php?id= <?php echo $id ?>"><button style="padding: 14px 19px" type="submit">Editar</button></a>
-			</form>
+			<div class="centrar">
+				<form style="display: inline" method="POST">
+					<input type="submit" value="Cerrar" name="btn">
+				</form>
+				<a class="agregar" href="editperson.php?id= <?php echo $id ?>">
+					<button type="submit" style="padding: 14px 19px">Editar</button>
+				</a>
+			</div>
 				
 		</div>	
 
