@@ -52,31 +52,31 @@
 <html>
 	<head>
 		<title>SINE: Añadir Persona</title>
+		<link rel="stylesheet" href="css/insertForms.css">
 	</head>
 		<?php include("includes/navbar.php")?>
 	<body>
-		<h2>Agregar Persona</h2>
+		<div class="container">
+		<div class="center">
+			<a href="afamily.php?id= <?php echo $efe ?>" title="Volver"><i class="fas fa-arrow-left"></i></a>	
+		</div>
+		
+		<div class="box-form">
+		<h1>Agregar Persona</h1>
 		<form action="addpeople.php?id=<?php echo $efe ?>" method="POST" id="formulario">
 			<?php if (isset($message)): ?> <p><?php echo $message ?></p> <?php endif ?>
-			Nombres: <input type="text" name="nombres" required> <br>
-			Apellidos: <input type="text" name="apellidos" required> <br>
+			
 
-			<div class="radio radio-chico">
-				<p>Genero</p>
-				<span>
-					<input type="radio" name="genero" id="gen" value="M">
-					<label for="masculino">Masculino</label>
-				</span>
-				<span>
-					<input type="radio" name="genero" value="F">
-					<label for="femenino">Femenino</label>
-				</span>
+			<div class="agrupar">
+				<input type="text" name="nombres" required placeholder="Nombres"> 
+				<input type="text" name="apellidos" required placeholder="Apellidos"> 
 			</div>
-			
-			Cedula: <input type="text" name="dni"><br>
-			Teléfono: <input type="text" name="tlf" required><br>
-			
-			Posición <select name="pos" required>
+			<div class="agrupar">	
+				<input type="text" name="dni" placeholder="Cedula de identidad">
+				<input type="text" name="tlf" required placeholder="Nro. Telefono">
+			</div>
+
+			<select class="select-css" name="pos" required>
 				<option selected disabled>--POSICION--</option>
 				<option value="HIJO">HIJO</option>
 				<option value="NIETO">NIETO</option>
@@ -90,43 +90,63 @@
 				<option value="OTROS">OTRO</option>
 			</select>
 
-			<div class="radio radio-chico">
-				<p>¿Embarazo?</p>
-				<span>
-					<input type="radio" name="emb" id="emb" value="S">
-					<label for="si">Si</label>
-				</span>
-				<span>
-					<input type="radio" name="emb" value="N">
-					<label for="no">No</label>
-				</span>
-			</div>
+			<div class="agrupar">
+				<div class="radio radio-chico">
+					<p>Genero</p>
+					<span>
+						<input type="radio" name="genero" id="gen" value="M">
+						<label for="gen">Masculino</label>
+					</span>
+					<span>
+						<input type="radio" name="genero" id="femenino" value="F">
+						<label for="femenino">Femenino</label>
+					</span>
+				</div>
+				
 
-			<div class="radio radio-chico">
-				<p>¿Encamado?</p>
-				<span>
-					<input type="radio" name="encamado" value="S">
-					<label for="si">Si</label>
-				</span>
-				<span>
-					<input type="radio" name="encamado" value="N">
-					<label for="no">No</label>
-				</span>
-			</div>
+				<div class="radio radio-chico">
+					<p>¿Embarazo?</p>
+					<span>
+						<input type="radio" name="emb" id="emb" value="S">
+						<label for="emb">Si</label>
+					</span>
+					<span>
+						<input type="radio" name="emb" id="emb-no" value="N">
+						<label for="emb-no">No</label>
+					</span>
+				</div>
 
+				<div class="radio radio-chico">
+					<p>¿Encamado?</p>
+					<span>
+						<input type="radio" name="encamado" id="encamado" value="S">
+						<label for="encamado">Si</label>
+					</span>
+					<span>
+						<input type="radio" name="encamado" id="no-encamado" value="N">
+						<label for="no-encamado">No</label>
+					</span>
+				</div>
+			</div>
+			<div class="agrupar">
+				<p>Fecha de nacimiento</p>
+				<input class="chico" type="date" name="f_nac" required> 
+				<input class="chico" type="number" name="peso" placeholder="Peso" required min="0"> 
+				<input class="chico" type="number" name="est" min="0" placeholder="Estatura" required>
+			</div>
 			<div class="agrupar">
 				<div class="radio">
 					<p>Pension</p>
 					<span>
-						<input type="radio" name="pension" value="AM">
+						<input type="radio" name="pension" id="adultoMayor" value="AM">
 						<label for="adultoMayor">Adulto mayor</label>
 					</span>
 					<span>
-						<input type="radio" name="pension" value="SS">
+						<input type="radio" name="pension" id="seguroSocial" value="SS">
 						<label for="seguroSocial">Seguro social</label>
 					</span>
 					<span>
-						<input type="radio" name="pension" value="NT">
+						<input type="radio" name="pension" id="noTiene" value="NT">
 						<label for="noTiene">No tiene</label>
 					</span>
 				</div>
@@ -134,30 +154,27 @@
 				<div class="radio">
 					<p>Voto</p>
 						<span>
-						<input type="radio" name="voto" value="D">
+						<input type="radio" name="voto" id="duro" value="D">
 						<label for="duro">Duro</label>
 					</span>
 					<span>
-						<input type="radio" name="voto" value="B">
+						<input type="radio" name="voto" id="blando" value="B">
 					<label for="blando">Blando</label>
 					</span>
 					<span>
-						<input type="radio" name="voto" value="O">
+						<input type="radio" name="voto" id="oposicion" value="O">
 						<label for="oposicion">Oposicion</label>
 					</span>
 				</div>	
 			</div>
 			
-			Fecha de nacimiento: <input type="date" name="f_nac" required> <br>
-
-			Peso: <input type="number" name="peso" required min="0"> <br>
-
-			Estatura: <input type="number" name="est" min="0" required> <br>
+		
 
 			<input type="hidden" name="id" value="<?php echo $efe ?>">
 			<input type="submit" name="enviar" value="Enviar">
-			<a href="afamily.php?id= <?php echo $efe ?>">Volver</a>
 		</form>
+	</div>
+	</div>
 		<?php include("includes/footer.php")?>
 	</body>
 	<!-- script -->

@@ -327,7 +327,7 @@
 					ev.preventDefault();
 				} //fin validacion
 				else{
-					$("#mensajeExito").html("¡Persona agrgada con éxito!");
+					$("#mensajeExito").html("¡Persona agregada con éxito!");
 					var str;
 					str += "<tr class='row100 body'>";
 					str += "<td  class='cell100 column1'>"+nombres.val()+"</td>";

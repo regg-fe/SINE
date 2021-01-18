@@ -33,11 +33,7 @@
 	<link rel="stylesheet" href="css/insertForms.css">
 	<link rel="stylesheet" href="css/styleTable.css">
 	<title>Editar persona</title>
-	<style type="text/css">
-		table, th, tr, td{
-			border: solid 1px black;
-		}
-	</style>
+
 <body>
 	<?php include("includes/navbar.php")?>
 
@@ -176,39 +172,56 @@
 	</div>
 
 
-</div>
+	</div>
 
 
 <!-- INFORMACION DEL CARNET -->
-<strong>Carnet de la patria</strong>
-<?php if ($persona['ID_CARNET'] === null) {
-	echo "(Aun no se ha registrado un carnet para esta persona)";
-} ?>
-<br>
-Codigo del carnet:		<input type="text" name="codigo_carnet" <?php if($persona['CODIGO_CARNET'] != null):?> value="<?php echo $persona['CODIGO_CARNET'] ?>" <?php endif;?>><br>
-Serial del carnet:		<input type="text" name="serial_carnet" <?php if($persona['SERIAL_CARNET'] != null):?> value="<?php echo $persona['SERIAL_CARNET'] ?>" <?php endif;?>><br>
-<button id="carnet-update">Actualizar informacion</button>
-<br><br>
-<br><br>
-<?php if ($persona['ID_CARNET'] != null): ?>
-<strong>Bonos recibidos</strong>
-<table>
-	<thead>
-		<tr>
-			<th>Nombre del bono</th>
-		</tr>
-	</thead>
-	<tbody>
-		<?php for($i = 0 ; $i < count($bonos) ; $i++):?>
-		<tr>
-			<td><?php echo $bonos[$i]['NOMBRE_BONO'];?></td>
-			<td><button onclick="updateInfo({ID: <?php echo $bonos[$i]['ID']?>}, 11);">Eliminar</button></td>
-		</tr>
-		<?php endfor; ?>
-		<tr>
-			<td>
-				<button onclick="reload('new_bono',0)">Recargar</button>&nbsp;&nbsp;<a href="options.php" title="Agregar mas opciones" target="__blank"><button>Agregar</button></a>
-				<select name="new_bono_id" id="new_bono">
+<div class="card-container">
+	<div class="card-table">
+		<h2 class="centrar">Carnet de la patria</h2>
+		<div class="agregar centrar" style="box-shadow: 3px 3px 10px rgba(0,0,0,0.2);">
+		<?php if ($persona['ID_CARNET'] === null) {
+			echo "(Aun no se ha registrado un carnet para esta persona)";
+		} ?>
+		<br>
+		Codigo del carnet:		<input type="text" name="codigo_carnet" <?php if($persona['CODIGO_CARNET'] != null):?> value="<?php echo $persona['CODIGO_CARNET'] ?>" <?php endif;?>><br>
+		Serial del carnet:		<input type="text" name="serial_carnet" <?php if($persona['SERIAL_CARNET'] != null):?> value="<?php echo $persona['SERIAL_CARNET'] ?>" <?php endif;?>><br>
+		<button id="carnet-update" style="margin-top: 20px;">Actualizar informacion</button>
+		</div>
+	</div>
+	<!--Bono-->
+	<?php if ($persona['ID_CARNET'] != null): ?>
+	<div class="card-table">
+	<h2 class="centrar">Bonos recibidos</h2>
+	<div class="wrap-table100">	
+				<div class="table100 ver1">
+					<div class="wrap-table100 js-pscroll">
+						<div class="table100-nextcols">
+							<table>
+								<thead>
+									<tr  class="row100 head">
+										<th class="cell100 column2">Nombre del bono</th>
+										<th class="cell100 column3">Opciones</th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php for($i = 0 ; $i < count($bonos) ; $i++):?>
+									<tr class="row100 body">
+										<td class="cell100 column2"><?php echo $bonos[$i]['NOMBRE_BONO'];?></td>
+										<td class="cell100 column0"><button onclick="updateInfo({ID: <?php echo $bonos[$i]['ID']?>}, 11);"><i class="fas fa-eraser"></button></td>
+									</tr>
+									<?php endfor; ?>
+									
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="agregar centrar">
+				<button onclick="reload('new_bono',0)"><i class="fas fa-redo-alt"></i></button><a href="options.php" title="Agregar mas opciones" target="__blank"><button><i class="fas fa-plus"></i></button></a>
+				<select class="select-css" name="new_bono_id" id="new_bono">
 					<?php
 						$bn_opt = bonos();
 						for ($i = 0 ; $i < count($bn_opt) ; $i++):
@@ -216,135 +229,129 @@ Serial del carnet:		<input type="text" name="serial_carnet" <?php if($persona['S
 					<option value="<?php echo $bn_opt[$i]['ID']?>"><?php echo $bn_opt[$i]['NOMBRE']?></option>
 					<?php endfor;?>
 				</select>
-			</td>
-			<td><button id="bono-update">Agregar bono</button></td>
-		</tr>
-	</tbody>
-</table>
-<input type="hidden" name="id_carnet" value="<?php echo $persona['ID_CARNET']; ?>">
-<?php endif;?>
-<br>
-<strong>Programas sociales asignados a la persona</strong>
-<table>
-	<thead>
-		<tr>
-			<th>Nombre del programa</th>
-		</tr>
-	</thead>
-	<tbody>
-		<?php for($i = 0 ; $i < count($programas) ; $i++):?>
-		<tr>
-			<td><?php echo $programas[$i]['NOMBRE'];?></td>
-			<td><button onclick="updateInfo({ID: <?php echo $programas[$i]['ID']?>}, 12);">Eliminar</button></td>
-		</tr>
-		<?php endfor; ?>
-		<tr>
-			<td>
-				<button onclick="reload('new_program',1)">Recargar</button>&nbsp;&nbsp;<a href="options.php" title="Agregar mas opciones" target="__blank"><button>Agregar</button></a>
-				<select name="new_program_id" id="new_program">
-					<?php
-						$ps_opt = programasSociales();
-						for ($i = 0 ; $i < count($ps_opt) ; $i++):
-					?>
-					<option value="<?php echo $ps_opt[$i]['ID']?>"><?php echo $ps_opt[$i]['NOMBRE']?></option>
-					<?php endfor;?>
-				</select>
-			</td>
-			<td><button id="program-update">Agregar programa social</button></td>
-		</tr>
-	</tbody>
-</table>
-<br><br>
+				<button id="bono-update">Agregar bono</button></td>
+			</div>
+								
+		<input type="hidden" name="id_carnet" value="<?php echo $persona['ID_CARNET']; ?>">
+		<?php endif;?>
+	</div>
 
-<!-- INFORMACION DE SALUD -->
-<strong>Enfermedades que presenta la persona</strong><br>
-<table>
-	<thead>
-		<tr>
-			<th>Nombre de la enfermedad</th>
-		</tr>
-	</thead>
-	<tbody>
-		<?php for($i = 0 ; $i < count($enfermedades) ; $i++):?>
-		<tr>
-			<td><?php echo $enfermedades[$i]['NOMBRE_ENFERMEDAD'];?></td>
-			<td><button onclick="updateInfo({ID: <?php echo $enfermedades[$i]['ID']?>}, 13);">Eliminar</button></td>
-		</tr>
-		<?php endfor; ?>
-		<tr>
-			<td>
-				<button onclick="reload('new_sick',2)">Recargar</button>&nbsp;&nbsp;<a href="options.php" title="Agregar mas opciones" target="__blank"><button>Agregar</button></a>
+	<div class="card-table">
+		<h2 class="centrar">Programas sociales asignados a la persona</h2>
+		<div class="wrap-table100">	
+				<div class="table100 ver1">
+					<div class="wrap-table100 js-pscroll">
+						<div class="table100-nextcols">
+							<table>
+								<thead>
+									<tr  class="row100 head">
+										<th class="cell100 column2">Nombre del programa</th>
+										<th class="cell100 column3">Opciones</th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php for($i = 0 ; $i < count($programas) ; $i++):?>
+									<tr>
+										<td class="cell100 column2"><?php echo $programas[$i]['NOMBRE'];?></td>
+										<td class="cell100 column3"><button onclick="updateInfo({ID: <?php echo $programas[$i]['ID']?>}, 12);"><i class="fas fa-eraser"></button></td>
+									</tr>
+									<?php endfor; ?>
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="agregar centrar">
+		
+			<button onclick="reload('new_program',1)"><i class="fas fa-redo-alt"></i></button><a href="options.php" title="Agregar mas opciones" target="__blank"><button><i class="fas fa-plus"></i></button></a>
+			<select name="new_program_id" id="new_program">
+				<?php
+					$ps_opt = programasSociales();
+					for ($i = 0 ; $i < count($ps_opt) ; $i++):
+													?>
+				<option value="<?php echo $ps_opt[$i]['ID']?>"><?php echo $ps_opt[$i]['NOMBRE']?></option>
+				<?php endfor;?>
+			</select>
+		<button id="program-update">Agregar programa</button>
+	</div>
+	</div>
+
+
+	<!-- INFORMACION DE SALUD -->
+	<div class="card-table">
+		<h2 class="centrar">Enfermedades que presenta la persona</h2><br>
+		<div class="wrap-table100">	
+				<div class="table100 ver1">
+					<div class="wrap-table100 js-pscroll">
+						<div class="table100-nextcols">
+							<table>
+								<thead>
+									<tr  class="row100 head">
+										<th class="cell100 column2">Nombre de la enfermedad</th>
+										<th class="cell100 column3">Opciones</th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php for($i = 0 ; $i < count($enfermedades) ; $i++):?>
+									<tr>
+										<td class="cell100 column2"><?php echo $enfermedades[$i]['NOMBRE_ENFERMEDAD'];?></td>
+										<td class="cell100 column3"><button onclick="updateInfo({ID: <?php echo $enfermedades[$i]['ID']?>}, 13);"><i class="fas fa-eraser"></button></td>
+									</tr>
+									<?php endfor; ?>
+									
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="agregar centrar">
+				<button onclick="reload('new_sick',2)"><i class="fas fa-redo-alt"></i></button><a href="options.php" title="Agregar mas opciones" target="__blank"><button><i class="fas fa-plus"></i></button></a>
 				<select name="new_sick_id" id="new_sick">
-					<?php
-						$enf_opt = enfermedades();
-						for ($i = 0 ; $i < count($enf_opt) ; $i++):
-					?>
-					<option value="<?php echo $enf_opt[$i]['ID']?>"><?php echo $enf_opt[$i]['NOMBRE']?></option>
-					<?php endfor;?>
+				<?php
+					$enf_opt = enfermedades();
+					for ($i = 0 ; $i < count($enf_opt) ; $i++):
+				?>
+				<option value="<?php echo $enf_opt[$i]['ID']?>"><?php echo $enf_opt[$i]['NOMBRE']?></option>
+				<?php endfor;?>
 				</select>
-			</td>
-			<td><button id="sickness-update">Agregar enfermedad</button></td>
-		</tr>
-	</tbody>
-</table>
+										
+				<button id="sickness-update">Agregar enfermedad</button>
+			</div class="agregar centrar">
+	</div>
 
-<br>
-
-<strong>Medicamentos recetados a la persona</strong><br>
-<table>
-	<thead>
-		<tr>
-			<th>Nombre del medicamento</th>
-			<th>Tipo de medicamento</th>
-			<th>Descripcion de la receta</th>
-		</tr>
-	</thead>
-	<tbody>
-		<?php for($i = 0 ; $i < count($recetas) ; $i++):?>
-		<tr>
-			<td><?php echo $recetas[$i]['NOMBRE_MEDICAMENTO'];?></td>
-			<td><?php echo $recetas[$i]['TIPO_MEDICAMENTO'];?></td>
-			<td><?php echo $recetas[$i]['DESCRIPCION'];?></td>
-			<td><button onclick="updateInfo({ID: <?php echo $recetas[$i]['ID']?>}, 14);">Eliminar</button></td>
-		</tr>
-		<?php endfor; ?>
-		<tr>
-			<td colspan="2">
-				<button onclick="reload('new_medicine',3)" >Recargar</button>&nbsp;&nbsp;<a href="options.php" title="Agregar mas opciones" target="__blank"><button>Agregar</button></a>
-				<select name="new_medicine_id" id="new_medicine">
-					<?php
-						$med_opt = medicamentos();
-						for ($i = 0 ; $i < count($med_opt) ; $i++):
-					?>
-					<option value="<?php echo $med_opt[$i]['ID']?>"><?php echo $med_opt[$i]['NOMBRE']?> (<?php echo $med_opt[$i]['TIPO']?>)</option>
-					<?php endfor;?>
-				</select>
-			</td>
-			<td><input type="text" name="new_medicine_description"></td>
-			<td><button id="medicine-update">Agregar receta</button></td>
-		</tr>
-	</tbody>
-</table>
-
-<br>
-
-<strong>Discapacidades que presenta la persona</strong><br>
-<table>
-	<thead>
-		<tr>
-			<th>Nombre de la discapacidad</th>
-		</tr>
-	</thead>
-	<tbody>
-		<?php for($i = 0 ; $i < count($discapacidades) ; $i++):?>
-		<tr>
-			<td><?php echo $discapacidades[$i]['TIPO_DISCAPACIDAD'];?></td>
-			<td><button onclick="updateInfo({ID: <?php echo $discapacidades[$i]['ID']?>}, 15);">Eliminar</button></td>
-		</tr>
-		<?php endfor; ?>
-		<tr>
+	<div class="card-table">
+		<h2 class="centrar">Discapacidades que presenta la persona</h2><br>
+		<div class="wrap-table100">	
+				<div class="table100 ver1">
+					<div class="wrap-table100 js-pscroll">
+						<div class="table100-nextcols">
+							<table>
+								<thead>
+									<tr  class="row100 head">
+										<th class="cell100 column2">Nombre de la discapacidad</th>
+										<th class="cell100 column3">Opciones</th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php for($i = 0 ; $i < count($discapacidades) ; $i++):?>
+									<tr>
+										<td class="cell100 column2"><?php echo $discapacidades[$i]['TIPO_DISCAPACIDAD'];?></td>
+										<td class="cell100 column3"><button onclick="updateInfo({ID: <?php echo $discapacidades[$i]['ID']?>}, 15);"><i class="fas fa-eraser"></button></td>
+									</tr>
+									<?php endfor; ?>
+									
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="agregar centrar">
 			<td>
-				<button onclick="reload('new_disc',4)">Recargar</button>&nbsp;&nbsp;<a href="options.php" title="Agregar mas opciones" target="__blank"><button>Agregar</button></a>
+				<button onclick="reload('new_disc',4)"><i class="fas fa-redo-alt"></i></button><a href="options.php" title="Agregar mas opciones" target="__blank"><button><i class="fas fa-plus"></i></button></a>
 				<select name="new_disc_id" id="new_disc">
 					<?php
 						$disc_opt = discapacidades();
@@ -355,132 +362,205 @@ Serial del carnet:		<input type="text" name="serial_carnet" <?php if($persona['S
 				</select>
 			</td>
 			<td><button id="disc-update">Agregar discapacidad</button></td>
-		</tr>
-	</tbody>
-</table>
+		</div>
+	</div>
+<div class="card-table">
+		<h2 class="centrar">Medicamentos recetados a la persona</h2><br>
+		<div class="wrap-table100">	
+				<div class="table100 ver1">
+					<div class="wrap-table100 js-pscroll">
+						<div class="table100-nextcols">
+							<table>
+								<thead>
+									<tr  class="row100 head">
+										<th class="cell100 column2">Nombre del medicamento</th>
+										<th class="cell100 column8">Tipo de medicamento</th>
+										<th class="cell100 column4">Descripcion de la receta</th>
+										<th class="cell100 column3">Opciones</th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php for($i = 0 ; $i < count($recetas) ; $i++):?>
+									<tr>
+										<td class="cell100 column2"><?php echo $recetas[$i]['NOMBRE_MEDICAMENTO'];?></td>
+										<td class="cell100 column8"><?php echo $recetas[$i]['TIPO_MEDICAMENTO'];?></td>
+										<td class="cell100 column4"><?php echo $recetas[$i]['DESCRIPCION'];?></td>
+										<td class="cell100 column3"><button onclick="updateInfo({ID: <?php echo $recetas[$i]['ID']?>}, 14);"><i class="fas fa-eraser"></button></td>
+									</tr>
+									<?php endfor; ?>
+									
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="agregar centrar">
+			<td colspan="2">
+				<button onclick="reload('new_medicine',3)" ><i class="fas fa-redo-alt"></i></button><a href="options.php" title="Agregar mas opciones" target="__blank"><button><i class="fas fa-plus"></i></button></a>
+				<select name="new_medicine_id" id="new_medicine">
+				<?php
+					$med_opt = medicamentos();
+						for ($i = 0 ; $i < count($med_opt) ; $i++):
+						?>
+						<option value="<?php echo $med_opt[$i]['ID']?>"><?php echo $med_opt[$i]['NOMBRE']?> (<?php echo $med_opt[$i]['TIPO']?>)</option>
+						<?php endfor;?>
+				</select>
+				</td>
+				<input type="text" name="new_medicine_description">
+				<button id="medicine-update">Agregar receta</button>
+			</div>
+	</div>
 
-<br>
-
-<strong>Ayudas e instrumentos asignados a la persona</strong><br>
-<table>
-	<thead>
-		<tr>
-			<th>Tipo de ayuda o instrumento</th>
-		</tr>
-	</thead>
-	<tbody>
-		<?php for($i = 0 ; $i < count($ayudasTec) ; $i++):?>
-		<tr>
-			<td><?php echo $ayudasTec[$i]['TIPO_AYUDA'];?></td>
-			<td><button onclick="updateInfo({ID: <?php echo $ayudasTec[$i]['ID']?>}, 16);">Eliminar</button></td>
-		</tr>
-		<?php endfor; ?>
-		<tr>
-			<td>
-				<button onclick="reload('new_help',5)">Recargar</button>&nbsp;&nbsp;<a href="options.php" title="Agregar mas opciones" target="__blank"><button>Agregar</button></a>
+	<div class="card-table">
+		<h2 class="centrar">Ayudas e instrumentos asignados a la persona</h2><br>
+		<div class="wrap-table100">	
+				<div class="table100 ver1">
+					<div class="wrap-table100 js-pscroll">
+						<div class="table100-nextcols">
+							<table>
+								<thead>
+									<tr  class="row100 head">
+										<th class="cell100 column2">Tipo de ayuda o instrumento</th>
+										<th class="cell100 column3">Opciones</th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php for($i = 0 ; $i < count($ayudasTec) ; $i++):?>
+									<tr>
+										<td class="cell100 column2"><?php echo $ayudasTec[$i]['TIPO_AYUDA'];?></td>
+										<td class="cell100 column3"><button onclick="updateInfo({ID: <?php echo $ayudasTec[$i]['ID']?>}, 16);"><i class="fas fa-eraser"></button></td>
+									</tr>
+									<?php endfor; ?>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="agregar centrar">							
+				<button onclick="reload('new_help',5)"><i class="fas fa-redo-alt"></i></button><a href="options.php" title="Agregar mas opciones" target="__blank"><button><i class="fas fa-plus"></i></button></a>
 				<select name="new_help_id" id="new_help">
 					<?php
 						$hlp_opt = ayudasTec();
 						for ($i = 0 ; $i < count($hlp_opt) ; $i++):
 					?>
-					<option value="<?php echo $hlp_opt[$i]['ID']?>"><?php echo $hlp_opt[$i]['NOMBRE']?></option>
-					<?php endfor;?>
-				</select>
-			</td>
-			<td><button id="help-update">Agregar ayuda</button></td>
-		</tr>
-	</tbody>
-</table>
-
-<br><br>
+						<option value="<?php echo $hlp_opt[$i]['ID']?>"><?php echo $hlp_opt[$i]['NOMBRE']?></option>
+						<?php endfor;?>
+					</select>
+									
+				<button id="help-update">Agregar ayuda</button>
+			</div>
+	</div>
 
 
-<!-- OTROS -->
 
-<strong>Trabajos actuales de la persona</strong><br>
-<table>
-	<thead>
-		<tr>
-			<th>Lugar de trabajo</th>
-			<th>Descripcion del trabajo</th>
-		</tr>
-	</thead>
-	<tbody>
-		<?php for($i = 0 ; $i < count($trabajos) ; $i++):?>
-		<tr>
-			<td><?php echo lugar($trabajos[$i]['ID_LUGAR'])['NOMBRE'];?></td>
-			<td><?php echo $trabajos[$i]['DESCRIPCION']; ?></td>
-			<td><button onclick="updateInfo({ID: <?php echo $trabajos[$i]['ID']?>}, 17);">Eliminar</button></td>
-		</tr>
-		<?php endfor; ?>
-		<tr>
-			<td>
-				<button onclick="reload('new_job',6)">Recargar</button>&nbsp;&nbsp;<a href="options.php" title="Agregar mas opciones" target="__blank"><button>Agregar</button></a>
-				<select name="new_job_place" id="new_job">
-					<?php
-						$lg_opt = lugares();
-						for ($i = 0 ; $i < count($lg_opt) ; $i++):
-					?>
+	<!-- OTROS -->
+	<div class="card-table tablas-grandes">
+		<h2 class="centrar">Trabajos actuales de la persona</h2><br>
+		<div class="wrap-table100">	
+				<div class="table100 ver1">
+					<div class="wrap-table100 js-pscroll">
+						<div class="table100-nextcols">
+							<table>
+								<thead>
+									<tr  class="row100 head">
+										<th class="cell100 column2">Lugar de trabajo</th>
+										<th class="cell100 column8">Descripcion del trabajo</th>
+										<th class="cell100 column3">Opciones</th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php for($i = 0 ; $i < count($trabajos) ; $i++):?>
+									<tr>
+										<td class="cell100 column2"><?php echo lugar($trabajos[$i]['ID_LUGAR'])['NOMBRE'];?></td>
+										<td class="cell100 column8"><?php echo $trabajos[$i]['DESCRIPCION']; ?></td>
+										<td class="cell100 column3"><button onclick="updateInfo({ID: <?php echo $trabajos[$i]['ID']?>}, 17);"><i class="fas fa-eraser"></button></td>
+									</tr>
+									<?php endfor; ?>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="agregar centrar">			
+					<button onclick="reload('new_job',6)"><i class="fas fa-redo-alt"></i></button><a href="options.php" title="Agregar mas opciones" target="__blank"><button><i class="fas fa-plus"></i></button></a>
+					<select name="new_job_place" id="new_job">
+						<?php
+							$lg_opt = lugares();
+							for ($i = 0 ; $i < count($lg_opt) ; $i++):
+						?>
 					<option value="<?php echo $lg_opt[$i]['ID']?>"><?php echo $lg_opt[$i]['NOMBRE']." (".$lg_opt[$i]['TIPO'].") (".$lg_opt[$i]['TIPO_INSTITUCION'].") RIF:".$lg_opt[$i]['RIF']?></option>
 					<?php endfor;?>
 				</select>
-			</td>
-			<td><input type="text" name="new_job_description" placeholder="Descripcion del trabajo"></td>
-			<td><button id="job-update">Agregar trabajo</button></td>
-		</tr>
-	</tbody>
-</table>
+									
+				<input type="text" name="new_job_description" placeholder="Descripcion del trabajo">
+				<button id="job-update">Agregar trabajo</button>
+			</div>
+	</div>
 
-<br>
-
-<strong>Escolarizaciones de la persona</strong><br>
-<table>
-	<thead>
-		<tr>
-			<th>Lugar de escolarizacion</th>
-			<th>Nivel educacional</th>
-			<th>Descripcion</th>
-		</tr>
-	</thead>
-	<tbody>
-		<?php if(isset($escolarizacion)) for($i = 0 ; $i < 1/*count($escolarizacion)*/ ; $i++):?>
-		<tr>
-			<td><?php echo lugar($escolarizacion['ID_INSTITUCION'])['NOMBRE'];?></td>
-			<td><?php echo $escolarizacion['NIVEL_EDUCACIONAL']; ?></td>
-			<td><?php echo $escolarizacion['DESCRIPCION']; ?></td>
-			<td><button onclick="updateInfo({ID: <?php echo $escolarizacion['ID']?>}, 18);">Eliminar</button></td>
-		</tr>
-		<?php endfor; ?>
-		<tr>
+	<div class="card-table">
+		<h2 class="centrar">Escolarizaciones de la persona</h2><br>
+		<div class="wrap-table100">	
+				<div class="table100 ver1">
+					<div class="wrap-table100 js-pscroll">
+						<div class="table100-nextcols">
+							<table>
+								<thead>
+									<tr  class="row100 head">
+										<th class="cell100 column2">Lugar de escolarizacion</th>
+										<th class="cell100 column3">Nivel educacional</th>
+										<th class="cell100 column9">Descripcion</th>
+										<th class="cell100 column3">Opciones</th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php if(isset($escolarizacion)) for($i = 0 ; $i < 1/*count($escolarizacion)*/ ; $i++):?>
+									<tr>
+										<td class="cell100 column2"><?php echo lugar($escolarizacion['ID_INSTITUCION'])['NOMBRE'];?></td>
+										<td class="cell100 column3"><?php echo $escolarizacion['NIVEL_EDUCACIONAL']; ?></td>
+										<td class="cell100 column9"><?php echo $escolarizacion['DESCRIPCION']; ?></td>
+										<td class="cell100 column3"><button onclick="updateInfo({ID: <?php echo $escolarizacion['ID']?>}, 18);"><i class="fas fa-eraser"></button></td>
+									</tr>
+									<?php endfor; ?>
+									
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="agregar centrar">
 			<td>
-				<button onclick="reload('new_sch',7)">Recargar</button>&nbsp;&nbsp;<a href="options.php" title="Agregar mas opciones" target="__blank"><button>Agregar</button></a>
-				<select name="new_sch_place" id="new_sch">
-					<?php
-						$lg_opt = lugares();
-						for ($i = 0 ; $i < count($lg_opt) ; $i++):
-							if ($lg_opt[$i]['TIPO_INSTITUCION'] != "EDUCATIVA")
-								continue;
-					?>
-					<option value="<?php echo $lg_opt[$i]['ID']?>"><?php echo $lg_opt[$i]['NOMBRE']." (".$lg_opt[$i]['TIPO'].") (".$lg_opt[$i]['TIPO_INSTITUCION'].") RIF:".$lg_opt[$i]['RIF']?></option>
-					<?php endfor;?>
-				</select>
-			</td>
-			<td>
-				<select name="new_sch_lvl">
-					<option value="1">MATERNAL</option>
-					<option value="2">PREESCOLAR</option>
-					<option value="3">PRIMARIA</option>
-					<option value="4">SECUNDARIA</option>
-					<option value="5">UNIVERSIDAD</option>
-				</select>
-			</td>
-			<td><input type="text" name="new_sch_description" placeholder="Descripcion"></td>
-			<td><button id="sch-update">Agregar escolarizacion</button></td>
-		</tr>
-	</tbody>
-</table>
-
+			<button onclick="reload('new_sch',7)"><i class="fas fa-redo-alt"></i></button><a href="options.php" title="Agregar mas opciones" target="__blank"><button><i class="fas fa-plus"></i></button></a>
+			<select name="new_sch_place" id="new_sch">
+				<?php
+					$lg_opt = lugares();
+					for ($i = 0 ; $i < count($lg_opt) ; $i++):
+						if ($lg_opt[$i]['TIPO_INSTITUCION'] != "EDUCATIVA")
+							continue;
+				?>
+				<option value="<?php echo $lg_opt[$i]['ID']?>"><?php echo $lg_opt[$i]['NOMBRE']." (".$lg_opt[$i]['TIPO'].") (".$lg_opt[$i]['TIPO_INSTITUCION'].") RIF:".$lg_opt[$i]['RIF']?></option>
+				<?php endfor;?>
+			</select>
+		</td>
+		<td>
+			<select name="new_sch_lvl">
+				<option value="1">MATERNAL</option>
+				<option value="2">PREESCOLAR</option>
+				<option value="3">PRIMARIA</option>
+				<option value="4">SECUNDARIA</option>
+				<option value="5">UNIVERSIDAD</option>
+			</select>
+		</td>
+		<td><input type="text" name="new_sch_description" placeholder="Descripcion"></td>
+		<td><button id="sch-update">Agregar escolarizacion</button></td>
+	</div>
 </div>
+	</div>
+	
+	</div>
 <!-- So crazy scripting... -->
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript">
