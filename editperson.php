@@ -183,7 +183,7 @@
 		<?php if ($persona['ID_CARNET'] === null) {
 			echo "(Aun no se ha registrado un carnet para esta persona)";
 		} ?>
-		<br>
+		
 		Codigo del carnet:		<input type="text" name="codigo_carnet" <?php if($persona['CODIGO_CARNET'] != null):?> value="<?php echo $persona['CODIGO_CARNET'] ?>" <?php endif;?>><br>
 		Serial del carnet:		<input type="text" name="serial_carnet" <?php if($persona['SERIAL_CARNET'] != null):?> value="<?php echo $persona['SERIAL_CARNET'] ?>" <?php endif;?>><br>
 		<button id="carnet-update" style="margin-top: 20px;">Actualizar informacion</button>
@@ -281,7 +281,7 @@
 
 	<!-- INFORMACION DE SALUD -->
 	<div class="card-table">
-		<h2 class="centrar">Enfermedades que presenta la persona</h2><br>
+		<h2 class="centrar">Enfermedades que presenta la persona</h2>
 		<div class="wrap-table100">	
 				<div class="table100 ver1">
 					<div class="wrap-table100 js-pscroll">
@@ -323,7 +323,7 @@
 	</div>
 
 	<div class="card-table">
-		<h2 class="centrar">Discapacidades que presenta la persona</h2><br>
+		<h2 class="centrar">Discapacidades que presenta la persona</h2>
 		<div class="wrap-table100">	
 				<div class="table100 ver1">
 					<div class="wrap-table100 js-pscroll">
@@ -365,7 +365,7 @@
 		</div>
 	</div>
 <div class="card-table">
-		<h2 class="centrar">Medicamentos recetados a la persona</h2><br>
+		<h2 class="centrar">Medicamentos recetados a la persona</h2>
 		<div class="wrap-table100">	
 				<div class="table100 ver1">
 					<div class="wrap-table100 js-pscroll">
@@ -413,7 +413,7 @@
 	</div>
 
 	<div class="card-table">
-		<h2 class="centrar">Ayudas e instrumentos asignados a la persona</h2><br>
+		<h2 class="centrar">Ayudas e instrumentos asignados a la persona</h2>
 		<div class="wrap-table100">	
 				<div class="table100 ver1">
 					<div class="wrap-table100 js-pscroll">
@@ -457,7 +457,7 @@
 
 	<!-- OTROS -->
 	<div class="card-table tablas-grandes">
-		<h2 class="centrar">Trabajos actuales de la persona</h2><br>
+		<h2 class="centrar">Trabajos actuales de la persona</h2>
 		<div class="wrap-table100">	
 				<div class="table100 ver1">
 					<div class="wrap-table100 js-pscroll">
@@ -501,7 +501,7 @@
 	</div>
 
 	<div class="card-table">
-		<h2 class="centrar">Escolarizaciones de la persona</h2><br>
+		<h2 class="centrar">Escolarizaciones de la persona</h2>
 		<div class="wrap-table100">	
 				<div class="table100 ver1">
 					<div class="wrap-table100 js-pscroll">
