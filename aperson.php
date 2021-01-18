@@ -247,10 +247,11 @@
 					<?php endif ?>
 				</div>
 			</div>
-			<form method="POST">
-				<center><input type="submit" value="Cerrar" name="btn"></center>
+			<form class="centrar" method="POST">
+				<input type="submit" value="Cerrar" name="btn">
+				<a class="agregar" href="editperson.php?id= <?php echo $id ?>"><button style="padding: 14px 19px" type="submit">Editar</button></a>
 			</form>
-				<a href="editperson.php?id= <?php echo $id ?>"><button type="submit">Editar</button></a>
+				
 		</div>	
 
 		<?php include("includes/footer.php")?>
