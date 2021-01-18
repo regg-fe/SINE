@@ -220,7 +220,11 @@ p.center{
 	width: 760px;
 }
 .card-container .card-table:nth-child(6){
-	width: 480px;
+	width: 680px;
+}
+.tablas-grandes{
+	width: 680px;
+	text-align: center;
 }
 .card-table h2{
 	margin-bottom: 15px;
@@ -251,6 +255,7 @@ p.center{
     0 4px 5px 0 rgba(0, 0, 0, 0.14),
     0 1px 10px 0 rgba(0, 0, 0, 0.12);
     background-color: #159090;
+    color: white !important;
 }
 .agregar input, .agregar select{
 	border: none;
@@ -260,6 +265,9 @@ p.center{
 	font-size: 16px;
 	margin-left: 5px;
 	padding: .4em 1.4em .3em .8em;
+}
+.quitar-margen button{
+	margin-right: 10px !important;
 }
 .agregar input{
 	width: 55%;
@@ -298,7 +306,6 @@ p.center{
 	top: 17px;
 
 }
-
 footer{
 	background: url(../img/congruent_pentagon.png);
 	height: 70px;
