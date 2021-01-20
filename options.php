@@ -15,7 +15,7 @@
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<link rel="stylesheet" href="css/styleTable.css">
 	<link rel="stylesheet" type="text/css" href="css/insertForms.css">
-	<title>SINE: Opciones</title>
+	<title>Opciones</title>
 </head>
 <body>
 	<?php include("includes/navbar.php");?>
@@ -25,7 +25,6 @@
 	</div>
 	<div class="card-container">
 		<div class="card-table">
-			<a class="center" href="home.php" title="Volver"><i class="fas fa-arrow-left"></i></a>
 			<h2 class="centrar">Ayudas tecnicas registradas</h2>
 			<?php
 				$at = ayudasTec();
@@ -50,7 +49,7 @@
 											<td class="cell100 column1"><?php echo $i+1 ?></td>
 											<td class="cell100 column3"><?php echo $at[$i]['NOMBRE'] ?></td>
 											<td class="cell100 column9">
-												<button class="icon" onclick="update(<?php echo $at[$i]['ID']?>,0,'Ayuda Tecnica',0)"><i class="fas fa-pen-alt"></i></button>
+												<button class="icon"><i class="fas fa-pen-alt"></i></button>
 												<button class="icon" onclick="erase('AT',<?php echo $at[$i]['ID'] ?>);"><i class="fas fa-eraser"></i></button>
 											</td>
 										</tr>
@@ -67,7 +66,7 @@
 			<?php endif; ?>
 			<div class="agregar">
 				<form class="centrar">
-					<input type="text" name="AyudaTec" placeholder="Agrega una nueva opcion" autocomplete="off">
+					<input type="text" name="AyudaTec" id="at" placeholder="Agrega una nueva opcion" autocomplete="off">
 					<button id="AddAyudaTec">Agregar</button>
 				</form>
 			</div>
@@ -100,7 +99,7 @@
 										<td class="cell100 column1"><?php echo $i+1 ?></td>
 										<td class="cell100 column3"><?php echo $bn[$i]['NOMBRE'] ?></td>
 										<td class="cell100 column9">
-											<button class="icon" onclick="update(<?php echo $bn[$i]['ID']?>,1,'Bono',0)"><i class="fas fa-pen-alt"></i></button>
+											<button class="icon"><i class="fas fa-pen-alt"></i></button>
 											<button class="icon" onclick="erase('BN',<?php echo $bn[$i]['ID'] ?>);"><i class="fas fa-eraser"></i></button>
 										</td>
 									</tr>
@@ -117,7 +116,7 @@
 			<?php endif; ?>
 			<div class="agregar">
 				<form class="centrar">
-					<input type="text" name="Bono" placeholder="Agrega una nueva opcion" autocomplete="off">
+					<input type="text" name="Bono" id="bn" placeholder="Agrega una nueva opcion" autocomplete="off">
 					<button id="AddBono">Agregar</button>
 				</form>
 			</div>
@@ -150,7 +149,7 @@
 										<td class="cell100 column1"><?php echo $i+1 ?></td>
 										<td class="cell100 column3"><?php echo $ps[$i]['NOMBRE'] ?></td>
 										<td class="cell100 column9">
-											<button class="icon" onclick="update(<?php echo $ps[$i]['ID']?>,2,'Programa Social',0)"><i class="fas fa-pen-alt"></i></button>
+											<button class="icon"><i class="fas fa-pen-alt"></i></button>
 											<button class="icon" onclick="erase('PS',<?php echo $ps[$i]['ID'] ?>);"><i class="fas fa-eraser"></i></button>
 										</td>
 									</tr>
@@ -167,7 +166,7 @@
 			<?php endif; ?>
 			<div class="agregar">
 				<form class="centrar">
-					<input type="text" name="ProgramaSocial" placeholder="Agrega una nueva opcion" autocomplete="off">
+					<input type="text" name="ProgramaSocial" id="ps" placeholder="Agrega una nueva opcion" autocomplete="off">
 					<button id="AddProgramaSocial">Agregar</button>
 				</form>
 			</div>
@@ -199,7 +198,7 @@
 											<td class="cell100 column1"><?php echo $i+1 ?></td>
 											<td class="cell100 column3"><?php echo $dc[$i]['TIPO'] ?></td>
 											<td class="cell100 column9">
-												<button class="icon" onclick="update(<?php echo $dc[$i]['ID']?>,3,'Discapacidad',0)"><i class="fas fa-pen-alt"></i></button>
+												<button class="icon"><i class="fas fa-pen-alt"></i></button>
 												<button class="icon" onclick="erase('DC',<?php echo $dc[$i]['ID'] ?>);"><i class="fas fa-eraser"></i></button>
 											</td>
 										</tr>
@@ -216,7 +215,7 @@
 			<?php endif; ?>
 			<div class="agregar">
 				<form class="centrar">
-					<input type="text" name="Discapacidad" placeholder="Agrega una nueva opcion" autocomplete="off">
+					<input type="text" name="Discapacidad" id="dc" placeholder="Agrega una nueva opcion" autocomplete="off">
 					<button id="AddDiscapacidad">Agregar</button>
 				</form>
 			</div>
@@ -249,7 +248,7 @@
 											<td class="cell100 column1"><?php echo $i+1 ?></td>
 											<td class="cell100 column3"><?php echo $ef[$i]['NOMBRE'] ?></td>
 											<td class="cell100 column9">
-												<button class="icon" onclick="update(<?php echo $dc[$i]['ID']?>,4,'Enfermedad',0)"><i class="fas fa-pen-alt"></i></button>
+												<button class="icon"><i class="fas fa-pen-alt"></i></button>
 												<button class="icon" onclick="erase('EF',<?php echo $ef[$i]['ID'] ?>);"><i class="fas fa-eraser"></i></button>
 											</td>
 										</tr>
@@ -265,7 +264,7 @@
 			<?php endif; ?>
 			<div class="agregar">
 				<form class="centrar">
-					<input type="text" name="Enfermedad" placeholder="Agrega una nueva opcion" autocomplete="off">
+					<input type="text" name="Enfermedad" id="ef" placeholder="Agrega una nueva opcion" autocomplete="off">
 					<button id="AddEnfermedad">Agregar</button>
 				</form>
 			</div>
@@ -299,7 +298,7 @@
 											<td class="cell100 column3"><?php echo $md[$i]['NOMBRE'] ?></td>
 											<td class="cell100 column4"><?php echo $md[$i]['TIPO'] ?></td>
 											<td class="cell100 column9">
-												<button class="icon" onclick="update(<?php echo $md[$i]['ID']?>,7,'Medicamento',1)"><i class="fas fa-pen-alt"></i></button>
+												<button class="icon"><i class="fas fa-pen-alt"></i></button>
 												<button class="icon" onclick="erase('MD',<?php echo $md[$i]['ID'] ?>);"><i class="fas fa-eraser"></i></button>
 											</td>
 										</tr>
@@ -315,8 +314,8 @@
 				<?php endif; ?>
 			<div class="agregar">
 				<form class="centrar">
-					<input type="text" name="Medicamento" placeholder="Agrega una nueva opcion" autocomplete="off">
-					<select class="select-css" name="TipoMedicamento">
+					<input type="text" name="Medicamento" id="md" placeholder="Agrega una nueva opcion" autocomplete="off">
+					<select class="select-css" name="TipoMedicamento" required>
 						<option>-- TIPO --</option>
 						<option value="1">Oral</option>
 						<option value="2">Rectal/Vaginal</option>
@@ -358,7 +357,7 @@
 													<td class="cell100 column1"><?php echo $i+1 ?></td>
 													<td class="cell100 column3"><?php echo $mb[$i]['MARCA'] ?></td>
 													<td class="cell100 column9">
-														<button class="icon" onclick="update(<?php echo $mb[$i]['ID']?>,5,'Marca',0)"><i class="fas fa-pen-alt"></i></button>
+														<button class="icon"><i class="fas fa-pen-alt"></i></button>
 														<button class="icon" onclick="erase('MB',<?php echo $mb[$i]['ID'] ?>);"><i class="fas fa-eraser"></i></button>
 													</td>
 												</tr>
@@ -375,7 +374,7 @@
 				<?php endif; ?>
 				<div class="agregar">
 					<form class="centrar">
-						<input type="text" name="MarcaBombona" placeholder="Agrega una nueva opcion" autocomplete="off">
+						<input type="text" name="MarcaBombona" id="mb" placeholder="Agrega una nueva opcion" autocomplete="off">
 						<button id="AddMarcaBombona">Agregar</button>
 					</form>
 				</div>
@@ -407,7 +406,7 @@
 												<td class="cell100 column1"><?php echo $i+1 ?></td>
 												<td class="cell100 column3"><?php echo $tb[$i]['TIPO'] ?></td>
 												<td class="cell100 column9">
-													<button class="icon" onclick="update(<?php echo $mb[$i]['ID']?>,6,'Tipo',0)"><i class="fas fa-pen-alt"></i></button>
+													<button class="icon"><i class="fas fa-pen-alt"></i></button>
 													<button class="icon" onclick="erase('TB',<?php echo $tb[$i]['ID'] ?>);"><i class="fas fa-eraser"></i></button>
 												</td>
 											</tr>
@@ -423,7 +422,7 @@
 				<?php endif; ?>
 				<div class="agregar">
 					<form class="centrar">
-						<input type="text" name="TipoBombona" placeholder="Agrega una nueva opcion" autocomplete="off">
+						<input type="text" name="TipoBombona" id="tb" placeholder="Agrega una nueva opcion" autocomplete="off">
 						<button id="AddTipoBombona">Agregar</button>
 					</form>
 				</div>
@@ -461,7 +460,7 @@
 												<td class="cell100 column5"><?php echo $lg[$i]['TIPO_INSTITUCION'] ?></td>
 												<td class="cell100 column3"><?php echo $lg[$i]['RIF'] ?></td>
 												<td class="cell100 column9">
-													<button class="icon" onclick="update(<?php echo $lg[$i]['ID']?>,8,'Institucion',2)"><i class="fas fa-pen-alt"></i></button>
+													<button class="icon"><i class="fas fa-pen-alt"></i></button>
 													<button class="icon" onclick="erase('LG',<?php echo $lg[$i]['ID'] ?>);"><i class="fas fa-eraser"></i></button>
 												</td>
 											</tr>
@@ -479,12 +478,12 @@
 				<div class="agregar">
 					<form class="centrar">
 						<input type="text" name="Lugar" placeholder="Agrega una nueva opcion" autocomplete="off">
-						<select class="select-css" name="PrivacidadLugar">
+						<select class="select-css" name="PrivacidadLugar" required>
 							<option>-- PRIVACIDAD --</option>
 							<option value="1">Publico</option>
 							<option value="2">Privado</option>
 						</select>
-						<select class="select-css" name="TipoInstitucion">
+						<select class="select-css" name="TipoInstitucion" required>
 							<option>-- TIPO DE INSTITUCION --</option>
 							<option value="1">Política</option>
 							<option value="2">Economica</option>
@@ -502,32 +501,17 @@
 				</div>
 			</div>
 		</div>
-		
 	<!-- Scripting -->
 	<script type="text/javascript">
 		function erase(name, id) {
-			$("#delete").css("display","flex");
-			$("#delete").css("position","fixed");
-			$("#message").show();
-		
-			$("#deleteS").click(function (ev) {
-				ev.preventDefault();
-				$.post("opt.php", {
-					met: "erase",
-					name: name,
-					id: id,
-				}, function (data) {
-					location.reload();
-				});
-			});
-			
-			$("#deleteN").click(function (ev) {
-				ev.preventDefault();
-				$("#delete").css("display","none");
+			$.post("opt.php", {
+				met: "erase",
+				name: name,
+				id: id,
+			}, function (ev) {
 				location.reload();
 			});
 		}
-
 		function add(name, data) {
 			$.post("opt.php", {
 				met: "add",
@@ -537,47 +521,115 @@
 				location.reload();
 			});
 		}
+
 		$(document).ready(function () {
 			$("#AddAyudaTec").click(function (ev) {
+				if ($("#at").val() == ""){
+					$("#at").css("border-color","#D32F2F");
+					$("#at").attr("placeholder","Agregue una opción");
+				}
+				else{
+					add('AT',{ NOMBRE: $("input[name='AyudaTec']").val()});
+				}
 				ev.preventDefault();
-				add('AT',{ NOMBRE: $("input[name='AyudaTec']").val()});
 			});
 			$("#AddBono").click(function (ev) {
+				if ($("#bn").val() == ""){
+					$("#bn").css("border-color","#D32F2F");
+					$("#bn").attr("placeholder","Agregue una opción");
+				}
+				else{
+					add('BN',{ NOMBRE: $("input[name='Bono']").val()});
+				}
 				ev.preventDefault();
-				add('BN',{ NOMBRE: $("input[name='Bono']").val()});
 			});
 			$("#AddProgramaSocial").click(function (ev) {
-				ev.preventDefault();
+				if ($("#ps").val() == ""){
+					$("#ps").css("border-color","#D32F2F");
+					$("#ps").attr("placeholder","Agregue una opción");
+				}
+				else{
 				add('PS',{ NOMBRE: $("input[name='ProgramaSocial']").val()});
+				}
+				ev.preventDefault();
 			});
 			$("#AddDiscapacidad").click(function (ev) {
+				if ($("#dc").val() == ""){
+					$("#dc").css("border-color","#D32F2F");
+					$("#dc").attr("placeholder","Agregue una opción");
+				}
+				else{
+					add('DC',{ NOMBRE: $("input[name='Discapacidad']").val()});
+				}
 				ev.preventDefault();
-				add('DC',{ NOMBRE: $("input[name='Discapacidad']").val()});
 			});
 			$("#AddMedicamento").click(function (ev) {
+				if ($("#md").val() == ""){
+					$("#md").css("border-color","#D32F2F");
+					$("#md").attr("placeholder","Agregue una opción");
+				}
+				else{
+					add('MD',{ NOMBRE: $("input[name='Medicamento']").val(), TIPO: $("select[name='TipoMedicamento']").val()});
+				}
 				ev.preventDefault();
-				add('MD',{ NOMBRE: $("input[name='Medicamento']").val(), TIPO: $("select[name='TipoMedicamento']").val()});
 			});
 			$("#AddEnfermedad").click(function (ev) {
+				if ($("#ef").val() == ""){
+					$("#ef").css("border-color","#D32F2F");
+					$("#ef").attr("placeholder","Agregue una opción");
+				}
+				else{
+					add('EF',{ NOMBRE: $("input[name='Enfermedad']").val()});
+				}
 				ev.preventDefault();
-				add('EF',{ NOMBRE: $("input[name='Enfermedad']").val()});
 			});
 			$("#AddMarcaBombona").click(function (ev) {
+				if ($("#mb").val() == ""){
+					$("#mb").css("border-color","#D32F2F");
+					$("#mb").attr("placeholder","Agregue una opción");
+				}
+				else{
+					add('MB',{ NOMBRE: $("input[name='MarcaBombona']").val()});
+				}
 				ev.preventDefault();
-				add('MB',{ NOMBRE: $("input[name='MarcaBombona']").val()});
 			});
 			$("#AddTipoBombona").click(function (ev) {
+				if ($("#tb").val() == ""){
+					$("#tb").css("border-color","#D32F2F");
+					$("#tb").attr("placeholder","Agregue una opción");
+				}
+				else{
+					add('TB',{ NOMBRE: $("input[name='TipoBombona']").val()});
+				}
 				ev.preventDefault();
-				add('TB',{ NOMBRE: $("input[name='TipoBombona']").val()});
 			});
 			$("#AddLugar").click(function (ev) {
+				if ($("input[name='Lugar']").val() == ""){
+					$("input[name='Lugar']").css("border-color","#D32F2F");
+					$("input[name='Lugar']").attr("placeholder","Agregue una opción");
+				}
+				if ($("select[name='PrivacidadLugar']").val() == "-- PRIVACIDAD --") {
+					$("#select[name='PrivacidadLugar']").css("border-color","#D32F2F");
+				}
+				if ($("select[name='TipoInstitucion']").val() == "-- TIPO DE INSTITUCION --") {
+					$("select[name='TipoInstitucion']").css("border-color","#D32F2F");
+				}
+				if ($("input[name='RIF']").val() == "") {
+					$("input[name='RIF']").css("border-color","#D32F2F");
+					$("input[name='RIF']").attr("placeholder","Agregue una opción");
+				}
+				else{
+					add('LG',{ NOMBRE: $("input[name='Lugar']").val(), PRIVACIDAD: $("select[name='PrivacidadLugar']").val(), TIPO_INSTITUCION: $("select[name='TipoInstitucion']").val(), RIF: $("input[name='RIF']").val()});
+				}
 				ev.preventDefault();
-				add('LG',{ NOMBRE: $("input[name='Lugar']").val(), PRIVACIDAD: $("select[name='PrivacidadLugar']").val(), TIPO_INSTITUCION: $("select[name='TipoInstitucion']").val(), RIF: $("input[name='RIF']").val()});
 			});
 		});
 	</script>
 	<!--Tabla===============================================================================================-->	
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
 	<script src="vendor/select2/select2.min.js"></script>
 <!--===============================================================================================-->
@@ -593,5 +645,4 @@
 		});
 		
 	</script>
-	<?php include("includes/modal.php") ?>
 	<?php include("includes/footer.php")?>
