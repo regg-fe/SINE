@@ -585,9 +585,23 @@
 				alert("Algún campo no es correcto");
 			else{
 				//alert(data['ID']+"\n"+data['NOMBRES']+"\n"+data['APELLIDOS']+"\n"+data['DNI']+"\n"+data['TELEFONO']+"\n"+data['EMBARAZO']+"\n"+data['ENCAMADO']+"\n"+data['PENSION']+"\n"+data['VOTO']+"\n"+data['FECHA_NAC']+"\n"+data['PESO']+"\n"+data['ESTATURA']+"\n");
-				updateInfo(data, 1);	
-			}
 
+				if (data['DNI'] != ""){
+					if (data['DNI'] != <?php echo $persona['DNI']; ?>){
+						$.post("verifyDNI.php",{
+							DNI: data['DNI'],
+							TABLE: "PERSONA",
+						}, function (dat) {
+							if (dat == 1){
+								alert("Esta cedula ya se encuentra registrada"); //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+							}else{
+								updateInfo(data, 1);
+							}
+						});
+					}else
+						updateInfo(data, 1);
+				}
+			}
 		});
 		
 		$("#carnet-update").click(function (ev) {

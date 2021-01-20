@@ -19,7 +19,10 @@
 		$dni =  $con->real_escape_string($_POST['dni']);
 		$telefono =  $con->real_escape_string($_POST['tlf']);
 		$posicion =  $con->real_escape_string($_POST['pos']);
-		$embarazo =  $con->real_escape_string($_POST['emb']);
+		if (isset($_POST['emb']))
+			$embarazo =  $con->real_escape_string($_POST['emb']);
+		else
+			$embarazo = 'M';
 		$encamado =  $con->real_escape_string($_POST['encamado']);
 		$pension =  $con->real_escape_string($_POST['pension']);
 		$voto =  $con->real_escape_string($_POST['voto']);
