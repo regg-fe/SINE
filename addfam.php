@@ -29,7 +29,7 @@
 		//echo $con->error;
 		
 		for ($j=0; $j < count($datos); $j++) { 
-			$sql = "INSERT INTO PERSONA (NOMBRES, APELLIDOS, GENERO, DNI, TELEFONO, POSICION, EMBARAZO, ENCAMADO, PENSION, VOTO, FECHA_NAC, PESO, ESTATURA, ID_FAMILIA) VALUES ('".$datos[$j]['NOMBRES']."','".$datos[$j]['APELLIDOS']."','".$datos[$j]['GENERO']."',".$datos[$j]['DNI'].",'".$datos[$j]['TELEFONO']."',".$datos[$j]['POSICION'].",'".$datos[$j]['EMBARAZO']."','".$datos[$j]['ENCAMADO']."','".$datos[$j]['PENSION']."','".$datos[$j]['VOTO']."','".$datos[$j]['NACIMIENTO']."',".$datos[$j]['PESO'].",".$datos[$j]['ESTATURA'].",".$i.")";
+			$sql = "INSERT INTO PERSONA (NOMBRES, APELLIDOS, GENERO, DNI, TELEFONO, POSICION, EMBARAZO, ENCAMADO, PENSION, VOTO, FECHA_NAC, PESO, ESTATURA, ID_FAMILIA) VALUES ('".$datos[$j]['NOMBRES']."','".$datos[$j]['APELLIDOS']."','".$datos[$j]['GENERO']."',".$datos[$j]['DNI'].",'".$datos[$j]['TELEFONO']."','".$datos[$j]['POSICION']."','".$datos[$j]['EMBARAZO']."','".$datos[$j]['ENCAMADO']."','".$datos[$j]['PENSION']."','".$datos[$j]['VOTO']."','".$datos[$j]['NACIMIENTO']."',".$datos[$j]['PESO'].",".$datos[$j]['ESTATURA'].",".$i.")";
 			$con->query($sql);
 			//echo $con->error;
 		}

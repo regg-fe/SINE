@@ -113,7 +113,6 @@
 			<input type="radio" id="embno" name="embarazo" value="N">
 			<label for="embno">No</label>
 		</span>
-		<p>(Condicion actual: <?php if($persona['EMBARAZO'] == 'M') echo "Si"; else echo "No"; ?>)</p>
 		<?php else:?>
 			<input type="radio" name="embarazo" value="N" checked style="display: none">
 		<?php endif;?>
@@ -129,7 +128,6 @@
 				<input type="radio" id="encno" name="encamado" value="N">
 				<label for="encno">No</label>
 				</span>
-				<p>(Condicion actual: <?php if($persona['ENCAMADO'] == 'M') echo "Si"; else echo "No"; ?>)</p>
 		</div>
 	</div>
 	<div class="separador">
@@ -145,7 +143,6 @@
 			<span>
 			<input type="radio" id="nt" name="pension" value="NT"><label for="nt">No tiene</label>
 			</span>
-			<p>(Condicion actual: <?php if($persona['PENSION'] == 'AM') echo "Adulto mayor"; else if($persona['PENSION'] == 'SS') echo "Seguro social"; else echo "No tiene";?>)</p>
 		</div>
 
 		<div class="agrupar-input">
@@ -160,10 +157,9 @@
 				<label for="bl">Blando</label>
 			</span>
 			<span>
-				<input type="radio" id="vo" name="voto" value="B">
+				<input type="radio" id="vo" name="voto" value="O">
 				<label for="vo">Opositor</label>
 			</span>
-		<p>(Condicion actual: <?php if($persona['VOTO'] == 'D') echo "Duro"; else if($persona['VOTO'] == 'B') echo "Blando"; else echo "Opositor";?>)</p>
 		</div>
 		</div>
 	</div>
@@ -565,7 +561,10 @@
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript">
 	$(document).ready(function () {
-
+		$("input[name='embarazo'][value='<?php echo $persona['EMBARAZO'] ?>']").prop("checked", true);
+		$("input[name='encamado'][value='<?php echo $persona['ENCAMADO'] ?>']").prop("checked", true);
+		$("input[name='voto'][value='<?php echo $persona['VOTO'] ?>']").prop("checked", true);
+		$("input[name='pension'][value='<?php echo $persona['PENSION'] ?>']").prop("checked", true);
 		$("#generalinfo-update").click(function (ev) {
 			ev.preventDefault();
 			var data = {
@@ -584,9 +583,10 @@
 			};
 			if(data['NOMBRES'] == "" || data['APELLIDOS'] == "" || data['DNI'] == "" || data['EMBARAZO'] == undefined || data['ENCAMADO'] == undefined || data['PENSION'] == undefined || data['VOTO'] == undefined)
 				alert("Algún campo no es correcto");
-			else
-			//alert(data['ID']+"\n"+data['NOMBRES']+"\n"+data['APELLIDOS']+"\n"+data['DNI']+"\n"+data['TELEFONO']+"\n"+data['EMBARAZO']+"\n"+data['ENCAMADO']+"\n"+data['PENSION']+"\n"+data['VOTO']+"\n"+data['FECHA_NAC']+"\n"+data['PESO']+"\n"+data['ESTATURA']+"\n");
-				updateInfo(data, 1);
+			else{
+				//alert(data['ID']+"\n"+data['NOMBRES']+"\n"+data['APELLIDOS']+"\n"+data['DNI']+"\n"+data['TELEFONO']+"\n"+data['EMBARAZO']+"\n"+data['ENCAMADO']+"\n"+data['PENSION']+"\n"+data['VOTO']+"\n"+data['FECHA_NAC']+"\n"+data['PESO']+"\n"+data['ESTATURA']+"\n");
+				updateInfo(data, 1);	
+			}
 
 		});
 		

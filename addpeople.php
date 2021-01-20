@@ -184,15 +184,15 @@
 			$("input[name='genero']").click(function () {
 				switch ($("input[name='genero']:checked").val()) {
 					case 'M':
-						$("#formulario input[name='emb'][value='S']").attr("checked",null);
-						$("#formulario input[name='emb'][value='N']").attr("checked",'checked');
+						$("#formulario input[name='emb'][value='S']").prop("checked",false);
+						$("#formulario input[name='emb'][value='N']").prop("checked",true);
 						$("#formulario input[name='emb'][value='S']").attr("disabled","disabled");
 						$("#formulario input[name='emb'][value='N']").attr("disabled","disabled");
 
 						break;
 					case 'F':
-						$("#formulario input[name='emb'][value='N']").attr("checked",null);
-						$("#formulario input[name='emb'][value='S']").attr("checked",null);
+						$("#formulario input[name='emb'][value='N']").prop("checked",false);
+						$("#formulario input[name='emb'][value='S']").prop("checked",false);
 						$("#formulario input[name='emb'][value='S']").attr("disabled",null);
 						$("#formulario input[name='emb'][value='N']").attr("disabled",null);
 						break;

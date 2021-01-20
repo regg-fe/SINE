@@ -88,6 +88,10 @@
 						<td> <?php echo $persona['PENSION'] ?></td>
 						</tr>
 						<tr>
+						<td>Fecha de nacimiento:</td>
+						<td> <?php echo $persona['FECHA_NAC'] ?></td>
+						</tr>
+						<tr>
 						<td>Voto:</td>
 						<td> <?php echo $persona['VOTO'] ?></td>
 						</tr>
