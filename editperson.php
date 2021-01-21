@@ -382,7 +382,7 @@
 	</div>
 
 	<div class="card-table">
-		<h2 class="centrar">Discapacidades que present</h2>
+		<h2 class="centrar">Discapacidades que presenta</h2>
 		<div class="wrap-table100">	
 			<div class="table100 ver1">
 				<div class="wrap-table100 js-pscroll">
@@ -516,7 +516,7 @@
 
 	<!-- OTROS -->
 	<div class="card-table tablas-grandes">
-		<h2 class="centrar">Trabajos actuales de la persona</h2>
+		<h2 class="centrar">Trabajos actuales</h2>
 		<div class="wrap-table100">	
 				<div class="table100 ver1">
 					<div class="wrap-table100 js-pscroll">
@@ -560,7 +560,7 @@
 	</div>
 
 	<div class="card-table">
-		<h2 class="centrar">Escolarizaciones de la persona</h2>
+		<h2 class="centrar">Escolarizaciones</h2>
 		<div class="wrap-table100">	
 				<div class="table100 ver1">
 					<div class="wrap-table100 js-pscroll">
