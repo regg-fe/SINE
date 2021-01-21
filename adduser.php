@@ -46,7 +46,7 @@
 				<form action="adduser.php" method="POST">
 				<h1>Registrar nuevo usuario</h1>
 				<div class="error"><?php if (isset($message)): ?><?php echo $message; ?><?php endif ?></div>
-				<div class="error" id="mensajeError"></div>	
+				<div class="error" id="mensajeError"></div>
 					<!--Usuario-->
 					<label for="usuario">Usuario</label>
 					<input type="text" name="usuario" id="usuario">

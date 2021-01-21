@@ -130,12 +130,12 @@
 													<th class='cell100 column1'>Nombres</th>
 													<th class='cell100 column2'>Apellidos</th>
 													<th class='cell100 column3'>Genero</th>
-													<th class='cell100 column4'>Fecha de nacimiento</th>
-													<th class='cell100 column5'>Cedula</th>
+													<th class='cell100 column5'>Fecha de nacimiento</th>
+													<th class='cell100 column7'>Cedula</th>
 													<th class='cell100 column6'>Telefono</th>
 													<th class='cell100 column6'>Peso</th>
-													<th class='cell100 column6'>Estatura</th>
-													<th class='cell100 column6'>IMC</th>
+													<th class='cell100 column7'>Estatura</th>
+													<th class='cell100 column7'>IMC</th>
 													<th class='cell100 column7'>Familia</th>
 													<th class='cell100 column8'>Apartamento</th>
 													<th class='cell100 column9'>Bloque</th>
@@ -146,12 +146,12 @@
 									    	<td class='cell100 column1'><a href='aperson.php?id=".$muestra[$i]['ID']."' target='_blank'>".$muestra[$i]['NOMBRES']."</a></td>
 									    	<td class='cell100 column2'>".$muestra[$i]['APELLIDOS']."</td>
 									    	<td class='cell100 column3'>".$muestra[$i]['GENERO']."</td>
-									    	<td class='cell100 column4'>".$muestra[$i]['FECHA_NAC']."</td>
-									    	<td class='cell100 column5'>".$muestra[$i]['DNI']."</td>
-									    	<td class='cell100 column6>".$muestra[$i]['TELEFONO']."</td>
+									    	<td class='cell100 column5'>".$muestra[$i]['FECHA_NAC']."</td>
+									    	<td class='cell100 column7'>".$muestra[$i]['DNI']."</td>
+									    	<td class='cell100 column6'>".$muestra[$i]['TELEFONO']."</td>
 									    	<td class='cell100 column6'>".$muestra[$i]['PESO']."</td>
-									    	<td class='cell100 column6'>".$muestra[$i]['ESTATURA']."</td>
-									    	<td class='cell100 column6'>".$muestra[$i]['IMC']."</td>
+									    	<td class='cell100 column7'>".$muestra[$i]['ESTATURA']."</td>
+									    	<td class='cell100 column7'>".$muestra[$i]['IMC']."</td>
 									    	<td class='cell100 column7'>".$muestra[$i]['FAMILIA']."</td>
 									    	<td class='cell100 column8'>".$muestra[$i]['NRO_APARTAMENTO']."</td>
 									    	<td class='cell100 column9'>".$muestra[$i]['NRO_BLOQUE']."</td>

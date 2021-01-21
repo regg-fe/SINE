@@ -28,7 +28,7 @@
 				<p>¡Esperando busqueda!</p>
 				<img src="img/undraw_people_search_wctu.svg" alt="busqueda">
 			</div>
-
+			<div id="mensaje" class="center"></div>
 			<div id="result">
 				<div class="container-table100">
 					<div class="wrap-table100">	
@@ -36,17 +36,7 @@
 							<div class="wrap-table100 js-pscroll">
 								<div class="table100-nextcols">
 									<table>
-										<thead id="head">
-											<tr class="row100 head">
-												<th  class="cell100 column2">Nombres</th>
-												<th  class="cell100 column3">Apellidos</th>
-												<th  class="cell100 column4">Genero</th>
-												<th  class="cell100 column5">Cedula</th>
-												<th  class="cell100 column6">Telefono</th>
-												<th  class="cell100 column7">Fecha de Nacimiento</th>
-												<th  class="cell100 column8">Familia</th>
-											</tr>
-										</thead>
+										<thead id="head"></thead>
 										<tbody id="body"></tbody>
 									</table>
 								</div>
@@ -57,10 +47,14 @@
 			</div>
 		</div>	
 
+
 	<script type="text/javascript" src="js/js.js"></script>
 	<script type="text/javascript" src="js/script.js"></script>
 <!--===============================================================================================-->	
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
 	<script src="vendor/select2/select2.min.js"></script>
 <!--===============================================================================================-->

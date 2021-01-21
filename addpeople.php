@@ -31,16 +31,13 @@
 		$estatura =  $con->real_escape_string($_POST['est']);
 		$familia =  $con->real_escape_string($_POST['id']);
 
-		if ($genero == 'M') {
-			$embarazo = 'N';
-		}
 		$validar = repeatDNI($dni,$con,'PERSONA');
 		if ($validar != 1) {
 			$sql = "INSERT INTO PERSONA (NOMBRES, APELLIDOS, GENERO, DNI, TELEFONO, POSICION, EMBARAZO, ENCAMADO, PENSION, VOTO, FECHA_NAC, PESO, ESTATURA, ID_FAMILIA) VALUES ('$nombre', '$apellido', '$genero', '$dni', '$telefono', '$posicion', '$embarazo', '$encamado', '$pension', '$voto', '$f_nac', '$peso', '$estatura', '$familia')";
 			
 			$result = $con->query($sql);
 			if (!$result) {
-				die("Insert error".mysql_error($con));
+				$message = "Cedula registrada";
 			} else {			
 				header('Location:afamily.php?id='.$efe);
 			}
@@ -67,9 +64,7 @@
 		<div class="box-form">
 		<h1>Agregar Persona</h1>
 		<form action="addpeople.php?id=<?php echo $efe ?>" method="POST" id="formulario">
-			<?php if (isset($message)): ?> <p><?php echo $message ?></p> <?php endif ?>
-			
-
+			<div class="error"><?php if (isset($message)): ?><?php echo $message; ?><?php endif ?></div>
 			<div class="agrupar">
 				<input type="text" name="nombres" required placeholder="Nombres"> 
 				<input type="text" name="apellidos" required placeholder="Apellidos"> 

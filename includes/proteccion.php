@@ -45,13 +45,14 @@
 				<p id="text1">Porcentaje: </p>
 				<p id="text2"></p>
 			</div>
-			<center><div id="send" style="display: none;">Cargando...</div></center>
 			<div class='container-table100'>
 					<div class='wrap-table100'>
 						<div class='table100 ver1'>
 							<div class='wrap-table100 js-pscroll'>
 								<div class='table100-nextcols'>
-									<div id="result"></div>
+									<center><div id="send" style="display: none;">Cargando...</div></center>
+									<div id="result"><br>
+								</div>
 							</div>
 						</div>
 					</div>

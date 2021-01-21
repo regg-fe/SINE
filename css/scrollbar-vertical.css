@@ -1,0 +1,28 @@
+div.scroll_vertical {
+	max-height: 240px;
+    overflow: auto;
+    z-index: 90;
+    background-color: transparent;
+    opacity: 1 !important;
+}
+div.scroll_vertical::-webkit-scrollbar{
+    width: 8px;     /* Tamaño del scroll en vertical */
+    height: 8px;    /* Tamaño del scroll en horizontal */
+}
+div.scroll_vertical::-webkit-scrollbar-thumb{
+    background: #b3b3b3;
+    border-radius: 4px;
+}
+div.scroll_vertical::-webkit-scrollbar-thumb:hover {
+    background: #b3b3b3;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+/* Ponemos un color de fondo y redondeamos las esquinas del track */
+div.scroll_vertical::-webkit-scrollbar-track {
+    background: #e1e1e1;
+}
+/* Cambiamos el fondo cuando esté en active o hover */
+div.scroll_vertical::-webkit-scrollbar-track:hover,
+div.scroll_vertical::-webkit-scrollbar-track:active {
+  background: #d4d4d4;
+}

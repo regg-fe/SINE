@@ -561,7 +561,7 @@
 				$tabla[$i]['NIVEL_EDUCACIONAL'] = $row['NIVEL_EDUCACIONAL'];
 				$tabla[$i]['DESCRIPCION'] = $row['DESCRIPCION'];
 				$tabla[$i]['ID_INSTITUCION'] = $row['ID_INSTITUCION'];
-				$tabla[$i]['NOMBRE_INSTITUCION'] = $row['MOMBRE_INSTITUCION'];
+				$tabla[$i]['NOMBRE_INSTITUCION'] = $row['NOMBRE_INSTITUCION'];
 				$tabla[$i]['ID_PERSONA'] = $row['ID_PERSONA'];
 				$tabla[$i]['NOMBRE'] = $row['NOMBRES']." ".$row['APELLIDOS'];
 				$i++;

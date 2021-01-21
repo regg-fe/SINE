@@ -32,7 +32,13 @@
 	<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
 	<link rel="stylesheet" href="css/insertForms.css">
 	<link rel="stylesheet" href="css/styleTable.css">
+	<link rel="stylesheet" href="css/scrollbar-vertical.css">
 	<title>Editar persona</title>
+	<style>
+		.box-form p{
+			color: #2d2d2d;
+		}
+	</style>
 
 <body>
 	<?php include("includes/navbar.php")?>
@@ -73,7 +79,7 @@
 			<div class="agrupar-input">
 				<p>Genero:</p> 
 				<input class="mediano" type="hidden" name="genero" value="<?php echo $persona['GENERO']; ?>">
-			<?php if($persona['GENERO'] == 'M') echo "<div class='mediano'> Masculino</div>"; else echo "<div class='mediano info-edit'>Femenino</div>"; ?>
+			<?php if($persona['GENERO'] == 'M') echo "<div class='mediano info-edit'>Masculino</div>"; else echo "<div class='mediano info-edit'>Femenino</div>"; ?>
 			</div>
 			<div class="agrupar-input">
 				<p>Posicion familiar:</p>
@@ -81,8 +87,7 @@
 			</div>
 		</div>
 		
-		<div class="agrupar">
-
+	<div class="agrupar">
 		<div class="agrupar-input">
 		<p>Fecha de nacimiento:</p>	
 		<input class="chico" type="date" name="fecha_nacimiento" value="<?php echo $persona['FECHA_NAC']; ?>">
@@ -113,13 +118,23 @@
 			<input type="radio" id="embno" name="embarazo" value="N">
 			<label for="embno">No</label>
 		</span>
+		<?php 
+			if($persona['EMBARAZO'] == 'M'){?>
+				<script>
+					document.querySelector('#embsi').checked = true;
+				</script>					
+			<?php } else{?>
+				<script>
+					document.querySelector('#embno').checked = true;
+				</script>
+			<?php } 
+		?>
 		<?php else:?>
 			<input type="radio" name="embarazo" value="N" checked style="display: none">
 		<?php endif;?>
 	</div>
-		<div class="agrupar-input">
+		<div class="agrupar-input" >
 			<p>¿Encamado?</p>
-		
 			<span>
 				<input type="radio" id="encsi" name="encamado" value="S">
 				<label for="encsi">Sí</label>
@@ -127,7 +142,19 @@
 			<span>
 				<input type="radio" id="encno" name="encamado" value="N">
 				<label for="encno">No</label>
-				</span>
+			</span>
+			<?php 
+				if($persona['ENCAMADO'] == 'M') {?>
+					<script>
+						document.querySelector('#encsi').checked = true;
+					</script>					
+				<?php } else{?>
+					<script>
+						document.querySelector('#encno').checked = true;
+					</script>
+				<?php } 
+			?>
+				
 		</div>
 	</div>
 	<div class="separador">
@@ -143,6 +170,21 @@
 			<span>
 			<input type="radio" id="nt" name="pension" value="NT"><label for="nt">No tiene</label>
 			</span>
+			<?php 
+			if($persona['PENSION'] == 'AM') {?>
+				<script>
+					document.querySelector('#ad').checked = true;
+				</script>
+			<?php } else if($persona['PENSION'] == 'SS') {?>
+				<script>
+					document.querySelector('#se').checked = true;
+				</script>
+				<?php } else {?>
+				<script>
+					document.querySelector('#nt').checked = true;
+				</script>
+				<?php } 
+			?>
 		</div>
 
 		<div class="agrupar-input">
@@ -157,9 +199,24 @@
 				<label for="bl">Blando</label>
 			</span>
 			<span>
-				<input type="radio" id="vo" name="voto" value="O">
+				<input type="radio" id="vo" name="voto" value="B">
 				<label for="vo">Opositor</label>
 			</span>
+		<?php 
+			if($persona['VOTO'] == 'D') {?>
+				<script>
+					document.querySelector('#du').checked = true;
+				</script> 
+			<?php } else if($persona['VOTO'] == 'B') {?>
+				<script>
+					document.querySelector('#bl').checked = true;
+				</script>
+			<?php } else {?>
+				<script>
+					document.querySelector('#vo').checked = true;
+				</script>
+			<?php } 
+		?>
 		</div>
 		</div>
 	</div>
@@ -190,14 +247,15 @@
 	<div class="card-table">
 	<h2 class="centrar">Bonos recibidos</h2>
 	<div class="wrap-table100">	
-				<div class="table100 ver1">
-					<div class="wrap-table100 js-pscroll">
-						<div class="table100-nextcols">
+			<div class="table100 ver1">
+				<div class="wrap-table100 js-pscroll">
+					<div class="table100-nextcols">
+						<div class="scroll_vertical">
 							<table>
 								<thead>
 									<tr  class="row100 head">
 										<th class="cell100 column2">Nombre del bono</th>
-										<th class="cell100 column3">Opciones</th>
+										<th class="cell100 column3">Eliminar</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -214,6 +272,7 @@
 					</div>
 				</div>
 			</div>
+		</div>
 
 			<div class="agregar centrar">
 				<button onclick="reload('new_bono',0)"><i class="fas fa-redo-alt"></i></button><a href="options.php" title="Agregar mas opciones" target="__blank"><button><i class="fas fa-plus"></i></button></a>
@@ -233,16 +292,17 @@
 	</div>
 
 	<div class="card-table">
-		<h2 class="centrar">Programas sociales asignados a la persona</h2>
+		<h2 class="centrar">Programas sociales asignados</h2>
 		<div class="wrap-table100">	
 				<div class="table100 ver1">
 					<div class="wrap-table100 js-pscroll">
 						<div class="table100-nextcols">
+						<div class="scroll_vertical">
 							<table>
 								<thead>
 									<tr  class="row100 head">
 										<th class="cell100 column2">Nombre del programa</th>
-										<th class="cell100 column3">Opciones</th>
+										<th class="cell100 column3">Eliminar</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -256,13 +316,14 @@
 								</tbody>
 							</table>
 						</div>
+						</div>
 					</div>
 				</div>
 			</div>
 			<div class="agregar centrar">
 		
 			<button onclick="reload('new_program',1)"><i class="fas fa-redo-alt"></i></button><a href="options.php" title="Agregar mas opciones" target="__blank"><button><i class="fas fa-plus"></i></button></a>
-			<select name="new_program_id" id="new_program">
+			<select class="select-css" name="new_program_id" id="new_program">
 				<?php
 					$ps_opt = programasSociales();
 					for ($i = 0 ; $i < count($ps_opt) ; $i++):
@@ -277,16 +338,17 @@
 
 	<!-- INFORMACION DE SALUD -->
 	<div class="card-table">
-		<h2 class="centrar">Enfermedades que presenta la persona</h2>
+		<h2 class="centrar">Enfermedades que presenta</h2>
 		<div class="wrap-table100">	
-				<div class="table100 ver1">
-					<div class="wrap-table100 js-pscroll">
-						<div class="table100-nextcols">
+			<div class="table100 ver1">
+				<div class="wrap-table100 js-pscroll">
+					<div class="table100-nextcols">
+						<div class="scroll_vertical">
 							<table>
 								<thead>
 									<tr  class="row100 head">
 										<th class="cell100 column2">Nombre de la enfermedad</th>
-										<th class="cell100 column3">Opciones</th>
+										<th class="cell100 column3">Eliminar</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -303,9 +365,10 @@
 					</div>
 				</div>
 			</div>
+		</div>
 			<div class="agregar centrar">
 				<button onclick="reload('new_sick',2)"><i class="fas fa-redo-alt"></i></button><a href="options.php" title="Agregar mas opciones" target="__blank"><button><i class="fas fa-plus"></i></button></a>
-				<select name="new_sick_id" id="new_sick">
+				<select class="select-css" name="new_sick_id" id="new_sick">
 				<?php
 					$enf_opt = enfermedades();
 					for ($i = 0 ; $i < count($enf_opt) ; $i++):
@@ -319,16 +382,17 @@
 	</div>
 
 	<div class="card-table">
-		<h2 class="centrar">Discapacidades que presenta la persona</h2>
+		<h2 class="centrar">Discapacidades que presenta</h2>
 		<div class="wrap-table100">	
-				<div class="table100 ver1">
-					<div class="wrap-table100 js-pscroll">
-						<div class="table100-nextcols">
+			<div class="table100 ver1">
+				<div class="wrap-table100 js-pscroll">
+					<div class="table100-nextcols">
+						<div class="scroll_vertical">
 							<table>
 								<thead>
 									<tr  class="row100 head">
 										<th class="cell100 column2">Nombre de la discapacidad</th>
-										<th class="cell100 column3">Opciones</th>
+										<th class="cell100 column3">ELiminar</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -345,10 +409,11 @@
 					</div>
 				</div>
 			</div>
+		</div>
 			<div class="agregar centrar">
 			<td>
 				<button onclick="reload('new_disc',4)"><i class="fas fa-redo-alt"></i></button><a href="options.php" title="Agregar mas opciones" target="__blank"><button><i class="fas fa-plus"></i></button></a>
-				<select name="new_disc_id" id="new_disc">
+				<select class="select-css" name="new_disc_id" id="new_disc">
 					<?php
 						$disc_opt = discapacidades();
 						for ($i = 0 ; $i < count($disc_opt) ; $i++):
@@ -360,8 +425,49 @@
 			<td><button id="disc-update">Agregar discapacidad</button></td>
 		</div>
 	</div>
-<div class="card-table">
-		<h2 class="centrar">Medicamentos recetados a la persona</h2>
+	<div class="card-table">
+		<h2 class="centrar">Ayudas e instrumentos asignados </h2>
+		<div class="wrap-table100">	
+				<div class="table100 ver1">
+					<div class="wrap-table100 js-pscroll">
+						<div class="table100-nextcols">
+							<table>
+								<thead>
+									<tr  class="row100 head">
+										<th class="cell100 column2">Tipo de ayuda o instrumento</th>
+										<th class="cell100 column3">Eliminar</th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php for($i = 0 ; $i < count($ayudasTec) ; $i++):?>
+									<tr>
+										<td class="cell100 column2"><?php echo $ayudasTec[$i]['TIPO_AYUDA'];?></td>
+										<td class="cell100 column3"><button onclick="updateInfo({ID: <?php echo $ayudasTec[$i]['ID']?>}, 16);"><i class="fas fa-eraser"></button></td>
+									</tr>
+									<?php endfor; ?>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="agregar centrar">							
+				<button onclick="reload('new_help',5)"><i class="fas fa-redo-alt"></i></button><a href="options.php" title="Agregar mas opciones" target="__blank"><button><i class="fas fa-plus"></i></button></a>
+				<select class="select-css" name="new_help_id" id="new_help">
+					<?php
+						$hlp_opt = ayudasTec();
+						for ($i = 0 ; $i < count($hlp_opt) ; $i++):
+					?>
+						<option value="<?php echo $hlp_opt[$i]['ID']?>"><?php echo $hlp_opt[$i]['NOMBRE']?></option>
+						<?php endfor;?>
+					</select>
+									
+				<button id="help-update">Agregar ayuda</button>
+			</div>
+	</div>
+
+<div class="card-table tablas-grandes">
+		<h2 class="centrar">Medicamentos recetados </h2>
 		<div class="wrap-table100">	
 				<div class="table100 ver1">
 					<div class="wrap-table100 js-pscroll">
@@ -372,7 +478,7 @@
 										<th class="cell100 column2">Nombre del medicamento</th>
 										<th class="cell100 column8">Tipo de medicamento</th>
 										<th class="cell100 column4">Descripcion de la receta</th>
-										<th class="cell100 column3">Opciones</th>
+										<th class="cell100 column3">Eliminar</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -394,7 +500,7 @@
 			<div class="agregar centrar">
 			<td colspan="2">
 				<button onclick="reload('new_medicine',3)" ><i class="fas fa-redo-alt"></i></button><a href="options.php" title="Agregar mas opciones" target="__blank"><button><i class="fas fa-plus"></i></button></a>
-				<select name="new_medicine_id" id="new_medicine">
+				<select class="select-css" name="new_medicine_id" id="new_medicine">
 				<?php
 					$med_opt = medicamentos();
 						for ($i = 0 ; $i < count($med_opt) ; $i++):
@@ -403,57 +509,14 @@
 						<?php endfor;?>
 				</select>
 				</td>
-				<input type="text" name="new_medicine_description">
+				<input type="text" name="new_medicine_description" placeholder="Descripcion de la receta">
 				<button id="medicine-update">Agregar receta</button>
 			</div>
 	</div>
 
-	<div class="card-table">
-		<h2 class="centrar">Ayudas e instrumentos asignados a la persona</h2>
-		<div class="wrap-table100">	
-				<div class="table100 ver1">
-					<div class="wrap-table100 js-pscroll">
-						<div class="table100-nextcols">
-							<table>
-								<thead>
-									<tr  class="row100 head">
-										<th class="cell100 column2">Tipo de ayuda o instrumento</th>
-										<th class="cell100 column3">Opciones</th>
-									</tr>
-								</thead>
-								<tbody>
-									<?php for($i = 0 ; $i < count($ayudasTec) ; $i++):?>
-									<tr>
-										<td class="cell100 column2"><?php echo $ayudasTec[$i]['TIPO_AYUDA'];?></td>
-										<td class="cell100 column3"><button onclick="updateInfo({ID: <?php echo $ayudasTec[$i]['ID']?>}, 16);"><i class="fas fa-eraser"></button></td>
-									</tr>
-									<?php endfor; ?>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="agregar centrar">							
-				<button onclick="reload('new_help',5)"><i class="fas fa-redo-alt"></i></button><a href="options.php" title="Agregar mas opciones" target="__blank"><button><i class="fas fa-plus"></i></button></a>
-				<select name="new_help_id" id="new_help">
-					<?php
-						$hlp_opt = ayudasTec();
-						for ($i = 0 ; $i < count($hlp_opt) ; $i++):
-					?>
-						<option value="<?php echo $hlp_opt[$i]['ID']?>"><?php echo $hlp_opt[$i]['NOMBRE']?></option>
-						<?php endfor;?>
-					</select>
-									
-				<button id="help-update">Agregar ayuda</button>
-			</div>
-	</div>
-
-
-
 	<!-- OTROS -->
 	<div class="card-table tablas-grandes">
-		<h2 class="centrar">Trabajos actuales de la persona</h2>
+		<h2 class="centrar">Trabajos actuales</h2>
 		<div class="wrap-table100">	
 				<div class="table100 ver1">
 					<div class="wrap-table100 js-pscroll">
@@ -463,7 +526,7 @@
 									<tr  class="row100 head">
 										<th class="cell100 column2">Lugar de trabajo</th>
 										<th class="cell100 column8">Descripcion del trabajo</th>
-										<th class="cell100 column3">Opciones</th>
+										<th class="cell100 column3">Eliminar</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -482,7 +545,7 @@
 			</div>
 			<div class="agregar centrar">			
 					<button onclick="reload('new_job',6)"><i class="fas fa-redo-alt"></i></button><a href="options.php" title="Agregar mas opciones" target="__blank"><button><i class="fas fa-plus"></i></button></a>
-					<select name="new_job_place" id="new_job">
+					<select class="select-css" name="new_job_place" id="new_job">
 						<?php
 							$lg_opt = lugares();
 							for ($i = 0 ; $i < count($lg_opt) ; $i++):
@@ -497,7 +560,7 @@
 	</div>
 
 	<div class="card-table">
-		<h2 class="centrar">Escolarizaciones de la persona</h2>
+		<h2 class="centrar">Escolarizaciones</h2>
 		<div class="wrap-table100">	
 				<div class="table100 ver1">
 					<div class="wrap-table100 js-pscroll">
@@ -508,7 +571,7 @@
 										<th class="cell100 column2">Lugar de escolarizacion</th>
 										<th class="cell100 column3">Nivel educacional</th>
 										<th class="cell100 column9">Descripcion</th>
-										<th class="cell100 column3">Opciones</th>
+										<th class="cell100 column3">Eliminar</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -530,7 +593,7 @@
 			<div class="agregar centrar">
 			<td>
 			<button onclick="reload('new_sch',7)"><i class="fas fa-redo-alt"></i></button><a href="options.php" title="Agregar mas opciones" target="__blank"><button><i class="fas fa-plus"></i></button></a>
-			<select name="new_sch_place" id="new_sch">
+			<select class="select-css" name="new_sch_place" id="new_sch">
 				<?php
 					$lg_opt = lugares();
 					for ($i = 0 ; $i < count($lg_opt) ; $i++):
@@ -542,7 +605,7 @@
 			</select>
 		</td>
 		<td>
-			<select name="new_sch_lvl">
+			<select class="select-css" name="new_sch_lvl">
 				<option value="1">MATERNAL</option>
 				<option value="2">PREESCOLAR</option>
 				<option value="3">PRIMARIA</option>
@@ -561,10 +624,7 @@
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript">
 	$(document).ready(function () {
-		$("input[name='embarazo'][value='<?php echo $persona['EMBARAZO'] ?>']").prop("checked", true);
-		$("input[name='encamado'][value='<?php echo $persona['ENCAMADO'] ?>']").prop("checked", true);
-		$("input[name='voto'][value='<?php echo $persona['VOTO'] ?>']").prop("checked", true);
-		$("input[name='pension'][value='<?php echo $persona['PENSION'] ?>']").prop("checked", true);
+
 		$("#generalinfo-update").click(function (ev) {
 			ev.preventDefault();
 			var data = {
@@ -583,25 +643,10 @@
 			};
 			if(data['NOMBRES'] == "" || data['APELLIDOS'] == "" || data['DNI'] == "" || data['EMBARAZO'] == undefined || data['ENCAMADO'] == undefined || data['PENSION'] == undefined || data['VOTO'] == undefined)
 				alert("Algún campo no es correcto");
-			else{
-				//alert(data['ID']+"\n"+data['NOMBRES']+"\n"+data['APELLIDOS']+"\n"+data['DNI']+"\n"+data['TELEFONO']+"\n"+data['EMBARAZO']+"\n"+data['ENCAMADO']+"\n"+data['PENSION']+"\n"+data['VOTO']+"\n"+data['FECHA_NAC']+"\n"+data['PESO']+"\n"+data['ESTATURA']+"\n");
+			else
+			//alert(data['ID']+"\n"+data['NOMBRES']+"\n"+data['APELLIDOS']+"\n"+data['DNI']+"\n"+data['TELEFONO']+"\n"+data['EMBARAZO']+"\n"+data['ENCAMADO']+"\n"+data['PENSION']+"\n"+data['VOTO']+"\n"+data['FECHA_NAC']+"\n"+data['PESO']+"\n"+data['ESTATURA']+"\n");
+				updateInfo(data, 1);
 
-				if (data['DNI'] != ""){
-					if (data['DNI'] != <?php echo $persona['DNI']; ?>){
-						$.post("verifyDNI.php",{
-							DNI: data['DNI'],
-							TABLE: "PERSONA",
-						}, function (dat) {
-							if (dat == 1){
-								alert("Esta cedula ya se encuentra registrada"); //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-							}else{
-								updateInfo(data, 1);
-							}
-						});
-					}else
-						updateInfo(data, 1);
-				}
-			}
 		});
 		
 		$("#carnet-update").click(function (ev) {
