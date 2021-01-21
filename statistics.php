@@ -22,6 +22,7 @@
 		<title>SINE: Estadisticas</title>
 		<link rel="stylesheet" type="text/css" href="vendor/perfect-scrollbar/perfect-scrollbar.css">
 		<script type="text/javascript" src="js/js.js"></script>
+		<script type="text/javascript" src="js/jquery.js"></script>
 		<script type="text/javascript" src="js/statistics.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/inputsTypeRadio.css">
 		<link rel="stylesheet" href="css/person.css">
@@ -34,7 +35,7 @@
 			<header>
 				<ul class="menu">  
 					<li class="logo"><a href="#" alt="SINE"><img src="img/logoFinal.png"></a> </li>
-					<li class="items"><a href="#">Estadisticas</a></li>
+					<li class="items"><a href="statistics.php">Estadisticas</a></li>
 					<li class="items"><a href="login.php">Iniciar Sesión</a></li>
 				</ul>
 			</header>
@@ -104,14 +105,14 @@
 		 </div>	
 		</div>
 
-	<div class="card-container">
-		<?php for ($i=0; $i < $btns; $i++): ?>
-		<a id="prevent" onclick="openUrl('includes/apartamentos.php?id=<?php echo $tablaBloques[$i]['ID'] ?>','visualizar')">
-			<div class="card">
-				<p class="negrita">Bloque <?php echo $tablaBloques[$i]['NRO_BLOQUE'] ?></p>
-			</div>
-		</a>
-		<?php endfor ?>
+		<div class="card-container">
+			<?php for ($i=0; $i < $btns; $i++): ?>
+				<a onclick="openUrl('includes/apartamentos.php?id=<?php echo $tablaBloques[$i]['ID'] ?>','visualizar')">
+					<div class="card">
+						<p class="negrita">Bloque <?php echo $tablaBloques[$i]['NRO_BLOQUE'] ?></p>
+					</div>
+				</a>
+			<?php endfor ?>
 		</div>
 		<div id="visualizar"></div>
 		<h2 class="parrafo">Otras opciones</h2>
@@ -120,7 +121,7 @@
 			<?php if (isset($_SESSION['usuario'])): ?>
 			<a onclick="openUrl('includes/nutricion.php','mostrar')">
 				<div class="card">
-					<p class="negrita"> Nutricion</p>
+					<p class="negrita">Nutricion</p>
 				</div>
 			</a>
 			<a onclick="openUrl('includes/condiciones.php','mostrar')">
@@ -135,14 +136,24 @@
 			</a>
 			<a onclick="openUrl('includes/vulnerables.php','mostrar')">
 				<div class="card">
-					<p class="negrita">Personas Vulnerables</p>
+					<p class="negrita">Personas<br>Vulnerables</p>
 				</div>
 			</a>
 		</div>
 			<div id="mostrar"></div>
-	</div>
-
-
+	
 	<?php endif ?>
+
+	<script>
+		$('.js-pscroll').each(function(){
+			var ps = new PerfectScrollbar(this);
+
+			$(window).on('resize', function(){
+				ps.update();
+			})
+
+		});
+		
+	</script>
 	<?php include("includes/footer.php") ?>
 	
