@@ -292,7 +292,7 @@
 	</div>
 
 	<div class="card-table">
-		<h2 class="centrar">Programas sociales asignados a la persona</h2>
+		<h2 class="centrar">Programas sociales asignados</h2>
 		<div class="wrap-table100">	
 				<div class="table100 ver1">
 					<div class="wrap-table100 js-pscroll">
@@ -338,7 +338,7 @@
 
 	<!-- INFORMACION DE SALUD -->
 	<div class="card-table">
-		<h2 class="centrar">Enfermedades que presenta la persona</h2>
+		<h2 class="centrar">Enfermedades que presenta</h2>
 		<div class="wrap-table100">	
 			<div class="table100 ver1">
 				<div class="wrap-table100 js-pscroll">
@@ -382,7 +382,7 @@
 	</div>
 
 	<div class="card-table">
-		<h2 class="centrar">Discapacidades que presenta la persona</h2>
+		<h2 class="centrar">Discapacidades que present</h2>
 		<div class="wrap-table100">	
 			<div class="table100 ver1">
 				<div class="wrap-table100 js-pscroll">
@@ -426,7 +426,7 @@
 		</div>
 	</div>
 	<div class="card-table">
-		<h2 class="centrar">Ayudas e instrumentos asignados a la persona</h2>
+		<h2 class="centrar">Ayudas e instrumentos asignados </h2>
 		<div class="wrap-table100">	
 				<div class="table100 ver1">
 					<div class="wrap-table100 js-pscroll">
@@ -467,7 +467,7 @@
 	</div>
 
 <div class="card-table tablas-grandes">
-		<h2 class="centrar">Medicamentos recetados a la persona</h2>
+		<h2 class="centrar">Medicamentos recetados </h2>
 		<div class="wrap-table100">	
 				<div class="table100 ver1">
 					<div class="wrap-table100 js-pscroll">
