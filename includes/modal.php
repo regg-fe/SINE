@@ -95,7 +95,10 @@
 			<form id="fmodalD" class="form" method="POST">
 				<?php $anexos = anexosPorBloque($id) ?>
 				<?php if ($anexos != NULL): ?>
-					<center><p>¡Cuidado!</p></center>
+					<center>
+						<img src="img/undraw_warning_cyit.svg" alt="warning">
+						<p>¡Cuidado!</p>
+					</center>
 					<p>Todo lo relacionado con este elemento sera eliminado y no podra ser recuperado</p>
 					<p>Escoge el anexo a elminar:</p>
 					<select id="selectDA" class="input">
@@ -120,7 +123,10 @@
 	<div id="delete" class="modal">
 		<div class="contenedor">
 			<form id="sDelete" class="form" method="POST">
-				<center><p>¡Cuidado!</p></center>
+				<center>
+					<img src="img/undraw_warning_cyit.svg" alt="warning">
+					<p>¡Cuidado!</p>
+				</center>
 				<p id="message">Todo lo relacionado con este elemento sera eliminado y no podra ser recuperado</p>
 				<div class="botones">
 					<button id="deleteS" class="boton">Si</button>
