@@ -69,3 +69,6 @@
 			display: flex;
 			justify-content: space-around;
 		}
+		.contenedor img{
+			width: 240px;
+		}
