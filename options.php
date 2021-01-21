@@ -15,6 +15,7 @@
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<link rel="stylesheet" href="css/styleTable.css">
 	<link rel="stylesheet" type="text/css" href="css/insertForms.css">
+	<link rel="stylesheet" href="css/scrollbar-vertical.css">
 	<title>Opciones</title>
 </head>
 <body>
@@ -34,6 +35,7 @@
 				<div class="table100 ver1">
 					<div class="wrap-table100 js-pscroll">
 						<div class="table100-nextcols">
+						<div class="scroll_vertical">
 							<table>
 								<thead>
 									<tr  class="row100 head">
@@ -56,6 +58,7 @@
 								<?php endfor; ?>
 								</tbody>
 							</table>
+						</div>
 						</div>
 					</div>
 				</div>
@@ -83,8 +86,8 @@
 				<div class="table100 ver1">
 					<div class="wrap-table100 js-pscroll">
 						<div class="table100-nextcols">
+						<div class="scroll_vertical">
 							<table>
-								
 								<thead>
 									<tr  class="row100 head">
 										<th class="cell100 column1">#</th>
@@ -106,6 +109,7 @@
 								<?php endfor; ?>
 								</tbody>
 							</table>
+						</div>
 						</div>
 					</div>
 				</div>
@@ -133,6 +137,7 @@
 				<div class="table100 ver1">
 					<div class="wrap-table100 js-pscroll">
 						<div class="table100-nextcols">
+						<div class="scroll_vertical">
 							<table>
 
 								<thead>
@@ -156,6 +161,7 @@
 								<?php endfor; ?>
 								</tbody>
 							</table>
+						</div>
 						</div>
 					</div>
 				</div>
@@ -182,6 +188,7 @@
 				<div class="table100 ver1">
 					<div class="wrap-table100 js-pscroll">
 						<div class="table100-nextcols">
+						<div class="scroll_vertical">
 							<table>
 								
 								<thead>
@@ -206,6 +213,7 @@
 								</tbody>
 							</table>
 						</div>
+					</div>
 					</div>
 				</div>
 			</div>
@@ -232,6 +240,7 @@
 				<div class="table100 ver1">
 					<div class="wrap-table100 js-pscroll">
 						<div class="table100-nextcols">
+						<div class="scroll_vertical">
 							<table>
 								
 								<thead>
@@ -256,6 +265,7 @@
 								</tbody>
 							</table>
 						</div>
+					</div>
 					</div>
 				</div>
 			</div>
@@ -282,6 +292,7 @@
 				<div class="table100 ver1">
 					<div class="wrap-table100 js-pscroll">
 						<div class="table100-nextcols">
+						<div class="scroll_vertical">
 							<table>
 								<thead>
 									<tr class="row100 head">
@@ -306,6 +317,7 @@
 								</tbody>
 							</table>
 						</div>
+								</div>
 					</div>
 				</div>
 			</div>
@@ -342,6 +354,7 @@
 					<div class="table100 ver1">
 						<div class="wrap-table100 js-pscroll">
 							<div class="table100-nextcols">
+							<div class="scroll_vertical">
 								<table>
 									<thead>
 										<tr class="row100 head">
@@ -364,6 +377,7 @@
 										<?php endfor; ?>
 										</tbody>
 									</table>
+								</div>
 								</div>
 							</div>
 						</div>
@@ -391,6 +405,7 @@
 					<div class="table100 ver1">
 						<div class="wrap-table100 js-pscroll">
 							<div class="table100-nextcols">
+							<div class="scroll_vertical">
 								<table>
 									<thead>
 										<tr class="row100 head">
@@ -414,6 +429,7 @@
 									</tbody>
 								</table>
 							</div>
+						</div>
 						</div>
 					</div>
 				</div>
@@ -439,6 +455,7 @@
 				<div class="table100 ver1">
 					<div class="wrap-table100 js-pscroll">
 						<div class="table100-nextcols">
+						<div class="scroll_vertical">
 							<table>
 								<thead>
 									<tr class="row100 head">
@@ -467,6 +484,7 @@
 									<?php endfor; ?>
 									</tbody>
 								</table>
+							</div>
 							</div>
 						</div>
 					</div>
@@ -605,18 +623,18 @@
 			});
 			$("#AddLugar").click(function (ev) {
 				if ($("input[name='Lugar']").val() == ""){
-					$("#input[name='Lugar']").css("border-color","#D32F2F");
-					$("#input[name='Lugar']").attr("placeholder","Agregue una opción");
+					$("input[name='Lugar']").css("border-color","#D32F2F");
+					$("input[name='Lugar']").attr("placeholder","Agregue una opción");
 				}
 				if ($("select[name='PrivacidadLugar']").val() == "-- PRIVACIDAD --") {
 					$("#select[name='PrivacidadLugar']").css("border-color","#D32F2F");
 				}
 				if ($("select[name='TipoInstitucion']").val() == "-- TIPO DE INSTITUCION --") {
-					$("#select[name='TipoInstitucion']").css("border-color","#D32F2F");
+					$("select[name='TipoInstitucion']").css("border-color","#D32F2F");
 				}
 				if ($("input[name='RIF']").val() == "") {
-					$("#input[name='RIF']").css("border-color","#D32F2F");
-					$("#input[name='RIF']").attr("placeholder","Agregue una opción");
+					$("input[name='RIF']").css("border-color","#D32F2F");
+					$("input[name='RIF']").attr("placeholder","Agregue una opción");
 				}
 				else{
 					add('LG',{ NOMBRE: $("input[name='Lugar']").val(), PRIVACIDAD: $("select[name='PrivacidadLugar']").val(), TIPO_INSTITUCION: $("select[name='TipoInstitucion']").val(), RIF: $("input[name='RIF']").val()});

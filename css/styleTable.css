@@ -81,6 +81,33 @@
   box-shadow: 3px 3px 10px rgba(0,0,0,0.2);
 }
 
+.table100-firstcol {
+  background-color: #fff;
+  position: absolute;
+  z-index: 1000;
+  width: 310px;
+  top: 0;
+  right: 0;
+  padding-left: 25px;
+  padding-top: 9px;
+  padding-bottom: 20px;
+}
+
+.table100-firstcol table {
+  background-color: #fff;
+}
+
+.shadow-table100-firstcol {
+  box-shadow: 8px 10px 0px 0px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: 8px 10px 0px 0px rgba(0, 0, 0, 0.05);
+  -webkit-box-shadow: 8px 10px 0px 0px rgba(0, 0, 0, 0.05);
+  -o-box-shadow: 8px 10px 0px 0px rgba(0, 0, 0, 0.05);
+  -ms-box-shadow: 8px 10px 0px 0px rgba(0, 0, 0, 0.05);
+}
+
+.table100-firstcol table {
+  background-color: transparent;
+}
 table {
   width: 100%;
   border-collapse: collapse;
@@ -130,7 +157,7 @@ td{
 }
 
 .column8 {
-  width: 200px;
+  width: 250px;
 }
 
 .column9 {
@@ -156,16 +183,43 @@ td{
   position: relative;
 }
 
+.table100-firstcol {
+  background-color: #fff;
+  position: absolute;
+  z-index: 80;
+  width: 310px;
+  top: -10px;
+  right: 0;
+}
+
+.table100-firstcol table {
+  background-color: #fff;
+}
+
 .wrap-table100-nextcols {
   width: 100%;
   overflow: auto;
-  padding-left: 310px;
+  padding-right: 310px;
   padding-bottom: 28px;
 }
 
 .table100-nextcols table{
   table-layout: fixed;
 }
+
+.shadow-table100-firstcol {
+  box-shadow: 8px 0px 10px 0px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: 8px 0px 10px 0px rgba(0, 0, 0, 0.05);
+  -webkit-box-shadow: 8px 0px 10px 0px rgba(0, 0, 0, 0.05);
+  -o-box-shadow: 8px 0px 10px 0px rgba(0, 0, 0, 0.05);
+  -ms-box-shadow: 8px 0px 10px 0px rgba(0, 0, 0, 0.05);
+}
+
+.table100-firstcol table {
+  background-color: transparent;
+}
+/*==================================================================
+[ Ver1 ]*/
 
 .table100.ver1 th {
   font-family: Roboto-Bold;
@@ -188,7 +242,6 @@ td{
 .table100.ver1 .table100-nextcols td {
   color: #999999;
 }
-
 .table100.ver1 tr {
   border-bottom: 1px solid #f2f2f2;
 }
@@ -204,4 +257,14 @@ td{
 .table100.ver1 tr .icon{
   margin-left: 1.5em;
   width: 20px;
+}
+
+#send {
+    text-align: center;
+    color: white;
+    width: 97%;
+    background: #4C9EA3;
+    padding: 7px;
+    border-radius: 5px;
+    display: none;
 }

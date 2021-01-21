@@ -92,8 +92,8 @@
 					<div class="agrupar">
 						<p>Fecha de nacimiento</p>
 						<input class="chico" type="date" name="FechaNac">
-						<input class="chico" type="number" name="Peso" placeholder="Peso" min="0">
-						<input class="chico" type="number" name="Estatura" placeholder="Estatura" min="0">
+						<input class="chico" type="number" name="Peso" placeholder="Peso" min="0" max="300">
+						<input class="chico" type="number" name="Estatura" placeholder="Estatura" min="0" max="300">
 					</div>
 
 					<div class="agrupar">
@@ -327,7 +327,7 @@
 					ev.preventDefault();
 				} //fin validacion
 				else{
-					$("#mensajeExito").html("¡Persona agrgada con éxito!");
+					$("#mensajeExito").html("¡Persona agregada con éxito!");
 					var str;
 					str += "<tr class='row100 body'>";
 					str += "<td  class='cell100 column1'>"+nombres.val()+"</td>";
@@ -347,6 +347,7 @@
 					str += "</tr>";
 
 					$("#tabla tbody").append(str);
+					$("#formulario")[0].reset();
 
 					//emptyform();
 					//alert(nombres+" "+apellidos+" "+genero+"\n"+dni+"\n"+telefono+"\n"+posicion+"\n"+embarazo+" "+encamado+" "+pension+" "+voto+"\n"+nacimiento+"\n"+peso+" "+estatura);
