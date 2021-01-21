@@ -212,15 +212,18 @@ p.center{
 }
 .card-table{
 	flex-direction: row;
-	width: 400px;
+	width: 460px;
 	margin: 20px;
 	color: #444;
 }
+
 .card-container .card-table:last-child{
-	width: 760px;
+	width: 770px;
 }
-.card-container .card-table:nth-child(6){
-	width: 480px;
+.tablas-grandes{
+	width: 680px;
+	text-align: center;
+	display: block;
 }
 .card-table h2{
 	margin-bottom: 15px;
@@ -230,6 +233,8 @@ p.center{
 }
 .agregar button{
 	padding: 8px 12px;
+	margin-top: 15px;
+    margin-left: 5px;
     border-radius: 2px;
     background-color: #4c9ea3;
     box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
@@ -251,6 +256,7 @@ p.center{
     0 4px 5px 0 rgba(0, 0, 0, 0.14),
     0 1px 10px 0 rgba(0, 0, 0, 0.12);
     background-color: #159090;
+    color: white !important;
 }
 .agregar input, .agregar select{
 	border: none;
@@ -260,8 +266,12 @@ p.center{
 	font-size: 16px;
 	margin-left: 5px;
 	padding: .4em 1.4em .3em .8em;
+	min-width: 120px;
 }
-.agregar input{
+.quitar-margen button{
+	margin-right: 10px !important;
+}
+.agregar form input{
 	width: 55%;
 }
 .agregar input[name="RIF"]{
@@ -298,7 +308,6 @@ p.center{
 	top: 17px;
 
 }
-
 footer{
 	background: url(../img/congruent_pentagon.png);
 	height: 70px;
