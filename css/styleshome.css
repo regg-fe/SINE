@@ -297,6 +297,10 @@ p.center{
 .descentrar{
 	text-align: left;
 }
+.descentrar td{
+	position: relative;
+	left: -10px;
+  }
 .division{
 	background-color: #4c9ea3;
     height: 8px;
