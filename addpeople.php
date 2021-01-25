@@ -66,16 +66,16 @@
 		<form action="addpeople.php?id=<?php echo $efe ?>" method="POST" id="formulario">
 			<div class="error"><?php if (isset($message)): ?><?php echo $message; ?><?php endif ?></div>
 			<div class="agrupar">
-				<input type="text" name="nombres" required placeholder="Nombres"> 
-				<input type="text" name="apellidos" required placeholder="Apellidos"> 
+				<input type="text" name="nombres"  id="nombre" placeholder="Nombres"> 
+				<input type="text" name="apellidos"  id="apellidos" placeholder="Apellidos"> 
 			</div>
 			<div class="agrupar">	
-				<input type="text" name="dni" placeholder="Cedula de identidad">
-				<input type="text" name="tlf" required placeholder="Nro. Telefono">
+				<input type="text" name="dni" id="dni" placeholder="Cedula de identidad">
+				<input type="text" name="tlf"  id="tlf" placeholder="Nro. Telefono">
 			</div>
 
-			<select class="select-css" name="pos" required>
-				<option selected disabled>--POSICION--</option>
+			<select class="select-css" name="pos" id="s">
+				<option value="--POSICION--" selected disabled>--POSICION--</option>
 				<option value="HIJO">HIJO</option>
 				<option value="NIETO">NIETO</option>
 				<option value="PADRE">PADRE</option>
@@ -92,13 +92,14 @@
 				<div class="radio radio-chico">
 					<p>Genero</p>
 					<span>
-						<input type="radio" name="genero" id="gen" value="M">
-						<label for="gen">Masculino</label>
+						<input type="radio" name="genero" id="masculino" value="M">
+						<label for="masculino">Masculino</label>
 					</span>
 					<span>
 						<input type="radio" name="genero" id="femenino" value="F">
 						<label for="femenino">Femenino</label>
 					</span>
+					<span class="checkbox" id="genero"></span>
 				</div>
 				
 
@@ -112,6 +113,7 @@
 						<input type="radio" name="emb" id="emb-no" value="N">
 						<label for="emb-no">No</label>
 					</span>
+					<span class="checkbox" id="embarazo"></span>
 				</div>
 
 				<div class="radio radio-chico">
@@ -124,17 +126,18 @@
 						<input type="radio" name="encamado" id="no-encamado" value="N">
 						<label for="no-encamado">No</label>
 					</span>
+					<span class="checkbox" id="encamados"></span>
 				</div>
 			</div>
 			<div class="agrupar">
 				<p>Fecha de nacimiento</p>
-				<input class="chico" type="date" name="f_nac" required> 
-				<input class="chico" type="number" name="peso" placeholder="Peso" required min="0"> 
-				<input class="chico" type="number" name="est" min="0" placeholder="Estatura" required>
+				<input class="chico" type="date" name="f_nac" id="f_nac"> 
+				<input class="chico" type="number" name="peso" id="peso" placeholder="Peso" min="0" max="300"> 
+				<input class="chico" type="number" name="est" id="est" min="0" max="300" placeholder="Estatura">
 			</div>
 			<div class="agrupar">
 				<div class="radio">
-					<p>Pension</p>
+					<p>Pension <span class="checkbox" id="pension"></p>
 					<span>
 						<input type="radio" name="pension" id="adultoMayor" value="AM">
 						<label for="adultoMayor">Adulto mayor</label>
@@ -150,7 +153,7 @@
 				</div>
 			
 				<div class="radio">
-					<p>Voto</p>
+					<p>Voto <span class="checkbox" id="voto"></span></p>
 						<span>
 						<input type="radio" name="voto" id="duro" value="D">
 						<label for="duro">Duro</label>
@@ -166,10 +169,8 @@
 				</div>	
 			</div>
 			
-		
-
 			<input type="hidden" name="id" value="<?php echo $efe ?>">
-			<input type="submit" name="enviar" value="Enviar">
+			<input type="submit" name="enviar" id="btnEnviarPerson" value="Agregar">
 		</form>
 	</div>
 	</div>
@@ -196,6 +197,159 @@
 						break;
 				}
 			});
+		
+			$("#btnEnviarPerson").click(function(e) {
+				var campoVacio = "";
+				var campoRadio = "";
+				var mensajeError ="";
+				//Verificacion de campos vacios
+				if ($("#nombre").val() == "") {
+					$("#nombre").css("border-color","#D32F2F");
+					$("#nombre").attr("placeholder","Este campo es obligatorio");
+					e.preventDefault();
+					campoVacio = "campo vacios";
+				} else {
+					$("#nombre").css("border-color","#61b4b3");
+				}
+
+				if ($("#apellidos").val() == "") {
+					$("#apellidos").css("border-color","#D32F2F");
+					$("#apellidos").attr("placeholder","Este campo es obligatorio");
+					e.preventDefault();
+					campoVacio = "campo vacios";
+				} else {
+					$("#apellidos").css("border-color","#61b4b3");
+				}
+
+				if ($("#dni").val() == "") {
+					$("#dni").css("border-color","#D32F2F");
+					$("#dni").attr("placeholder","Este campo es obligatorio");
+					e.preventDefault();
+					campoVacio = "campo vacios";
+				} else {
+					if ($.isNumeric($("#dni").val()) == false) {
+						mensajeError += "DNI invalido</br>";
+						e.preventDefault();
+					} else {
+						$("#dni").css("border-color","#61b4b3");
+					}
+				}
+				
+				if ($("#s").val() == "--POSICION--") {
+					$("#s").css("border-color","#D32F2F");
+					$("#s").attr("placeholder","Este campo es obligatorio");
+					e.preventDefault();
+					campoVacio = "campo vacios";
+				} else {
+					$("#s").css("border-color","#61b4b3");
+				}
+
+				if ($("#tlf").val() == "") {
+					$("#tlf").css("border-color","#D32F2F");
+					$("#tlf").attr("placeholder","Este campo es obligatorio");
+					e.preventDefault();
+					campoVacio = "campo vacios";
+				} else {
+					if ($.isNumeric($("#tlf").val()) == false) {
+						mensajeError += "Numero de telefono invalido</br>";
+						e.preventDefault();
+					} else {
+						$("#tlf").css("border-color","#61b4b3");
+					}
+				}
+				
+				if ($("#peso").val() == "") {
+					$("#peso").css("border-color","#D32F2F");
+					$("#peso").attr("placeholder","Este campo es obligatorio");
+					e.preventDefault();
+					campoVacio = "campo vacios";
+				} else {
+					if ($.isNumeric($("#peso").val()) == false) {
+						mensajeError += "Ingrese un valor numerico</br>";
+						e.preventDefault();
+					if ($("#peso").val() < 0 || $("#peso") > 700 ) {
+						mensajeError += "Debe ser un valor mayor que 0 y menor que 700</br>";
+						e.preventDefault();
+					}
+					} else {
+						$("#peso").css("border-color","#61b4b3");
+					}
+				}
+
+				if ($("#est").val() == "") {
+					$("#est").css("border-color","#D32F2F");
+					$("#est").attr("placeholder","Este campo es obligatorio");
+					e.preventDefault();
+					campoVacio = "campo vacios";
+				} else {
+					if ($.isNumeric($("#est").val()) == false) {
+						mensajeError += "Ingrese un valor numerico</br>";
+						e.preventDefault();
+					if ($("#est").val() < 0 || $("#est") > 3 ) {
+						mensajeError += "Debe ser un valor mayor que 0 y menor que 3</br>";
+					}
+					} else {
+						$("#est").css("border-color","#61b4b3");
+					}
+				}
+					if ($("#s".val() == "--POSICION--")) {
+							name.css("border-color","#D32F2F");
+							campoVacio = "campo vacios";
+				} else {
+					$("#s").css("border-color","#61b4b3");
+				} 
+
+					if ($("#f_nac").val() == "") {
+					$("#f_nac").css("border-color","#D32F2F");
+					$("#f_nac").attr("placeholder","Este campo es obligatorio");
+					e.preventDefault();
+					campoVacio = "campo vacios";
+				} else {
+					$("#f_nac").css("border-color","#61b4b3");
+				}
+
+				var validateRadio = function (name,id) {
+						if (!name.is(':checked')) {
+							campoRadio = "Hay opciones no marcadas";
+							id.html("<p class='mensaje'>Elige una opción</p>");
+						}
+						else{
+							campoRadio = "";
+							id.html("");
+						}
+					}
+
+				validateRadio($("#formulario input[name='emb']:radio"), $("#embarazo"));
+				validateRadio($("#formulario input[name='genero']:radio"), $("#genero"));
+				validateRadio($("#formulario input[name='voto']:radio"), $("#voto"));
+				validateRadio($("#formulario input[name='encamado']:radio"), $("#encamados"));
+				validateRadio($("#formulario input[name='pension']:radio"), $("#pension"));
+
+
+				if (campoVacio != "") {
+					mensajeError = "Hay campos vacios </br>" +  mensajeError;
+					e.preventDefault();
+				}
+				
+				if (mensajeError != "") {
+					$("#mensajeError").html(mensajeError);
+					e.preventDefault();
+				}
+			});	
+
+			var change = function (name){
+				name.change(function(){
+					if (name.val() != "") {
+						name.css("border-color","#61b4b3");
+					}
+				});
+			}
+
+			change(name = $("#nombre"));
+			change(name = $("#apellido"));
+			change(name = $("#dni"));
+			change(name = $("#telefono"));
+
 		});
 	</script>
 </html>

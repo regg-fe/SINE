@@ -44,8 +44,13 @@
 	<?php include("includes/navbar.php")?>
 
 	<div class="container">
+		<div class="center container Btn-menu">
+			<a href="afamily.php?id=<?php echo $persona['ID_FAMILIA'] ?>" title="Volver"><i class="fas fa-arrow-left"></i></a>
+		</div>
 		<div class="box-form">
 		<h2>Editar informacion de: <?php echo $persona['NOMBRES']." ".$persona['APELLIDOS']?></h2>
+		<div id="mensajeError" class="error"></div>
+		<div id="mensajeExito" class="exito"></div>
 
 	<!-- DATOS GENERALES -->
 		<div class="agrupar">
@@ -234,7 +239,7 @@
 		<h2 class="centrar">Carnet de la patria</h2>
 		<div class="agregar centrar" style="box-shadow: 3px 3px 10px rgba(0,0,0,0.2);">
 		<?php if ($persona['ID_CARNET'] === null) {
-			echo "(Aun no se ha registrado un carnet para esta persona)";
+			echo "(Aun no se ha registrado un carnet para esta persona)<br>";
 		} ?>
 		
 		Codigo del carnet:		<input type="text" name="codigo_carnet" <?php if($persona['CODIGO_CARNET'] != null):?> value="<?php echo $persona['CODIGO_CARNET'] ?>" <?php endif;?>><br>
@@ -627,26 +632,60 @@
 
 		$("#generalinfo-update").click(function (ev) {
 			ev.preventDefault();
-			var data = {
-				ID: $("input[name='id-persona']").val(),
-				NOMBRES: $("input[name='nombre']").val(),
-				APELLIDOS: $("input[name='apellido']").val(),
-				DNI: $("input[name='dni']").val(),
-				TELEFONO: $("input[name='telefono']").val(),
-				EMBARAZO: $("input[name='embarazo']:checked").val(),
-				ENCAMADO: $("input[name='encamado']:checked").val(),
-				PENSION: $("input[name='pension']:checked").val(),
-				VOTO: $("input[name='voto']:checked").val(),
-				FECHA_NAC: $("input[name='fecha_nacimiento']").val(),
-				PESO: $("input[name='peso']").val(),
-				ESTATURA: $("input[name='estatura']").val()
-			};
-			if(data['NOMBRES'] == "" || data['APELLIDOS'] == "" || data['DNI'] == "" || data['EMBARAZO'] == undefined || data['ENCAMADO'] == undefined || data['PENSION'] == undefined || data['VOTO'] == undefined)
-				alert("Algún campo no es correcto");
-			else
-			//alert(data['ID']+"\n"+data['NOMBRES']+"\n"+data['APELLIDOS']+"\n"+data['DNI']+"\n"+data['TELEFONO']+"\n"+data['EMBARAZO']+"\n"+data['ENCAMADO']+"\n"+data['PENSION']+"\n"+data['VOTO']+"\n"+data['FECHA_NAC']+"\n"+data['PESO']+"\n"+data['ESTATURA']+"\n");
-				updateInfo(data, 1);
+			var campoVacio = "";
+			var radioVacio = "";
+			var mensajeError ="";
+				var nombres = $(".box-form input[name='nombre']");
+				var apellidos = $(".box-form input[name='apellido']");
+				var dni = $(".box-form input[name='dni']");
+				var telefono = $(".box-form input[name='telefono']");
+				var posicion = $(".box-form select[name='posicion']");
+				var nacimiento = $(".box-form input[name='fecha_nacimiento']");
+				var peso = $(".box-form input[name='peso']");
+				var estatura = $(".box-form input[name='estatura']");
+			//validacion
+					
+					var validateInputs = function (name){
+						if (name.val() == "" || name.val() == "--POSICION--") {
+							name.css("border-color","#D32F2F");
+							campoVacio = "campo vacios";
+						}
+						else{
+							name.css("border-color","#61b4b3");
+							if (name == dni) {
+								if ($.isNumeric(dni.val()) == false) {
+									mensajeError += "DNI invalido</br>";
+									dni.css("border-color","#D32F2F");
+								} 
+							}
+							else if (name == telefono) {
+								if ($.isNumeric(telefono.val()) == false) {
+									mensajeError += "Numero de telefono invalido</br>";
+									telefono.css("border-color","#D32F2F");
+								} 
+							}
+						}
+					}
 
+					validateInputs(nombres);
+					validateInputs(apellidos);
+					validateInputs(dni);
+					validateInputs(telefono);
+					validateInputs(posicion);
+					validateInputs(nacimiento);
+					validateInputs(peso);
+					validateInputs(estatura);
+					if (campoVacio != "") {
+						mensajeError = "Hay campos vacios</br>";
+					}
+					if (mensajeError != "") {
+						$("#mensajeError").html(mensajeError);
+						ev.preventDefault();
+					} //fin validacion
+					else {
+						$("#mensajeExito").html("¡Cambios guardados con éxito!");
+					}
+					
 		});
 		
 		$("#carnet-update").click(function (ev) {
@@ -766,5 +805,23 @@
 			$('#'+id).html(data);
 		});
 	}
+
+
 </script>
+<!--===============================================================================================-->	
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script>
+		$('.js-pscroll').each(function(){
+			var ps = new PerfectScrollbar(this);
+
+			$(window).on('resize', function(){
+				ps.update();
+			})
+
+		});
+	</script>
 <?php include("includes/footer.php")?>

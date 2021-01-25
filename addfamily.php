@@ -12,7 +12,9 @@
 	<title>Agregar persona</title>
 <body>
 	<?php include("includes/navbar.php")?>
-
+	<div class="Btn-menu center container">
+		<a class="left" style="margin-left:-60px !important" href="apartments.php?id=<?php echo $_GET['apartamento'] ?>" title="Volver"><i class="fas fa-arrow-left"></i></a>
+	</div>
 	<div class="container-form-table">
 		<div class="agrupar-pagina">
 			<div class="box-form">
@@ -35,18 +37,18 @@
 
 					<select class="select-css" name="Posicion" required>
 						<option selected>--POSICION--</option>
-						<option value="1">Jefe</option>
-						<option value="2">Pareja</option>
-						<option value="3">Hermano</option>
-						<option value="4">Hijo</option>
-						<option value="5">Padre</option>
-						<option value="6">Tío</option>
-						<option value="7">Sobrino</option>
-						<option value="8">Nieto</option>
-						<option value="9">Abuelo</option>
-						<option value="10">Bisabuelo</option>
-						<option value="11">Bisnieto</option>
-						<option value="12">Otro</option>
+						<option value="JEFE">Jefe</option>
+						<option value="PAREJA">Pareja</option>
+						<option value="HERMANO">Hermano</option>
+						<option value="HIJO">Hijo</option>
+						<option value="PADRE">Padre</option>
+						<option value="TIO">Tío</option>
+						<option value="SOBRINO">Sobrino</option>
+						<option value="NIETO">Nieto</option>
+						<option value="ABUELO">Abuelo</option>
+						<option value="BISABUELO">Bisabuelo</option>
+						<option value="BISNIETO">Bisnieto</option>
+						<option value="OTRO">Otro</option>
 					</select>
 
 					<div class="agrupar">
@@ -92,8 +94,8 @@
 					<div class="agrupar">
 						<p>Fecha de nacimiento</p>
 						<input class="chico" type="date" name="FechaNac">
-						<input class="chico" type="number" name="Peso" placeholder="Peso" min="0" max="300">
-						<input class="chico" type="number" name="Estatura" placeholder="Estatura" min="0" max="300">
+						<input class="chico" type="number" name="Peso" placeholder="Peso" min="0">
+						<input class="chico" type="number" name="Estatura" placeholder="Estatura" min="0">
 					</div>
 
 					<div class="agrupar">
@@ -223,18 +225,21 @@
 	<!-- Inicio de scripts -->
 	<script type="text/javascript">
 		$(document).ready(function () {
+			var campoVacio = "";
+			var radioVacio = "";
+			var mensajeError ="";
 			$("input[name='Genero']").click(function () {
 				switch ($("input[name='Genero']:checked").val()) {
 					case 'M':
-						$("#formulario input[name='Embarazo'][value='S']").attr("checked",null);
-						$("#formulario input[name='Embarazo'][value='N']").attr("checked",'checked');
+						$("#formulario input[name='Embarazo'][value='S']").prop("checked",false);
+						$("#formulario input[name='Embarazo'][value='N']").prop("checked",true);
 						$("#formulario input[name='Embarazo'][value='S']").attr("disabled","disabled");
 						$("#formulario input[name='Embarazo'][value='N']").attr("disabled","disabled");
 
 						break;
 					case 'F':
-						$("#formulario input[name='Embarazo'][value='N']").attr("checked",null);
-						$("#formulario input[name='Embarazo'][value='S']").attr("checked",null);
+						$("#formulario input[name='Embarazo'][value='N']").prop("checked",false);
+						$("#formulario input[name='Embarazo'][value='S']").prop("checked",false);
 						$("#formulario input[name='Embarazo'][value='S']").attr("disabled",null);
 						$("#formulario input[name='Embarazo'][value='N']").attr("disabled",null);
 						break;
@@ -251,6 +256,9 @@
 
 			$("#add").click(function (ev) {
 				ev.preventDefault();
+				$("html, body").animate({
+				    scrollTop: 0
+				}, 1000);
 				var nombres = $("#formulario input[name='Nombres']");
 				var apellidos = $("#formulario input[name='Apellidos']");
 				var genero = $("#formulario input[name='Genero']:checked");
@@ -264,93 +272,136 @@
 				var nacimiento = $("#formulario input[name='FechaNac']");
 				var peso = $("#formulario input[name='Peso']");
 				var estatura = $("#formulario input[name='Estatura']");
-				
-				$("#mensajeError").html("");
-				//validacion
-				var campoVacio = "";
-				var radioVacio = "";
-				var mensajeError ="";
-				var validateInputs = function (name){
-					if (name.val() == "" || name.val() == "--POSICION--") {
-						name.css("border-color","#D32F2F");
-						campoVacio = "campo vacios";
-					}
-					else{
-						name.css("border-color","#61b4b3");
-						if (name == dni) {
-							if ($.isNumeric(dni.val()) == false) {
-								mensajeError += "DNI invalido</br>";
-								dni.css("border-color","#D32F2F");
-							} 
+
+
+				var dniExiste = false;
+				var jefeExiste = false;
+				var tempdni = $("#formulario input[name='DNI']").val();
+				if (tempdni == ""){
+					tempdni = -1;
+				}
+				$.post("verifyDNI.php",{
+					DNI: tempdni,
+					TABLE: "PERSONA",
+				}, function (data) {
+					var data = family2JSON();
+					if ($("#formulario select[name='Posicion']").val() != undefined){
+						for (var i = 0 ; i < data.length ; i++){
+							if ($("#formulario select[name='Posicion']").val() == data[i]['POSICION'])
+								jefeExiste = true;
 						}
-						else if (name == telefono) {
-							if ($.isNumeric(telefono.val()) == false) {
-								mensajeError += "Numero de telefono invalido</br>";
-								telefono.css("border-color","#D32F2F");
-							} 
+						if (jefeExiste)
+							mensajeError = "Ya hay una persona agregada como jefe de familia</br>";
+							//alert("Ya hay una persona agregada como jefe de familia");	//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+					}
+					if (data == 1){
+						//alert("Esta cedula ya se encuentra registrada"); //AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+						dniExiste = true;
+					}else if ($("#tabla tbody tr").length) {
+						for (var i = 0 ; i < data.length ; i++){
+							if ($("#formulario input[name='DNI']").val() == data[i]['DNI'])
+								dniExiste = true;
+						}
+						if (dniExiste){
+							mensajeError = "Esta cedula ya se encuentra agregada</br>";
+							//alert("Esta cedula ya se encuentra agregada");	//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+						}
+							
+					}
+
+					if (mensajeError != "")
+						$("#mensajeError").html(mensajeError);
+
+					if (!dniExiste && !jefeExiste)
+						addToTable();
+					});
+				
+				var addToTable = function () {
+					$("#mensajeError").html("");
+					//validacion
+					
+					var validateInputs = function (name){
+						if (name.val() == "" || name.val() == "--POSICION--") {
+							name.css("border-color","#D32F2F");
+							campoVacio = "campo vacios";
+						}
+						else{
+							name.css("border-color","#61b4b3");
+							if (name == dni) {
+								if ($.isNumeric(dni.val()) == false) {
+									mensajeError += "DNI invalido</br>";
+									dni.css("border-color","#D32F2F");
+								} 
+							}
+							else if (name == telefono) {
+								if ($.isNumeric(telefono.val()) == false) {
+									mensajeError += "Numero de telefono invalido</br>";
+									telefono.css("border-color","#D32F2F");
+								} 
+							}
 						}
 					}
-				}
 
-				var validateRadio = function (name,id) {
-					if (!name.is(':checked')) {
-						campoRadio = "Hay opciones no marcadas";
-						id.html("<p class='mensaje'>Elige una opción</p>");
+					var validateRadio = function (name,id) {
+						if (!name.is(':checked')) {
+							campoRadio = "Hay opciones no marcadas";
+							id.html("<p class='mensaje'>Elige una opción</p>");
+						}
+						else{
+							campoRadio = "";
+							id.html("");
+						}
 					}
+					
+					validateInputs(nombres);
+					validateInputs(apellidos);
+					validateRadio($("#formulario input[name='Genero']:radio"), $("#genero"));
+					validateInputs(dni);
+					validateInputs(telefono);
+					validateInputs(posicion);
+					validateRadio($("#formulario input[name='Embarazo']:radio"), $("#embarazo"));
+					validateRadio($("#formulario input[name='Encamado']:radio"), $("#encamado"));
+					validateRadio($("#formulario input[name='Pension']:radio"), $("#pension"));
+					validateRadio($("#formulario input[name='Voto']:radio"), $("#voto"));
+					validateInputs(nacimiento);
+					validateInputs(peso);
+					validateInputs(estatura);
+					if (campoVacio != "") {
+						mensajeError = "Hay campos vacios</br>";
+					}
+					if (campoRadio != "") {
+						mensajeError += campoRadio;
+					}
+					if (mensajeError != "") {
+						$("#mensajeError").html(mensajeError);
+						ev.preventDefault();
+					} //fin validacion
 					else{
-						campoRadio = "";
-						id.html("");
+						$("#mensajeExito").html("¡Persona agregada con éxito!");
+						var str;
+						str += "<tr class='row100 body'>";
+						str += "<td  class='cell100 column1'>"+nombres.val()+"</td>";
+						str += "<td  class='cell100 column2'>"+apellidos.val()+"</td>";
+						str += "<td  class='cell100 column0'>"+genero.val()+"</td>";
+						str += "<td  class='cell100 column4'>"+dni.val()+"</td>";
+						str += "<td  class='cell100 column5'>"+telefono.val()+"</td>";
+						str += "<td  class='cell100 column6'>"+posicion.val()+"</td>";
+						str += "<td  class='cell100 column9'>"+embarazo.val()+"</td>";
+						str += "<td  class='cell100 column9'>"+encamado.val()+"</td>";
+						str += "<td  class='cell100 column0'>"+pension.val()+"</td>";
+						str += "<td  class='cell100 column0'>"+voto.val()+"</td>";
+						str += "<td  class='cell100 column8'>"+nacimiento.val()+"</td>";
+						str += "<td  class='cell100 column0'>"+peso.val()+"</td>";
+						str += "<td  class='cell100 column0'>"+estatura.val()+"</td>";
+						str += "<td  class='cell100 column9'><button class='icon' onclick='$(this).parent().parent().remove()'><i class='fas fa-eraser'></i></button></td>"
+						str += "</tr>";
+
+						$("#tabla tbody").append(str);
+
+						emptyform();
+						//alert(nombres+" "+apellidos+" "+genero+"\n"+dni+"\n"+telefono+"\n"+posicion+"\n"+embarazo+" "+encamado+" "+pension+" "+voto+"\n"+nacimiento+"\n"+peso+" "+estatura);
 					}
-				}
 				
-				validateInputs(nombres);
-				validateInputs(apellidos);
-				validateRadio($("#formulario input[name='Genero']:radio"), $("#genero"));
-				validateInputs(dni);
-				validateInputs(telefono);
-				validateInputs(posicion);
-				validateRadio($("#formulario input[name='Embarazo']:radio"), $("#embarazo"));
-				validateRadio($("#formulario input[name='Encamado']:radio"), $("#encamado"));
-				validateRadio($("#formulario input[name='Pension']:radio"), $("#pension"));
-				validateRadio($("#formulario input[name='Voto']:radio"), $("#voto"));
-				validateInputs(nacimiento);
-				validateInputs(peso);
-				validateInputs(estatura);
-				if (campoVacio != "") {
-					mensajeError = "Hay campos vacios</br>" + mensajeError;
-				}
-				if (campoRadio != "") {
-					mensajeError += campoRadio;
-				}
-				if (mensajeError != "") {
-					$("#mensajeError").html(mensajeError);
-					ev.preventDefault();
-				} //fin validacion
-				else{
-					$("#mensajeExito").html("¡Persona agregada con éxito!");
-					var str;
-					str += "<tr class='row100 body'>";
-					str += "<td  class='cell100 column1'>"+nombres.val()+"</td>";
-					str += "<td  class='cell100 column2'>"+apellidos.val()+"</td>";
-					str += "<td  class='cell100 column0'>"+genero.val()+"</td>";
-					str += "<td  class='cell100 column4'>"+dni.val()+"</td>";
-					str += "<td  class='cell100 column5'>"+telefono.val()+"</td>";
-					str += "<td  class='cell100 column6'>"+posicion.val()+"</td>";
-					str += "<td  class='cell100 column9'>"+embarazo.val()+"</td>";
-					str += "<td  class='cell100 column9'>"+encamado.val()+"</td>";
-					str += "<td  class='cell100 column0'>"+pension.val()+"</td>";
-					str += "<td  class='cell100 column0'>"+voto.val()+"</td>";
-					str += "<td  class='cell100 column8'>"+nacimiento.val()+"</td>";
-					str += "<td  class='cell100 column0'>"+peso.val()+"</td>";
-					str += "<td  class='cell100 column0'>"+estatura.val()+"</td>";
-					str += "<td  class='cell100 column9'><button class='icon' onclick='$(this).parent().parent().remove()'><i class='fas fa-eraser'></i></button></td>"
-					str += "</tr>";
-
-					$("#tabla tbody").append(str);
-					$("#formulario")[0].reset();
-
-					//emptyform();
-					//alert(nombres+" "+apellidos+" "+genero+"\n"+dni+"\n"+telefono+"\n"+posicion+"\n"+embarazo+" "+encamado+" "+pension+" "+voto+"\n"+nacimiento+"\n"+peso+" "+estatura);
 				}
 			});
 			//Variables
@@ -396,16 +447,29 @@
 			change(estatura);
 			$("#create").click(function (ev) {
 				ev.preventDefault();
+
 				if ($("#tabla tbody tr").length) {
 					var data = family2JSON();
-					$.post("addfam.php",{
-						data: data,
-						apart: $("#Apartamento").val(),
-						vivienda: $("select[name='Vivienda']").val(),
-					}, function (dat) {
-						//alert("Llendo a: "+dat);
-						window.location.href=""+dat;
-					});
+					var bool = false;
+					for (var i = 0 ; i < data.length ; i++){
+						if (data[i]['POSICION'] == "JEFE")
+							bool = true;
+					}
+					var addToBD = function (data) {
+						$.post("addfam.php",{
+							data: data,
+							apart: $("#Apartamento").val(),
+							vivienda: $("select[name='Vivienda']").val(),
+						}, function (dat) {
+							//alert("Llendo a: "+dat);
+							window.location.href=""+dat;
+						});
+					}
+					if (bool)
+						addToBD(data);
+					else{
+						alert("No se ha agregado aún al jefe de familia");	//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+					}
 				}
 				
 			});
@@ -434,26 +498,11 @@
 			return tabla;
 			}
 		function emptyform() {
-			$("#formulario input[name='Nombres']").attr("value",null);
-			$("#formulario input[name='Apellidos']").attr("value",null);
-			$("#formulario input[name='Genero']:checked").attr("checked",null);
-			$("#formulario input[name='DNI']").attr("value",null);
-			$("#formulario input[name='Telefono']").attr("value",null);
-			$("#formulario select[name='Posicion']").attr("value",null);
-			$("#formulario input[name='Embarazo']:checked").attr("checked",null);
-			$("#formulario input[name='Encamado']:checked").attr("checked",null);
-			$("#formulario input[name='Pension']:checked").attr("checked",null);
-			$("#formulario input[name='Voto']:checked").attr("checked",null);
-			$("#formulario input[name='FechaNac']").attr("value",null);
-			$("#formulario input[name='Peso']").attr("value",null);
-			$("#formulario input[name='Estatura']").attr("value",null);
+			$("#formulario")[0].reset();
 		}
 	</script>
 <!--===============================================================================================-->	
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/bootstrap/js/popper.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
 	<script src="vendor/select2/select2.min.js"></script>
 <!--===============================================================================================-->

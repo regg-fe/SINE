@@ -52,8 +52,9 @@
 			<!-- PERSONAS -->
 			<div class="container-table100">
 					<div class="wrap-table100">	
-						<div class="table100 ver1">
-							<div class="wrap-table100 js-pscroll">
+						<div class="table100 ver1 pdi">
+							
+							<div class="wrap-table100-nextcols js-pscroll">
 								<div class="table100-nextcols">
 									<table>
 										<thead>
@@ -67,8 +68,6 @@
 												<th class="cell100 column7">Fecha de nacimiento</th>
 												<th class="cell100 column8">Serial del Carnet de la Patria</th>
 												<th class="cell100 column8">Codigo del Carnet de la Patria</th>
-												<th class="cell100 column9">Editar</th>
-												<th class="cell100 column9">Eliminar</th>
 											</tr>
 										</thead>
 										<?php for ($i = 0; $i < count($integrantes); $i++): ?>
@@ -83,18 +82,33 @@
 												<td class="cell100 column7"><?php echo $integrantes[$i]['FECHA_NAC'] ?></td>
 												<td class="cell100 column8"><?php echo $integrantes[$i]['SERIAL_CARNET'] ?></td>
 												<td class="cell100 column8"><?php echo $integrantes[$i]['CODIGO_CARNET'] ?></td>
-												<td class="cell100 column9"><a  class="icon" href="editperson.php?id=<?php echo $integrantes[$i]['ID']?>" title="Editar"><i class="fas fa-pen-alt"></i></a></td>
-												<td class="cell100 column9"><a  class="icon" href="#" title="Eliminar" onclick="Confirmar(3, <?php echo $integrantes[$i]['ID'] ?>, <?php echo $id ?>)"><i class="fas fa-eraser"></i></a></td>
 											</tr>
 										</tbody>
 										<?php endfor ?>
 									</table>
 								</div>
 							</div>
+							<div class="table100-firstcol">
+								<table>
+									<thead>
+										<tr class="row100 head">
+											<th class="cell100 column9">Editar</th>
+											<th class="cell100 column9">Eliminar</th>
+										</tr>
+									</thead>
+									<?php for ($i = 0; $i < count($integrantes); $i++): ?>
+									<tbody>
+										<td class="cell100 column9"><a  class="icon" href="editperson.php?id=<?php echo $integrantes[$i]['ID']?>" title="Editar"><i class="fas fa-pen-alt"></i></a></td>
+										<td class="cell100 column9"><a  class="icon" href="#" title="Eliminar" onclick="Confirmar(3, <?php echo $integrantes[$i]['ID'] ?>, <?php echo $id ?>)"><i class="fas fa-eraser"></i></a></td>
+									</tbody>
+									<?php endfor ?>
+								</table>
+							</div>
 						</div>
 					</div>
 				</div>
 				<a class="center" href="addpeople.php?id=<?php echo $familia['ID']?>"><button>Agregar Persona</button></a>
+
 
 			<!-- PERSONAS -->
 			
@@ -117,8 +131,8 @@
 										<?php for ($i = 0; $i < count($bombonas); $i++): ?>
 										<tbody>
 											<tr class="row100 body"> 
-												<td class="cell100 column1"><?php echo $bombonas[$i]['MARCA'] ?></td>
-												<td class="cell100 column2"><?php echo $bombonas[$i]['TIPO'] ?></td>
+												<td class="cell100 column1"><?php echo $bombonas[$i]['TIPO'] ?></td>
+												<td class="cell100 column2"><?php echo $bombonas[$i]['MARCA'] ?></td>
 												<td class="cell100 column9"><a class="icon" href="#" title="Eliminar" onclick="Confirmar(6, <?php echo $bombonas[$i]['ID'] ?>,0)"><i class="fas fa-eraser"></i></a></td>
 											</tr>
 										</tbody>
@@ -178,9 +192,6 @@
 
 <!--===============================================================================================-->	
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/bootstrap/js/popper.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
 	<script src="vendor/select2/select2.min.js"></script>
 <!--===============================================================================================-->

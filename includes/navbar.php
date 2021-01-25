@@ -137,6 +137,7 @@
 			</ul>
 			<!--right side-->
 			<ul class="list">
+				<li class="items"><a href="#"><i class="fas fa-save"></i></a></li>
 				<li class="items"><a href="search.php">Buscar</a></li>
 				<li class="items"><a href="includes/exit.php">Cerrar Sesión</a></li>
 			</ul>

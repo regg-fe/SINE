@@ -169,7 +169,7 @@ session_start();
 				if (mensajeError != "") {
 					$("#mensajeError").html(mensajeError);
 					e.preventDefault();
-				} 
+				}
 			});	
 
 			var change = function (name){

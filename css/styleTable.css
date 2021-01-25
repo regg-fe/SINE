@@ -81,33 +81,6 @@
   box-shadow: 3px 3px 10px rgba(0,0,0,0.2);
 }
 
-.table100-firstcol {
-  background-color: #fff;
-  position: absolute;
-  z-index: 1000;
-  width: 310px;
-  top: 0;
-  right: 0;
-  padding-left: 25px;
-  padding-top: 9px;
-  padding-bottom: 20px;
-}
-
-.table100-firstcol table {
-  background-color: #fff;
-}
-
-.shadow-table100-firstcol {
-  box-shadow: 8px 10px 0px 0px rgba(0, 0, 0, 0.05);
-  -moz-box-shadow: 8px 10px 0px 0px rgba(0, 0, 0, 0.05);
-  -webkit-box-shadow: 8px 10px 0px 0px rgba(0, 0, 0, 0.05);
-  -o-box-shadow: 8px 10px 0px 0px rgba(0, 0, 0, 0.05);
-  -ms-box-shadow: 8px 10px 0px 0px rgba(0, 0, 0, 0.05);
-}
-
-.table100-firstcol table {
-  background-color: transparent;
-}
 table {
   width: 100%;
   border-collapse: collapse;
@@ -187,9 +160,10 @@ td{
   background-color: #fff;
   position: absolute;
   z-index: 80;
-  width: 310px;
-  top: -10px;
+  width: 210px;
+  top: 0;
   right: 0;
+  padding-left: 10px;
 }
 
 .table100-firstcol table {
@@ -199,7 +173,7 @@ td{
 .wrap-table100-nextcols {
   width: 100%;
   overflow: auto;
-  padding-right: 310px;
+  padding-right: 210px;
   padding-bottom: 28px;
 }
 
@@ -220,7 +194,9 @@ td{
 }
 /*==================================================================
 [ Ver1 ]*/
-
+.pdi{
+  padding-right: 210px;
+}
 .table100.ver1 th {
   font-family: Roboto-Bold;
   font-size: 14px;

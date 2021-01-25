@@ -21,13 +21,31 @@
 </head>
 <body>
 	<?php include("includes/navbar.php");?>
-	<!-- Ayudas Tecnicas -->
-	<div class="welcome">
+	
+		<div class="welcome indice">
+		<a class="btn-indice" href="#">Índice</a>
+		<div class="scroll_vertical acomodar-indice">
+			<ul class="anclas">
+				<li><a href="#atr">1. Ayudas tecnicas</a></li>
+				<li><a href="#bnr">2. Bonos registrados</a></li>
+				<li><a href="#pgs">3. Programas sociales</a></li>
+				<li><a href="#dcr">4. Discapacidades</a></li>
+				<li><a href="#efr">5. Enfermedades</a></li>
+				<li><a href="#mdr">6. Medicamentos</a></li>
+				<li><a href="#mbr">7. Marcas de bombona</a></li>
+				<li><a href="#tbr">8. Tipos de bombona</a></li>
+				<li><a href="#lir">9. Lugares o isntituciones</a></li>
+			</ul>
+		</div>
 		<h1>Opciones</h1>
 	</div>
-	<div class="card-container">
+	<div class="center container Btn-menu">
+		<a href="home.php" title="Volver"><i class="fas fa-arrow-left"></i></a>
+	</div>
+<div class="card-container">
+		<!-- Ayudas Tecnicas -->
 		<div class="card-table">
-			<a class="center" href="home.php" title="Volver"><i class="fas fa-arrow-left"></i></a>
+		<a name="atr"></a>
 			<h2 class="centrar">Ayudas tecnicas registradas</h2>
 			<?php
 				$at = ayudasTec();
@@ -79,6 +97,7 @@
 
 		<!-- Bonos -->
 		<div class="card-table">
+			<a name="bnr"></a>
 			<h2 class="centrar">Bonos registrados</h2>
 			<?php
 				$bn = bonos();
@@ -131,6 +150,7 @@
 
 		<!-- Programas Sociales -->
 		<div class="card-table">
+			<a name="pgs"></a>
 			<h2 class="centrar">Programas sociales registrados</h2>
 			<?php
 				$ps = programasSociales();
@@ -182,6 +202,7 @@
 		</div>
 		<!-- Discapacidades -->
 		<div class="card-table">
+			<a name="dcr"></a>
 			<h2 class="centrar">Discapacidades registradas</h2>
 			<?php
 				$dc = discapacidades();
@@ -234,6 +255,7 @@
 
 		<!-- Enfermedades -->
 		<div class="card-table">
+			<a name="efr"></a>
 			<h2 class="centrar">Enfermedades registradas</h2>
 			<?php
 				$ef = enfermedades();
@@ -285,6 +307,7 @@
 
 		<!-- Medicamentos -->
 		<div class="card-table">
+			<a name="mdr"></a>
 			<h2 class="centrar">Medicamentos registrados</h2>
 			
 				<?php
@@ -348,6 +371,7 @@
 
 			<!-- Marcas de bombona -->
 			<div class="card-table">
+				<a name="mbr"></a>
 				<h2 class="centrar">Marcas de bombona registradas</h2>
 				<?php
 					$mb = marcaBombona();
@@ -399,6 +423,7 @@
 
 			<!-- Tipos de bombona -->
 			<div class="card-table">
+				<a name="tbr"></a>
 				<h2 class="centrar">Tipos de bombona registradas</h2>
 				<?php
 					$tb = tipoBombona();
@@ -449,6 +474,7 @@
 
 			<!-- Lugares / Instituciones -->
 			<div class="card-table">
+				<a name="lir"></a>
 				<h2 class="centrar">Lugares o instituciones registradas</h2>
 				<?php
 					$lg = lugares();
@@ -522,7 +548,6 @@
 				</div>
 			</div>
 		</div>
-		
 	<!-- Scripting -->
 	<script type="text/javascript">
 		function erase(name, id) {
@@ -677,5 +702,12 @@
 		});
 		
 	</script>
+		<script>
+      $(document).ready(function(){
+        $('.btn-indice').click(function(){
+          $('.anclas').toggleClass("show-indice");
+        });
+      });
+    </script>
 	<?php include("includes/modal.php") ?>
 	<?php include("includes/footer.php")?>

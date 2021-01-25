@@ -25,25 +25,22 @@
 			<div class="info">
 				<p id="text"></p>
 				<p id="text1">Porcentaje: </p>
-				<p id="text2"> </p>
+				<p id="text2"> </p><br>
 			</div>
+				<center><div id="send" style="display: none;">Cargando...</div></center>
 				<div class='container-table100'>
 					<div class='wrap-table100'>
 						<div class='table100 ver1'>
 							<div class='wrap-table100 js-pscroll'>
 								<div class='table100-nextcols'>
-									<center><div id="send" style="display: none;">Cargando...</div></center>
-									<div id="result"><br>
-								</div>
+									<div id="result"></div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-
-
-		<!--===============================================================================================-->	
+<!--===============================================================================================-->	
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
 	<script src="vendor/select2/select2.min.js"></script>

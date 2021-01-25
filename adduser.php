@@ -42,6 +42,9 @@
 	<body>
 		<?php include("includes/navbar.php");?>
 		<div class="container">
+			<div class="center Btn-menu">
+				<a href="user.php" title="Volver"><i class="fas fa-arrow-left"></i></a>
+			</div>
 			<div class="box-form">
 				<form action="adduser.php" method="POST">
 				<h1>Registrar nuevo usuario</h1>

@@ -19,7 +19,6 @@
 			<header>
 				<ul class="menu">  
 					<li class="logo"><a href="#" alt="SINE"><img src="img/logoFinal.png"></a> </li>
-					<li class="items"><a href="statistics.php">Estadisticas</a></li>
 					<li class="items"><a href="login.php">Iniciar Sesión</a></li>
 				</ul>
 			</header>
@@ -35,7 +34,7 @@
 				</section>
 					
 				<footer>
-					<p>Ingeniera de Sistemas &copy;2020</p>
+					<p>Ingeniería de Sistemas &copy;2020</p>
 					<p><?php echo $version; ?></p>
 				</footer>
 			</div>

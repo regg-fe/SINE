@@ -212,15 +212,18 @@ p.center{
 }
 .card-table{
 	flex-direction: row;
-	width: 400px;
+	width: 460px;
 	margin: 20px;
 	color: #444;
 }
+
 .card-container .card-table:last-child{
-	width: 760px;
+	width: 770px;
 }
-.card-container .card-table:nth-child(6){
-	width: 480px;
+.tablas-grandes{
+	width: 680px;
+	text-align: center;
+	display: block;
 }
 .card-table h2{
 	margin-bottom: 15px;
@@ -230,6 +233,8 @@ p.center{
 }
 .agregar button{
 	padding: 8px 12px;
+	margin-top: 15px;
+    margin-left: 5px;
     border-radius: 2px;
     background-color: #4c9ea3;
     box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
@@ -251,6 +256,7 @@ p.center{
     0 4px 5px 0 rgba(0, 0, 0, 0.14),
     0 1px 10px 0 rgba(0, 0, 0, 0.12);
     background-color: #159090;
+    color: white !important;
 }
 .agregar input, .agregar select{
 	border: none;
@@ -260,8 +266,12 @@ p.center{
 	font-size: 16px;
 	margin-left: 5px;
 	padding: .4em 1.4em .3em .8em;
+	min-width: 120px;
 }
-.agregar input{
+.quitar-margen button{
+	margin-right: 10px !important;
+}
+.agregar form input{
 	width: 55%;
 }
 .agregar input[name="RIF"]{
@@ -287,6 +297,10 @@ p.center{
 .descentrar{
 	text-align: left;
 }
+.descentrar td{
+	position: relative;
+	left: -10px;
+  }
 .division{
 	background-color: #4c9ea3;
     height: 8px;
@@ -296,9 +310,63 @@ p.center{
 	margin-left: 65px;
 	position: relative;
 	top: 17px;
-
 }
-
+/*Indice*/
+.acomodar-indice{
+	position: relative;
+	top: -30px;
+	left: -90px;
+	height: 150px;
+}
+.anclas{
+	width: 100%;
+	background-color: #4c9ea3e6;
+	border-radius: 2px;
+	text-align: left;
+	display: none;
+	padding-bottom: 5px;
+}
+.anclas li{
+	list-style: none;
+	margin-bottom: 10px;
+}
+.anclas a{
+	margin: 20px;
+	color: #fff;
+	text-decoration: none;
+}
+.anclas a:hover{
+	color: #ccc;;
+}
+.anclas.show-indice{
+	display: block !important;   
+}
+.indice{
+	display: inline-flex;
+}
+.indice h1{
+	position: absolute;
+	left: 42%;
+}
+a.btn-indice{
+	position: relative;
+	left: 10px;
+	top: -70px;
+	font-size: 18px;
+	border-radius: 2px;
+    background-color: #4c9ea3;
+	text-decoration: none;
+	color: #fff;
+	height: 40px;
+	padding: 8px 12px;
+	width: 100px;
+}
+a.btn-indice:hover{
+	cursor: pointer;
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
+    background-color: #159090;
+    color: white !important;
+}
 footer{
 	background: url(../img/congruent_pentagon.png);
 	height: 70px;
@@ -322,6 +390,10 @@ footer{
 	}
 	.card-container .card-table:last-child{
 		width: 400px;
+	}
+	.indice h1{
+		position: absolute;
+		left: 40%;
 	}
 }
 @media all and (max-width:900px){

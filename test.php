@@ -464,20 +464,20 @@
 						$salida .="<table>
 										<thead>
 											<tr class='row100 head'>
+												<th class='cell100 column9'>Numero de Apartamento</th>
 												<th class='cell100 column1'>Nombres</th>
 												<th class='cell100 column2'>Apellidos</th>
 												<th class='cell100 column3'>Cedula</th>
-												<th class='cell100 column9'>Numnero de Apartamento</th>
 											</tr>
 										</thead>";
 					for ($i=0; $i < count($muestra); $i++) {
 						$salida.="
 								<tbody>
 									<tr class='row100 body descentrar'>
+										<td class='cell100 column9'>".$muestra[$i]['NRO_APARTAMENTO']."</td>
 				    					<td class='cell100 column1'><a href='aperson.php?id=".$muestra[$i]['ID_PERSONA']."' target='_blank'>".$muestra[$i]['NOMRBES']."</a></td>
 				    					<td class='cell100 column2'>".$muestra[$i]['APELLIDOS']."</td>
 				    					<td class='cell100 column3'>".$muestra[$i]['DNI']."</td>
-				    					<td class='cell100 column9'>".$muestra[$i]['NRO_APARTAMENTO']."</td>
 				    				</tr>";
 					}
 						$salida.="	</tbody>

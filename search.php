@@ -17,7 +17,7 @@
 		<?php include("includes/navbar.php");?>
 		<div class="welcome">
 			<div class="search">
-				<input type="text" id="search" placeholder="Buscar">
+				<input type="text" id="search" placeholder="Buscar" autofocus>
 				<button id="btn"><i class="fas fa-search"></i></button>
 			</div>
 		</div>
@@ -52,9 +52,6 @@
 	<script type="text/javascript" src="js/script.js"></script>
 <!--===============================================================================================-->	
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
-<!--===============================================================================================-->
-	<script src="vendor/bootstrap/js/popper.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
 	<script src="vendor/select2/select2.min.js"></script>
 <!--===============================================================================================-->

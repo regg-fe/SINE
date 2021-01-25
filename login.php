@@ -52,7 +52,6 @@
 			<label for="password">Contraseña</label>
 			<input type="password" name="password" id="password" placeholder="Ingresar contraseña">
 			<input type="submit" name = "btn" value="Iniciar sesión" id="submit">
-			<a href="#">¿Olvidó su contraseña?</a>
 		</form>
 	</div>
 	<script src="js/login.js"></script>

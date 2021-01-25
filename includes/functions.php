@@ -11,6 +11,19 @@
 		return $conection;
 	}
 
+	function backupSQL() {
+ 		$host = "localhost";
+ 		$name = "nedb";
+ 		$user = "root";
+ 		$password = "";
+
+ 		$date = date("Ymd-His"); 
+ 		$salida_sql = $name."-".$date.".sql";
+
+ 		$dump = "mysqldump -h$host -u$user -p$password --opt $name > $salida_sql";
+ 		system($dump,$output);
+ 	}
+
 	##				##
 	##	CONSULTAS	##
 	##				##

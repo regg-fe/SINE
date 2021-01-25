@@ -12,7 +12,7 @@
       });
     </script>
 <footer>
-	<p>Ingeniera de Sistemas &copy;2020</p>
+	<p>Ingeniería de Sistemas &copy;2020</p>
 	<p><?php echo $version; ?></p>
 </footer>
 	</body>

@@ -46,6 +46,9 @@
 			<h1>Estadisticas</h1>
 		</div>
 	<div class="container">
+			<div class="center Btn-menu">
+		<a href="home.php" title="Volver"><i class="fas fa-arrow-left"></i></a>
+	</div>
 		<dsiv class="container2">
 			<div class="tabla">
 		 		<h2>Bloques: </h2>
